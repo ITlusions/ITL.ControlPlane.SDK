@@ -2,53 +2,23 @@
 
 ## Overview
 
-The ITL ControlPlane SDK implements a clean 3-layer architecture that provides clear separation of concerns, making the system maintainable, testable, and extensible.
+The ITL ControlPlane SDK implements a clean, focused architecture that provides resource management capabilities through a provider-based framework. This is the core SDK component that has been separated from the broader ITL ControlPlane system for independent development and distribution.
 
-## 3-Layer Architecture
+## Current Repository Scope
 
-### Layer 1: API Layer (`src/api_layer/`)
+This repository contains **only the core SDK**, following the separation of components as requested:
 
-The API layer provides RESTful endpoints following ARM (Azure Resource Manager) patterns and handles HTTP request/response processing.
+- **ITL.ControlPlane.SDK** (this repo): Core framework and provider interfaces  
+- **ITL.ControlPlane.API**: REST API layer (moved to separate repository)
+- **ITL.ControlPlane.GraphDB**: Graph database metadata system (moved to separate repository)
 
-#### Components:
+## Core SDK Architecture
 
-**`server.py` - FastAPI Application Factory**
-- **Purpose**: Creates and configures the FastAPI application
-- **Responsibilities**: 
-  - Application initialization and configuration
-  - CORS middleware setup
-  - Route registration
-  - Global error handling
-- **Key Functions**: `create_app()`
+### Package Structure (`src/itl_controlplane_sdk/`)
 
-**`routes/` - API Route Handlers**
-- **`health_routes.py`**: Health check and system status endpoints
-- **`provider_routes.py`**: Provider information and capabilities endpoints  
-- **`resource_routes.py`**: Core CRUD operations for resources
-- **Responsibilities**:
-  - HTTP request/response handling
-  - Request validation and parsing
-  - Delegating to SDK core for business logic
+The core SDK follows a simple, focused architecture with four main components:
 
-**`middleware/` - Request Processing**
-- **`logging.py`**: Request/response logging and correlation IDs
-- **Responsibilities**:
-  - Request tracing and correlation
-  - Performance monitoring
-  - Error logging
-
-**`schemas/` - API Data Models**
-- **`api_models.py`**: Pydantic models for API requests/responses
-- **Responsibilities**:
-  - Input validation and serialization
-  - API documentation generation
-  - Type safety for HTTP layer
-
-### Layer 2: SDK Core (`src/controlplane_sdk/`)
-
-The core SDK layer provides the foundational framework for resource management and provider coordination.
-
-#### Components:
+#### Core Components:
 
 **`models.py` - Core Data Models**
 - **Purpose**: Defines the core data structures used throughout the system
@@ -58,24 +28,23 @@ The core SDK layer provides the foundational framework for resource management a
   - `ResourceListResponse`: Resource listing responses
   - `ProvisioningState`: Resource provisioning status enumeration
 - **Responsibilities**:
-  - Data model definitions
-  - Validation rules
+  - Data model definitions with Pydantic validation
   - Serialization support
+  - Type safety across the SDK
 
 **`resource_provider.py` - Provider Base Class**
 - **Purpose**: Abstract base class that all resource providers must implement
 - **Key Classes**: `ResourceProvider`
-- **Responsibilities**:
-  - Define provider interface contract
-  - Common validation logic
-  - Resource ID generation
-  - Error handling patterns
 - **Methods**:
   - `create_or_update_resource()`: Resource creation/updates
   - `get_resource()`: Resource retrieval
   - `list_resources()`: Resource listing
   - `delete_resource()`: Resource deletion
-  - `execute_action()`: Custom resource actions
+- **Responsibilities**:
+  - Define provider interface contract
+  - Common validation logic
+  - Resource ID generation
+  - Error handling patterns
 
 **`registry.py` - Provider Registry**
 - **Purpose**: Central registry for managing and routing to resource providers
@@ -87,64 +56,97 @@ The core SDK layer provides the foundational framework for resource management a
   - Global resource operations coordination
 - **Features**:
   - Multi-provider support
-  - Namespace-based routing
+  - Namespace-based routing (e.g., "ITL.Identity", "ITL.Compute")
   - Provider capability discovery
 
-### Layer 3: Provider Layer (`providers/`)
+**`__init__.py` - Package Exports**
+- **Purpose**: Defines the public API of the SDK
+- **Exports**:
+  - `ResourceProviderRegistry`: Main registry class
+  - `ResourceProvider`: Base provider class  
+  - Data models from `models.py`
+- **Usage**: Enables clean imports like `from itl_controlplane_sdk import ResourceProviderRegistry`
 
-The provider layer contains concrete implementations of resource providers for specific services and technologies.
+### Provider Layer (`providers/`)
 
-#### Provider Structure:
+The provider layer contains concrete implementations of resource providers for specific services and technologies. Providers can be deployed either:
+
+1. **Embedded**: Directly imported and used within applications
+2. **Containerized**: Deployed as standalone services
+
+#### Current Providers:
 
 **`keycloak/` - Identity Provider**
-- **`provider.py`**: Keycloak resource provider implementation
-- **Supported Resources**:
-  - Realms: Keycloak realm management
-  - Users: User account management
-  - Clients: OAuth2/OIDC client configuration
-- **Capabilities**:
-  - Realm creation and configuration
-  - User lifecycle management
-  - Client application setup
+- **Purpose**: Keycloak realm and user management
+- **Namespace**: `ITL.Identity`
+- **Resource Types**: `realms`, `users`, `groups`
+- **Implementation**: Python-based with Keycloak admin API integration
 
-**`compute/` - Compute Provider**  
-- **`vm_provider.py`**: Virtual machine resource provider
-- **Supported Resources**:
-  - Virtual Machines: VM lifecycle management
-- **Capabilities**:
-  - VM creation with configurable specifications
-  - Power state management (start, stop, restart, deallocate)
-  - Storage and network configuration
-  - Resource monitoring and reporting
+**`compute/` - Infrastructure Provider** 
+- **Purpose**: Compute resource management
+- **Namespace**: `ITL.Compute`
+- **Resource Types**: `instances`, `networks`, `storage`
+- **Implementation**: Provider framework for various compute platforms
 
-## Data Flow Architecture
+### System Flow
 
 ```
-HTTP Request
+Client Application
      ↓
-API Layer (FastAPI Routes)
+ITL ControlPlane SDK Core
+     ↓ 
+Resource Provider Registry
      ↓
-SDK Core (Registry + Models)
-     ↓  
 Provider Layer (Concrete Implementation)
      ↓
 External Services (Keycloak, Cloud APIs, etc.)
 ```
 
+## Component Relationships
+
+### Core Dependencies:
+
+```
+itl_controlplane_sdk/
+├── models.py          → Pydantic data structures
+├── registry.py        → Provider coordination
+├── resource_provider.py → Abstract interfaces
+└── __init__.py        → Public API exports
+
+providers/
+├── keycloak/          → Identity management
+└── compute/           → Infrastructure management
+```
+
+### Integration Patterns:
+
+**1. Direct Integration**
+```python
+from itl_controlplane_sdk import ResourceProviderRegistry
+from providers.keycloak.provider import KeycloakProvider
+
+registry = ResourceProviderRegistry()
+registry.register_provider("ITL.Identity", "realms", KeycloakProvider())
+```
+
+**2. Containerized Integration**  
+- Providers deployed as microservices
+- Communication via HTTP/gRPC
+- Independent scaling and management
+
 ### Request Processing Flow:
 
-1. **HTTP Request**: Client sends ARM-compatible REST request
-2. **API Layer**: FastAPI routes parse and validate the request
-3. **SDK Core**: Registry routes request to appropriate provider
-4. **Provider Layer**: Concrete provider executes the operation
-5. **Response**: Results flow back through the layers to client
+1. **Client Integration**: Application imports and uses SDK components
+2. **SDK Core**: Registry routes requests to appropriate provider
+3. **Provider Layer**: Concrete provider executes the operation
+4. **Response**: Results returned through SDK interface
 
 ## Design Principles
 
 ### Separation of Concerns
-- **API Layer**: Only handles HTTP protocol concerns
 - **SDK Core**: Business logic and resource management
 - **Provider Layer**: Service-specific implementation details
+- **Client Layer**: Application-specific usage and integration
 
 ### Extensibility
 - **Provider Interface**: Common interface allows easy addition of new providers
@@ -165,8 +167,8 @@ External Services (Keycloak, Cloud APIs, etc.)
 
 ### Environment Configuration
 - Provider-specific settings via environment variables
-- Configurable API server settings (host, port, CORS)
-- Logging levels and output formatting
+- Configurable logging levels and output formatting
+- Namespace and resource type mappings
 
 ### Deployment Patterns
 - **Single Process**: All providers in one application
@@ -198,205 +200,33 @@ External Services (Keycloak, Cloud APIs, etc.)
 - **Registry Tests**: Provider registration and routing
 
 ### Integration Testing  
-- **API Tests**: End-to-end HTTP request processing
-- **Provider Integration**: Real service interactions
+- **SDK Integration**: Real provider interactions through SDK
+- **Provider Integration**: Direct service interactions
 - **Cross-Provider Tests**: Multi-provider scenarios
 
 ### Contract Testing
 - **Provider Interface**: Ensure all providers implement required methods
-- **API Compatibility**: ARM pattern compliance
+- **SDK Compatibility**: Consistent interface patterns
 - **Error Handling**: Consistent error responses
 
 This architecture provides a robust foundation for building cloud resource management systems with clear separation of concerns, extensibility, and maintainability.
-- **Purpose**: FastAPI route definitions and request handling
-- **Responsibilities**:
-  - Define all API endpoints (info, plan, apply, destroy, jobs)
-  - Request validation and response formatting
-  - Error handling for operations
-  - Background task coordination
-- **Key Classes**: `ProviderRouter`
-- **Endpoints**: `/info`, `/plan`, `/apply`, `/destroy`, `/jobs/{job_id}`
 
-#### `health.py` - Health and Monitoring
-- **Purpose**: Health checks, readiness probes, and system status endpoints
-- **Responsibilities**:
-  - Health endpoint implementation
-  - Readiness checks with provider validation
-  - Uptime tracking and system information
-  - Provider capability reporting
-- **Key Classes**: `HealthManager`
-- **Endpoints**: `/health`, `/ready`
+## Extension Guide
 
-#### `metrics.py` - Prometheus Metrics
-- **Purpose**: Prometheus metrics collection and reporting
-- **Responsibilities**:
-  - Request counting and in-flight tracking
-  - Error counting by operation and type
-  - Duration tracking for operations
-  - Metrics response generation
-- **Key Classes**: `MetricsManager`
-- **Metrics**: Requests, in-flight, errors, duration
+### Adding New Providers
 
-#### `registry.py` - Provider Registration
-- **Purpose**: Self-registration with core control plane
-- **Responsibilities**:
-  - Background registration with retry logic
-  - Provider manifest building
-  - HTTP client management with timeouts
-  - Registration status tracking
-- **Key Classes**: `RegistryClient`
-- **Features**: Background threading, retry mechanisms, error handling
+1. **Create Provider Directory**: `providers/myservice/`
+2. **Implement Provider Class**: Inherit from `ResourceProvider`
+3. **Define Resource Models**: Service-specific data structures
+4. **Register Provider**: Add to registry with namespace and resource types
+5. **Add Tests**: Unit and integration tests for provider
 
-#### `tasks.py` - Task and Job Management
-- **Purpose**: Background task execution and job tracking
-- **Responsibilities**:
-  - Asynchronous task execution
-  - Task status and result tracking
-  - Task lifecycle management (pending, running, completed, failed)
-  - Memory management with task cleanup
-- **Key Classes**: `TaskManager`, `OperationExecutor`, `TaskResult`
-- **Features**: UUID task IDs, background execution, result persistence
+### Adding New Resource Types
 
-#### `exceptions.py` - Error Handling
-- **Purpose**: Centralized exception handling and error responses
-- **Responsibilities**:
-  - Custom exception classes for different error types
-  - Global exception handlers for FastAPI
-  - Structured error responses with request IDs
-  - Error logging and metrics integration
-- **Key Classes**: `ErrorHandler`, `ProviderError`, `PlanError`, `ApplyError`, `DestroyError`, `ValidationError`
-
-### Module Dependencies
-
-```
-server.py (Main Orchestrator)
-├── config.py (Configuration)
-├── routes.py (API Routes)
-│   ├── tasks.py (Task Management)
-│   └── exceptions.py (Error Handling)
-├── health.py (Health Checks)
-├── metrics.py (Prometheus Metrics)
-├── registry.py (Provider Registration)
-└── exceptions.py (Global Error Handling)
-```
-
-## Benefits of Separation
-
-### 1. **Separation of Concerns**
-- Each module has a single, well-defined responsibility
-- Easier to understand and modify individual components
-- Reduced coupling between different aspects of the system
-
-### 2. **Improved Maintainability**
-- Changes to metrics don't affect routing logic
-- Configuration changes are centralized
-- Error handling is consistent across all modules
-
-### 3. **Better Testability**
-- Individual modules can be unit tested in isolation
-- Mock dependencies easily for focused testing
-- Clear interfaces between components
-
-### 4. **Enhanced Reusability**
-- Components can be reused in other projects
-- Metrics and health modules are framework-agnostic
-- Configuration module is environment-aware
-
-### 5. **Scalability**
-- Easy to add new features to specific modules
-- Background task system supports async operations
-- Modular architecture supports horizontal scaling
-
-## Configuration Example
-
-```python
-from controlplane_sdk import ProviderServer, config_manager
-
-# Configure via environment or code
-config_manager.update_config(
-    provider_name="my-provider",
-    host="0.0.0.0",
-    port=8080,
-    control_plane_url="http://control-plane:8080/api/v1/providers",
-    metrics_enabled=True,
-    log_level="INFO"
-)
-
-# Create server with provider implementation
-server = ProviderServer(my_provider_impl)
-app = server.create_fastapi_app()
-```
-
-## Usage Patterns
-
-### 1. **Standard Server Creation**
-```python
-from controlplane_sdk import ProviderServer
-
-server = ProviderServer(provider_impl, core_registry_url)
-app = server.create_fastapi_app()
-```
-
-### 2. **Direct Component Usage**
-```python
-from controlplane_sdk import MetricsManager, TaskManager
-
-# Use metrics independently
-MetricsManager.increment_requests('plan')
-
-# Use task manager independently
-task_manager = TaskManager()
-task_id = await task_manager.execute_task('apply', my_async_func)
-```
-
-### 3. **Custom Error Handling**
-```python
-from controlplane_sdk import PlanError, ValidationError
-
-raise PlanError("Terraform plan failed", details={'exit_code': 1})
-raise ValidationError("Invalid configuration", field='instance.name')
-```
-
-## File Structure
-
-```
-src/controlplane_sdk/
-├── __init__.py          # Package exports and API
-├── server.py            # Main ProviderServer orchestrator
-├── config.py            # Configuration management
-├── routes.py            # FastAPI route definitions
-├── health.py            # Health and readiness endpoints
-├── metrics.py           # Prometheus metrics collection
-├── registry.py          # Provider registration with control plane
-├── tasks.py             # Background task and job management
-├── exceptions.py        # Error handling and custom exceptions
-├── terraform_engine.py  # (Existing) Terraform execution engine
-└── loader.py            # (Existing) Provider discovery and loading
-```
-
-## Migration Guide
-
-### For Existing Users
-The main `ProviderServer` interface remains unchanged:
-```python
-# This still works exactly the same
-server = ProviderServer(provider_impl, registry_url)
-app = server.create_fastapi_app()
-```
-
-### For Advanced Users
-New modular components are available:
-```python
-from controlplane_sdk import (
-    ServerConfig, MetricsManager, TaskManager, 
-    ProviderRouter, HealthManager, RegistryClient
-)
-
-# Use individual components as needed
-config = ServerConfig()
-task_manager = TaskManager()
-router = ProviderRouter(provider_impl)
-```
+1. **Extend Provider**: Add new resource type to existing provider
+2. **Update Models**: Add resource-specific properties
+3. **Implement Methods**: CRUD operations for new resource type
+4. **Update Registration**: Register new resource type in registry
 
 ## Keycloak Realm Provider Example
 
@@ -448,17 +278,60 @@ The SDK includes a comprehensive example that demonstrates building a production
 
 ```bash
 # Test the provider directly
-python example/keycloak_provider.py
+python examples/keycloak_provider.py
 
-# Run as a server
-python example/server_example.py
+# Run as a server (if available)
+python examples/server_example.py
+```
+
+## Usage Examples
+
+### Basic Provider Usage
+
+```python
+from itl_controlplane_sdk import ResourceProviderRegistry, ResourceRequest
+from providers.keycloak.provider import KeycloakProvider
+
+# Create registry and register provider
+registry = ResourceProviderRegistry()
+registry.register_provider("ITL.Identity", "realms", KeycloakProvider())
+
+# Create a resource
+request = ResourceRequest(
+    resource_name="test-realm",
+    resource_type="realms",
+    properties={"display_name": "Test Realm", "enabled": True}
+)
+
+response = await registry.create_or_update_resource(
+    namespace="ITL.Identity",
+    resource_type="realms", 
+    request=request
+)
+```
+
+### Direct Provider Usage
+
+```python
+from providers.keycloak.provider import KeycloakProvider
+from itl_controlplane_sdk import ResourceRequest
+
+# Use provider directly
+provider = KeycloakProvider()
+request = ResourceRequest(
+    resource_name="my-realm",
+    resource_type="realms",
+    properties={"display_name": "My Realm"}
+)
+
+response = await provider.create_or_update_resource(request)
 ```
 
 ## Future Enhancements
 
-1. **Plugin System**: Module architecture supports easy plugin integration
-2. **Caching Layer**: Add caching module for plan/state caching
-3. **Observability**: Enhanced tracing and logging modules
+1. **Plugin System**: Enhanced module architecture for easy plugin integration
+2. **Caching Layer**: Add caching support for plan/state management
+3. **Observability**: Enhanced tracing and logging capabilities
 4. **Security**: Authentication and authorization modules
 5. **Testing**: Test utilities and mock implementations
 
