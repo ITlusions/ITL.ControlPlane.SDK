@@ -18,7 +18,7 @@ pip install itl-controlplane-sdk
 
 For development:
 ```bash
-git clone <repository-url>
+git clone https://github.com/ITlusions/ITL.ControlPlane.SDK.git
 cd ITL.ControlPlane.SDK
 pip install -e .
 ```
@@ -71,7 +71,13 @@ ITL.ControlPlane.SDK/
 │   ├── keycloak/                    # Keycloak identity provider
 │   └── compute/                     # Compute resource providers
 ├── examples/                        # Usage examples
-└── docs/                           # Documentation
+│   └── quickstart.py               # Getting started example
+├── .github/                        # CI/CD workflows
+│   ├── workflows/                  # GitHub Actions
+│   └── PYPI_SETUP.md              # PyPI configuration guide
+├── test_sdk.py                     # SDK validation tests
+├── pyproject.toml                  # Package configuration
+└── documentation files            # Architecture, pipeline, versioning docs
 ```
 
 ## Architecture
@@ -85,10 +91,10 @@ The SDK follows a clean architecture with clear separation of concerns:
 
 ## Related Components
 
-This SDK is designed to work with other ITL ControlPlane components:
+This SDK is part of the ITL ControlPlane ecosystem. Other components have been separated into independent repositories for focused development:
 
-- **ITL.ControlPlane.API**: REST API layer providing HTTP endpoints
-- **ITL.ControlPlane.GraphDB**: Graph database for metadata storage and analytics
+- **ITL.ControlPlane.API**: REST API layer (separate repository)
+- **ITL.ControlPlane.GraphDB**: Graph database for metadata storage (separate repository)
 
 ## Development
 
@@ -120,9 +126,11 @@ See [PIPELINE_SETUP.md](./PIPELINE_SETUP.md) for complete pipeline documentation
 
 ## Documentation
 
-- [Provider Isolation Guide](./PROVIDER_ISOLATION.md) - Deploying providers as standalone services
-- [Graph Database Configuration](./GRAPH_DATABASE_CONFIG.md) - Metadata storage integration
 - [Architecture Documentation](./ARCHITECTURE.md) - Detailed architecture overview
+- [CI/CD Pipeline Setup](./PIPELINE_SETUP.md) - Complete pipeline documentation
+- [Automated Versioning](./AUTOMATED_VERSIONING.md) - Git tag-based version management
+- [GitHub Workflows](./github/workflows/README.md) - CI/CD workflow details
+- [PyPI Setup Guide](./.github/PYPI_SETUP.md) - Package publishing configuration
 
 ## License
 
