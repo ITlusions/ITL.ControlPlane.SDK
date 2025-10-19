@@ -1,0 +1,622 @@
+name: Build, Test and Publish ITL ControlPlane SDK
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: false
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+      force_rebuild:
+        description: 'Force rebuild package (ignore cache)'
+        required: false
+        default: false
+        type: boolean
+      skip_tests:
+        description: 'Skip package tests'
+        required: false
+        default: false
+        type: boolean
+      publish_pypi:
+        description: 'Publish to PyPI (production only)'
+        required: false
+        default: true
+        type: boolean
+  push:
+    branches: 
+      - main
+      - develop
+      - 'feature/**'
+    tags:
+      - "v*"
+    paths: 
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'README.md'
+      - 'LICENSE'
+      - 'examples/**'
+      - 'providers/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'README.md'
+      - 'LICENSE'
+      - 'examples/**'
+      - 'providers/**'
+
+env:
+  PACKAGE_NAME: itl-controlplane-sdk
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  # Test and validate package
+  test:
+    runs-on: ubuntu-latest
+    if: ${{ !inputs.skip_tests }}
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache Python dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-${{ matrix.python-version }}-
+          ${{ runner.os }}-pip-
+
+    - name: Install package and dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev]"
+
+    - name: Run SDK validation tests
+      run: |
+        python test_sdk.py
+
+    - name: Run pytest (if tests exist)
+      run: |
+        if [ -d "tests" ]; then
+          pytest tests/ -v
+        else
+          echo "No pytest directory found, skipping pytest"
+        fi
+
+    - name: Run type checking with mypy
+      run: |
+        mypy src/itl_controlplane_sdk --ignore-missing-imports
+
+    - name: Run code formatting check
+      run: |
+        black --check src/ examples/ providers/
+
+    - name: Test import and basic functionality
+      run: |
+        python -c "
+        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+        from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
+        print('✅ All imports successful')
+        
+        # Test basic functionality
+        registry = ResourceProviderRegistry()
+        print('✅ Registry creation successful')
+        
+        print('🎉 SDK basic functionality test passed')
+        "
+
+    - name: Test example scripts
+      run: |
+        cd examples
+        python quickstart.py
+
+  # Lint and security checks
+  lint-and-security:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety pip-audit
+
+    - name: Install package
+      run: |
+        pip install -e ".[dev]"
+
+    - name: Run bandit security linter
+      run: |
+        bandit -r src/ -f json -o bandit-report.json || true
+        bandit -r src/ 
+
+    - name: Run safety check for dependencies
+      run: |
+        safety check --json --output safety-report.json || true
+        safety check
+
+    - name: Run pip-audit for vulnerability scanning
+      run: |
+        pip-audit --format=json --output=audit-report.json || true
+        pip-audit
+
+    - name: Upload security reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+          audit-report.json
+        retention-days: 30
+
+  # Build and package
+  build:
+    needs: [lint-and-security]
+    runs-on: ubuntu-latest
+    if: ${{ always() && (needs.lint-and-security.result == 'success') && (!inputs.skip_tests || needs.test.result == 'success' || needs.test.result == 'skipped') }}
+    
+    outputs:
+      package-version: ${{ steps.version.outputs.version }}
+      wheel-name: ${{ steps.build.outputs.wheel-name }}
+      sdist-name: ${{ steps.build.outputs.sdist-name }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install build tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine wheel tomli tomli-w
+
+    - name: Determine and set version information
+      id: version
+      run: |
+        # Determine version based on trigger type
+        if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+          # For release tags, extract version from tag
+          TAG_VERSION="${{ github.ref_name }}"
+          VERSION=$(echo "$TAG_VERSION" | sed 's/^v//')
+          echo "🏷️ Release build - using tag version: $VERSION"
+          
+          # Update pyproject.toml with tag version
+          python -c "
+          import tomli_w
+          import tomli
+          
+          # Read current pyproject.toml
+          with open('pyproject.toml', 'rb') as f:
+              data = tomli.load(f)
+          
+          # Update version
+          data['project']['version'] = '$VERSION'
+          
+          # Write back to file
+          with open('pyproject.toml', 'wb') as f:
+              tomli_w.dump(data, f)
+          
+          print(f'✅ Updated pyproject.toml version to: $VERSION')
+          "
+        else
+          # For development builds, extract base version from pyproject.toml
+          VERSION=$(python -c "
+          try:
+              import tomllib
+              with open('pyproject.toml', 'rb') as f:
+                  data = tomllib.load(f)
+          except ImportError:
+              import tomli
+              with open('pyproject.toml', 'rb') as f:
+                  data = tomli.load(f)
+          print(data['project']['version'])
+          ")
+          echo "🔧 Development build - using pyproject.toml version: $VERSION"
+        fi
+        
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Final package version: $VERSION"
+
+    - name: Update version for development builds
+      if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+      run: |
+        # For development builds, append build metadata
+        CURRENT_VERSION="${{ steps.version.outputs.version }}"
+        BUILD_VERSION="${CURRENT_VERSION}.dev${{ github.run_number }}+${{ github.sha }}"
+        
+        # Update pyproject.toml temporarily for the build
+        python -c "
+        import tomli_w
+        import tomli
+        
+        # Read current pyproject.toml
+        with open('pyproject.toml', 'rb') as f:
+            data = tomli.load(f)
+        
+        # Update version with development suffix
+        data['project']['version'] = '$BUILD_VERSION'
+        
+        # Write back to file
+        with open('pyproject.toml', 'wb') as f:
+            tomli_w.dump(data, f)
+        
+        print(f'✅ Updated development version to: $BUILD_VERSION')
+        "
+        
+        echo "Updated version to: $BUILD_VERSION"
+        echo "version=$BUILD_VERSION" >> $GITHUB_OUTPUT
+
+    - name: Verify version update
+      run: |
+        echo "📋 Final version information:"
+        echo "=============================="
+        FINAL_VERSION=$(python -c "
+        try:
+            import tomllib
+            with open('pyproject.toml', 'rb') as f:
+                data = tomllib.load(f)
+        except ImportError:
+            import tomli
+            with open('pyproject.toml', 'rb') as f:
+                data = tomli.load(f)
+        print(data['project']['version'])
+        ")
+        echo "pyproject.toml version: $FINAL_VERSION"
+        echo "GitHub ref: ${{ github.ref }}"
+        echo "Trigger: ${{ github.event_name }}"
+        
+        if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+          echo "🏷️ Release build detected"
+        else
+          echo "🔧 Development build detected"
+        fi
+
+    - name: Build package
+      id: build
+      run: |
+        echo "📦 Building Python package..."
+        python -m build --sdist --wheel --outdir dist/
+        
+        # Get the built file names
+        WHEEL_NAME=$(ls dist/*.whl | head -1 | xargs basename)
+        SDIST_NAME=$(ls dist/*.tar.gz | head -1 | xargs basename)
+        
+        echo "wheel-name=$WHEEL_NAME" >> $GITHUB_OUTPUT
+        echo "sdist-name=$SDIST_NAME" >> $GITHUB_OUTPUT
+        
+        echo "✅ Built packages:"
+        ls -la dist/
+        
+        # Verify the package
+        echo "🔍 Verifying package contents..."
+        python -m zipfile -l "dist/$WHEEL_NAME"
+
+    - name: Test package installation
+      run: |
+        echo "🧪 Testing package installation..."
+        # Create a clean environment to test installation
+        python -m venv test-env
+        source test-env/bin/activate
+        
+        # Install from wheel
+        pip install dist/*.whl
+        
+        # Test import
+        python -c "
+        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+        from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
+        print('✅ Package installation and import test successful')
+        "
+        
+        deactivate
+        rm -rf test-env
+
+    - name: Check package metadata
+      run: |
+        echo "📋 Checking package metadata..."
+        python -m twine check dist/*
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-${{ steps.version.outputs.version }}
+        path: dist/
+        retention-days: 30
+
+  # Publish to PyPI (Test)
+  publish-test:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    if: ${{ always() && needs.build.result == 'success' && needs.test.result == 'success' }}
+    environment: staging
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-${{ needs.build.outputs.package-version }}
+        path: dist/
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install publish tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install twine
+
+    - name: Publish to Test PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
+        TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
+      run: |
+        echo "🚀 Publishing to Test PyPI..."
+        python -m twine upload dist/* --verbose
+
+    - name: Test installation from Test PyPI
+      run: |
+        echo "🧪 Testing installation from Test PyPI..."
+        # Wait a bit for package to be available
+        sleep 30
+        
+        # Create clean environment
+        python -m venv test-install-env
+        source test-install-env/bin/activate
+        
+        # Install from Test PyPI (may fail if dependencies aren't available)
+        pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.package-version }} || echo "Test PyPI installation failed (expected for dev versions)"
+        
+        deactivate
+        rm -rf test-install-env
+
+  # Publish to PyPI (Production)
+  publish-production:
+    needs: [build, test, publish-test]
+    runs-on: ubuntu-latest
+    if: |
+      startsWith(github.ref, 'refs/tags/v') && 
+      (
+        (github.event_name == 'workflow_dispatch' && inputs.publish_pypi) ||
+        github.event_name != 'workflow_dispatch'
+      )
+    environment: production
+    permissions:
+      contents: write
+      id-token: write  # For trusted publishing
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-${{ needs.build.outputs.package-version }}
+        path: dist/
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install publish tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install twine
+
+    - name: Publish to PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+      run: |
+        echo "🚀 Publishing to PyPI..."
+        python -m twine upload dist/* --verbose
+
+    - name: Verify PyPI publication
+      run: |
+        echo "✅ Verifying PyPI publication..."
+        # Wait for package to be available
+        sleep 60
+        
+        # Try to install from PyPI
+        python -m venv verify-env
+        source verify-env/bin/activate
+        pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.package-version }}
+        
+        # Test import
+        python -c "
+        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+        print('✅ PyPI package verification successful')
+        "
+        
+        deactivate
+        rm -rf verify-env
+
+  # Create GitHub Release
+  create-release:
+    needs: [build, test, publish-production]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-${{ needs.build.outputs.package-version }}
+        path: dist/
+
+    - name: Generate release notes
+      run: |
+        cat > release-notes.md << EOF
+        # ITL ControlPlane SDK ${{ github.ref_name }}
+        
+        ## 📦 Package Information
+        - **Version**: ${{ needs.build.outputs.package-version }}
+        - **Python Support**: 3.8+
+        - **PyPI**: https://pypi.org/project/${{ env.PACKAGE_NAME }}/${{ needs.build.outputs.package-version }}/
+        
+        ## 🚀 Installation
+        
+        \`\`\`bash
+        pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.package-version }}
+        \`\`\`
+        
+        ## 📚 Quick Start
+        
+        \`\`\`python
+        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+        from itl_controlplane_sdk.models import ResourceRequest
+        
+        # Create registry and register providers
+        registry = ResourceProviderRegistry()
+        # ... see examples/ for more details
+        \`\`\`
+        
+        ## 📋 What's Included
+        - Core SDK package with resource provider framework
+        - Provider base classes and interfaces
+        - Data models for resource management
+        - Example implementations
+        
+        ## 🔗 Links
+        - [Documentation](https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/README.md)
+        - [Examples](https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}/examples)
+        - [PyPI Package](https://pypi.org/project/${{ env.PACKAGE_NAME }}/)
+        
+        ## 📁 Release Assets
+        - **Source Distribution** (.tar.gz): For pip installation from source
+        - **Python Wheel** (.whl): For fast binary installation
+        EOF
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: ITL ControlPlane SDK ${{ github.ref_name }}
+        body_path: release-notes.md
+        draft: false
+        prerelease: ${{ contains(github.ref_name, '-') }}
+
+    - name: Upload release assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: dist/${{ needs.build.outputs.wheel-name }}
+        asset_name: ${{ needs.build.outputs.wheel-name }}
+        asset_content_type: application/zip
+
+    - name: Upload source distribution
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: dist/${{ needs.build.outputs.sdist-name }}
+        asset_name: ${{ needs.build.outputs.sdist-name }}
+        asset_content_type: application/gzip
+
+  # Notify on completion
+  notify:
+    needs: [test, build, publish-test, publish-production, create-release]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+    - name: Determine notification status
+      run: |
+        if [[ "${{ needs.test.result }}" == "success" && "${{ needs.build.result }}" == "success" ]]; then
+          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            if [[ "${{ needs.publish-production.result }}" == "success" ]]; then
+              echo "STATUS=✅ PRODUCTION RELEASE SUCCESSFUL" >> $GITHUB_ENV
+              echo "MESSAGE=ITL ControlPlane SDK ${{ github.ref_name }} successfully published to PyPI and GitHub Releases" >> $GITHUB_ENV
+            else
+              echo "STATUS=❌ PRODUCTION RELEASE FAILED" >> $GITHUB_ENV
+              echo "MESSAGE=Production release failed for ${{ github.ref_name }}" >> $GITHUB_ENV
+            fi
+          else
+            if [[ "${{ needs.publish-test.result }}" == "success" ]]; then
+              echo "STATUS=✅ TEST BUILD SUCCESSFUL" >> $GITHUB_ENV
+              echo "MESSAGE=ITL ControlPlane SDK test build completed successfully" >> $GITHUB_ENV
+            else
+              echo "STATUS=⚠️ TEST BUILD COMPLETED" >> $GITHUB_ENV
+              echo "MESSAGE=ITL ControlPlane SDK build completed with warnings" >> $GITHUB_ENV
+            fi
+          fi
+        else
+          echo "STATUS=❌ BUILD FAILED" >> $GITHUB_ENV
+          echo "MESSAGE=ITL ControlPlane SDK build or tests failed" >> $GITHUB_ENV
+        fi
+
+    - name: Notify Teams (if webhook available)
+      if: env.TEAMS_WEBHOOK
+      run: |
+        curl -H "Content-Type: application/json" -d '{
+          "text": "${{ env.STATUS }}: ${{ env.MESSAGE }}",
+          "sections": [
+            {
+              "activityTitle": "ITL ControlPlane SDK Pipeline",
+              "activitySubtitle": "Build and Publish",
+              "facts": [
+                {"name": "Repository", "value": "${{ github.repository }}"},
+                {"name": "Branch/Tag", "value": "${{ github.ref_name }}"},
+                {"name": "Commit", "value": "${{ github.sha }}"},
+                {"name": "Trigger", "value": "${{ github.event_name }}"}
+              ]
+            }
+          ]
+        }' ${{ env.TEAMS_WEBHOOK }}
+      env:
+        TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
+
+    - name: Summary
+      run: |
+        echo "🎯 Pipeline Summary"
+        echo "=================="
+        echo "Repository: ${{ github.repository }}"
+        echo "Reference: ${{ github.ref }}"
+        echo "Event: ${{ github.event_name }}"
+        echo "Status: ${{ env.STATUS }}"
+        echo "Message: ${{ env.MESSAGE }}"
+        echo ""
+        echo "Job Results:"
+        echo "- Test: ${{ needs.test.result }}"
+        echo "- Build: ${{ needs.build.result }}"
+        echo "- Publish Test: ${{ needs.publish-test.result }}"
+        echo "- Publish Production: ${{ needs.publish-production.result }}"
+        echo "- Create Release: ${{ needs.create-release.result }}"

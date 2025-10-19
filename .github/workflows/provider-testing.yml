@@ -1,0 +1,152 @@
+name: Provider Testing and Validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: 'Provider to test (keycloak, compute, all)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+        - keycloak
+        - compute
+        - all
+  push:
+    branches: [ main, develop ]
+    paths: 
+      - 'providers/**'
+      - 'src/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'providers/**'
+
+jobs:
+  test-providers:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        provider: [keycloak, compute]
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install core SDK
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev]"
+
+    - name: Test ${{ matrix.provider }} provider
+      run: |
+        if [ -f "providers/${{ matrix.provider }}/requirements.txt" ]; then
+          pip install -r providers/${{ matrix.provider }}/requirements.txt
+        fi
+        
+        # Run provider-specific tests if they exist
+        if [ -f "providers/${{ matrix.provider }}/test_provider.py" ]; then
+          cd providers/${{ matrix.provider }}
+          python test_provider.py
+        else
+          echo "No specific tests found for ${{ matrix.provider }} provider"
+          # Test basic import
+          python -c "
+          import sys
+          sys.path.append('providers/${{ matrix.provider }}')
+          try:
+              if '${{ matrix.provider }}' == 'keycloak':
+                  from provider import KeycloakProvider
+                  provider = KeycloakProvider()
+                  print('✅ Keycloak provider import successful')
+              elif '${{ matrix.provider }}' == 'compute':
+                  from vm_provider import VMProvider
+                  provider = VMProvider()
+                  print('✅ VM provider import successful')
+          except ImportError as e:
+              print(f'❌ Provider import failed: {e}')
+              exit(1)
+          "
+        fi
+
+  test-containerized-providers:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[test-containers]')
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Test Keycloak Provider Container
+      run: |
+        if [ -f "providers/keycloak-provider/Dockerfile" ]; then
+          echo "🐳 Testing Keycloak provider container build..."
+          cd providers/keycloak-provider
+          docker build -t test-keycloak-provider .
+          echo "✅ Keycloak provider container build successful"
+        fi
+
+    - name: Test VM Provider Container
+      run: |
+        if [ -f "providers/vm-provider/Dockerfile" ]; then
+          echo "🐳 Testing VM provider container build..."
+          cd providers/vm-provider
+          docker build -t test-vm-provider .
+          echo "✅ VM provider container build successful"
+        fi
+
+    - name: Test Provider Compose Stack
+      run: |
+        if [ -f "providers/docker-compose.yml" ]; then
+          echo "🐳 Testing provider docker-compose stack..."
+          cd providers
+          docker-compose config
+          echo "✅ Docker compose configuration valid"
+        fi
+
+  validate-provider-structure:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Validate provider structure
+      run: |
+        echo "🔍 Validating provider directory structure..."
+        
+        for provider_dir in providers/*/; do
+          if [ -d "$provider_dir" ] && [ "$(basename "$provider_dir")" != "__pycache__" ]; then
+            provider_name=$(basename "$provider_dir")
+            echo "Checking provider: $provider_name"
+            
+            # Check for required files
+            if [ ! -f "$provider_dir/__init__.py" ]; then
+              echo "❌ Missing __init__.py in $provider_name"
+              exit 1
+            fi
+            
+            # Check for provider implementation
+            provider_files=$(find "$provider_dir" -name "*provider*.py" | wc -l)
+            if [ "$provider_files" -eq 0 ]; then
+              echo "⚠️ No provider implementation files found in $provider_name"
+            else
+              echo "✅ Provider implementation found in $provider_name"
+            fi
+            
+            # Check for Dockerfile if it's a containerized provider
+            if [ -d "$provider_dir/src" ] && [ ! -f "$provider_dir/Dockerfile" ]; then
+              echo "⚠️ Containerized provider $provider_name missing Dockerfile"
+            fi
+          fi
+        done
+        
+        echo "✅ Provider structure validation complete"

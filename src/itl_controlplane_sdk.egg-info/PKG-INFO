@@ -1,0 +1,105 @@
+Metadata-Version: 2.4
+Name: itl-controlplane-sdk
+Version: 1.0.0
+Summary: ITL ControlPlane SDK - Core framework for resource management
+Author: ITL Team
+License: Apache-2.0
+        
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: typing-extensions>=4.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Dynamic: license-file
+
+# ITL ControlPlane SDK
+
+The core SDK framework for ITL ControlPlane, providing resource management capabilities without dependencies on external metadata systems.
+
+## Features
+
+- **Resource Provider Registry**: Core framework for registering and managing resource providers
+- **Resource Provider Base Classes**: Abstract base classes for implementing custom resource providers
+- **Data Models**: Comprehensive data models for resources, requests, and responses
+- **Clean Architecture**: Independent component with minimal dependencies
+
+## Installation
+
+```bash
+pip install itl-controlplane-sdk
+```
+
+## Usage
+
+### Basic Resource Provider Registration
+
+```python
+from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+
+# Initialize the registry
+registry = ResourceProviderRegistry()
+
+# Register a custom provider
+class MyResourceProvider(ResourceProvider):
+    def __init__(self):
+        super().__init__("MyProvider", "1.0.0")
+    
+    async def handle_resource_request(self, request):
+        # Implementation here
+        pass
+
+provider = MyResourceProvider()
+registry.register_provider("myprovider", provider)
+```
+
+### Working with Resource Models
+
+```python
+from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
+
+# Create a resource request
+request = ResourceRequest(
+    resource_name="my-resource",
+    resource_type="MyType",
+    subscription_id="sub-123",
+    resource_group="my-rg",
+    location="westus2",
+    provider_namespace="MyProvider.Resources",
+    properties={"setting": "value"},
+    tags={"environment": "development"}
+)
+```
+
+## Architecture
+
+The SDK follows a clean architecture with clear separation of concerns:
+
+- **Registry**: Central registration and management of resource providers
+- **Providers**: Base classes and interfaces for implementing resource providers
+- **Models**: Data models for requests, responses, and resource metadata
+- **Utilities**: Helper functions and common patterns
+
+## Development
+
+```bash
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Run tests
+pytest
+
+# Format code
+black src/
+
+# Type checking
+mypy src/
+```
+
+## License
+
+This project is licensed under the terms specified in the LICENSE file.
