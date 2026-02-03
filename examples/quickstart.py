@@ -8,7 +8,7 @@ import logging
 
 # Import SDK components
 from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
+from itl_controlplane_sdk import ResourceRequest, ProvisioningState
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

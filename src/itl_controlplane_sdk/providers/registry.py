@@ -6,8 +6,8 @@ For metadata functionality, use the graph-datastore component separately.
 """
 import logging
 from typing import Dict, List, Any, Optional
-from .resource_provider import ResourceProvider
-from .models import ResourceRequest, ResourceResponse, ResourceListResponse
+from .base import ResourceProvider
+from itl_controlplane_sdk.core import ResourceRequest, ResourceResponse, ResourceListResponse
 
 logger = logging.getLogger(__name__)
 

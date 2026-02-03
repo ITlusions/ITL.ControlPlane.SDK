@@ -4,7 +4,7 @@ Core Resource Provider base classes and interfaces for the ITL ControlPlane SDK
 import abc
 import logging
 from typing import Dict, List, Any, Optional
-from .models import ResourceRequest, ResourceResponse, ResourceListResponse
+from itl_controlplane_sdk.core import ResourceRequest, ResourceResponse, ResourceListResponse
 
 logger = logging.getLogger(__name__)
 
