@@ -511,38 +511,46 @@ See [PIPELINE_SETUP.md](./PIPELINE_SETUP.md) for complete pipeline documentation
 
 ## Documentation
 
-### Core Documentation
-- [Architecture Overview](./docs/ARCHITECTURE.md) - Detailed SDK architecture and design patterns
-- [Modular Architecture](./docs/MODULAR_ARCHITECTURE.md) - Module organization and dependencies
-- [Resource ID Strategy](./docs/RESOURCE_ID_STRATEGY.md) - Hybrid path + GUID resource identification
+### 📚 Getting Started (1-4)
+1. [**Scoped Resource Handler**](./docs/01-SCOPED_RESOURCE_HANDLER.md) - Complete guide to scope-aware resource management
+2. [**Resource ID Strategy**](./docs/02-RESOURCE_ID_STRATEGY.md) - Hybrid path + GUID resource identification
+3. [**Modular Architecture**](./docs/03-MODULAR_ARCHITECTURE.md) - Module organization and design patterns
+4. [**Architecture Overview**](./docs/04-ARCHITECTURE.md) - Detailed SDK architecture and components
 
-### Handler & Provider Guides
-- [Scoped Resource Handler](./docs/SCOPED_RESOURCE_HANDLER.md) - Complete guide to scoped resources
-- [Big 3 Handler Mixins](./BIG_3_SUMMARY.md) - Timestamps, provisioning states, validation
-- [Big 3 Complete Guide](./BIG_3_COMPLETE_SUMMARY.md) - Detailed handler mixin documentation
-- [Resource Group Integration](./RESOURCE_GROUP_BIG_3_INTEGRATION.md) - Resource group with Big 3 patterns
+### 🌐 FastAPI Integration (5-7)
+5. [**FastAPI Module**](./docs/05-FASTAPI_MODULE.md) - Complete FastAPI integration guide
+6. [**FastAPI Integration**](./docs/06-FASTAPI_INTEGRATION.md) - Integration patterns and examples
+7. [**FastAPI Quick Reference**](./docs/07-FASTAPI_QUICK_REFERENCE.md) - FastAPI API quick reference
 
-### Integration Guides
-- [FastAPI Module Complete](./docs/FASTAPI_MODULE_COMPLETE.md) - FastAPI integration guide
-- [FastAPI Quick Reference](./docs/FASTAPI_QUICK_REFERENCE.md) - FastAPI API reference
-- [Identity Providers](./ARCHITECTURE_SUMMARY.md) - Identity provider framework overview
+### 🔧 CI/CD & Operations (8-10)
+8. [**Pipeline Setup**](./docs/08-PIPELINE_SETUP.md) - Complete CI/CD pipeline documentation
+9. [**Automated Versioning**](./docs/09-AUTOMATED_VERSIONING.md) - Git tag-based version management
+10. [**Version Update Guide**](./docs/10-VERSIONING_UPDATE.md) - Version update procedures
 
-### Location & Infrastructure
-- [ITL Locations](./ITL_LOCATIONS_SCHEMA.md) - Dynamic location management
-- [Locations Handler Guide](./LOCATIONS_HANDLER_GUIDE.md) - Location handler implementation
-- [Dynamic Locations](./DYNAMIC_LOCATIONS_COMPLETE.md) - Complete location system docs
+### 🏗️ Resource Group & Handlers (11-13)
+11. [**Resource Group Creation Flow**](./docs/11-RESOURCE_GROUP_CREATION_FLOW.md) - Step-by-step RG creation process
+12. [**Resource Group Big 3 Integration**](./docs/12-RESOURCE_GROUP_BIG_3_INTEGRATION.md) - RG with handler mixins
+13. [**Scoped Resources Overview**](./docs/13-SCOPED_RESOURCES_OVERVIEW.md) - Comprehensive scoped resource guide
 
-### CI/CD & Operations
-- [CI/CD Pipeline Setup](./docs/PIPELINE_SETUP.md) - Complete pipeline documentation
-- [Automated Versioning](./docs/AUTOMATED_VERSIONING.md) - Git tag-based version management
-- [Version Update Guide](./docs/VERSIONING_UPDATE.md) - Version update procedures
-- [PyPI Setup Guide](./.github/PYPI_SETUP.md) - Package publishing configuration
+### ⚡ Quick References (14-15)
+14. [**Quick Reference**](./docs/14-QUICK_REFERENCE.md) - SDK API quick reference
+15. [**Big 3 Quick Reference**](./docs/15-QUICK_REFERENCE_BIG_3.md) - Handler mixin quick reference
 
-### Quick References
-- [Quick Reference](./QUICK_REFERENCE.md) - SDK API quick reference
-- [Big 3 Quick Reference](./QUICK_REFERENCE_BIG_3.md) - Handler mixin quick reference
-- [Architecture Summary](./ARCHITECTURE_SUMMARY.md) - Quick architecture overview
-- [Scoped Resource Complete](./SCOPED_RESOURCE_HANDLER_COMPLETE.md) - Complete scoped handler reference
+### 📍 Location Management (16-20)
+16. [**Locations Handler**](./docs/16-LOCATIONS_HANDLER.md) - Location handler implementation guide
+17. [**Big 3 Implementation**](./docs/17-BIG_3_IMPLEMENTATION.md) - Complete handler mixin implementation
+18. [**ITL Locations Schema**](./docs/18-ITL_LOCATIONS_SCHEMA.md) - Custom location validation
+19. [**Dynamic Locations Summary**](./docs/19-DYNAMIC_LOCATIONS_SUMMARY.md) - Dynamic location management overview
+20. [**Dynamic Locations Complete**](./docs/20-DYNAMIC_LOCATIONS_COMPLETE.md) - Complete location system docs
+
+### 🎯 Advanced Topics (21-23)
+21. [**Big 3 Summary**](./docs/21-BIG_3_SUMMARY.md) - Handler mixin feature summary
+22. [**Big 3 Complete Summary**](./docs/22-BIG_3_COMPLETE_SUMMARY.md) - Detailed handler mixin documentation
+23. [**Architecture Summary**](./docs/23-ARCHITECTURE_SUMMARY.md) - Quick architecture overview
+
+### 🔑 Additional Resources
+- [**PyPI Setup Guide**](./.github/PYPI_SETUP.md) - Package publishing configuration
+- [**Examples Directory**](./examples/) - Working code examples and usage patterns
 
 ## Support and Contributing
 
