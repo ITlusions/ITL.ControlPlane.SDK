@@ -201,67 +201,105 @@ async def custom_endpoint():
 ```
 ITL.ControlPlane.SDK/
 ├── src/
-│   └── itl_controlplane_sdk/           # Core SDK package
-│       ├── __init__.py                 # Package exports
-│       ├── core/                       # Core models and exceptions
-│       │   ├── models.py               # Resource request/response models
-│       │   └── exceptions.py           # SDK exceptions
-│       ├── providers/                  # Resource provider framework
-│       │   ├── base.py                 # ResourceProvider base class
-│       │   ├── registry.py             # Provider registry
-│       │   ├── resource_ids.py         # Resource ID utilities
-│       │   ├── scoped_resources.py     # Scoped resource handler base
-│       │   ├── resource_handlers.py    # Big 3 handler mixins
-│       │   ├── resource_group_handler.py  # Resource group implementation
-│       │   ├── locations.py            # Location management
-│       │   └── itl_locations.py        # ITL location handler
-│       ├── identity/                   # Identity provider framework
-│       │   ├── identity_provider_base.py  # Base identity provider
-│       │   ├── identity_provider_factory.py  # Provider factory
-│       │   ├── tenant.py               # Tenant models
-│       │   ├── organization.py         # Organization models
-│       │   └── exceptions.py           # Identity exceptions
-│       ├── fastapi/                    # FastAPI integration (optional)
-│       │   ├── app_factory.py          # App factory pattern
-│       │   ├── config.py               # FastAPI configuration
-│       │   ├── middleware/             # Custom middleware
-│       │   │   ├── error_handling.py   # Error handling middleware
-│       │   │   └── logging.py          # Logging middleware
-│       │   └── routes/                 # Built-in routes
-│       │       └── health.py           # Health check endpoints
-│       └── services/                   # Application layer services
-│           └── base.py                 # Base service patterns
-├── examples/                           # Usage examples
-│   ├── quickstart.py                   # Getting started example
-│   ├── scoped_resource_examples.py     # Scoped resource patterns
-│   ├── big_3_examples.py               # Handler mixin examples
-│   └── test_itl_locations.py           # Location management example
-├── tests/                              # Test suite
-│   ├── test_models.py                  # Model validation tests
-│   ├── test_resource_provider.py       # Provider tests
-│   └── test_resource_handlers.py       # Handler tests
-├── docs/                               # Documentation
-│   ├── ARCHITECTURE.md                 # Architecture overview
-│   ├── AUTOMATED_VERSIONING.md         # Version management
-│   ├── PIPELINE_SETUP.md               # CI/CD setup
-│   ├── RESOURCE_ID_STRATEGY.md         # Resource ID design
-│   ├── SCOPED_RESOURCE_HANDLER.md      # Scoped handler guide
-│   ├── FASTAPI_MODULE_COMPLETE.md      # FastAPI integration guide
-│   └── MODULAR_ARCHITECTURE.md         # Module design patterns
-├── .github/                            # CI/CD workflows
-│   ├── workflows/                      # GitHub Actions
-│   │   ├── ci.yml                      # Continuous integration
-│   │   ├── build-publish.yml           # PyPI publishing
-│   │   └── provider-testing.yml        # Provider validation
-│   └── PYPI_SETUP.md                   # PyPI configuration guide
-├── ARCHITECTURE_SUMMARY.md             # Quick architecture reference
-├── BIG_3_SUMMARY.md                    # Handler mixin summary
-├── BIG_3_COMPLETE_SUMMARY.md           # Detailed handler guide
-├── SCOPED_RESOURCE_HANDLER_COMPLETE.md # Complete scoped handler docs
-├── QUICK_REFERENCE.md                  # Quick API reference
-├── QUICK_REFERENCE_BIG_3.md            # Handler mixin quick ref
-├── pyproject.toml                      # Package configuration
-└── README.md                           # This file
+│   └── itl_controlplane_sdk/
+│       ├── __init__.py                    # Package exports
+│       ├── core/
+│       │   ├── __init__.py
+│       │   ├── models.py                  # Resource request/response models, ProvisioningState
+│       │   └── exceptions.py              # SDK exceptions
+│       ├── providers/
+│       │   ├── __init__.py
+│       │   ├── base.py                    # ResourceProvider abstract base class
+│       │   ├── registry.py                # ResourceProviderRegistry (thread-safe)
+│       │   ├── resource_ids.py            # ResourceIdentity, generate/parse resource IDs
+│       │   ├── scoped_resources.py        # ScopedResourceHandler, UniquenessScope
+│       │   ├── resource_handlers.py       # Big 3 mixins (Validated, Provisioning, Timestamped)
+│       │   ├── resource_group_handler.py  # ResourceGroupHandler reference implementation
+│       │   ├── locations.py               # Location management base
+│       │   └── itl_locations.py           # ITLLocationsHandler (27 regions)
+│       ├── identity/
+│       │   ├── __init__.py
+│       │   ├── identity_provider_base.py  # IdentityProvider abstract base class
+│       │   ├── identity_provider_factory.py # IdentityProviderFactory (singleton, registry)
+│       │   ├── tenant.py                  # TenantSpec, Tenant, TenantStatus, TenantResponse
+│       │   ├── organization.py            # OrganizationSpec, CustomDomain, TenantAdminUser
+│       │   └── exceptions.py              # Identity exceptions
+│       ├── fastapi/
+│       │   ├── __init__.py
+│       │   ├── app_factory.py             # AppFactory with configurable middleware
+│       │   ├── config.py                  # FastAPIConfig (development/production presets)
+│       │   ├── middleware/
+│       │   │   ├── __init__.py
+│       │   │   ├── error_handling.py      # APIError, setup_exception_handlers
+│       │   │   └── logging.py             # LoggingMiddleware with timing
+│       │   └── routes/
+│       │       ├── __init__.py
+│       │       └── health.py              # /health and /ready endpoints
+│       ├── pulumi/
+│       │   ├── __init__.py
+│       │   ├── deployment.py              # Pulumi deployment orchestration
+│       │   ├── resource_mapper.py         # SDK-to-Pulumi resource mapping
+│       │   └── stack.py                   # Stack management
+│       ├── services/
+│       │   ├── __init__.py
+│       │   └── base.py                    # Base service patterns
+│       └── routes/
+│           └── metadata.py                # Metadata routes
+│
+├── examples/
+│   ├── README.md                          # Complete index and learning paths
+│   ├── core/
+│   │   ├── quickstart.py                  # Basic registry + CRUD (start here)
+│   │   └── intermediate/
+│   │       ├── resource_id_example.py     # ARM IDs, GUIDs, parsing, ResourceIdentity
+│   │       └── registry_example.py        # Multi-provider registration, discovery
+│   ├── compute/
+│   │   ├── intermediate/
+│   │   │   └── big_3_examples.py          # VirtualMachineHandler (Big 3 mixins)
+│   │   └── advanced/
+│   │       └── scoped_resource_examples.py # VM scoping patterns
+│   ├── storage/
+│   │   ├── intermediate/
+│   │   │   ├── big_3_examples.py          # StorageAccountHandler (global scope)
+│   │   │   └── storage_account_example.py # Global vs RG scope comparison
+│   │   └── advanced/
+│   │       └── scoped_resource_examples.py # Global scoping patterns
+│   ├── network/
+│   │   ├── intermediate/
+│   │   │   └── big_3_examples.py          # NetworkInterfaceHandler (RG scope)
+│   │   └── advanced/
+│   │       └── scoped_resource_examples.py # Network scoping patterns
+│   ├── management/
+│   │   ├── intermediate/
+│   │   │   ├── big_3_examples.py          # PolicyHandler, DatabaseHandler
+│   │   │   └── resource_group_handler_example.py # ResourceGroupHandler (Big 3 ref)
+│   │   └── advanced/
+│   │       └── scoped_resource_examples.py # ManagementGroupHandler
+│   ├── providers/
+│   │   └── intermediate/
+│   │       └── custom_provider_example.py # Custom ResourceProvider with actions
+│   ├── identity/
+│   │   ├── beginner/
+│   │   │   ├── tenant_example.py          # TenantSpec, lifecycle, multi-tenant
+│   │   │   └── organization_example.py    # Organizations, domains, admin users
+│   │   └── intermediate/
+│   │       └── identity_provider_factory_example.py # Factory, singleton, switching
+│   ├── fastapi/
+│   │   ├── beginner/
+│   │   │   └── app_factory_example.py     # AppFactory, config presets, CORS
+│   │   └── intermediate/
+│   │       └── middleware_example.py      # APIError, LoggingMiddleware, error handling
+│   ├── deployment/
+│   │   └── intermediate/
+│   │       └── pulumi_deployment_example.py # Pulumi multi-env IaC
+│   └── tests/
+│       ├── unit/
+│       │   └── test_itl_locations.py      # Location validation (27 regions)
+│       └── integration/
+│           └── test_resource_group_big_3.py # Handler testing patterns
+│
+├── pyproject.toml
+└── README.md
 ```
 
 ## Architecture
@@ -498,57 +536,57 @@ See [PIPELINE_SETUP.md](./PIPELINE_SETUP.md) for complete pipeline documentation
 - **uvicorn**: ≥0.24.0 (for ASGI server)
 
 ### Recent Updates
-- ✅ Scoped resource handlers with configurable uniqueness scopes
-- ✅ Big 3 handler mixins (timestamps, provisioning states, validation)
-- ✅ Identity provider framework with multi-tenancy support
-- ✅ FastAPI integration module with middleware and health checks
-- ✅ ITL Locations handler with dynamic region management
-- ✅ Resource group handler with full Big 3 integration
-- ✅ Comprehensive test suite and examples
-- ✅ Enhanced type safety with Pydantic v2
-- ✅ Production-ready error handling and logging
-- ✅ Automated CI/CD pipeline with version management
+- Scoped resource handlers with configurable uniqueness scopes
+- Big 3 handler mixins (timestamps, provisioning states, validation)
+- Identity provider framework with multi-tenancy support
+- FastAPI integration module with middleware and health checks
+- ITL Locations handler with dynamic region management
+- Resource group handler with full Big 3 integration
+- Comprehensive test suite and examples
+- Enhanced type safety with Pydantic v2
+- Production-ready error handling and logging
+- Automated CI/CD pipeline with version management
 
 ## Documentation
 
-### 📚 Getting Started (1-4)
+### Getting Started (1-4)
 1. [**Scoped Resource Handler**](./docs/01-SCOPED_RESOURCE_HANDLER.md) - Complete guide to scope-aware resource management
 2. [**Resource ID Strategy**](./docs/02-RESOURCE_ID_STRATEGY.md) - Hybrid path + GUID resource identification
 3. [**Modular Architecture**](./docs/03-MODULAR_ARCHITECTURE.md) - Module organization and design patterns
 4. [**Architecture Overview**](./docs/04-ARCHITECTURE.md) - Detailed SDK architecture and components
 
-### 🌐 FastAPI Integration (5-7)
+### FastAPI Integration (5-7)
 5. [**FastAPI Module**](./docs/05-FASTAPI_MODULE.md) - Complete FastAPI integration guide
 6. [**FastAPI Integration**](./docs/06-FASTAPI_INTEGRATION.md) - Integration patterns and examples
 7. [**FastAPI Quick Reference**](./docs/07-FASTAPI_QUICK_REFERENCE.md) - FastAPI API quick reference
 
-### 🔧 CI/CD & Operations (8-10)
+### CI/CD & Operations (8-10)
 8. [**Pipeline Setup**](./docs/08-PIPELINE_SETUP.md) - Complete CI/CD pipeline documentation
 9. [**Automated Versioning**](./docs/09-AUTOMATED_VERSIONING.md) - Git tag-based version management
 10. [**Version Update Guide**](./docs/10-VERSIONING_UPDATE.md) - Version update procedures
 
-### 🏗️ Resource Group & Handlers (11-13)
+### Resource Group & Handlers (11-13)
 11. [**Resource Group Creation Flow**](./docs/11-RESOURCE_GROUP_CREATION_FLOW.md) - Step-by-step RG creation process
 12. [**Resource Group Big 3 Integration**](./docs/12-RESOURCE_GROUP_BIG_3_INTEGRATION.md) - RG with handler mixins
 13. [**Scoped Resources Overview**](./docs/13-SCOPED_RESOURCES_OVERVIEW.md) - Comprehensive scoped resource guide
 
-### ⚡ Quick References (14-15)
+### Quick References (14-15)
 14. [**Quick Reference**](./docs/14-QUICK_REFERENCE.md) - SDK API quick reference
 15. [**Big 3 Quick Reference**](./docs/15-QUICK_REFERENCE_BIG_3.md) - Handler mixin quick reference
 
-### 📍 Location Management (16-20)
+### Location Management (16-20)
 16. [**Locations Handler**](./docs/16-LOCATIONS_HANDLER.md) - Location handler implementation guide
 17. [**Big 3 Implementation**](./docs/17-BIG_3_IMPLEMENTATION.md) - Complete handler mixin implementation
 18. [**ITL Locations Schema**](./docs/18-ITL_LOCATIONS_SCHEMA.md) - Custom location validation
 19. [**Dynamic Locations Summary**](./docs/19-DYNAMIC_LOCATIONS_SUMMARY.md) - Dynamic location management overview
 20. [**Dynamic Locations Complete**](./docs/20-DYNAMIC_LOCATIONS_COMPLETE.md) - Complete location system docs
 
-### 🎯 Advanced Topics (21-23)
+### Advanced Topics (21-23)
 21. [**Big 3 Summary**](./docs/21-BIG_3_SUMMARY.md) - Handler mixin feature summary
 22. [**Big 3 Complete Summary**](./docs/22-BIG_3_COMPLETE_SUMMARY.md) - Detailed handler mixin documentation
 23. [**Architecture Summary**](./docs/23-ARCHITECTURE_SUMMARY.md) - Quick architecture overview
 
-### 🔑 Additional Resources
+### Additional Resources
 - [**PyPI Setup Guide**](./.github/PYPI_SETUP.md) - Package publishing configuration
 - [**Examples Directory**](./examples/) - Working code examples and usage patterns
 
