@@ -36,14 +36,14 @@ if __name__ == "__main__":
     print("-" * 70)
     
     if ITLLocationsHandler.is_valid("amsterdam"):
-        print("✓ 'amsterdam' is a valid location")
+        print("'amsterdam' is a valid location")
     else:
-        print("✗ 'amsterdam' is not valid")
+        print("'amsterdam' is not valid")
     
     if ITLLocationsHandler.is_valid("invalid-location"):
-        print("✓ 'invalid-location' is valid")
+        print("'invalid-location' is valid")
     else:
-        print("✗ 'invalid-location' is not valid")
+        print("'invalid-location' is not valid")
     
     # Example 2: Get all valid locations
     print("\n2. Get All Valid Locations")
@@ -86,12 +86,12 @@ if __name__ == "__main__":
             location="amsterdam",
             environment="production"
         )
-        print(f"✓ Created deployment:")
+        print(f"Created deployment:")
         print(f"    Name: {deployment.name}")
         print(f"    Location: {deployment.location}")
         print(f"    Environment: {deployment.environment}")
     except ValueError as e:
-        print(f"✗ Error: {e}")
+        print(f"Error: {e}")
     
     # Invalid location
     print("\n  Trying with invalid location...")
@@ -103,7 +103,7 @@ if __name__ == "__main__":
         )
     except ValueError as e:
         error_msg = str(e)
-        print(f"✗ Validation error (truncated):")
+        print(f"Validation error (truncated):")
         print(f"   {error_msg[:100]}...")
         # Show valid options
         valid = ITLLocationsHandler.get_valid_locations()
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     test_locs = ["amsterdam", "singapore", "berlin"]
     for loc in test_locs:
         is_valid = loc in valid_locs
-        status = "✓ FOUND" if is_valid else "✗ NOT FOUND"
+        status = "FOUND" if is_valid else "NOT FOUND"
         print(f"  {loc:15} -> {status}")
     
     # Example 7: Primary Datacenters (Netherlands)

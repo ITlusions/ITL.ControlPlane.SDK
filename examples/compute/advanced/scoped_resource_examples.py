@@ -246,10 +246,10 @@ class ComputeProvider:
                 {"replication": "LRS"},
                 subscription_id
             )
-            print(f"✓ Storage Account: {sa_id}")
+            print(f"Storage Account: {sa_id}")
             
         except ValueError as e:
-            print(f"✗ Storage Account Error: {e}")
+            print(f"Storage Account Error: {e}")
             return None
         
         try:
@@ -260,10 +260,10 @@ class ComputeProvider:
                 subscription_id,
                 resource_group
             )
-            print(f"✓ Network Interface: {nic_id}")
+            print(f"Network Interface: {nic_id}")
             
         except ValueError as e:
-            print(f"✗ Network Interface Error: {e}")
+            print(f"Network Interface Error: {e}")
             return None
         
         try:
@@ -278,10 +278,10 @@ class ComputeProvider:
                 subscription_id,
                 resource_group
             )
-            print(f"✓ Virtual Machine: {vm_id}")
+            print(f"Virtual Machine: {vm_id}")
             
         except ValueError as e:
-            print(f"✗ Virtual Machine Error: {e}")
+            print(f"Virtual Machine Error: {e}")
             return None
         
         return {
@@ -315,9 +315,9 @@ async def main():
             "prod-sub",
             "app-rg"
         )
-        print("✗ Duplicate was allowed (shouldn't happen)")
+        print("Duplicate was allowed (shouldn't happen)")
     except ValueError as e:
-        print(f"✓ Duplicate blocked: {e}")
+        print(f"Duplicate blocked: {e}")
     
     # Example 3: Create NIC with same name in different RG (will succeed)
     print("\n=== Creating NIC with Same Name in Different RG ===")
@@ -328,9 +328,9 @@ async def main():
             "prod-sub",
             "network-rg"
         )
-        print(f"✓ Created in different RG: {nic_id}")
+        print(f"Created in different RG: {nic_id}")
     except ValueError as e:
-        print(f"✗ Failed: {e}")
+        print(f"Failed: {e}")
     
     # Example 4: List VMs in resource group
     print("\n=== Listing VMs in app-rg ===")
@@ -346,7 +346,7 @@ async def main():
             {},
             "sub-1"
         )
-        print(f"✓ Created: {sa_id1}")
+        print(f"Created: {sa_id1}")
         
         # Try to create with same name from different subscription
         sa_id2, _ = provider.sa_handler.create_from_config(
@@ -354,9 +354,9 @@ async def main():
             {},
             "sub-2"
         )
-        print("✗ Duplicate allowed globally (shouldn't happen)")
+        print("Duplicate allowed globally (shouldn't happen)")
     except ValueError as e:
-        print(f"✓ Global duplicate blocked: {e}")
+        print(f"Global duplicate blocked: {e}")
 
 
 # ==================== HANDLER CONFIGURATION REFERENCE ====================
