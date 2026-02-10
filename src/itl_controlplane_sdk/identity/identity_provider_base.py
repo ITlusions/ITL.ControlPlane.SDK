@@ -520,9 +520,9 @@ class IdentityProvider(ABC):
 
     def get_config_required(self, key: str) -> Any:
         """Get configuration value (required)."""
-        from itl_controlplane_sdk import exceptions
+        from .exceptions import ConfigurationError
         if key not in self.config:
-            raise exceptions.ConfigurationError(
+            raise ConfigurationError(
                 f"Missing required configuration: {key}",
                 context={"provider": self.provider_name, "key": key},
             )

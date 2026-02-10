@@ -33,6 +33,7 @@ from .itl_locations import (
 )
 from .registry import ResourceProviderRegistry, resource_registry
 from .resource_ids import ResourceIdentity, generate_resource_id, parse_resource_id
+from .server import ProviderServer
 
 __all__ = [
     # Base classes
@@ -63,4 +64,6 @@ __all__ = [
     "ResourceIdentity",
     "generate_resource_id",
     "parse_resource_id",
+    # Server base class
+    "ProviderServer",
 ]

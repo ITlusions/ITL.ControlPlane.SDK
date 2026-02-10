@@ -150,7 +150,7 @@ class ResourceGroupHandler(
         
         # Validate properties using schema
         try:
-            validated_data = self.validate({
+            validated_data = self._validate_data({
                 "location": properties.get("location", default_location),
                 "tags": properties.get("tags", {})
             })
@@ -178,12 +178,9 @@ class ResourceGroupHandler(
         except ValueError as e:
             raise ValueError(str(e))
         
-        # Add timestamps to the resource
-        self.add_timestamps(rg_config, scope_context)
-        
-        # Transition provisioning state from Accepted → Provisioning → Succeeded
-        self.set_state(rg_config, ProvisioningState.PROVISIONING)
-        self.set_state(rg_config, ProvisioningState.SUCCEEDED)
+        # Timestamps and provisioning state transitions are handled
+        # automatically by TimestampedResourceHandler and ProvisioningStateHandler
+        # via the MRO chain in create_resource()
         
         return {
             "id": resource_id,

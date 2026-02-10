@@ -42,20 +42,30 @@ The core SDK framework for ITL ControlPlane, providing a complete resource manag
 
 ## Installation
 
-```bash
-pip install itl-controlplane-sdk
-```
+Install only the modules you need:
 
-For FastAPI integration:
 ```bash
+# Core + providers (default, no optional dependencies)
+pip install itl-controlplane-sdk
+
+# With identity framework (tenant/organization management)
+pip install itl-controlplane-sdk[identity]
+
+# With FastAPI integration (app factory, middleware)
 pip install itl-controlplane-sdk[fastapi]
+
+# With Pulumi IaC helpers
+pip install itl-controlplane-sdk[pulumi]
+
+# Everything
+pip install itl-controlplane-sdk[all]
 ```
 
 For development:
 ```bash
 git clone https://github.com/ITlusions/ITL.ControlPlane.SDK.git
 cd ITL.ControlPlane.SDK
-pip install -e ".[dev]"
+pip install -e ".[all,dev]"
 ```
 
 ## Quick Start
@@ -304,64 +314,300 @@ ITL.ControlPlane.SDK/
 
 ## Architecture
 
-The SDK follows a clean, modular architecture with clear separation of concerns:
+The SDK follows a clean, modular architecture with clear separation of concerns.
+Modules are loaded lazily so consumers only pay the import cost for what they use.
 
-### Core Layer
+```
++-------------------------------------------------+
+|            itl_controlplane_sdk                  |
+|                                                  |
+|  Eager (always loaded)     Lazy (on first use)   |
+|  ┌──────────┐              ┌──────────────────┐  |
+|  │  core    │              │  identity        │  |
+|  │  --------│              │  fastapi         │  |
+|  │  models  │              │  services        │  |
+|  │  except. │              │  pulumi          │  |
+|  └──────────┘              └──────────────────┘  |
+|  ┌──────────┐                                    |
+|  │ providers│                                    |
+|  └──────────┘                                    |
++-------------------------------------------------+
+```
+
+### Core Layer (eager)
 - **Models**: Pydantic-based data models for requests, responses, and resource metadata with full validation
 - **Exceptions**: Hierarchical exception types for error handling
 - **Constants**: Shared constants for resource types, locations, and provider namespaces
 
-### Provider Layer
+### Provider Layer (eager)
 - **Registry**: Thread-safe centralized registration and management of resource providers
 - **Base Classes**: Abstract base classes (`ResourceProvider`, `ScopedResourceHandler`) for implementations
 - **Resource IDs**: Utilities for generating and parsing hierarchical resource IDs
 - **Scoped Resources**: Configurable scope-based uniqueness and duplicate detection
 - **Handler Mixins**: Production-ready patterns (timestamps, provisioning states, validation)
 
-### Identity Layer
+### Identity Layer (lazy - `pip install itl-controlplane-sdk[identity]`)
 - **Identity Providers**: Pluggable identity provider framework
 - **Factory Pattern**: Centralized provider registration and instantiation
 - **Tenant Management**: Multi-tenant support with organization hierarchies
 - **Domain Management**: Custom domain support and verification
+- **Exceptions**: Self-contained exception hierarchy (`ConfigurationError`, `TenantError`, etc.)
 
-### FastAPI Layer (Optional)
+### FastAPI Layer (lazy - `pip install itl-controlplane-sdk[fastapi]`)
 - **App Factory**: FastAPI application factory with configurable middleware
 - **Middleware**: Error handling, logging, and request correlation
 - **Routes**: Built-in health check and metadata endpoints
 - **Configuration**: Environment-based configuration management
 
-### Service Layer
+### Pulumi Layer (lazy - `pip install itl-controlplane-sdk[pulumi]`)
+- **Stack Management**: Pulumi stack configuration and orchestration
+- **Resource Mapper**: SDK-to-Pulumi resource mapping
+- **Deployment**: Multi-environment deployment orchestration
+
+### Service Layer (lazy)
 - **Base Services**: Application-layer patterns for business logic
 - **Resource Services**: High-level resource management APIs
 
 ### Design Principles
+- **Modular Installs**: Granular extras (`[identity]`, `[fastapi]`, `[pulumi]`, `[all]`) so consumers install only what they need
+- **Lazy Loading**: Optional modules load on first attribute access via `__getattr__`, keeping base import fast
 - **Separation of Concerns**: Clear boundaries between layers
-- **Dependency Inversion**: Core SDK has no dependencies on FastAPI or identity providers
-- **Type Safety**: Comprehensive type hints and runtime validation
+- **Dependency Inversion**: Core SDK has no dependencies on FastAPI, identity backends, or Pulumi
+- **Type Safety**: Comprehensive type hints and runtime validation; `TYPE_CHECKING` block ensures IDE support for lazy imports
 - **Async-First**: Native async/await support throughout
 - **Extensibility**: Easy to extend with custom providers and handlers
-- **Backward Compatibility**: Seamless migration path for existing implementations
+- **Backward Compatibility**: `from itl_controlplane_sdk import Tenant` still works (lazy-loaded transparently)
 
-## Related Components
+## ITL ControlPlane Ecosystem
 
-This SDK is part of the ITL ControlPlane ecosystem. Other components are in independent repositories:
+The SDK is the foundation of the ITL ControlPlane ecosystem — a modular, Azure ARM-compatible cloud management platform. All components depend on this SDK for shared models, providers, storage, and FastAPI patterns.
 
-### Core Infrastructure
-- **ITL.ControlPlane.API**: REST API layer with ARM-compatible endpoints
-- **ITL.ControlPlane.GraphDB**: Graph database for metadata storage and relationships
-- **ITL.ControlPlane.CLI**: Command-line interface for resource management
+### Architecture Overview
 
-### Resource Providers
-- **ITL.ControlPlane.ResourceProvider.Core**: Core Azure-style resources (subscriptions, resource groups, deployments)
-- **ITL.ControlPlane.ResourceProvider.IAM**: Identity and access management (Keycloak integration)
-- **ITL.ControlPlane.ResourceProvider.Compute**: Virtual machines and compute resources
-- **ITL.ControlPlane.ResourceProvider.Network**: Virtual networks, subnets, and network security
-- **ITL.ControlPlane.ResourceProvider.Storage**: Storage accounts, blob containers, and file shares
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                               User Interfaces                                    │
+│  ┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────────┐  │
+│  │   Admin Portal      │  │  Customer Portal    │  │   Dashboard (Dev)       │  │
+│  │   Port 8091         │  │  Port 8090          │  │   Port 8080             │  │
+│  │   Full Infra Access │  │  No Infra Access    │  │   Combined (legacy)     │  │
+│  └─────────┬───────────┘  └─────────┬───────────┘  └───────────┬─────────────┘  │
+└────────────┼───────────────────────┼───────────────────────────┼────────────────┘
+             │                       │                           │
+             └───────────────────────┴───────────────────────────┘
+                                     │
+┌────────────────────────────────────▼────────────────────────────────────────────┐
+│                           ITL.ControlPlane.Api                                   │
+│             API Gateway — Lightweight Proxy, ARM Routing, JWT Validation         │
+│                                  Port 8080                                       │
+└────────────┬────────────────────────┬────────────────────────┬──────────────────┘
+             │                        │                        │
+     ┌───────▼───────┐        ┌───────▼───────┐        ┌───────▼───────┐
+     │ Core Provider │        │  IAM Provider │        │Compute Provider│
+     │   Port 8000   │        │   Port 8001   │        │   Port 8003   │
+     │  Subscriptions│        │    Realms     │        │     VMs       │
+     │  ResourceGroups│       │    Users      │        │   Disks       │
+     │  Deployments  │        │   Clients     │        │   Images      │
+     │  Locations    │        │Organizations  │        │               │
+     └───────┬───────┘        └───────┬───────┘        └───────┬───────┘
+             │                        │                        │
+     ┌───────┴────────────────────────┴────────────────────────┴───────┐
+     │                    ITL.ControlPanel.SDK                          │
+     │  Models · Providers · Storage · FastAPI · Identity · Exceptions  │
+     └───────────────────────────────────┬─────────────────────────────┘
+                                         │
+┌────────────────────────────────────────▼────────────────────────────────────────┐
+│                           Supporting Services                                    │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌────────────┐  │
+│  │   PostgreSQL    │  │    Keycloak     │  │     Neo4j       │  │  RabbitMQ  │  │
+│  │   Storage       │  │    Identity     │  │   Graph Sync    │  │  Events    │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  └────────────┘  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
 
-### Tools & Extensions
-- **ITL.ControlPlane.Portal**: Web-based management portal
-- **ITL.ControlPlane.Terraform**: Terraform provider for infrastructure as code
-- **ITL.ControlPlane.Ansible**: Ansible modules for automation
+### Component Repositories
+
+#### 📦 Core SDK
+
+| Repository | Purpose | Port |
+|------------|---------|------|
+| **ITL.ControlPanel.SDK** | Shared library — models, providers, storage, FastAPI, identity, exceptions | N/A (library) |
+
+This SDK provides:
+- `ResourceProvider` base class for building resource providers
+- `AppFactory` for consistent FastAPI application creation
+- `SQLAlchemyStorageEngine` for PostgreSQL persistence
+- Pydantic v2 models with ARM-compatible resource shapes
+- Exception hierarchy mapped to HTTP status codes
+- Identity provider framework (Keycloak, Azure AD)
+
+---
+
+#### 🚪 API Gateway
+
+| Repository | Purpose | Port |
+|------------|---------|------|
+| **ITL.ControlPlane.Api** | API Gateway — ARM-style routing, provider discovery, JWT validation | 8080 |
+
+The gateway:
+- Routes `/subscriptions/.../providers/ITL.{Domain}/...` requests to resource providers
+- Manages provider registration and health monitoring
+- Exposes `/providers/register` for dynamic provider onboarding
+- Provides unified OpenAPI spec across all providers
+
+---
+
+#### 🔧 Resource Providers
+
+| Repository | Namespace | Resources | Port |
+|------------|-----------|-----------|------|
+| **ITL.ControlPlane.ResourceProvider.Core** | `ITL.Core` | subscriptions, resourceGroups, managementGroups, deployments, locations, tags, policies, tenants | 8000 |
+| **ITL.ControlPlane.ResourceProvider.IAM** | `ITL.IAM` | realms, users, clients, organizations, tenants | 8001 |
+| **ITL.ControlPlane.ResourceProvider.Compute** | `ITL.Compute` | virtualMachines, disks, images, availabilitySets | 8003 |
+
+Each provider:
+- Subclasses `ResourceProvider` from the SDK
+- Registers at startup with the API Gateway
+- Implements CRUD operations for its resource types
+- Uses SDK storage engine or custom backends
+
+---
+
+#### 🖥️ User Interfaces
+
+| Repository | Audience | Features | Port |
+|------------|----------|----------|------|
+| **ITL.ControlPlane.Admin** | Platform Operators | Full infrastructure access, Docker/K8s monitoring, container management | 8091 |
+| **ITL.ControlPlane.Portal** | Customers | Self-service resources, NO infrastructure access, secure by design | 8090 |
+| **ITL.ControlPlane.Dashboard** | Developers | Combined portal (legacy), full access, development/testing | 8080 |
+
+Portal separation follows:
+- Admin Portal = Internal SRE tools (full infrastructure visibility)
+- Customer Portal = Self-service resource management only, no infrastructure access
+- Dashboard = Development/testing environment
+
+---
+
+#### 🗄️ Supporting Infrastructure
+
+| Repository | Purpose |
+|------------|---------|
+| **ITL.ControlPlane.GraphDB** | Neo4j graph database integration for resource relationships and metadata sync |
+| **ITLAuth** | Keycloak deployment and configuration for OIDC/OAuth2 authentication |
+
+---
+
+#### 📝 Partner & Template Projects
+
+| Repository | Purpose |
+|------------|---------|
+| **ITL.ControlPlane.ResourceProvider** | Template/example for partners building custom resource providers |
+
+Partners use this as a starting point to build their own resource providers following SDK patterns.
+
+---
+
+#### 📦 Client SDK (Public Distribution)
+
+| Repository | License | Purpose |
+|------------|---------|---------|
+| **ITL.ControlPanel.SDK.Client** | MIT | Public Python client for customers consuming the ControlPlane API |
+
+```bash
+pip install itl-controlplane-client
+```
+
+The Client SDK provides:
+- **Pydantic models** for API responses (Resource, Subscription, ResourceGroup, Location, etc.)
+- **Async HTTP client** (`ControlPlaneClient`) with typed operations
+- **Auth helpers** (OIDCAuth for Keycloak, BearerAuth, APIKeyAuth)
+- **No internal implementation** — only models and HTTP operations
+
+##### Two-Tier SDK Strategy
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                              CONSUMERS                                   │
+├─────────────────────────────────┬───────────────────────────────────────┤
+│        ITL / PARTNERS           │              CUSTOMERS                │
+│   (Build Resource Providers)    │      (Use ControlPlane API)           │
+└───────────────┬─────────────────┴──────────────────┬────────────────────┘
+                │                                    │
+                ▼                                    ▼
+┌───────────────────────────────┐    ┌───────────────────────────────────┐
+│   itl-controlplane-sdk        │    │   itl-controlplane-client         │
+│   (Apache 2.0 / Internal)     │    │   (MIT / Public PyPI)             │
+├───────────────────────────────┤    ├───────────────────────────────────┤
+│ ✓ Full provider base classes  │    │ ✓ Pydantic response models        │
+│ ✓ Storage engines (SQLAlchemy)│    │ ✓ Async HTTP client               │
+│ ✓ FastAPI integration         │    │ ✓ Auth helpers (OIDC/Bearer/Key)  │
+│ ✓ Identity providers          │    │ ✓ Typed operations                │
+│ ✓ Message broker integration  │    │ ✗ No provider implementation      │
+│ ✓ Core models & exceptions    │    │ ✗ No storage/database access      │
+└───────────────────────────────┘    └───────────────────────────────────┘
+```
+
+**Why two SDKs?**
+- **Security**: Customers cannot access internal implementation details
+- **Simplicity**: Client SDK is lightweight (~50KB vs ~2MB full SDK)
+- **Independence**: Client SDK has no dependency on internal SDK
+- **Licensing**: MIT for maximum customer adoption, Apache 2.0 for patent protection internally
+
+---
+
+### Dependency Flow
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        CUSTOMER APPLICATIONS                         │
+│                   (uses itl-controlplane-client)                     │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │ HTTPS / REST
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                          API GATEWAY                                 │
+│                   ITL.ControlPlane.Api (8080)                        │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │ Internal routing
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                       RESOURCE PROVIDERS                             │
+│        Core (8000) · IAM (8001) · Compute (8003) · Partners          │
+│                   (uses itl-controlplane-sdk)                        │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │
+                ┌───────────────┼───────────────┐
+                ▼               ▼               ▼
+           PostgreSQL       Keycloak        Neo4j
+```
+
+**Key principles**:
+- All providers depend on the SDK, never on each other directly
+- Provider-to-provider communication goes through API Gateway or message broker
+- Customers use Client SDK to interact with the platform via API Gateway
+- Internal SDK is never exposed to customers
+
+---
+
+### Quick Reference: Resource Provider Development
+
+To build a new resource provider:
+
+1. **Install SDK**: `pip install itl-controlplane-sdk[fastapi,storage-sqlalchemy]`
+2. **Subclass `ResourceProvider`**: Implement CRUD methods
+3. **Use `AppFactory`**: Create FastAPI app with standard middleware
+4. **Register with Gateway**: POST to `/providers/register` on startup
+5. **Deploy**: Docker container with Helm chart
+
+See [.github/agents/ITLResourceProvider.agent.md](.github/agents/ITLResourceProvider.agent.md) for complete patterns and examples.
+
+---
+
+### Related Ecosystem Projects
+
+| Project | Purpose |
+|---------|---------|
+| **ITL.Talos.HardenedOS** | Hardened Talos Linux images for secure clusters |
 
 ## Key Concepts
 
@@ -399,8 +645,8 @@ Plus automatic GUID generation for global uniqueness.
 git clone https://github.com/ITlusions/ITL.ControlPlane.SDK.git
 cd ITL.ControlPlane.SDK
 
-# Install development dependencies
-pip install -e ".[dev]"
+# Install all modules + development dependencies
+pip install -e ".[all,dev]"
 
 # Run validation tests
 python test_sdk.py
@@ -531,18 +777,26 @@ See [PIPELINE_SETUP.md](./PIPELINE_SETUP.md) for complete pipeline documentation
 - **typing-extensions**: ≥4.0.0 for enhanced type hints
 - **Python**: ≥3.8 (tested on 3.8-3.12)
 
-### Optional Dependencies
-- **FastAPI**: ≥0.104.0 (for HTTP integration)
-- **uvicorn**: ≥0.24.0 (for ASGI server)
+### Optional Dependencies (extras)
+| Extra | Dependencies | Description |
+|-------|-------------|-------------|
+| `[identity]` | email-validator ≥2.0.0 | Identity provider framework, tenant/org models |
+| `[fastapi]` | FastAPI ≥0.104.0, uvicorn ≥0.24.0, starlette ≥0.27.0 | HTTP integration with app factory |
+| `[pulumi]` | pulumi ≥3.0.0, pulumi-kubernetes ≥4.0.0 | Infrastructure-as-Code helpers |
+| `[all]` | All of the above | Install everything |
 
 ### Recent Updates
+- **Modular architecture with lazy loading**: Optional modules (identity, fastapi, pulumi, services) load on first use via `__getattr__`
+- **Granular install extras**: `pip install itl-controlplane-sdk[identity]`, `[fastapi]`, `[pulumi]`, `[all]`
+- **Self-contained identity exceptions**: 18 exception classes defined locally in `identity/exceptions.py` (no broken cross-repo imports)
+- **10 new working examples** across core, identity, providers, fastapi, storage, and management
+- **Comprehensive examples index** with 6 learning paths in `examples/README.md`
 - Scoped resource handlers with configurable uniqueness scopes
 - Big 3 handler mixins (timestamps, provisioning states, validation)
 - Identity provider framework with multi-tenancy support
 - FastAPI integration module with middleware and health checks
 - ITL Locations handler with dynamic region management
 - Resource group handler with full Big 3 integration
-- Comprehensive test suite and examples
 - Enhanced type safety with Pydantic v2
 - Production-ready error handling and logging
 - Automated CI/CD pipeline with version management

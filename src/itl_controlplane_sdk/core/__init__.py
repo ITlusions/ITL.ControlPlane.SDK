@@ -59,6 +59,10 @@ from itl_controlplane_sdk.core.models import (
     ExtendedLocationProperties,
     CreateExtendedLocationRequest,
     ExtendedLocationResponse,
+    # Tenant Models
+    TenantProperties,
+    CreateTenantRequest,
+    TenantResponse,
     # Enums
     ResourceState,
     DeploymentState,
@@ -72,16 +76,29 @@ from itl_controlplane_sdk.core.models import (
     RESOURCE_TYPE_POLICIES,
     RESOURCE_TYPE_LOCATIONS,
     RESOURCE_TYPE_EXTENDED_LOCATIONS,
+    RESOURCE_TYPE_TENANTS,
+    DEFAULT_TENANT_ID,
     ITL_RESOURCE_TYPES,
     DEFAULT_LOCATIONS,
     EXTENDED_LOCATIONS,
 )
 
 from itl_controlplane_sdk.core.exceptions import (
+    # Simple exceptions
     ResourceProviderError,
     ResourceNotFoundError,
     ResourceConflictError,
+    # Structured exceptions
+    ErrorCategory,
+    ControlPlaneError,
+    ConfigurationError,
     ValidationError,
+    AuthorizationError,
+    ProviderError,
+    TransientError,
+    ExternalServiceError,
+    CascadeDeletionError,
+    TransactionError,
 )
 
 __all__ = [
@@ -139,6 +156,10 @@ __all__ = [
     "ExtendedLocationProperties",
     "CreateExtendedLocationRequest",
     "ExtendedLocationResponse",
+    # Tenant Models
+    "TenantProperties",
+    "CreateTenantRequest",
+    "TenantResponse",
     # Enums
     "ResourceState",
     "DeploymentState",
@@ -152,13 +173,25 @@ __all__ = [
     "RESOURCE_TYPE_POLICIES",
     "RESOURCE_TYPE_LOCATIONS",
     "RESOURCE_TYPE_EXTENDED_LOCATIONS",
+    "RESOURCE_TYPE_TENANTS",
+    "DEFAULT_TENANT_ID",
     "ITL_RESOURCE_TYPES",
     "DEFAULT_LOCATIONS",
     "EXTENDED_LOCATIONS",
-    # Exceptions
+    # Exceptions (simple)
     "ResourceProviderError",
     "ResourceNotFoundError",
     "ResourceConflictError",
+    # Exceptions (structured)
+    "ErrorCategory",
+    "ControlPlaneError",
+    "ConfigurationError",
     "ValidationError",
+    "AuthorizationError",
+    "ProviderError",
+    "TransientError",
+    "ExternalServiceError",
+    "CascadeDeletionError",
+    "TransactionError",
 ]
 
