@@ -71,19 +71,9 @@ jobs:
         else
           # Get base version from pyproject.toml
           if python3 -c "import sys; sys.version_info >= (3,11)" 2>/dev/null; then
-            BASE_VERSION=$(python -c "
-import tomllib
-with open('pyproject.toml', 'rb') as f:
-  data = tomllib.load(f)
-print(data['project']['version'])
-            ")
+            BASE_VERSION=$(python -c "import tomllib; f=open('pyproject.toml','rb'); d=tomllib.load(f); print(d['project']['version'])")
           else
-            BASE_VERSION=$(python -c "
-import tomli
-with open('pyproject.toml', 'rb') as f:
-  data = tomli.load(f)
-print(data['project']['version'])
-            ")
+            BASE_VERSION=$(python -c "import tomli; f=open('pyproject.toml','rb'); d=tomli.load(f); print(d['project']['version'])")
           fi
           
           # Build development version with branch context
@@ -123,8 +113,9 @@ print(data['project']['version'])
         
         echo "Setting version to: $VERSION (Release: $IS_RELEASE)"
         
-        python -c "
+        python << 'PYEOF'
 import tomli_w
+import os
 try:
   import tomllib
   with open('pyproject.toml', 'rb') as f:
@@ -134,13 +125,13 @@ except ImportError:
   with open('pyproject.toml', 'rb') as f:
     data = tomli.load(f)
 
-data['project']['version'] = '$VERSION'
+data['project']['version'] = os.environ['VERSION']
 
 with open('pyproject.toml', 'wb') as f:
   tomli_w.dump(data, f)
 
-print(f'Updated pyproject.toml to version: $VERSION')
-        "
+print(f"Updated pyproject.toml to version: {os.environ['VERSION']}")
+PYEOF
 
     - name: Display version information
       run: |
@@ -156,7 +147,7 @@ print(f'Updated pyproject.toml to version: $VERSION')
         # Verify in pyproject.toml
         echo ""
         echo "Current pyproject.toml version:"
-        python -c "
+        python << 'PYEOF'
 try:
   import tomllib
   with open('pyproject.toml', 'rb') as f:
@@ -165,8 +156,8 @@ except ImportError:
   import tomli
   with open('pyproject.toml', 'rb') as f:
     data = tomli.load(f)
-print(f\"  {data['project']['version']}\")
-        "
+print(f"  {data['project']['version']}")
+PYEOF
         echo "════════════════════════════════════════"
 
     - name: Build package
