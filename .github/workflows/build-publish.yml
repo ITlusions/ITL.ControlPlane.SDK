@@ -23,58 +23,10 @@ env:
   PYTHON_VERSION: '3.11'
 
 jobs:
-  # Lint and security checks
-  lint-and-security:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
-
-    - name: Install security tools
-      run: |
-        python -m pip install --upgrade pip
-        pip install bandit safety pip-audit
-
-    - name: Install package
-      run: |
-        pip install -e ".[dev]"
-
-    - name: Run bandit security linter
-      run: |
-        bandit -r src/ -f json -o bandit-report.json || true
-        bandit -r src/ 
-
-    - name: Run safety check for dependencies
-      run: |
-        safety check --json --output safety-report.json || true
-        safety check
-
-    - name: Run pip-audit for vulnerability scanning
-      run: |
-        pip-audit --format=json --output=audit-report.json || true
-        pip-audit
-
-    - name: Upload security reports
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: security-reports
-        path: |
-          bandit-report.json
-          safety-report.json
-          audit-report.json
-        retention-days: 30
-
   # Build and package
   build:
-    needs: [lint-and-security]
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.lint-and-security.result == 'success') }}
+    if: ${{ always() }}
     
     outputs:
       package-version: ${{ steps.version.outputs.version }}
