@@ -192,9 +192,9 @@ PYEOF
         
         # Test import
         python -c "
-        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-        from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
-        print('Package installation and import test successful')
+from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
+print('Package installation and import test successful')
         "
         
         deactivate
@@ -314,8 +314,8 @@ PYEOF
         
         # Test import
         python -c "
-        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-        print('PyPI package verification successful')
+from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+print('PyPI package verification successful')
         "
         
         deactivate
