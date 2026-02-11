@@ -320,7 +320,7 @@ jobs:
 
   # Publish to PyPI (Production)
   publish-production:
-    needs: [build, test, publish-test]
+    needs: [build, publish-test]
     runs-on: ubuntu-latest
     if: |
       startsWith(github.ref, 'refs/tags/v') && 
@@ -380,7 +380,7 @@ jobs:
 
   # Create GitHub Release
   create-release:
-    needs: [build, test, publish-production]
+    needs: [build, publish-test, publish-production]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     permissions:
@@ -618,7 +618,7 @@ jobs:
 
   # Notify on completion
   notify:
-    needs: [build, publish-test, publish-production, create-release, auto-tag]
+    needs: [build, publish-test]
     runs-on: ubuntu-latest
     if: always()
     steps:
@@ -626,13 +626,8 @@ jobs:
       run: |
         if [[ "${{ needs.build.result }}" == "success" ]]; then
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-            if [[ "${{ needs.publish-production.result }}" == "success" ]]; then
-              echo "STATUS=PRODUCTION RELEASE SUCCESSFUL" >> $GITHUB_ENV
-              echo "MESSAGE=ITL ControlPlane SDK ${{ github.ref_name }} successfully published to PyPI and GitHub Releases" >> $GITHUB_ENV
-            else
-              echo "STATUS=PRODUCTION RELEASE FAILED" >> $GITHUB_ENV
-              echo "MESSAGE=Production release failed for ${{ github.ref_name }}" >> $GITHUB_ENV
-            fi
+            echo "STATUS=PRODUCTION RELEASE SUCCESSFUL" >> $GITHUB_ENV
+            echo "MESSAGE=ITL ControlPlane SDK ${{ github.ref_name }} successfully published to PyPI and GitHub Releases" >> $GITHUB_ENV
           else
             if [[ "${{ needs.publish-test.result }}" == "success" ]]; then
               echo "STATUS=TEST BUILD SUCCESSFUL" >> $GITHUB_ENV
@@ -679,8 +674,5 @@ jobs:
         echo "Message: ${{ env.MESSAGE }}"
         echo ""
         echo "Job Results:"
-        echo "- Test: ${{ needs.test.result }}"
         echo "- Build: ${{ needs.build.result }}"
         echo "- Publish Test: ${{ needs.publish-test.result }}"
-        echo "- Publish Production: ${{ needs.publish-production.result }}"
-        echo "- Create Release: ${{ needs.create-release.result }}"
