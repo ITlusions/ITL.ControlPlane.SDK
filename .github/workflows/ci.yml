@@ -3,13 +3,22 @@ name: CI - Test and Validate
 on:
   pull_request:
     branches: [ main, develop ]
+    paths:
+      - 'src/**'
+      - 'pyproject.toml'
+      - 'test_sdk.py'
+      - 'tests/**'
+      - 'examples/**'
+      - '.github/workflows/ci.yml'
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, 'feature/**' ]
     paths: 
       - 'src/**'
       - 'pyproject.toml'
       - 'test_sdk.py'
+      - 'tests/**'
       - 'examples/**'
+      - '.github/workflows/ci.yml'
 
 jobs:
   test:
@@ -26,19 +35,50 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     
+    - name: Cache Python dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-${{ matrix.python-version }}-
+          ${{ runner.os }}-pip-
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -e ".[dev]"
     
-    - name: Run validation tests
+    - name: Run SDK validation tests
       run: python test_sdk.py
+    
+    - name: Run pytest (if tests exist)
+      run: |
+        if [ -d "tests" ]; then
+          pytest tests/ -v
+        else
+          echo "No pytest directory found, skipping pytest"
+        fi
     
     - name: Run type checking
       run: mypy src/itl_controlplane_sdk --ignore-missing-imports
     
     - name: Check code formatting
       run: black --check src/ examples/
+    
+    - name: Test import and basic functionality
+      run: |
+        python -c "
+        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
+        from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
+        print('✅ All imports successful')
+        
+        # Test basic functionality
+        registry = ResourceProviderRegistry()
+        print('✅ Registry creation successful')
+        
+        print('🎉 SDK basic functionality test passed')
+        "
     
     - name: Test examples
       run: |
@@ -67,3 +107,49 @@ jobs:
         pip install dist/*.whl
         python -c "from itl_controlplane_sdk import ResourceProviderRegistry; print('✅ Package test successful')"
         deactivate
+
+  lint-and-security:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety pip-audit
+
+    - name: Install package
+      run: |
+        pip install -e ".[dev]"
+
+    - name: Run bandit security linter
+      run: |
+        bandit -r src/ -f json -o bandit-report.json || true
+        bandit -r src/ 
+
+    - name: Run safety check for dependencies
+      run: |
+        safety check --json --output safety-report.json || true
+        safety check
+
+    - name: Run pip-audit for vulnerability scanning
+      run: |
+        pip-audit --format=json --output=audit-report.json || true
+        pip-audit
+
+    - name: Upload security reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+          audit-report.json
+        retention-days: 30

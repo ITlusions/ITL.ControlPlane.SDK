@@ -3,34 +3,12 @@ name: Build, Test and Publish ITL ControlPlane SDK
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to deploy to'
-        required: false
-        default: 'staging'
-        type: choice
-        options:
-        - staging
-        - production
-      force_rebuild:
-        description: 'Force rebuild package (ignore cache)'
-        required: false
-        default: false
-        type: boolean
-      skip_tests:
-        description: 'Skip package tests'
-        required: false
-        default: false
-        type: boolean
       publish_pypi:
-        description: 'Publish to PyPI (production only)'
+        description: 'Publish to PyPI'
         required: false
         default: true
         type: boolean
   push:
-    branches: 
-      - main
-      - develop
-      - 'feature/**'
     tags:
       - "v*"
     paths: 
@@ -38,94 +16,13 @@ on:
       - 'pyproject.toml'
       - 'README.md'
       - 'LICENSE'
-      - 'examples/**'
-      - 'providers/**'
       - '.github/workflows/**'
-  pull_request:
-    branches: [ main, develop ]
-    paths:
-      - 'src/**'
-      - 'pyproject.toml'
-      - 'README.md'
-      - 'LICENSE'
-      - 'examples/**'
-      - 'providers/**'
 
 env:
   PACKAGE_NAME: itl-controlplane-sdk
   PYTHON_VERSION: '3.11'
 
 jobs:
-  # Test and validate package
-  test:
-    runs-on: ubuntu-latest
-    if: ${{ !inputs.skip_tests }}
-    strategy:
-      matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Cache Python dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-${{ matrix.python-version }}-
-          ${{ runner.os }}-pip-
-
-    - name: Install package and dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -e ".[dev]"
-
-    - name: Run SDK validation tests
-      run: |
-        python test_sdk.py
-
-    - name: Run pytest (if tests exist)
-      run: |
-        if [ -d "tests" ]; then
-          pytest tests/ -v
-        else
-          echo "No pytest directory found, skipping pytest"
-        fi
-
-    - name: Run type checking with mypy
-      run: |
-        mypy src/itl_controlplane_sdk --ignore-missing-imports
-
-    - name: Run code formatting check
-      run: |
-        black --check src/ examples/ providers/
-
-    - name: Test import and basic functionality
-      run: |
-        python -c "
-        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-        from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
-        print('✅ All imports successful')
-        
-        # Test basic functionality
-        registry = ResourceProviderRegistry()
-        print('✅ Registry creation successful')
-        
-        print('🎉 SDK basic functionality test passed')
-        "
-
-    - name: Test example scripts
-      run: |
-        cd examples
-        python quickstart.py
-
   # Lint and security checks
   lint-and-security:
     runs-on: ubuntu-latest
@@ -177,7 +74,7 @@ jobs:
   build:
     needs: [lint-and-security]
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.lint-and-security.result == 'success') && (!inputs.skip_tests || needs.test.result == 'success' || needs.test.result == 'skipped') }}
+    if: ${{ always() && (needs.lint-and-security.result == 'success') }}
     
     outputs:
       package-version: ${{ steps.version.outputs.version }}
@@ -374,9 +271,9 @@ jobs:
 
   # Publish to PyPI (Test)
   publish-test:
-    needs: [build, test]
+    needs: [build]
     runs-on: ubuntu-latest
-    if: ${{ always() && needs.build.result == 'success' && needs.test.result == 'success' }}
+    if: ${{ always() && needs.build.result == 'success' }}
     environment: staging
     
     steps:
@@ -575,14 +472,12 @@ jobs:
 
   # Auto-create release tags on push to main/develop
   auto-tag:
-    needs: [test, build]
+    needs: [build]
     runs-on: ubuntu-latest
     if: |
       github.event_name == 'push' &&
       !startsWith(github.ref, 'refs/tags/') &&
-      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') &&
-      needs.test.result == 'success' &&
-      needs.build.result == 'success'
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
     permissions:
       contents: write
     
@@ -723,13 +618,13 @@ jobs:
 
   # Notify on completion
   notify:
-    needs: [test, build, publish-test, publish-production, create-release, auto-tag]
+    needs: [build, publish-test, publish-production, create-release, auto-tag]
     runs-on: ubuntu-latest
     if: always()
     steps:
     - name: Determine notification status
       run: |
-        if [[ "${{ needs.test.result }}" == "success" && "${{ needs.build.result }}" == "success" ]]; then
+        if [[ "${{ needs.build.result }}" == "success" ]]; then
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             if [[ "${{ needs.publish-production.result }}" == "success" ]]; then
               echo "STATUS=✅ PRODUCTION RELEASE SUCCESSFUL" >> $GITHUB_ENV
