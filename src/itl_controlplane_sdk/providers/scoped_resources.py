@@ -120,7 +120,7 @@ class ScopedResourceHandler:
                 return f"/subscriptions/{subscription_id}/{resource_type}/{name}"
         elif UniquenessScope.MANAGEMENT_GROUP in self.UNIQUENESS_SCOPE:
             mg = scope_context.get("management_group_id", "unknown")
-            return f"/providers/Microsoft.Management/managementGroups/{mg}/providers/{resource_type}/{name}"
+            return f"/providers/ITL.Management/managementGroups/{mg}/providers/{resource_type}/{name}"
         elif UniquenessScope.PARENT_RESOURCE in self.UNIQUENESS_SCOPE:
             parent_id = scope_context.get("parent_resource_id", "unknown")
             return f"{parent_id}/providers/{resource_type}/{name}"

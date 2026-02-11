@@ -844,6 +844,65 @@ See [PIPELINE_SETUP.md](./PIPELINE_SETUP.md) for complete pipeline documentation
 - [**PyPI Setup Guide**](./.github/PYPI_SETUP.md) - Package publishing configuration
 - [**Examples Directory**](./examples/) - Working code examples and usage patterns
 
+## Versioning and Releases
+
+This project uses **semantic versioning** with **automatic releases on merge** to main/develop.
+
+> **Automatic Releases**: When you merge to `main` or `develop`, versions are automatically bumped and released to PyPI. No manual tagging needed!
+
+### Quick Start
+
+Check current version:
+```bash
+python scripts/version.py --get-version
+```
+
+### How It Works
+
+1. **Push to `develop`** → Auto-bumps patch version (`1.0.0` → `1.0.1`) → Auto-released to PyPI
+2. **Push to `main`** → Auto-bumps minor version (`1.0.1` → `1.1.0`) → Auto-released to PyPI
+3. **Push to `feature/*`** → Dev version only (Test PyPI, no release)
+
+See [AUTO_RELEASE_WORKFLOW.md](AUTO_RELEASE_WORKFLOW.md) for detailed flow.
+
+### Documentation
+
+- **[AUTO_RELEASE_WORKFLOW.md](AUTO_RELEASE_WORKFLOW.md)** - **START HERE** - How automatic releases work
+- **[VERSIONING_QUICKSTART.md](VERSIONING_QUICKSTART.md)** - Quick reference guide
+- **[VERSIONING.md](VERSIONING.md)** - Complete branching strategy and versioning guide
+- **[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)** - Pre-release verification checklist (for manual releases)
+- **[COMMANDS_CHEATSHEET.md](COMMANDS_CHEATSHEET.md)** - Git and version tool commands
+
+### Branch Behavior
+
+| Branch | Auto-Release | Version Format | PyPI | Notes |
+|--------|---|---|---|---|
+| `main` | Yes (Minor bump) | → `1.1.0` | Prod | Feature release |
+| `develop` | Yes (Patch bump) | → `1.0.1` | Prod | Bug fix release |
+| `feature/*` | No | `1.0.1.dev+feature...` | Test | Feature development |
+| Tag `v1.0.0` | Manual | `1.0.0` | Prod | Manual release |
+
+### Version Management Tools
+
+- **Version Script**: [scripts/version.py](scripts/version.py) - Core semantic versioning tool
+- **PowerShell Wrapper**: [scripts/version.ps1](scripts/version.ps1) - Windows convenience script
+- **Bash Wrapper**: [scripts/version.sh](scripts/version.sh) - Linux/macOS convenience script
+
+### CI/CD Pipeline
+
+All pushes trigger automated workflows:
+
+```
+Push to main/develop
+  ↓ Test & Build (1-2 min)
+  ↓ Auto-Tag Job (bumps version, creates git tag)
+  ↓ Release Workflow (triggered by tag)
+  ↓ Publish to PyPI + Create GitHub Release (2 min)
+  DONE (total: 3-5 minutes)
+```
+
+**No manual steps needed for releases!**
+
 ## Support and Contributing
 
 For questions, issues, or contributions:

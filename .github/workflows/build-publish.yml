@@ -183,10 +183,13 @@ jobs:
       package-version: ${{ steps.version.outputs.version }}
       wheel-name: ${{ steps.build.outputs.wheel-name }}
       sdist-name: ${{ steps.build.outputs.sdist-name }}
+      is-release: ${{ steps.version.outputs.is-release }}
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for version detection
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -198,106 +201,124 @@ jobs:
         python -m pip install --upgrade pip
         pip install build twine wheel tomli tomli-w
 
-    - name: Determine and set version information
+    - name: Detect version context
       id: version
       run: |
-        # Determine version based on trigger type
+        # Determine if this is a release
+        IS_RELEASE=false
         if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-          # For release tags, extract version from tag
-          TAG_VERSION="${{ github.ref_name }}"
-          VERSION=$(echo "$TAG_VERSION" | sed 's/^v//')
-          echo "🏷️ Release build - using tag version: $VERSION"
-          
-          # Update pyproject.toml with tag version
-          python -c "
-          import tomli_w
-          import tomli
-          
-          # Read current pyproject.toml
-          with open('pyproject.toml', 'rb') as f:
-              data = tomli.load(f)
-          
-          # Update version
-          data['project']['version'] = '$VERSION'
-          
-          # Write back to file
-          with open('pyproject.toml', 'wb') as f:
-              tomli_w.dump(data, f)
-          
-          print(f'✅ Updated pyproject.toml version to: $VERSION')
-          "
+          IS_RELEASE=true
+          echo "🏷️ RELEASE BUILD DETECTED"
         else
-          # For development builds, extract base version from pyproject.toml
-          VERSION=$(python -c "
-          try:
+          echo "🔧 Development build"
+        fi
+        
+        # Get version information
+        if [[ "$IS_RELEASE" == "true" ]]; then
+          # Extract version from tag (v1.2.3 -> 1.2.3)
+          VERSION="${{ github.ref_name }}"
+          VERSION="${VERSION#v}"
+          echo "📌 Release version from tag: $VERSION"
+        else
+          # Get base version from pyproject.toml
+          if python3 -c "import sys; sys.version_info >= (3,11)" 2>/dev/null; then
+            BASE_VERSION=$(python -c "
               import tomllib
               with open('pyproject.toml', 'rb') as f:
-                  data = tomllib.load(f)
-          except ImportError:
+                data = tomllib.load(f)
+              print(data['project']['version'])
+            ")
+          else
+            BASE_VERSION=$(python -c "
               import tomli
               with open('pyproject.toml', 'rb') as f:
-                  data = tomli.load(f)
-          print(data['project']['version'])
-          ")
-          echo "🔧 Development build - using pyproject.toml version: $VERSION"
+                data = tomli.load(f)
+              print(data['project']['version'])
+            ")
+          fi
+          
+          # Build development version with branch context
+          BRANCH="${{ github.ref_name }}"
+          SHA="${{ github.sha }}"
+          SHA_SHORT="${SHA:0:7}"
+          RUN_NUM="${{ github.run_number }}"
+          
+          # Add branch-specific suffix
+          if [[ "$BRANCH" == "main" ]]; then
+            VERSION="${BASE_VERSION}.dev${RUN_NUM}+main.${SHA_SHORT}"
+          elif [[ "$BRANCH" == "develop" ]]; then
+            VERSION="${BASE_VERSION}.dev${RUN_NUM}+develop.${SHA_SHORT}"
+          elif [[ "$BRANCH" == feature/* ]]; then
+            # Feature branch: v1.2.3.dev123+feature.branch-name.abc1234
+            FEATURE_NAME="${BRANCH#feature/}"
+            FEATURE_NAME="${FEATURE_NAME//\//-}"
+            VERSION="${BASE_VERSION}.dev${RUN_NUM}+feature.${FEATURE_NAME}.${SHA_SHORT}"
+          else
+            # Other branches
+            CLEAN_BRANCH="${BRANCH//\//-}"
+            VERSION="${BASE_VERSION}.dev${RUN_NUM}+${CLEAN_BRANCH}.${SHA_SHORT}"
+          fi
+          
+          echo "📌 Development version: $VERSION"
         fi
         
+        # Output version information
         echo "version=$VERSION" >> $GITHUB_OUTPUT
-        echo "Final package version: $VERSION"
+        echo "is-release=$IS_RELEASE" >> $GITHUB_OUTPUT
+        echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
 
-    - name: Update version for development builds
-      if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+    - name: Update pyproject.toml with version
       run: |
-        # For development builds, append build metadata
-        CURRENT_VERSION="${{ steps.version.outputs.version }}"
-        BUILD_VERSION="${CURRENT_VERSION}.dev${{ github.run_number }}+${{ github.sha }}"
+        VERSION="${{ steps.version.outputs.version }}"
+        IS_RELEASE="${{ steps.version.outputs.is-release }}"
         
-        # Update pyproject.toml temporarily for the build
+        echo "📝 Setting version to: $VERSION (Release: $IS_RELEASE)"
+        
         python -c "
         import tomli_w
-        import tomli
-        
-        # Read current pyproject.toml
-        with open('pyproject.toml', 'rb') as f:
+        try:
+          import tomllib
+          with open('pyproject.toml', 'rb') as f:
+            data = tomllib.load(f)
+        except ImportError:
+          import tomli
+          with open('pyproject.toml', 'rb') as f:
             data = tomli.load(f)
         
-        # Update version with development suffix
-        data['project']['version'] = '$BUILD_VERSION'
+        data['project']['version'] = '$VERSION'
         
-        # Write back to file
         with open('pyproject.toml', 'wb') as f:
-            tomli_w.dump(data, f)
+          tomli_w.dump(data, f)
         
-        print(f'✅ Updated development version to: $BUILD_VERSION')
+        print(f'✅ Updated pyproject.toml to version: $VERSION')
         "
-        
-        echo "Updated version to: $BUILD_VERSION"
-        echo "version=$BUILD_VERSION" >> $GITHUB_OUTPUT
 
-    - name: Verify version update
+    - name: Display version information
       run: |
-        echo "📋 Final version information:"
-        echo "=============================="
-        FINAL_VERSION=$(python -c "
-        try:
-            import tomllib
-            with open('pyproject.toml', 'rb') as f:
-                data = tomllib.load(f)
-        except ImportError:
-            import tomli
-            with open('pyproject.toml', 'rb') as f:
-                data = tomli.load(f)
-        print(data['project']['version'])
-        ")
-        echo "pyproject.toml version: $FINAL_VERSION"
-        echo "GitHub ref: ${{ github.ref }}"
-        echo "Trigger: ${{ github.event_name }}"
+        echo "════════════════════════════════════════"
+        echo "📋 VERSION INFORMATION"
+        echo "════════════════════════════════════════"
+        echo "Version: ${{ steps.version.outputs.version }}"
+        echo "Is Release: ${{ steps.version.outputs.is-release }}"
+        echo "Branch: ${{ steps.version.outputs.branch }}"
+        echo "GitHub Ref: ${{ github.ref }}"
+        echo "GitHub Event: ${{ github.event_name }}"
         
-        if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-          echo "🏷️ Release build detected"
-        else
-          echo "🔧 Development build detected"
-        fi
+        # Verify in pyproject.toml
+        echo ""
+        echo "Current pyproject.toml version:"
+        python -c "
+        try:
+          import tomllib
+          with open('pyproject.toml', 'rb') as f:
+            data = tomllib.load(f)
+        except ImportError:
+          import tomli
+          with open('pyproject.toml', 'rb') as f:
+            data = tomli.load(f)
+        print(f\"  {data['project']['version']}\")
+        "
+        echo "════════════════════════════════════════"
 
     - name: Build package
       id: build
@@ -552,9 +573,157 @@ jobs:
         asset_name: ${{ needs.build.outputs.sdist-name }}
         asset_content_type: application/gzip
 
+  # Auto-create release tags on push to main/develop
+  auto-tag:
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'push' &&
+      !startsWith(github.ref, 'refs/tags/') &&
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') &&
+      needs.test.result == 'success' &&
+      needs.build.result == 'success'
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Get current version and determine next version
+      id: next-version
+      run: |
+        pip install tomli
+        
+        python << 'PYTHON_SCRIPT'
+        import tomli
+        import os
+        
+        # Get base version from pyproject.toml
+        with open('pyproject.toml', 'rb') as f:
+          data = tomli.load(f)
+        
+        current_version = data['project']['version']
+        
+        # Parse MAJOR.MINOR.PATCH
+        parts = current_version.split('.')
+        major = int(parts[0].split('-')[0].split('+')[0])
+        minor = int(parts[1].split('-')[0].split('+')[0]) if len(parts) > 1 else 0
+        patch = int(parts[2].split('-')[0].split('+')[0]) if len(parts) > 2 else 0
+        
+        # Determine bump strategy based on branch
+        branch = os.getenv('GITHUB_REF')
+        if 'refs/heads/main' in branch:
+          # Main: bump minor version (1.0.0 -> 1.1.0)
+          next_version = f"{major}.{minor + 1}.0"
+          print("📌 Main branch: bumping minor version")
+        else:
+          # Develop: bump patch version (1.0.0 -> 1.0.1)
+          next_version = f"{major}.{minor}.{patch + 1}"
+          print("📌 Develop branch: bumping patch version")
+        
+        # Write outputs
+        with open(os.getenv('GITHUB_OUTPUT'), 'a') as f:
+          f.write(f"current={current_version}\n")
+          f.write(f"next={next_version}\n")
+          f.write(f"branch={os.getenv('GITHUB_REF_NAME')}\n")
+        
+        print("════════════════════════════════════════")
+        print("Version Bump Information")
+        print("════════════════════════════════════════")
+        print(f"Current version: {current_version}")
+        print(f"Next version: {next_version}")
+        print(f"Branch: {os.getenv('GITHUB_REF_NAME')}")
+        print("════════════════════════════════════════")
+        PYTHON_SCRIPT
+
+    - name: Check if tag already exists
+      id: check-tag
+      run: |
+        TAG_NAME="v${{ steps.next-version.outputs.next }}"
+        
+        if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+          echo "⚠️ Tag $TAG_NAME already exists, skipping auto-tag"
+          echo "tag-exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "✅ Tag $TAG_NAME does not exist, will create it"
+          echo "tag-exists=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Update pyproject.toml with next version
+      if: steps.check-tag.outputs.tag-exists == 'false'
+      run: |
+        pip install tomli tomli-w
+        
+        python -c "
+        import tomli_w
+        import tomli
+        
+        with open('pyproject.toml', 'rb') as f:
+          data = tomli.load(f)
+        
+        data['project']['version'] = '${{ steps.next-version.outputs.next }}'
+        
+        with open('pyproject.toml', 'wb') as f:
+          tomli_w.dump(data, f)
+        
+        print('✅ Updated pyproject.toml to version: ${{ steps.next-version.outputs.next }}')
+        "
+
+    - name: Create and push tag
+      if: steps.check-tag.outputs.tag-exists == 'false'
+      run: |
+        TAG_NAME="v${{ steps.next-version.outputs.next }}"
+        
+        # Configure git
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Commit version update
+        git add pyproject.toml
+        git commit -m "chore: bump version to ${{ steps.next-version.outputs.next }}"
+        
+        # Create and push tag
+        git tag -a "$TAG_NAME" -m "Release ${{ steps.next-version.outputs.next }}"
+        git push origin "$TAG_NAME"
+        
+        # Also push the version update commit
+        git push origin ${{ steps.next-version.outputs.branch }}
+        
+        echo "✅ Created and pushed tag: $TAG_NAME"
+        echo ""
+        echo "🚀 This will automatically trigger the release workflow"
+        echo "   Release will be published to PyPI and GitHub Releases"
+
+    - name: Summary
+      if: always()
+      run: |
+        echo "════════════════════════════════════════"
+        echo "🏷️ Auto-Tag Summary"
+        echo "════════════════════════════════════════"
+        echo "Branch: ${{ steps.next-version.outputs.branch }}"
+        echo "Current version: ${{ steps.next-version.outputs.current }}"
+        echo "Next version: ${{ steps.next-version.outputs.next }}"
+        echo "Tag exists: ${{ steps.check-tag.outputs.tag-exists }}"
+        if [[ "${{ steps.check-tag.outputs.tag-exists }}" == "false" ]]; then
+          echo "Status: ✅ Tag created and pushed"
+          echo "Next: Release workflow will be triggered automatically"
+        else
+          echo "Status: ⚠️ Tag already exists, no action taken"
+        fi
+        echo "════════════════════════════════════════"
+
   # Notify on completion
   notify:
-    needs: [test, build, publish-test, publish-production, create-release]
+    needs: [test, build, publish-test, publish-production, create-release, auto-tag]
     runs-on: ubuntu-latest
     if: always()
     steps:
