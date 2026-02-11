@@ -71,13 +71,13 @@ jobs:
         python -c "
         from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
         from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
-        print('✅ All imports successful')
+        print('All imports successful')
         
         # Test basic functionality
         registry = ResourceProviderRegistry()
-        print('✅ Registry creation successful')
+        print('Registry creation successful')
         
-        print('🎉 SDK basic functionality test passed')
+        print('SDK basic functionality test passed')
         "
     
     - name: Test examples
@@ -105,7 +105,7 @@ jobs:
         python -m venv test-env
         source test-env/bin/activate
         pip install dist/*.whl
-        python -c "from itl_controlplane_sdk import ResourceProviderRegistry; print('✅ Package test successful')"
+        python -c "from itl_controlplane_sdk import ResourceProviderRegistry; print('Package test successful')"
         deactivate
 
   lint-and-security:

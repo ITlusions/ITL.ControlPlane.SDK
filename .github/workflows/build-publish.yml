@@ -105,9 +105,9 @@ jobs:
         IS_RELEASE=false
         if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
           IS_RELEASE=true
-          echo "🏷️ RELEASE BUILD DETECTED"
+          echo "RELEASE BUILD DETECTED"
         else
-          echo "🔧 Development build"
+          echo "Development build"
         fi
         
         # Get version information
@@ -115,7 +115,7 @@ jobs:
           # Extract version from tag (v1.2.3 -> 1.2.3)
           VERSION="${{ github.ref_name }}"
           VERSION="${VERSION#v}"
-          echo "📌 Release version from tag: $VERSION"
+          echo "Release version from tag: $VERSION"
         else
           # Get base version from pyproject.toml
           if python3 -c "import sys; sys.version_info >= (3,11)" 2>/dev/null; then
@@ -156,7 +156,7 @@ jobs:
             VERSION="${BASE_VERSION}.dev${RUN_NUM}+${CLEAN_BRANCH}.${SHA_SHORT}"
           fi
           
-          echo "📌 Development version: $VERSION"
+          echo "Development version: $VERSION"
         fi
         
         # Output version information
@@ -169,7 +169,7 @@ jobs:
         VERSION="${{ steps.version.outputs.version }}"
         IS_RELEASE="${{ steps.version.outputs.is-release }}"
         
-        echo "📝 Setting version to: $VERSION (Release: $IS_RELEASE)"
+        echo "Setting version to: $VERSION (Release: $IS_RELEASE)"
         
         python -c "
         import tomli_w
@@ -187,13 +187,13 @@ jobs:
         with open('pyproject.toml', 'wb') as f:
           tomli_w.dump(data, f)
         
-        print(f'✅ Updated pyproject.toml to version: $VERSION')
+        print(f'Updated pyproject.toml to version: $VERSION')
         "
 
     - name: Display version information
       run: |
         echo "════════════════════════════════════════"
-        echo "📋 VERSION INFORMATION"
+        echo "VERSION INFORMATION"
         echo "════════════════════════════════════════"
         echo "Version: ${{ steps.version.outputs.version }}"
         echo "Is Release: ${{ steps.version.outputs.is-release }}"
@@ -220,7 +220,7 @@ jobs:
     - name: Build package
       id: build
       run: |
-        echo "📦 Building Python package..."
+        echo "Building Python package..."
         python -m build --sdist --wheel --outdir dist/
         
         # Get the built file names
@@ -230,16 +230,16 @@ jobs:
         echo "wheel-name=$WHEEL_NAME" >> $GITHUB_OUTPUT
         echo "sdist-name=$SDIST_NAME" >> $GITHUB_OUTPUT
         
-        echo "✅ Built packages:"
+        echo "Built packages:"
         ls -la dist/
         
         # Verify the package
-        echo "🔍 Verifying package contents..."
+        echo "Verifying package contents..."
         python -m zipfile -l "dist/$WHEEL_NAME"
 
     - name: Test package installation
       run: |
-        echo "🧪 Testing package installation..."
+        echo "Testing package installation..."
         # Create a clean environment to test installation
         python -m venv test-env
         source test-env/bin/activate
@@ -251,7 +251,7 @@ jobs:
         python -c "
         from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
         from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
-        print('✅ Package installation and import test successful')
+        print('Package installation and import test successful')
         "
         
         deactivate
@@ -259,7 +259,7 @@ jobs:
 
     - name: Check package metadata
       run: |
-        echo "📋 Checking package metadata..."
+        echo "Checking package metadata..."
         python -m twine check dist/*
 
     - name: Upload build artifacts
@@ -299,12 +299,12 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
         TWINE_REPOSITORY_URL: https://test.pypi.org/legacy/
       run: |
-        echo "🚀 Publishing to Test PyPI..."
+        echo "Publishing to Test PyPI..."
         python -m twine upload dist/* --verbose
 
     - name: Test installation from Test PyPI
       run: |
-        echo "🧪 Testing installation from Test PyPI..."
+        echo "Testing installation from Test PyPI..."
         # Wait a bit for package to be available
         sleep 30
         
@@ -355,12 +355,12 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       run: |
-        echo "🚀 Publishing to PyPI..."
+        echo "Publishing to PyPI..."
         python -m twine upload dist/* --verbose
 
     - name: Verify PyPI publication
       run: |
-        echo "✅ Verifying PyPI publication..."
+        echo "Verifying PyPI publication..."
         # Wait for package to be available
         sleep 60
         
@@ -372,7 +372,7 @@ jobs:
         # Test import
         python -c "
         from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-        print('✅ PyPI package verification successful')
+        print('PyPI package verification successful')
         "
         
         deactivate
@@ -401,18 +401,18 @@ jobs:
         cat > release-notes.md << EOF
         # ITL ControlPlane SDK ${{ github.ref_name }}
         
-        ## 📦 Package Information
+        ## Package Information
         - **Version**: ${{ needs.build.outputs.package-version }}
         - **Python Support**: 3.8+
         - **PyPI**: https://pypi.org/project/${{ env.PACKAGE_NAME }}/${{ needs.build.outputs.package-version }}/
         
-        ## 🚀 Installation
+        ## Installation
         
         \`\`\`bash
         pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.package-version }}
         \`\`\`
         
-        ## 📚 Quick Start
+        ## Quick Start
         
         \`\`\`python
         from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
@@ -423,18 +423,18 @@ jobs:
         # ... see examples/ for more details
         \`\`\`
         
-        ## 📋 What's Included
+        ## What's Included
         - Core SDK package with resource provider framework
         - Provider base classes and interfaces
         - Data models for resource management
         - Example implementations
         
-        ## 🔗 Links
+        ## Links
         - [Documentation](https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/README.md)
         - [Examples](https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}/examples)
         - [PyPI Package](https://pypi.org/project/${{ env.PACKAGE_NAME }}/)
         
-        ## 📁 Release Assets
+        ## Release Assets
         - **Source Distribution** (.tar.gz): For pip installation from source
         - **Python Wheel** (.whl): For fast binary installation
         EOF
@@ -519,11 +519,11 @@ jobs:
         if 'refs/heads/main' in branch:
           # Main: bump minor version (1.0.0 -> 1.1.0)
           next_version = f"{major}.{minor + 1}.0"
-          print("📌 Main branch: bumping minor version")
+          print("Main branch: bumping minor version")
         else:
           # Develop: bump patch version (1.0.0 -> 1.0.1)
           next_version = f"{major}.{minor}.{patch + 1}"
-          print("📌 Develop branch: bumping patch version")
+          print("Develop branch: bumping patch version")
         
         # Write outputs
         with open(os.getenv('GITHUB_OUTPUT'), 'a') as f:
@@ -546,10 +546,10 @@ jobs:
         TAG_NAME="v${{ steps.next-version.outputs.next }}"
         
         if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
-          echo "⚠️ Tag $TAG_NAME already exists, skipping auto-tag"
+          echo "Tag $TAG_NAME already exists, skipping auto-tag"
           echo "tag-exists=true" >> $GITHUB_OUTPUT
         else
-          echo "✅ Tag $TAG_NAME does not exist, will create it"
+          echo "Tag $TAG_NAME does not exist, will create it"
           echo "tag-exists=false" >> $GITHUB_OUTPUT
         fi
 
@@ -570,7 +570,7 @@ jobs:
         with open('pyproject.toml', 'wb') as f:
           tomli_w.dump(data, f)
         
-        print('✅ Updated pyproject.toml to version: ${{ steps.next-version.outputs.next }}')
+        print('Updated pyproject.toml to version: ${{ steps.next-version.outputs.next }}')
         "
 
     - name: Create and push tag
@@ -593,26 +593,26 @@ jobs:
         # Also push the version update commit
         git push origin ${{ steps.next-version.outputs.branch }}
         
-        echo "✅ Created and pushed tag: $TAG_NAME"
+        echo "Created and pushed tag: $TAG_NAME"
         echo ""
-        echo "🚀 This will automatically trigger the release workflow"
+        echo "This will automatically trigger the release workflow"
         echo "   Release will be published to PyPI and GitHub Releases"
 
     - name: Summary
       if: always()
       run: |
         echo "════════════════════════════════════════"
-        echo "🏷️ Auto-Tag Summary"
+        echo "Auto-Tag Summary"
         echo "════════════════════════════════════════"
         echo "Branch: ${{ steps.next-version.outputs.branch }}"
         echo "Current version: ${{ steps.next-version.outputs.current }}"
         echo "Next version: ${{ steps.next-version.outputs.next }}"
         echo "Tag exists: ${{ steps.check-tag.outputs.tag-exists }}"
         if [[ "${{ steps.check-tag.outputs.tag-exists }}" == "false" ]]; then
-          echo "Status: ✅ Tag created and pushed"
+          echo "Status: Tag created and pushed"
           echo "Next: Release workflow will be triggered automatically"
         else
-          echo "Status: ⚠️ Tag already exists, no action taken"
+          echo "Status: Tag already exists, no action taken"
         fi
         echo "════════════════════════════════════════"
 
@@ -627,23 +627,23 @@ jobs:
         if [[ "${{ needs.build.result }}" == "success" ]]; then
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
             if [[ "${{ needs.publish-production.result }}" == "success" ]]; then
-              echo "STATUS=✅ PRODUCTION RELEASE SUCCESSFUL" >> $GITHUB_ENV
+              echo "STATUS=PRODUCTION RELEASE SUCCESSFUL" >> $GITHUB_ENV
               echo "MESSAGE=ITL ControlPlane SDK ${{ github.ref_name }} successfully published to PyPI and GitHub Releases" >> $GITHUB_ENV
             else
-              echo "STATUS=❌ PRODUCTION RELEASE FAILED" >> $GITHUB_ENV
+              echo "STATUS=PRODUCTION RELEASE FAILED" >> $GITHUB_ENV
               echo "MESSAGE=Production release failed for ${{ github.ref_name }}" >> $GITHUB_ENV
             fi
           else
             if [[ "${{ needs.publish-test.result }}" == "success" ]]; then
-              echo "STATUS=✅ TEST BUILD SUCCESSFUL" >> $GITHUB_ENV
+              echo "STATUS=TEST BUILD SUCCESSFUL" >> $GITHUB_ENV
               echo "MESSAGE=ITL ControlPlane SDK test build completed successfully" >> $GITHUB_ENV
             else
-              echo "STATUS=⚠️ TEST BUILD COMPLETED" >> $GITHUB_ENV
+              echo "STATUS=TEST BUILD COMPLETED" >> $GITHUB_ENV
               echo "MESSAGE=ITL ControlPlane SDK build completed with warnings" >> $GITHUB_ENV
             fi
           fi
         else
-          echo "STATUS=❌ BUILD FAILED" >> $GITHUB_ENV
+          echo "STATUS=BUILD FAILED" >> $GITHUB_ENV
           echo "MESSAGE=ITL ControlPlane SDK build or tests failed" >> $GITHUB_ENV
         fi
 
@@ -670,7 +670,7 @@ jobs:
 
     - name: Summary
       run: |
-        echo "🎯 Pipeline Summary"
+        echo "Pipeline Summary"
         echo "=================="
         echo "Repository: ${{ github.repository }}"
         echo "Reference: ${{ github.ref }}"
