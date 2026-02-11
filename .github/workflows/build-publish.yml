@@ -72,17 +72,17 @@ jobs:
           # Get base version from pyproject.toml
           if python3 -c "import sys; sys.version_info >= (3,11)" 2>/dev/null; then
             BASE_VERSION=$(python -c "
-              import tomllib
-              with open('pyproject.toml', 'rb') as f:
-                data = tomllib.load(f)
-              print(data['project']['version'])
+import tomllib
+with open('pyproject.toml', 'rb') as f:
+  data = tomllib.load(f)
+print(data['project']['version'])
             ")
           else
             BASE_VERSION=$(python -c "
-              import tomli
-              with open('pyproject.toml', 'rb') as f:
-                data = tomli.load(f)
-              print(data['project']['version'])
+import tomli
+with open('pyproject.toml', 'rb') as f:
+  data = tomli.load(f)
+print(data['project']['version'])
             ")
           fi
           
@@ -124,22 +124,22 @@ jobs:
         echo "Setting version to: $VERSION (Release: $IS_RELEASE)"
         
         python -c "
-        import tomli_w
-        try:
-          import tomllib
-          with open('pyproject.toml', 'rb') as f:
-            data = tomllib.load(f)
-        except ImportError:
-          import tomli
-          with open('pyproject.toml', 'rb') as f:
-            data = tomli.load(f)
-        
-        data['project']['version'] = '$VERSION'
-        
-        with open('pyproject.toml', 'wb') as f:
-          tomli_w.dump(data, f)
-        
-        print(f'Updated pyproject.toml to version: $VERSION')
+import tomli_w
+try:
+  import tomllib
+  with open('pyproject.toml', 'rb') as f:
+    data = tomllib.load(f)
+except ImportError:
+  import tomli
+  with open('pyproject.toml', 'rb') as f:
+    data = tomli.load(f)
+
+data['project']['version'] = '$VERSION'
+
+with open('pyproject.toml', 'wb') as f:
+  tomli_w.dump(data, f)
+
+print(f'Updated pyproject.toml to version: $VERSION')
         "
 
     - name: Display version information
@@ -157,15 +157,15 @@ jobs:
         echo ""
         echo "Current pyproject.toml version:"
         python -c "
-        try:
-          import tomllib
-          with open('pyproject.toml', 'rb') as f:
-            data = tomllib.load(f)
-        except ImportError:
-          import tomli
-          with open('pyproject.toml', 'rb') as f:
-            data = tomli.load(f)
-        print(f\"  {data['project']['version']}\")
+try:
+  import tomllib
+  with open('pyproject.toml', 'rb') as f:
+    data = tomllib.load(f)
+except ImportError:
+  import tomli
+  with open('pyproject.toml', 'rb') as f:
+    data = tomli.load(f)
+print(f\"  {data['project']['version']}\")
         "
         echo "════════════════════════════════════════"
 
