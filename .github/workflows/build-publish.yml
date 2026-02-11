@@ -108,8 +108,8 @@ jobs:
 
     - name: Update pyproject.toml with version
       run: |
-        VERSION="${{ steps.version.outputs.version }}"
-        IS_RELEASE="${{ steps.version.outputs.is-release }}"
+        export VERSION="${{ steps.version.outputs.version }}"
+        export IS_RELEASE="${{ steps.version.outputs.is-release }}"
         echo "Setting version to: $VERSION (Release: $IS_RELEASE)"
         python -c "import tomli_w, sys, os; data = __import__('tomllib' if sys.version_info >= (3, 11) else 'tomli').load(open('pyproject.toml', 'rb')); data['project']['version'] = os.environ['VERSION']; __import__('tomli_w').dump(data, open('pyproject.toml', 'wb')); print(f'Updated pyproject.toml to version: {os.environ[\"VERSION\"]}')"
 
