@@ -191,11 +191,11 @@ PYEOF
         pip install dist/*.whl
         
         # Test import
-        python -c "
+        python << 'PYEOF'
 from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
 from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
 print('Package installation and import test successful')
-        "
+PYEOF
         
         deactivate
         rm -rf test-env
@@ -313,10 +313,10 @@ print('Package installation and import test successful')
         pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.package-version }}
         
         # Test import
-        python -c "
+        python << 'PYEOF'
 from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
 print('PyPI package verification successful')
-        "
+PYEOF
         
         deactivate
         rm -rf verify-env
