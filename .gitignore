@@ -291,3 +291,7 @@ safety-report.txt
 .dev/
 .local/
 config.local.*
+
+# Unsorted/draft documentation and analysis
+docs/999-UNSORTED/
+ignore/
