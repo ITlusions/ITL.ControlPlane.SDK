@@ -274,11 +274,8 @@ jobs:
         pip install twine
 
     - name: Publish to PyPI
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       run: |
-        echo "Publishing to PyPI..."
+        echo "Publishing to PyPI using OIDC..."
         python -m twine upload dist/* --verbose
 
     - name: Verify PyPI publication
