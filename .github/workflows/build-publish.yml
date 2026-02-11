@@ -172,8 +172,8 @@ jobs:
         
         # Test import
         python << 'PYEOF'
-        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-        from itl_controlplane_sdk.models import ResourceRequest, ProvisioningState
+        from itl_controlplane_sdk.core.models.base import ProvisioningState
+        from itl_controlplane_sdk.providers.base import ResourceProvider
         print('Package installation and import test successful')
         PYEOF
         
