@@ -15,7 +15,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
 
 # Import all models so Alembic can detect them
-from itl_controlplane_sdk.storage.models import Base
+from itl_controlplane_sdk.persistence.models import Base
 
 # Alembic Config object
 config = context.config

@@ -1,8 +1,8 @@
-# ITL Locations Schema - Custom Location Validation
+# locations Schema - Custom Location Validation
 
 ## Status: ✅ CREATED AND READY
 
-You now have a custom ITL locations schema based on your `DEFAULT_LOCATIONS` in models.py.
+You now have a custom locations schema based on your `DEFAULT_LOCATIONS` in models.py.
 
 ---
 
@@ -14,9 +14,9 @@ You now have a custom ITL locations schema based on your `DEFAULT_LOCATIONS` in 
 
 **Components:**
 
-1. **ITLLocation Enum** - 24 valid locations
+1. **Location Enum** - 24 valid locations
    ```python
-   class ITLLocation(str, Enum):
+   class Location(str, Enum):
        # Netherlands (Primary Datacenters)
        AMSTERDAM = "amsterdam"
        ROTTERDAM = "rotterdam"
@@ -47,9 +47,9 @@ You now have a custom ITL locations schema based on your `DEFAULT_LOCATIONS` in 
        ... (and more)
    ```
 
-2. **ITLRegionMeta Enum** - 6 region groups
+2. **RegionMeta Enum** - 6 region groups
    ```python
-   class ITLRegionMeta(str, Enum):
+   class RegionMeta(str, Enum):
        UNITED_STATES = "United States"
        UNITED_KINGDOM = "United Kingdom"
        EUROPE = "Europe"
@@ -58,7 +58,7 @@ You now have a custom ITL locations schema based on your `DEFAULT_LOCATIONS` in 
        CDN_EDGE = "CDN Edge"             # Global distribution
    ```
 
-3. **ITLLocationsHandler Class** - 7 utility methods
+3. **LocationsHandler Class** - 7 utility methods
    - `validate_location(v)` - Validate with clear error messages
    - `is_valid(location)` - Quick check
    - `get_valid_locations()` - List all 24 locations
@@ -115,7 +115,7 @@ You now have a custom ITL locations schema based on your `DEFAULT_LOCATIONS` in 
 
 ```python
 from pydantic import BaseModel, validator, Field
-from itl_controlplane_sdk.providers.itl_locations import ITLLocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 class DeploymentRequest(BaseModel):
     name: str
@@ -124,7 +124,7 @@ class DeploymentRequest(BaseModel):
     
     @validator('location')
     def validate_location(cls, v):
-        return ITLLocationsHandler.validate_location(v)
+        return LocationsHandler.validate_location(v)
 
 # Usage
 deployment = DeploymentRequest(
@@ -139,16 +139,16 @@ deployment = DeploymentRequest(
     location="singapore",
     environment="production"
 )
-# ✗ Error: 'singapore' is not a valid ITL location
+# ✗ Error: 'singapore' is not a valid location
 # Valid options: almere, amsterdam, cdn-amsterdam, ... (24 total)
 ```
 
 ### 2. Check if Location is Valid
 
 ```python
-from itl_controlplane_sdk.providers.itl_locations import ITLLocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
-if ITLLocationsHandler.is_valid("amsterdam"):
+if LocationsHandler.is_valid("amsterdam"):
     print("Valid location")
 else:
     print("Invalid location")
@@ -157,7 +157,7 @@ else:
 ### 3. Get All Valid Locations
 
 ```python
-locations = ITLLocationsHandler.get_valid_locations()
+locations = LocationsHandler.get_valid_locations()
 # Returns: ['almere', 'amsterdam', 'cdn-amsterdam', ..., 'westus']
 # (24 locations, sorted alphabetically)
 ```
@@ -165,28 +165,28 @@ locations = ITLLocationsHandler.get_valid_locations()
 ### 4. Get Locations by Region
 
 ```python
-from itl_controlplane_sdk.providers.itl_locations import ITLRegionMeta
+from itl_controlplane_sdk.providers import RegionMeta
 
 # Get Netherlands locations (primary datacenters)
-nl_locations = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.NETHERLANDS)
+nl_locations = LocationsHandler.get_locations_by_region(RegionMeta.NETHERLANDS)
 # Returns: ['almere', 'amsterdam', 'rotterdam']
 
 # Get CDN edge zones (global distribution)
-cdn_locations = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.CDN_EDGE)
+cdn_locations = LocationsHandler.get_locations_by_region(RegionMeta.CDN_EDGE)
 # Returns: ['cdn-amsterdam', 'cdn-frankfurt', 'cdn-london', ...]
 
 # Get all Europe locations
-eu_locations = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.EUROPE)
+eu_locations = LocationsHandler.get_locations_by_region(RegionMeta.EUROPE)
 # Returns: ['francecentral', 'germanywestcentral', ...]
 ```
 
 ### 5. Get Region for a Location
 
 ```python
-region = ITLLocationsHandler.get_region_for_location("amsterdam")
+region = LocationsHandler.get_region_for_location("amsterdam")
 # Returns: "Netherlands"
 
-region = ITLLocationsHandler.get_region_for_location("cdn-london")
+region = LocationsHandler.get_region_for_location("cdn-london")
 # Returns: "CDN Edge"
 ```
 
@@ -194,7 +194,7 @@ region = ITLLocationsHandler.get_region_for_location("cdn-london")
 
 ```python
 # For performance-critical code
-valid_locations = ITLLocationsHandler.get_valid_locations_set()
+valid_locations = LocationsHandler.get_valid_locations_set()
 
 if user_location in valid_locations:  # O(1) lookup
     process_deployment(user_location)
@@ -203,7 +203,7 @@ if user_location in valid_locations:  # O(1) lookup
 ### 7. List All Available Regions
 
 ```python
-regions = ITLLocationsHandler.get_available_regions()
+regions = LocationsHandler.get_available_regions()
 # Returns: ['Asia Pacific', 'CDN Edge', 'Europe', 'Netherlands', 'United Kingdom', 'United States']
 ```
 
@@ -213,23 +213,23 @@ regions = ITLLocationsHandler.get_available_regions()
 
 ```python
 from pydantic import BaseModel, validator, Field
-from itl_controlplane_sdk.providers.itl_locations import (
-    ITLLocationsHandler,
-    ITLRegionMeta,
+from itl_controlplane_sdk.providers import (
+    LocationsHandler,
+    RegionMeta,
 )
 
 class DatacenterDeployment(BaseModel):
     """Deployment request to ITL datacenters"""
     
     name: str = Field(..., description="Deployment name")
-    location: str = Field(..., description="ITL location")
+    location: str = Field(..., description="location")
     replicas: int = Field(default=1, description="Number of replicas")
     is_primary: bool = Field(default=False, description="Is primary deployment")
     
     @validator('location')
     def validate_location(cls, v):
-        """Validate against all 24 ITL locations"""
-        return ITLLocationsHandler.validate_location(v)
+        """Validate against all 24 locations"""
+        return LocationsHandler.validate_location(v)
 
 # Create deployment in Amsterdam (primary datacenter)
 deployment = DatacenterDeployment(
@@ -240,13 +240,13 @@ deployment = DatacenterDeployment(
 )
 
 print(f"Deploying to: {deployment.location}")
-print(f"Region: {ITLLocationsHandler.get_region_for_location(deployment.location)}")
+print(f"Region: {LocationsHandler.get_region_for_location(deployment.location)}")
 # Output:
 # Deploying to: amsterdam
 # Region: Netherlands
 
 # Get all Netherlands replicas
-nl_locations = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.NETHERLANDS)
+nl_locations = LocationsHandler.get_locations_by_region(RegionMeta.NETHERLANDS)
 print(f"Available primary datacenters: {', '.join(nl_locations)}")
 # Output:
 # Available primary datacenters: almere, amsterdam, rotterdam
@@ -259,31 +259,31 @@ print(f"Available primary datacenters: {', '.join(nl_locations)}")
 | Feature | Azure | ITL |
 |---------|-------|-----|
 | **File** | `locations.py` | `itl_locations.py` |
-| **Enum** | `AzureLocation` | `ITLLocation` |
-| **Region Enum** | `AzureRegionMeta` | `ITLRegionMeta` |
-| **Handler** | `LocationsHandler` | `ITLLocationsHandler` |
+| **Enum** | `AzureLocation` | `Location` |
+| **Region Enum** | `AzureRegionMeta` | `RegionMeta` |
+| **Handler** | `LocationsHandler` | `LocationsHandler` |
 | **Locations** | 30+ global regions | 24 locations (your infrastructure) |
 | **Primary Use** | Cloud-agnostic validation | Your specific datacenters |
 | **Key Regions** | US, Europe, Asia, Gov, China | Netherlands (primary), Europe, US, Asia, CDN |
 
 ---
 
-## Extending ITL Locations
+## Extending locations
 
 To add new locations (e.g., a new datacenter):
 
-### Step 1: Add to ITLLocation enum
+### Step 1: Add to Location enum
 ```python
-class ITLLocation(str, Enum):
+class Location(str, Enum):
     # ... existing locations ...
     SINGAPORE = "singapore"
 ```
 
 ### Step 2: Add to LOCATION_TO_REGION mapping
 ```python
-LOCATION_TO_REGION: Dict[str, ITLRegionMeta] = {
+LOCATION_TO_REGION: Dict[str, RegionMeta] = {
     # ... existing mappings ...
-    ITLLocation.SINGAPORE: ITLRegionMeta.ASIA_PACIFIC,
+    Location.SINGAPORE: RegionMeta.ASIA_PACIFIC,
 }
 ```
 
@@ -291,7 +291,7 @@ LOCATION_TO_REGION: Dict[str, ITLRegionMeta] = {
 All handlers automatically support the new location:
 - `validate_location("singapore")` ✓
 - `get_valid_locations()` includes "singapore"
-- `get_locations_by_region(ITLRegionMeta.ASIA_PACIFIC)` includes "singapore"
+- `get_locations_by_region(RegionMeta.ASIA_PACIFIC)` includes "singapore"
 - Pydantic schemas automatically validate against it
 
 ---
@@ -301,10 +301,10 @@ All handlers automatically support the new location:
 When validation fails, users see all valid options:
 
 ```python
-ITLLocationsHandler.validate_location("berlin")
+LocationsHandler.validate_location("berlin")
 
 # Error:
-# ValueError: 'berlin' is not a valid ITL location. 
+# ValueError: 'berlin' is not a valid location. 
 # Valid options: almere, amsterdam, cdn-amsterdam, cdn-frankfurt, cdn-london, 
 # cdn-paris, cdn-stockholm, cdn-zurich, centralus, eastasia, eastus, 
 # francecentral, germanywestcentral, italynorth, northeurope, polandcentral, 
@@ -316,11 +316,11 @@ ITLLocationsHandler.validate_location("berlin")
 
 ## Integration with Your Schemas
 
-Update your resource schemas to use ITL locations:
+Update your resource schemas to use locations:
 
 ```python
 from pydantic import BaseModel, validator
-from itl_controlplane_sdk.providers.itl_locations import ITLLocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 # For Resource Groups
 class ResourceGroupSchema(BaseModel):
@@ -328,7 +328,7 @@ class ResourceGroupSchema(BaseModel):
     
     @validator('location')
     def validate_location(cls, v):
-        return ITLLocationsHandler.validate_location(v)
+        return LocationsHandler.validate_location(v)
 
 # For Virtual Machines
 class VirtualMachineSchema(BaseModel):
@@ -336,7 +336,7 @@ class VirtualMachineSchema(BaseModel):
     
     @validator('location')
     def validate_location(cls, v):
-        return ITLLocationsHandler.validate_location(v)
+        return LocationsHandler.validate_location(v)
 
 # For Storage Accounts
 class StorageAccountSchema(BaseModel):
@@ -344,7 +344,7 @@ class StorageAccountSchema(BaseModel):
     
     @validator('location')
     def validate_location(cls, v):
-        return ITLLocationsHandler.validate_location(v)
+        return LocationsHandler.validate_location(v)
 ```
 
 ---
@@ -353,15 +353,15 @@ class StorageAccountSchema(BaseModel):
 
 | File | Status | Changes |
 |------|--------|---------|
-| `src/itl_controlplane_sdk/providers/itl_locations.py` | ✅ NEW | Created 330-line module with ITLLocation enum, ITLRegionMeta, and ITLLocationsHandler |
-| `src/itl_controlplane_sdk/providers/__init__.py` | ✅ UPDATED | Added imports for ITL locations exports |
+| `src/itl_controlplane_sdk/providers/itl_locations.py` | ✅ NEW | Created 330-line module with Location enum, RegionMeta, and LocationsHandler |
+| `src/itl_controlplane_sdk/providers/__init__.py` | ✅ UPDATED | Added imports for locations exports |
 | `examples/test_itl_locations.py` | ✅ NEW | Example usage with 8 different scenarios |
 
 ---
 
 ## Summary
 
-You now have a custom ITL locations schema that:
+You now have a custom locations schema that:
 - ✅ Validates against your 24 actual locations (from models.py)
 - ✅ Groups locations by region (Netherlands, Europe, US, Asia, CDN)
 - ✅ Uses the same pattern as Azure locations (easy to understand)
@@ -371,4 +371,5 @@ You now have a custom ITL locations schema that:
 - ✅ Easy to extend for new datacenters
 - ✅ Ready to use in all resource schemas
 
-**Ready to use:** `from itl_controlplane_sdk.providers.itl_locations import ITLLocationsHandler`
+**Ready to use:** `from itl_controlplane_sdk.providers import LocationsHandler`
+

@@ -108,8 +108,8 @@ Demonstrates:
 **Time to complete:** ~10 minutes  
 **Prerequisites:** None (standalone)  
 **Concepts:**
-- `ITLLocationsHandler` - Central location validator
-- `ITLRegionMeta` - Region classification
+- `LocationsHandler` - Central location validator
+- `RegionMeta` - Region classification
 - Regional datacenter organization
 - CDN edge zone support
 - Location metadata
@@ -186,18 +186,18 @@ Summary: 27 locations across 6 regions
 
 ```python
 # Validate a location
-if ITLLocationsHandler.is_valid("amsterdam"):
+if LocationsHandler.is_valid("amsterdam"):
     print("Valid location")
 
 # Get all locations
-locations = ITLLocationsHandler.get_valid_locations()
+locations = LocationsHandler.get_valid_locations()
 
 # Get locations by region
-nl_locs = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.NETHERLANDS)
-cdn_locs = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.CDN_EDGE)
+nl_locs = LocationsHandler.get_locations_by_region(RegionMeta.NETHERLANDS)
+cdn_locs = LocationsHandler.get_locations_by_region(RegionMeta.CDN_EDGE)
 
 # Fast lookup (O(1))
-valid_set = ITLLocationsHandler.get_valid_locations_set()
+valid_set = LocationsHandler.get_valid_locations_set()
 is_valid = "amsterdam" in valid_set
 
 # In Pydantic schema
@@ -206,7 +206,7 @@ class DeploymentSchema(BaseModel):
     
     @validator('location')
     def validate_location(cls, v):
-        return ITLLocationsHandler.validate_location(v)
+        return LocationsHandler.validate_location(v)
 ```
 
 ## ITL Location Reference

@@ -118,7 +118,7 @@ Ready-to-use examples in [examples/big_3_examples.py](examples/big_3_examples.py
 ## Usage Example
 
 ```python
-from itl_controlplane_sdk.providers.resource_group_handler import ResourceGroupHandler
+from itl_controlplane_sdk.providers import ResourceGroupHandler
 
 # Create handler
 handler = ResourceGroupHandler(storage_dict)

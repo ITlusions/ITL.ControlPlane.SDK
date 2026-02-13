@@ -5,8 +5,8 @@
 Successfully refactored hardcoded Azure locations into a **centralized, dynamic, maintainable LocationsHandler** that:
 
 ✅ Eliminated hardcoded location lists from schemas  
-✅ Created `AzureLocation` enum (30+ regions)  
-✅ Created `AzureRegionMeta` enum (11 region groups)  
+✅ Created `Location` enum (30+ regions)  
+✅ Created `RegionMeta` enum (11 region groups)  
 ✅ Created `LocationsHandler` class with 7 utility methods  
 ✅ Updated ResourceGroupHandler to use dynamic validation  
 ✅ Updated SDK exports to include locations module  
@@ -16,8 +16,8 @@ Successfully refactored hardcoded Azure locations into a **centralized, dynamic,
 ## Files Created
 
 ### `src/itl_controlplane_sdk/providers/locations.py` (330 lines)
-- **AzureLocation** enum - 30+ valid Azure regions
-- **AzureRegionMeta** enum - 11 geographic regions (US, Europe, Asia-Pacific, etc.)
+- **Location** enum - 30+ valid Azure regions
+- **RegionMeta** enum - 11 geographic regions (US, Europe, Asia-Pacific, etc.)
 - **LOCATION_TO_REGION** dict - Maps locations to regions
 - **LocationsHandler** class with methods:
   - `is_valid(location)` - Check if location is valid
@@ -49,7 +49,7 @@ def validate_location(cls, v):
 
 **After:**
 ```python
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 @validator('location')
 def validate_location(cls, v):
@@ -61,8 +61,8 @@ def validate_location(cls, v):
 Added exports:
 ```python
 from .locations import (
-    AzureLocation,
-    AzureRegionMeta,
+    Location,
+    RegionMeta,
     LocationsHandler,
     VALID_LOCATIONS,
     AVAILABLE_REGIONS,
@@ -73,7 +73,7 @@ from .locations import (
 ### `examples/test_resource_group_big_3.py`
 Updated imports:
 ```python
-from itl_controlplane_sdk.providers.locations import LocationsHandler, AzureLocation
+from itl_controlplane_sdk.providers import LocationsHandler, Location
 ```
 
 ## Key Benefits
@@ -97,7 +97,7 @@ if v not in valid_locations:
 return LocationsHandler.validate_location(v)
 
 # When Azure adds new region:
-# 1. Update AzureLocation enum once
+# 1. Update Location enum once
 # 2. All handlers automatically updated
 # 3. Consistent across entire application
 ```
@@ -120,7 +120,7 @@ return LocationsHandler.validate_location(v)
 
 ```python
 from pydantic import BaseModel, validator, Field
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 class AnyResourceSchema(BaseModel):
     location: str = Field(..., description="Azure region")
@@ -138,7 +138,7 @@ all_locs = LocationsHandler.get_valid_locations()
 # ['australiaeast', 'australiasoutheast', ..., 'westus2']
 
 # Get locations in US region
-us_locs = LocationsHandler.get_locations_by_region(AzureRegionMeta.US)
+us_locs = LocationsHandler.get_locations_by_region(RegionMeta.US)
 # ['centralus', 'eastus', 'eastus2', 'northcentralus', 'southcentralus', 'westus', 'westus2']
 
 # Check if location is valid
@@ -153,7 +153,7 @@ region = LocationsHandler.get_region_for_location('westeurope')
 ### Fast Lookup
 
 ```python
-from itl_controlplane_sdk.providers.locations import VALID_LOCATIONS
+from itl_controlplane_sdk.providers import VALID_LOCATIONS
 
 # O(1) set lookup
 if location in VALID_LOCATIONS:
@@ -213,14 +213,14 @@ usgoviowa, usgovtexas, usgovvirginia, westeurope, westus, westus2
 
 When Azure releases new regions:
 
-1. **Add to AzureLocation enum:**
+1. **Add to Location enum:**
    ```python
    NEW_REGION = "newregion"
    ```
 
 2. **Add to LOCATION_TO_REGION:**
    ```python
-   AzureLocation.NEW_REGION: AzureRegionMeta.DESIRED_REGION,
+   Location.NEW_REGION: RegionMeta.DESIRED_REGION,
    ```
 
 3. **Done!** All handlers automatically use new location.
@@ -288,3 +288,4 @@ class DatabaseSchema(BaseModel):
 ✅ **User-friendly** - Clear error messages  
 
 The LocationsHandler eliminates hardcoded location lists and provides a clean, centralized approach to Azure region validation across all resource handlers.
+

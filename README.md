@@ -185,7 +185,7 @@ org = await keycloak_provider.create_organization(
 ### FastAPI Application
 
 ```python
-from itl_controlplane_sdk.fastapi import create_app
+from itl_controlplane_sdk.api import create_app
 from itl_controlplane_sdk import resource_registry
 
 # Register your providers
@@ -226,7 +226,7 @@ ITL.ControlPlane.SDK/
 │       │   ├── resource_handlers.py       # Big 3 mixins (Validated, Provisioning, Timestamped)
 │       │   ├── resource_group_handler.py  # ResourceGroupHandler reference implementation
 │       │   ├── locations.py               # Location management base
-│       │   └── itl_locations.py           # ITLLocationsHandler (27 regions)
+│       │   └── locations.py (unified)           # LocationsHandler (27 regions)
 │       ├── identity/
 │       │   ├── __init__.py
 │       │   ├── identity_provider_base.py  # IdentityProvider abstract base class
@@ -304,7 +304,7 @@ ITL.ControlPlane.SDK/
 │   │       └── pulumi_deployment_example.py # Pulumi multi-env IaC
 │   └── tests/
 │       ├── unit/
-│       │   └── test_itl_locations.py      # Location validation (27 regions)
+│       │   └── test_locations.py (unified)      # Location validation (27 regions)
 │       └── integration/
 │           └── test_resource_group_big_3.py # Handler testing patterns
 │
@@ -593,7 +593,7 @@ The Client SDK provides:
 
 To build a new resource provider:
 
-1. **Install SDK**: `pip install itl-controlplane-sdk[fastapi,storage-sqlalchemy]`
+1. **Install SDK**: `pip install itl-controlplane-sdk[fastapi,persistence-sqlalchemy]`
 2. **Subclass `ResourceProvider`**: Implement CRUD methods
 3. **Use `AppFactory`**: Create FastAPI app with standard middleware
 4. **Register with Gateway**: POST to `/providers/register` on startup
@@ -916,3 +916,4 @@ For questions, issues, or contributions:
 ## License
 
 This project is licensed under the terms specified in the LICENSE file.
+

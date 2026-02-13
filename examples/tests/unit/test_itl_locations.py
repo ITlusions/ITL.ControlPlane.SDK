@@ -1,46 +1,46 @@
-"""
-Example: Using ITLLocationsHandler in Pydantic schemas
+﻿"""
+Example: Using LocationsHandler in Pydantic schemas
 
-Shows how to validate resources using your custom ITL locations
+Shows how to validate resources using your custom locations
 """
 
 from pydantic import BaseModel, validator, Field
-from itl_controlplane_sdk.providers.itl_locations import (
-    ITLLocationsHandler,
-    ITLRegionMeta,
-    ITLLocation,
+from itl_controlplane_sdk.providers.locations import (
+    LocationsHandler,
+    RegionMeta,
+    Location,
 )
 
 
 # Example 1: Basic schema with location validation
 class DeploymentSchema(BaseModel):
-    """Example schema using ITL location validation"""
+    """Example schema using location validation"""
     
     name: str = Field(..., description="Deployment name")
-    location: str = Field(..., description="ITL location")
+    location: str = Field(..., description="location")
     environment: str = Field(..., description="Environment")
     
     @validator('location')
     def validate_location(cls, v):
-        """Automatically validates against all 27 ITL locations"""
-        return ITLLocationsHandler.validate_location(v)
+        """Automatically validates against all 27 locations"""
+        return LocationsHandler.validate_location(v)
 
 
-# Example 2: Using ITL locations
+# Example 2: Using locations
 if __name__ == "__main__":
-    print("ITL Locations Handler Examples\n")
+    print("locations Handler Examples\n")
     print("=" * 70)
     
     # Example 1: Check if location is valid
     print("\n1. Validate a Location")
     print("-" * 70)
     
-    if ITLLocationsHandler.is_valid("amsterdam"):
+    if LocationsHandler.is_valid("amsterdam"):
         print("'amsterdam' is a valid location")
     else:
         print("'amsterdam' is not valid")
     
-    if ITLLocationsHandler.is_valid("invalid-location"):
+    if LocationsHandler.is_valid("invalid-location"):
         print("'invalid-location' is valid")
     else:
         print("'invalid-location' is not valid")
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     # Example 2: Get all valid locations
     print("\n2. Get All Valid Locations")
     print("-" * 70)
-    locations = ITLLocationsHandler.get_valid_locations()
+    locations = LocationsHandler.get_valid_locations()
     print(f"Total locations: {len(locations)}")
     print(f"Locations: {', '.join(locations)}")
     
@@ -56,11 +56,11 @@ if __name__ == "__main__":
     print("\n3. Get Locations by Region")
     print("-" * 70)
     
-    regions = ITLLocationsHandler.get_available_regions()
+    regions = LocationsHandler.get_available_regions()
     print(f"Available regions: {', '.join(regions)}\n")
     
-    for region_name in ITLRegionMeta.__members__.values():
-        locs = ITLLocationsHandler.get_locations_by_region(region_name)
+    for region_name in RegionMeta.__members__.values():
+        locs = LocationsHandler.get_locations_by_region(region_name)
         print(f"  {region_name.value}: {', '.join(locs)}")
     
     # Example 4: Get region for a location
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     test_locations = ["amsterdam", "eastus", "cdn-london"]
     for loc in test_locations:
         try:
-            region = ITLLocationsHandler.get_region_for_location(loc)
+            region = LocationsHandler.get_region_for_location(loc)
             print(f"  {loc:20} -> {region}")
         except ValueError as e:
             print(f"  {loc:20} -> ERROR: {e}")
@@ -106,14 +106,14 @@ if __name__ == "__main__":
         print(f"Validation error (truncated):")
         print(f"   {error_msg[:100]}...")
         # Show valid options
-        valid = ITLLocationsHandler.get_valid_locations()
+        valid = LocationsHandler.get_valid_locations()
         print(f"\n  Valid locations: {', '.join(valid[:5])}... ({len(valid)} total)")
     
     # Example 6: Fast O(1) lookup
     print("\n6. Fast Location Lookup (O(1))")
     print("-" * 70)
     
-    valid_locs = ITLLocationsHandler.get_valid_locations_set()
+    valid_locs = LocationsHandler.get_valid_locations_set()
     print(f"Valid locations set: {type(valid_locs).__name__}")
     
     test_locs = ["amsterdam", "singapore", "berlin"]
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     print("\n7. Primary Datacenters (Netherlands)")
     print("-" * 70)
     
-    nl_locations = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.NETHERLANDS)
+    nl_locations = LocationsHandler.get_locations_by_region(RegionMeta.NETHERLANDS)
     print(f"Netherlands datacenters: {', '.join(nl_locations)}")
     print("These are your primary production locations!")
     
@@ -134,9 +134,10 @@ if __name__ == "__main__":
     print("\n8. CDN Edge Zones (Global Distribution)")
     print("-" * 70)
     
-    cdn_locations = ITLLocationsHandler.get_locations_by_region(ITLRegionMeta.CDN_EDGE)
+    cdn_locations = LocationsHandler.get_locations_by_region(RegionMeta.CDN_EDGE)
     print(f"CDN Edge zones: {', '.join(cdn_locations)}")
     print("Use these for global content distribution!")
     
     print("\n" + "=" * 70)
     print(f"Summary: {len(locations)} locations across {len(regions)} regions")
+

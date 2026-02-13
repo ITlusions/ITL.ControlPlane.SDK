@@ -70,7 +70,7 @@ app.add_middleware(LoggingMiddleware)
 **New code with FastAPI module:**
 
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 def create_app() -> FastAPI:
     factory = AppFactory("ITL ControlPlane API", "1.0.0")
@@ -120,7 +120,7 @@ app.add_middleware(CORSMiddleware, ...)
 **New code with FastAPI module:**
 
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 factory = AppFactory("Keycloak Provider", "1.0.0")
 app = factory.create_app(cors_origins=["*"])
@@ -142,7 +142,7 @@ async def startup():
 ### 3. Core Provider (core-provider/src/main.py)
 
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 factory = AppFactory("Core Provider", "1.0.0")
 app = factory.create_app(cors_origins=["*"])
@@ -158,7 +158,7 @@ async def startup():
 ### 4. Compute Provider (vm-provider/src/main.py)
 
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 factory = AppFactory("VM Provider", "1.0.0")
 app = factory.create_app(cors_origins=["*"])
@@ -188,7 +188,7 @@ API Gateway          Keycloak Provider     Core Provider      Compute Provider
 
 ### After (Unified)
 ```
-SDK: itl_controlplane_sdk.fastapi
+SDK: itl_controlplane_sdk.api
 ├── AppFactory
 ├── Middleware (logging, error handling, cors)
 ├── Routes (health checks)
@@ -255,7 +255,7 @@ Update [ITL.ControlPlane.Api/src/server.py](../../ITL.ControlPlane.Api/src/serve
 # - Manual router inclusion
 
 # With:
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 def create_app() -> FastAPI:
     factory = AppFactory("ITL ControlPlane API", "1.0.0")
@@ -298,7 +298,7 @@ Same as Keycloak provider
 
 ```python
 from fastapi.testclient import TestClient
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 # Create test app
 factory = AppFactory("Test App", "1.0.0")

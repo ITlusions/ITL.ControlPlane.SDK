@@ -1,8 +1,8 @@
 # FastAPI Module: Quick Reference
 
 **Status:** ✅ Ready to use
-**Location:** `itl_controlplane_sdk.fastapi`
-**Namespace:** `from itl_controlplane_sdk.fastapi import ...`
+**Location:** `itl_controlplane_sdk.api`
+**Namespace:** `from itl_controlplane_sdk.api import ...`
 
 ---
 
@@ -17,7 +17,7 @@ pip install itl-controlplane-sdk[fastapi]
 ## Basic Usage
 
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 # Create factory
 factory = AppFactory("My App", "1.0.0")
@@ -77,7 +77,7 @@ app = factory.create_app(
 ### Raise errors in your routes:
 
 ```python
-from itl_controlplane_sdk.fastapi.middleware.error_handling import APIError
+from itl_controlplane_sdk.api.middleware.error_handling import APIError
 
 @app.get("/items/{item_id}")
 async def get_item(item_id: int):
@@ -117,7 +117,7 @@ async def get_item(item_id: int):
 ## Configuration
 
 ```python
-from itl_controlplane_sdk.fastapi import FastAPIConfig
+from itl_controlplane_sdk.api import FastAPIConfig
 
 # Development (allow all CORS)
 config = FastAPIConfig.development()
@@ -141,7 +141,7 @@ app = factory.create_app()
 ## Common Models
 
 ```python
-from itl_controlplane_sdk.fastapi.models import (
+from itl_controlplane_sdk.api.base.models import (
     ErrorResponse,
     HealthResponse,
     PaginatedResponse,
@@ -202,7 +202,7 @@ async def list_items():
 
 ```python
 from fastapi.testclient import TestClient
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 factory = AppFactory("Test", "1.0.0")
 app = factory.create_app()
@@ -220,7 +220,7 @@ def test_health():
 
 ```python
 from fastapi import APIRouter
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 # Create routers
 resource_router = APIRouter()
@@ -248,7 +248,7 @@ if __name__ == "__main__":
 ## Full Example: Provider
 
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 factory = AppFactory("Keycloak Provider", "1.0.0")
 app = factory.create_app()
@@ -290,7 +290,7 @@ src/itl_controlplane_sdk/fastapi/
 ### Environment-based Config
 ```python
 import os
-from itl_controlplane_sdk.fastapi import FastAPIConfig
+from itl_controlplane_sdk.api import FastAPIConfig
 
 if os.getenv("ENV") == "production":
     config = FastAPIConfig.production()
@@ -376,5 +376,5 @@ async def health():
 ---
 
 **Status:** ✅ Ready to use
-**Import:** `from itl_controlplane_sdk.fastapi import AppFactory`
+**Import:** `from itl_controlplane_sdk.api import AppFactory`
 

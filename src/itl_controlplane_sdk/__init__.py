@@ -88,23 +88,23 @@ from itl_controlplane_sdk.providers import (
     ResourceIdentity,
     generate_resource_id,
     parse_resource_id,
-    ITLLocationsHandler,
-    ITLRegionMeta,
+    LocationsHandler,
+    RegionMeta,
     ProviderServer,
 )
 
 # Service Bus utilities for message-based provider modes
-from itl_controlplane_sdk.servicebus import (
+from itl_controlplane_sdk.messaging.servicebus import (
     GenericServiceBusProvider,
     ProviderModeManager,
     run_generic_servicebus_provider,
 )
 
-# Auto-initialize ITL Locations Handler with default locations
-ITLLocationsHandler.initialize(DEFAULT_LOCATIONS)
+# Auto-initialize Locations Handler with default locations
+LocationsHandler.initialize()
 
 # ---------------------------------------------------------------------------
-# Lazy imports: identity, fastapi, services, pulumi
+# Lazy imports: identity, api, services, pulumi
 # Loaded on first attribute access so consumers who only need core/providers
 # don't pay the import cost (or need the optional dependencies).
 # ---------------------------------------------------------------------------
@@ -134,7 +134,7 @@ _LAZY_IMPORTS: dict[str, tuple[str, str]] = {
     "DomainStatus":              ("itl_controlplane_sdk.identity", "DomainStatus"),
     "DomainVerificationMethod":  ("itl_controlplane_sdk.identity", "DomainVerificationMethod"),
     # Services
-    "BaseResourceService":       ("itl_controlplane_sdk.services", "BaseResourceService"),
+    "BaseResourceService":       ("itl_controlplane_sdk.providers.base", "BaseResourceService"),
     # Graph Database
     "MetadataService":           ("itl_controlplane_sdk.graphdb", "MetadataService"),
     "GraphDatabaseInterface":    ("itl_controlplane_sdk.graphdb", "GraphDatabaseInterface"),
@@ -150,10 +150,10 @@ _LAZY_IMPORTS: dict[str, tuple[str, str]] = {
     "SubscriptionNode":          ("itl_controlplane_sdk.graphdb", "SubscriptionNode"),
     "ResourceGroupNode":         ("itl_controlplane_sdk.graphdb", "ResourceGroupNode"),
     "ResourceNode":              ("itl_controlplane_sdk.graphdb", "ResourceNode"),
-    # Storage
-    "ResourceStore":             ("itl_controlplane_sdk.storage", "ResourceStore"),
-    "TupleResourceStore":        ("itl_controlplane_sdk.storage", "TupleResourceStore"),
-    "StorageBackend":            ("itl_controlplane_sdk.storage", "StorageBackend"),
+    # Persistence (SQL data layer)
+    "ResourceStore":             ("itl_controlplane_sdk.persistence", "ResourceStore"),
+    "TupleResourceStore":        ("itl_controlplane_sdk.persistence", "TupleResourceStore"),
+    "StorageBackend":            ("itl_controlplane_sdk.persistence", "StorageBackend"),
     # Messaging
     "MessageBroker":             ("itl_controlplane_sdk.messaging", "MessageBroker"),
     "InMemoryBroker":            ("itl_controlplane_sdk.messaging", "InMemoryBroker"),
@@ -189,11 +189,10 @@ def __getattr__(name: str):
 # Maps module path -> extras_require key (for error messages)
 _MODULE_TO_EXTRA: dict[str, str] = {
     "itl_controlplane_sdk.identity": "identity",
-    "itl_controlplane_sdk.fastapi": "fastapi",
+    "itl_controlplane_sdk.api": "fastapi",
     "itl_controlplane_sdk.pulumi": "pulumi",
-    "itl_controlplane_sdk.services": "",  # no extra deps
     "itl_controlplane_sdk.graphdb": "graphdb",
-    "itl_controlplane_sdk.storage": "storage",
+    "itl_controlplane_sdk.persistence": "persistence",
     "itl_controlplane_sdk.messaging": "messaging",
 }
 
@@ -220,7 +219,7 @@ if TYPE_CHECKING:
         DomainStatus,
         DomainVerificationMethod,
     )
-    from itl_controlplane_sdk.services import BaseResourceService
+    from itl_controlplane_sdk.providers.base import BaseResourceService
 
 
 __all__ = [
@@ -276,8 +275,8 @@ __all__ = [
     "ResourceIdentity",
     "generate_resource_id",
     "parse_resource_id",
-    "ITLLocationsHandler",
-    "ITLRegionMeta",
+    "LocationsHandler",
+    "RegionMeta",
     "ProviderServer",
     # --- Lazy: Identity Framework ---
     "IdentityProvider",

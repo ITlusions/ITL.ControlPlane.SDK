@@ -19,8 +19,7 @@ from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 from datetime import datetime
 
-from itl_controlplane_sdk.fastapi.app_factory import AppFactory
-from itl_controlplane_sdk.fastapi.config import FastAPIConfig
+from itl_controlplane_sdk.api import AppFactory, FastAPIConfig
 
 
 # ============================================================================
@@ -269,7 +268,7 @@ def example_5_how_to_run():
 To run a FastAPI app created with AppFactory:
 
     # In your main.py:
-    from itl_controlplane_sdk.fastapi.app_factory import AppFactory
+    from itl_controlplane_sdk.api import AppFactory
     
     factory = AppFactory("My API", version="1.0.0")
     app = factory.create_app(routers=[my_router])

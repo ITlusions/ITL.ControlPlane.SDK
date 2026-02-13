@@ -41,7 +41,7 @@ Example:
     hierarchy = await metadata.get_resource_hierarchy("sub-123")
 """
 
-from .graph_models import (
+from .models import (
     # Enums
     NodeType,
     RelationshipType,
@@ -63,21 +63,18 @@ from .graph_models import (
     GraphMetrics,
 )
 
-from .graph_database import (
-    GraphDatabaseInterface,
+from .interfaces import GraphDatabaseInterface
+from .backends import (
     InMemoryGraphDatabase,
-    create_graph_database,
-)
-from .sql_backend import (
-    SQLConnectionAdapter,
-    SQLiteAdapter,
-    PostgresAdapter,
     SQLGraphDatabase,
     SQLiteGraphDatabase,
     PostgresGraphDatabase,
+    SQLConnectionAdapter,
+    SQLiteAdapter,
+    PostgresAdapter,
 )
-
-from .metadata_service import MetadataService
+from .factory import create_graph_database
+from .services import MetadataService
 
 __all__ = [
     # Enums

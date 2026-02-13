@@ -19,10 +19,9 @@ from typing import Dict, Any, Optional
 from fastapi import APIRouter, FastAPI, Request, Query
 from fastapi.responses import JSONResponse
 
-from itl_controlplane_sdk.fastapi.app_factory import AppFactory
-from itl_controlplane_sdk.fastapi.config import FastAPIConfig
-from itl_controlplane_sdk.fastapi.middleware.logging import LoggingMiddleware
-from itl_controlplane_sdk.fastapi.middleware.error_handling import (
+from itl_controlplane_sdk.api import AppFactory, FastAPIConfig
+from itl_controlplane_sdk.api.middleware.logging import LoggingMiddleware
+from itl_controlplane_sdk.api.middleware.error_handling import (
     APIError,
     setup_exception_handlers,
 )

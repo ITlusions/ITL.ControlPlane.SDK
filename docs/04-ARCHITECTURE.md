@@ -245,7 +245,7 @@ class MyProvider(ResourceProvider):
 
 **Pattern 3: FastAPI-Based Provider (Standalone Service)**
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 from itl_controlplane_sdk.providers import ResourceProvider, ResourceProviderRegistry
 
 # Create provider
@@ -349,7 +349,7 @@ class MyService(BaseResourceService):
 
 **Custom Middleware or Routes**:
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 factory = AppFactory("My App", "1.0.0")
 app = factory.create_app(

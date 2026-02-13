@@ -7,7 +7,7 @@
 
 ## What Was Created
 
-A complete FastAPI utilities submodule under `itl_controlplane_sdk.fastapi` that eliminates duplication across API Gateway and all Resource Providers.
+A complete FastAPI utilities submodule under `itl_controlplane_sdk.api` that eliminates duplication across API Gateway and all Resource Providers.
 
 ### Directory Structure
 
@@ -214,7 +214,7 @@ pip install itl-controlplane-sdk[fastapi]
 ### Import and Use
 
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory, FastAPIConfig
+from itl_controlplane_sdk.api import AppFactory, FastAPIConfig
 
 # Create factory
 factory = AppFactory("My App", "1.0.0")
@@ -247,7 +247,7 @@ API Gateway              Keycloak           Core              Compute
 
 ### After Integration (Unified)
 ```
-SDK: itl_controlplane_sdk.fastapi
+SDK: itl_controlplane_sdk.api
 ├── AppFactory
 ├── Middleware (logging, error handling, cors)
 ├── Routes (health)
@@ -344,7 +344,7 @@ def create_app() -> FastAPI:
 
 **After (~15 lines):**
 ```python
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 def create_app() -> FastAPI:
     factory = AppFactory("ITL ControlPlane API", "1.0.0")
@@ -418,7 +418,7 @@ All components are:
 pip install itl-controlplane-sdk[fastapi]
 
 # Import
-from itl_controlplane_sdk.fastapi import AppFactory
+from itl_controlplane_sdk.api import AppFactory
 
 # Create
 factory = AppFactory("My App", "1.0.0")

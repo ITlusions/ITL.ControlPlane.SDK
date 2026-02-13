@@ -95,7 +95,7 @@ brazilsouth, uaenorth, southafricanorth, germanywestcentral, chinaeast, chinanor
 
 ```python
 from pydantic import BaseModel, validator, Field
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 class ResourceSchema(BaseModel):
     location: str = Field(..., description="Azure region")
@@ -108,7 +108,7 @@ class ResourceSchema(BaseModel):
 ### Direct API Usage
 
 ```python
-from itl_controlplane_sdk.providers.locations import (
+from itl_controlplane_sdk.providers import (
     LocationsHandler, 
     AzureRegionMeta
 )
@@ -140,7 +140,7 @@ regions = LocationsHandler.get_available_regions()
 ### Fast Lookup
 
 ```python
-from itl_controlplane_sdk.providers.locations import VALID_LOCATIONS
+from itl_controlplane_sdk.providers import VALID_LOCATIONS
 
 if location in VALID_LOCATIONS:  # O(1) set lookup
     process(location)

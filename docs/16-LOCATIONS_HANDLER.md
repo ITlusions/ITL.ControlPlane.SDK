@@ -67,7 +67,7 @@ The `LocationsHandler` provides a centralized, dynamic, and maintainable way to 
 
 ```python
 from pydantic import BaseModel, validator, Field
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 class ResourceSchema(BaseModel):
     location: str = Field(..., description="Azure region")
@@ -80,7 +80,7 @@ class ResourceSchema(BaseModel):
 ### Direct Validation
 
 ```python
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 # Validate a location
 try:
@@ -98,7 +98,7 @@ all_locations = LocationsHandler.get_valid_locations()
 # Returns: ['australiaeast', 'australiasoutheast', ..., 'westus2']
 
 # Get locations by region
-us_locations = LocationsHandler.get_locations_by_region(AzureRegionMeta.US)
+us_locations = LocationsHandler.get_locations_by_region(RegionMeta.US)
 # Returns: ['centralus', 'eastus', 'eastus2', ..., 'westus2']
 
 # Get region for location
@@ -125,16 +125,16 @@ LocationsHandler (static methods only)
 ├── validate_location(location: str) -> str
 ├── get_valid_locations() -> List[str]
 ├── get_valid_locations_set() -> Set[str]
-├── get_locations_by_region(region: AzureRegionMeta) -> List[str]
+├── get_locations_by_region(region: RegionMeta) -> List[str]
 ├── get_available_regions() -> List[str]
 └── get_region_for_location(location: str) -> str
 
-AzureLocation (Enum)
+Location (Enum)
 ├── EAST_US = "eastus"
 ├── WEST_US = "westus"
 ├── ... (30+ total)
 
-AzureRegionMeta (Enum)
+RegionMeta (Enum)
 ├── US = "US"
 ├── EUROPE = "Europe"
 ├── ASIA_PACIFIC = "Asia Pacific"
@@ -188,7 +188,7 @@ if location in VALID_LOCATIONS:
 
 ```python
 # Get US locations
-us_locs = LocationsHandler.get_locations_by_region(AzureRegionMeta.US)
+us_locs = LocationsHandler.get_locations_by_region(RegionMeta.US)
 # Returns: ['centralus', 'eastus', 'eastus2', 'northcentralus', 
 #           'southcentralus', 'westus', 'westus2']
 
@@ -221,7 +221,7 @@ class ResourceGroupSchema(BaseModel):
 
 **After (dynamic LocationsHandler):**
 ```python
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 class ResourceGroupSchema(BaseModel):
     location: str
@@ -235,7 +235,7 @@ class ResourceGroupSchema(BaseModel):
 
 ```python
 from pydantic import BaseModel, validator, Field
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 class VirtualMachineSchema(BaseModel):
     vm_name: str
@@ -263,7 +263,7 @@ handler.create_resource(
 
 ```python
 from pydantic import BaseModel, validator
-from itl_controlplane_sdk.providers.locations import LocationsHandler
+from itl_controlplane_sdk.providers import LocationsHandler
 
 class StorageAccountSchema(BaseModel):
     name: str
@@ -279,10 +279,10 @@ class StorageAccountSchema(BaseModel):
 
 ### Adding New Locations
 
-To add new Azure locations, update the `AzureLocation` enum in `locations.py`:
+To add new Azure locations, update the `Location` enum in `locations.py`:
 
 ```python
-class AzureLocation(str, Enum):
+class Location(str, Enum):
     """Valid Azure regions as an enumeration."""
     
     # Existing locations...
@@ -296,17 +296,17 @@ class AzureLocation(str, Enum):
 Then update `LOCATION_TO_REGION` mapping:
 
 ```python
-LOCATION_TO_REGION: Dict[str, AzureRegionMeta] = {
+LOCATION_TO_REGION: Dict[str, RegionMeta] = {
     # Existing mappings...
-    AzureLocation.NEW_REGION: AzureRegionMeta.YOUR_REGION,  # or create new region
+    Location.NEW_REGION: RegionMeta.YOUR_REGION,  # or create new region
     # Continue...
 }
 ```
 
-And if needed, add new region to `AzureRegionMeta`:
+And if needed, add new region to `RegionMeta`:
 
 ```python
-class AzureRegionMeta(str, Enum):
+class RegionMeta(str, Enum):
     """Azure region metadata for regional grouping."""
     YOUR_REGION = "Your Region Name"
 ```
@@ -319,7 +319,7 @@ The location list is updated whenever:
 3. Region names change
 
 Simply:
-1. Update `AzureLocation` enum
+1. Update `Location` enum
 2. Update `LOCATION_TO_REGION` mapping  
 3. All handlers automatically use updated list
 4. No code changes needed in any handler
@@ -370,8 +370,8 @@ Available from `itl_controlplane_sdk.providers`:
 
 ```python
 from itl_controlplane_sdk.providers import (
-    AzureLocation,          # Enum of valid locations
-    AzureRegionMeta,        # Enum of regions
+    Location,          # Enum of valid locations
+    RegionMeta,        # Enum of regions
     LocationsHandler,       # Main handler class
     VALID_LOCATIONS,        # Set of valid location strings (fast lookup)
     AVAILABLE_REGIONS,      # List of available regions
@@ -385,7 +385,7 @@ from itl_controlplane_sdk.providers import (
 
 1. **Update imports:**
    ```python
-   from itl_controlplane_sdk.providers.locations import LocationsHandler
+   from itl_controlplane_sdk.providers import LocationsHandler
    ```
 
 2. **Remove hardcoded list:**
@@ -419,3 +419,4 @@ The `LocationsHandler` provides:
 - ✅ **Clear errors** with all valid options
 
 Use it in all location validators for clean, maintainable, dynamic region validation!
+

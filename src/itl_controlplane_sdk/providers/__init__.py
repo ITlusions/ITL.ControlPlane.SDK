@@ -1,43 +1,56 @@
 """
 Providers module - Resource provider framework and utilities
 
-This module contains:
+Provides:
 - ResourceProvider: Abstract base class for all resource providers
+- ProviderServer: Base class for standalone provider servers
 - ScopedResourceHandler: Base class for scope-aware resource uniqueness
 - ResourceGroupHandler: Handler for subscription-scoped resource groups
+- Advanced handlers: Timestamped, ProvisioningState, Validated
 - ResourceProviderRegistry: Registry for managing multiple providers
 - Resource ID utilities: ID generation and parsing
-- LocationsHandler: Dynamic Azure location validation
+- LocationsHandler: Azure location validation
+- LocationsHandler: Dynamic location registry
 """
 
-from .base import ResourceProvider
-from .scoped_resources import ScopedResourceHandler, UniquenessScope
-from .resource_group_handler import ResourceGroupHandler
-from .resource_handlers import (
+# Core abstractions
+from .base import ResourceProvider, ProviderServer
+
+# Resource handlers
+from .handlers import (
+    ScopedResourceHandler,
+    UniquenessScope,
     ProvisioningState,
     TimestampedResourceHandler,
     ProvisioningStateHandler,
     ValidatedResourceHandler,
+    ResourceGroupHandler,
 )
+
+# Location management
 from .locations import (
-    AzureLocation,
-    AzureRegionMeta,
     LocationsHandler,
+    Location,
+    RegionMeta,
     VALID_LOCATIONS,
     AVAILABLE_REGIONS,
     LOCATION_TO_REGION,
 )
-from .itl_locations import (
-    ITLRegionMeta,
-    ITLLocationsHandler,
+
+# Utilities
+from .utilities import (
+    ResourceProviderRegistry,
+    resource_registry,
+    ResourceIdentity,
+    generate_resource_id,
+    parse_resource_id,
 )
-from .registry import ResourceProviderRegistry, resource_registry
-from .resource_ids import ResourceIdentity, generate_resource_id, parse_resource_id
-from .server import ProviderServer
 
 __all__ = [
-    # Base classes
+    # Core abstractions
     "ResourceProvider",
+    "ProviderServer",
+    # Scope handling
     "ScopedResourceHandler",
     "UniquenessScope",
     # Advanced handlers (Big 3)
@@ -47,23 +60,18 @@ __all__ = [
     "ProvisioningState",
     # Specific handlers
     "ResourceGroupHandler",
-    # Azure Locations
-    "AzureLocation",
-    "AzureRegionMeta",
+    # Location management
     "LocationsHandler",
+    "Location",
+    "RegionMeta",
     "VALID_LOCATIONS",
     "AVAILABLE_REGIONS",
     "LOCATION_TO_REGION",
-    # ITL Locations (Dynamic Registry)
-    "ITLRegionMeta",
-    "ITLLocationsHandler",
-    # Registry
+    # Utilities
     "ResourceProviderRegistry",
     "resource_registry",
-    # Resource ID utilities
     "ResourceIdentity",
     "generate_resource_id",
     "parse_resource_id",
-    # Server base class
-    "ProviderServer",
 ]
+

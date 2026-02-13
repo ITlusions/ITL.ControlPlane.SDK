@@ -366,12 +366,11 @@ from itl_controlplane_sdk.identity.identity_provider_factory import (
 
 ### FastAPI Classes
 ```python
-from itl_controlplane_sdk.fastapi.app_factory import AppFactory
-from itl_controlplane_sdk.fastapi.config import FastAPIConfig
-from itl_controlplane_sdk.fastapi.middleware.error_handling import (
+from itl_controlplane_sdk.api import AppFactory, FastAPIConfig
+from itl_controlplane_sdk.api.middleware.error_handling import (
     APIError, setup_exception_handlers
 )
-from itl_controlplane_sdk.fastapi.middleware.logging import LoggingMiddleware
+from itl_controlplane_sdk.api.middleware.logging import LoggingMiddleware
 ```
 
 ### Resource IDs
@@ -385,9 +384,9 @@ from itl_controlplane_sdk.providers.resource_ids import (
 
 ### Location Validation
 ```python
-from itl_controlplane_sdk.providers.itl_locations import (
-    ITLLocationsHandler,           # Location validator (27 locations)
-    ITLRegionMeta                  # Region classification
+from itl_controlplane_sdk.providers import (
+    LocationsHandler,           # Location validator with defaults + dynamic registration
+    RegionMeta                  # Region classification
 )
 ```
 

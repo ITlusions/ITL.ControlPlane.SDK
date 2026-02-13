@@ -44,19 +44,19 @@ graphdb-postgres = [
     "itl-controlplane-sdk[graphdb]",
     "psycopg2-binary>=2.9.0"
 ]
-storage = [
+persistence = [
     "itl-controlplane-sdk[graphdb]"
 ]
-storage-postgres = [
-    "itl-controlplane-sdk[storage,graphdb-postgres]"
+persistence-postgres = [
+    "itl-controlplane-sdk[persistence,graphdb-postgres]"
 ]
-storage-sqlalchemy = [
+persistence-sqlalchemy = [
     "sqlalchemy[asyncio]>=2.0.0",
     "asyncpg>=0.29.0",
     "alembic>=1.13.0",
 ]
-storage-sqlalchemy-neo4j = [
-    "itl-controlplane-sdk[storage-sqlalchemy]",
+persistence-sqlalchemy-neo4j = [
+    "itl-controlplane-sdk[persistence-sqlalchemy]",
     "neo4j>=5.0.0",
 ]
 messaging = [
@@ -68,7 +68,7 @@ messaging-rabbitmq = [
 ]
 # Convenience: install everything
 all = [
-    "itl-controlplane-sdk[identity,fastapi,pulumi,graphdb,storage,storage-sqlalchemy,messaging]"
+    "itl-controlplane-sdk[identity,fastapi,pulumi,graphdb,persistence,persistence-sqlalchemy,messaging]"
 ]
 # --- Development extras ---
 dev = [
