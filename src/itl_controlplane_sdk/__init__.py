@@ -37,6 +37,7 @@ from itl_controlplane_sdk.core import (
     ResourceResponse,
     ResourceListResponse,
     ResourceMetadata,
+    ErrorResponse,
     ProvisioningState,
     # Exceptions (simple)
     ResourceProviderError,

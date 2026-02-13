@@ -63,6 +63,7 @@ class AppFactory:
         openapi_url: str = "/openapi.json",
         custom_startup: Optional[Callable] = None,
         custom_shutdown: Optional[Callable] = None,
+        lifespan: Optional[Callable] = None,
     ) -> FastAPI:
         """
         Create a configured FastAPI application
@@ -76,8 +77,9 @@ class AppFactory:
             docs_url: Swagger UI URL
             redoc_url: ReDoc URL
             openapi_url: OpenAPI schema URL
-            custom_startup: Custom startup event handler
-            custom_shutdown: Custom shutdown event handler
+            custom_startup: Custom startup event handler (deprecated, use lifespan instead)
+            custom_shutdown: Custom shutdown event handler (deprecated, use lifespan instead)
+            lifespan: Async context manager for app lifecycle (FastAPI 0.93+)
         
         Returns:
             Configured FastAPI application
@@ -89,6 +91,7 @@ class AppFactory:
             docs_url=docs_url,
             redoc_url=redoc_url,
             openapi_url=openapi_url,
+            lifespan=lifespan,
         )
         
         # Add middleware
@@ -97,6 +100,25 @@ class AppFactory:
         # Add exception handlers
         if add_exception_handlers:
             setup_exception_handlers(app)
+        
+        # Add health routes
+        if add_health_routes:
+            app.include_router(health_router, tags=["System"])
+        
+        # Add custom routers
+        if routers:
+            for router in routers:
+                app.include_router(router)
+        
+        # Add lifecycle events (deprecated, but still supported for backward compatibility)
+        if custom_startup:
+            app.add_event_handler("startup", custom_startup)
+        if custom_shutdown:
+            app.add_event_handler("shutdown", custom_shutdown)
+        
+        logger.info(f"Created FastAPI app: {self.title} v{self.version}")
+        
+        return app
         
         # Add health routes
         if add_health_routes:

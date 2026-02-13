@@ -29,7 +29,7 @@ def test_resource_request_validation():
     request = ResourceRequest(
         subscription_id="sub-123",
         resource_group="rg-test",
-        provider_namespace="Microsoft.Test",
+        provider_namespace="ITL.Test",
         resource_type="testresources",
         resource_name="test-resource",
         location="eastus",
@@ -43,7 +43,7 @@ def test_resource_request_validation():
         ResourceRequest(
             subscription_id="sub-123",
             resource_group="rg-test", 
-            provider_namespace="Microsoft.Test",
+            provider_namespace="ITL.Test",
             resource_type="testresources",
             resource_name="a" * 300,  # Too long
             location="eastus",
@@ -55,7 +55,7 @@ def test_resource_request_validation():
         ResourceRequest(
             subscription_id="sub-123",
             resource_group="rg-test",
-            provider_namespace="Microsoft.Test", 
+            provider_namespace="ITL.Test", 
             resource_type="testresources",
             resource_name="test-resource",
             location="eastus",
@@ -67,9 +67,9 @@ def test_resource_request_validation():
 def test_resource_response_model():
     """Test ResourceResponse model"""
     response = ResourceResponse(
-        id="/subscriptions/sub-123/resourceGroups/rg-test/providers/Microsoft.Test/testresources/test-resource",
+        id="/subscriptions/sub-123/resourceGroups/rg-test/providers/ITL.Test/testresources/test-resource",
         name="test-resource",
-        type="Microsoft.Test/testresources",
+        type="ITL.Test/testresources",
         location="eastus",
         properties={"test": "value"},
         tags={"env": "test"},

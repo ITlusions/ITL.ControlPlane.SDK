@@ -8,7 +8,8 @@ from itl_controlplane_sdk import (
     ResourceProvider,
     ResourceRequest,
     ResourceResponse, 
-    ProvisioningState
+    ProvisioningState,
+    ResourceNotFoundError
 )
 
 
@@ -39,7 +40,6 @@ class TestResourceProvider(ResourceProvider):
         resource_id = f"/subscriptions/{request.subscription_id}/resourceGroups/{request.resource_group}/providers/{request.provider_namespace}/{request.resource_type}/{request.resource_name}"
         
         if resource_id not in self._resources:
-            from itl_controlplane_sdk.models import ResourceNotFoundError
             raise ResourceNotFoundError(resource_id)
             
         return self._resources[resource_id]
@@ -48,7 +48,6 @@ class TestResourceProvider(ResourceProvider):
         resource_id = f"/subscriptions/{request.subscription_id}/resourceGroups/{request.resource_group}/providers/{request.provider_namespace}/{request.resource_type}/{request.resource_name}"
         
         if resource_id not in self._resources:
-            from itl_controlplane_sdk.models import ResourceNotFoundError
             raise ResourceNotFoundError(resource_id)
             
         resource = self._resources[resource_id]
@@ -143,7 +142,7 @@ async def test_delete_resource():
     assert response.provisioning_state == ProvisioningState.DELETING
     
     # Verify it's gone
-    from itl_controlplane_sdk.models import ResourceNotFoundError
+    from itl_controlplane_sdk import ResourceNotFoundError
     with pytest.raises(ResourceNotFoundError):
         await provider.get_resource(request)
 

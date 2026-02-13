@@ -162,7 +162,7 @@ class ProvisioningStateHandler:
         resource_id, config = handler.create_resource(
             "prod-rg",
             {"location": "eastus"},
-            "Microsoft.Resources/resourceGroups",
+            "ITL.Resources/resourceGroups",
             {"subscription_id": "sub-1", "user_id": "user@company.com"}
         )
         # config.provisioning_state = "Accepted" initially

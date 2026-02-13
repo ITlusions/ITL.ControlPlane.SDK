@@ -72,7 +72,7 @@ class ResourceGroupHandler(
                 "location": "eastus",
                 "tags": {"environment": "production", "team": "platform"}
             },
-            "Microsoft.Resources/resourceGroups",
+            "ITL.Resources/resourceGroups",
             {
                 "subscription_id": "sub-123",
                 "user_id": "admin@company.com"

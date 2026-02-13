@@ -22,7 +22,8 @@ try:
 except ImportError:
     HAS_AIOPIKA = False
 
-from itl_controlplane_sdk.core import ResourceRequest, ResourceProvider
+from itl_controlplane_sdk.core import ResourceRequest
+from itl_controlplane_sdk.providers import ResourceProvider
 
 logger = logging.getLogger(__name__)
 
