@@ -15,7 +15,7 @@ from ..base.models import GenericResourceBase, GenericResourceRequest, GenericRe
 logger = logging.getLogger(__name__)
 
 
-def setup_generic_routes(app: FastAPI) -> None:
+def setup_generic_routes(app: FastAPI, engine_getter=None) -> None:
     """Setup generic / placeholder resource routes.
     
     Registers 4 standard CRUD endpoints that raise NotImplementedError.
@@ -23,6 +23,7 @@ def setup_generic_routes(app: FastAPI) -> None:
     
     Args:
         app: FastAPI application to register routes on
+        engine_getter: Optional callable that returns database engine (for providers that need it)
     
     Routes registered:
     - POST /resources/{resource_type}

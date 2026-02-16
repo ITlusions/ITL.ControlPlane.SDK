@@ -82,7 +82,7 @@ class BaseProviderServer:
             
             if os.getenv("RABBITMQ_URL"):
                 rmq_adapter = RabbitMQAuditEventAdapter(
-                    rabbitmq_url=os.getenv("RABBITMQ_URL")
+                    url=os.getenv("RABBITMQ_URL")
                 )
                 adapters.append(rmq_adapter)
                 logger.info("✓ RabbitMQ audit adapter configured")
@@ -161,10 +161,10 @@ class BaseProviderServer:
             payload = {
                 "name": provider_name,
                 "namespace": provider_namespace,
-                "base_url": provider_base_url,
-                "resource_types": resource_types,
-                "version": version,
-                "health_endpoint": "/health",
+                "baseUrl": provider_base_url,
+                "resourceTypes": resource_types,
+                "healthCheckEndpoint": "/health",
+                "description": f"Provider for {provider_namespace}",
             }
             
             async with httpx.AsyncClient() as client:

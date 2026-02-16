@@ -15,6 +15,10 @@ These can be mixed with ScopedResourceHandler for scope-aware resources:
     ):
         UNIQUENESS_SCOPE = [UniquenessScope.SUBSCRIPTION]
         SCHEMA_CLASS = MySchema
+
+Note: Lifecycle hooks are now built into ResourceProvider base class.
+All providers have on_creating, on_created, on_updating, on_updated,
+on_getting, on_deleting, and on_deleted hooks available.
 """
 
 from datetime import datetime

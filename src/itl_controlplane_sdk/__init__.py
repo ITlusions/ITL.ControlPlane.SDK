@@ -34,10 +34,12 @@ __version__ = "1.0.0"
 from itl_controlplane_sdk.core import (
     # Models
     ResourceRequest,
+    ListResourceRequest,
     ResourceResponse,
     ResourceListResponse,
     ResourceMetadata,
     ErrorResponse,
+    ProviderContext,
     ProvisioningState,
     # Exceptions (simple)
     ResourceProviderError,
@@ -77,12 +79,15 @@ from itl_controlplane_sdk.core import (
     RESOURCE_TYPE_LOCATIONS,
     RESOURCE_TYPE_EXTENDED_LOCATIONS,
     RESOURCE_TYPE_TENANTS,
+    DEFAULT_TENANT,
     DEFAULT_TENANT_ID,
     ITL_RESOURCE_TYPES,
 )
 
 from itl_controlplane_sdk.providers import (
     ResourceProvider,
+    HealthStatus,
+    ResourceStatus,
     ResourceProviderRegistry,
     resource_registry,
     ResourceIdentity,
@@ -228,6 +233,7 @@ __all__ = [
     "ResourceResponse",
     "ResourceListResponse",
     "ResourceMetadata",
+    "ProviderContext",
     "ProvisioningState",
     # --- Eager: Exceptions ---
     "ResourceProviderError",
@@ -266,10 +272,13 @@ __all__ = [
     "RESOURCE_TYPE_LOCATIONS",
     "RESOURCE_TYPE_EXTENDED_LOCATIONS",
     "RESOURCE_TYPE_TENANTS",
-    "DEFAULT_TENANT_ID",
+    "DEFAULT_TENANT",
+    "DEFAULT_TENANT_ID",  # Deprecated: use DEFAULT_TENANT instead
     "ITL_RESOURCE_TYPES",
     # --- Eager: Providers ---
     "ResourceProvider",
+    "HealthStatus",
+    "ResourceStatus",
     "ResourceProviderRegistry",
     "resource_registry",
     "ResourceIdentity",

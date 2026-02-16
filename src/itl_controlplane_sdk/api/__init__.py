@@ -16,7 +16,11 @@ from .base import (
     AppFactory,
     FastAPIConfig,
 )
-from .base.models import GenericResourceBase
+from .base.models import (
+    GenericResourceBase,
+    GenericResourceRequest,
+    GenericResourceResponse,
+)
 from .providers import (
     BaseProviderServer,
     add_audit_middleware,
@@ -30,6 +34,8 @@ from .utilities import (
     discover_resource_schema,
     get_operation_schema,
     create_schema_routes,
+    ResourceTypeSchema,
+    SchemaRegistry,
 )
 
 __all__ = [
@@ -41,8 +47,12 @@ __all__ = [
     "discover_resource_schema",
     "FastAPIConfig",
     "GenericResourceBase",
+    "GenericResourceRequest",
+    "GenericResourceResponse",
     "get_operation_schema",
     "register_resource_types",
+    "ResourceTypeSchema",
+    "SchemaRegistry",
     "setup_generic_routes",
     "setup_observability_routes",
     "setup_standard_openapi_tags",

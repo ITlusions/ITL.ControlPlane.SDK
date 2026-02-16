@@ -10,9 +10,11 @@ from itl_controlplane_sdk.core.models.base.models import (
     CoreRequestBaseModel,
     ResourceMetadata,
     ResourceRequest,
+    ListResourceRequest,
     ResourceResponse,
     ResourceListResponse,
     ErrorResponse,
+    ProviderContext,
 )
 
 # --- Enumerations ---
@@ -34,11 +36,14 @@ from itl_controlplane_sdk.core.models.base.constants import (
     RESOURCE_TYPE_LOCATIONS,
     RESOURCE_TYPE_EXTENDED_LOCATIONS,
     RESOURCE_TYPE_TENANTS,
-    DEFAULT_TENANT_ID,
+    DEFAULT_TENANT,
     ITL_RESOURCE_TYPES,
     EXTENDED_LOCATIONS,
     DEFAULT_LOCATIONS,
 )
+
+# Backwards compatibility alias
+DEFAULT_TENANT_ID = DEFAULT_TENANT
 
 # --- Infrastructure Models ---
 from itl_controlplane_sdk.core.models.base.infrastructure import (
@@ -59,9 +64,11 @@ __all__ = [
     "CoreRequestBaseModel",
     "ResourceMetadata",
     "ResourceRequest",
+    "ListResourceRequest",
     "ResourceResponse",
     "ResourceListResponse",
     "ErrorResponse",
+    "ProviderContext",
     # Enums
     "ProvisioningState",
     "ResourceState",
@@ -77,7 +84,8 @@ __all__ = [
     "RESOURCE_TYPE_LOCATIONS",
     "RESOURCE_TYPE_EXTENDED_LOCATIONS",
     "RESOURCE_TYPE_TENANTS",
-    "DEFAULT_TENANT_ID",
+    "DEFAULT_TENANT",
+    "DEFAULT_TENANT_ID",  # Deprecated: use DEFAULT_TENANT instead
     "ITL_RESOURCE_TYPES",
     "EXTENDED_LOCATIONS",
     "DEFAULT_LOCATIONS",

@@ -25,6 +25,7 @@ Usage::
 
 import logging
 import uuid
+from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional, Type, TypeVar, Generic
 
 from sqlalchemy import select, delete as sa_delete, func, update
@@ -43,6 +44,7 @@ from ..data.models import (
     TagModel,
     DeploymentModel,
     ResourceRelationshipModel,
+    RealmModel,
     AuditEventModel,
     AuditAction,
     ActorType,
@@ -164,8 +166,13 @@ class TenantRepository(BaseRepository[TenantModel]):
         tags: Optional[Dict[str, str]] = None,
         properties: Optional[Dict[str, Any]] = None,
     ) -> TenantModel:
-        """Create or update a tenant."""
+        """Create or update a tenant.
+        
+        Note: tenant_id is typically set to the Keycloak realm_id after realm creation.
+        If not provided initially, a temporary UUID is used and should be updated via set_realm_id().
+        """
         arm_id = f"/providers/ITL.Management/tenants/{name}"
+        # Use provided tenant_id or generate temporary UUID (will be replaced with realm_id)
         t_id = tenant_id or str(uuid.uuid4())
 
         existing = await self.get_by_id(arm_id)
@@ -210,10 +217,237 @@ class TenantRepository(BaseRepository[TenantModel]):
             tags={"system": "true", "default": "true"},
         )
 
+    async def set_realm_id(self, tenant_id_or_name: str, realm_id: str) -> Optional[TenantModel]:
+        """Update tenant's tenant_id to the Keycloak realm_id.
+        
+        This is called after the realm is successfully created in Keycloak.
+        Updates the tenant_id field to match realm_id for 1:1 mapping.
+        
+        Args:
+            tenant_id_or_name: Either the tenant's ARM ID or name
+            realm_id: The Keycloak realm ID to set as tenant_id
+            
+        Returns:
+            Updated TenantModel or None if tenant not found
+        """
+        # Try to find by ARM ID first, then by name
+        if tenant_id_or_name.startswith("/providers/"):
+            tenant = await self.get_by_id(tenant_id_or_name)
+        else:
+            tenant = await self.get_by_name(tenant_id_or_name)
+        
+        if not tenant:
+            return None
+        
+        # Update tenant_id to realm_id
+        tenant.tenant_id = realm_id
+        
+        # Mark as synced with realm
+        if not tenant.properties:
+            tenant.properties = {}
+        tenant.properties["realm_synced_at"] = datetime.utcnow().isoformat()
+        tenant.properties["realm_id"] = realm_id  # Also store for reference
+        
+        await self.session.flush()
+        await self.session.refresh(tenant)
+        await self._sync_to_neo4j(tenant)
+        
+        return tenant
+
+    async def get_by_tenant_id(self, tenant_id: str) -> Optional[TenantModel]:
+        """Get a tenant by its unique tenant_id (UUID or realm_id).
+        
+        This queries by the tenant_id field, which is unique and typically 
+        set to the Keycloak realm ID for 1:1 mapping.
+        
+        Args:
+            tenant_id: The unique tenant UUID or realm ID
+            
+        Returns:
+            TenantModel if found, None otherwise
+        """
+        stmt = select(TenantModel).where(TenantModel.tenant_id == tenant_id)
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
     async def get_default_tenant_id(self) -> str:
         """Get the ARM ID of the default tenant."""
         tenant = await self.ensure_default_tenant()
         return tenant.id
+
+
+# ===================================================================
+# Realm Repository (Keycloak identity instances per tenant)
+# ===================================================================
+
+class RealmRepository(BaseRepository[RealmModel]):
+    """
+    Repository for Realm resources.
+    
+    Manages Keycloak realm instances linked to tenants.
+    Supports multiple realms per tenant.
+    """
+    model_class = RealmModel
+
+    async def create_or_update(
+        self,
+        tenant_id: str,
+        tenant_name: str,
+        name: str,
+        realm_id: Optional[str] = None,
+        keycloak_realm_id: Optional[str] = None,
+        display_name: Optional[str] = None,
+        description: Optional[str] = None,
+        location: str = "global",
+        status: str = "pending",
+        enabled: bool = True,
+        synced_at: Optional[datetime] = None,
+        failure_type: Optional[str] = None,
+        failure_message: Optional[str] = None,
+        failed_at: Optional[datetime] = None,
+        tags: Optional[Dict[str, str]] = None,
+        properties: Optional[Dict[str, Any]] = None,
+    ) -> RealmModel:
+        """Create or update a realm.
+        
+        Args:
+            tenant_id: Parent tenant ID (GUID - organizational UUID)
+            tenant_name: Parent tenant name (for building ARM path)
+            name: Realm name
+            realm_id: Keycloak realm ID (unique)
+            keycloak_realm_id: Explicit Keycloak reference
+            display_name: Display name for realm
+            description: Realm description
+            location: Resource location
+            status: Realm status (pending, active, failed)
+            enabled: Whether realm is enabled
+            synced_at: Last sync timestamp
+            failure_type: Type of failure if status=failed
+            failure_message: Failure message
+            failed_at: Failure timestamp
+            tags: Resource tags
+            properties: Custom properties
+        
+        Returns:
+            RealmModel instance
+        """
+        # Generate ARM-style ID using tenant_name (not tenant_id GUID)
+        arm_id = f"/providers/ITL.Core/tenants/{tenant_name}/realms/{name}"
+        kc_realm_id = realm_id or str(uuid.uuid4())
+
+        # Check if realm exists (by realm_id if provided)
+        existing = None
+        if realm_id:
+            stmt = select(RealmModel).where(RealmModel.realm_id == realm_id)
+            result = await self.session.execute(stmt)
+            existing = result.scalar_one_or_none()
+        
+        if existing:
+            # Update existing realm
+            existing.tenant_id = tenant_id
+            existing.name = name
+            existing.display_name = display_name or name
+            existing.description = description
+            existing.location = location
+            existing.status = status
+            existing.enabled = enabled
+            existing.synced_at = synced_at
+            existing.failure_type = failure_type
+            existing.failure_message = failure_message
+            existing.failed_at = failed_at
+            existing.tags = tags or existing.tags
+            existing.properties = properties or existing.properties
+            await self.session.flush()
+            await self.session.refresh(existing)
+            obj = existing
+        else:
+            # Create new realm
+            obj = RealmModel(
+                id=arm_id,
+                name=name,
+                display_name=display_name or name,
+                realm_id=kc_realm_id,
+                keycloak_realm_id=keycloak_realm_id or kc_realm_id,
+                tenant_id=tenant_id,
+                location=location,
+                status=status,
+                enabled=enabled,
+                synced_at=synced_at,
+                failure_type=failure_type,
+                failure_message=failure_message,
+                failed_at=failed_at,
+                description=description,
+                tags=tags or {},
+                properties=properties or {},
+            )
+            self.session.add(obj)
+            await self.session.flush()
+
+        await self._sync_to_neo4j(obj)
+        return obj
+
+    async def get_by_realm_id(self, realm_id: str) -> Optional[RealmModel]:
+        """Get realm by Keycloak realm ID."""
+        stmt = select(RealmModel).where(RealmModel.realm_id == realm_id)
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
+    async def get_by_name_and_tenant(
+        self, 
+        name: str, 
+        tenant_id: str
+    ) -> Optional[RealmModel]:
+        """Get realm by name within a tenant."""
+        stmt = select(RealmModel).where(
+            (RealmModel.name == name) & (RealmModel.tenant_id == tenant_id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
+    async def get_by_tenant(self, tenant_id: str) -> List[RealmModel]:
+        """Get all realms for a tenant."""
+        stmt = select(RealmModel).where(
+            RealmModel.tenant_id == tenant_id
+        ).order_by(RealmModel.created_at.desc())
+        result = await self.session.execute(stmt)
+        return list(result.scalars().all())
+
+    async def get_by_status(
+        self, 
+        status: str,
+        tenant_id: Optional[str] = None,
+    ) -> List[RealmModel]:
+        """Get realms by status, optionally filtered by tenant."""
+        stmt = select(RealmModel).where(RealmModel.status == status)
+        if tenant_id:
+            stmt = stmt.where(RealmModel.tenant_id == tenant_id)
+        stmt = stmt.order_by(RealmModel.created_at.desc())
+        result = await self.session.execute(stmt)
+        return list(result.scalars().all())
+
+    async def count_by_tenant(self, tenant_id: str) -> int:
+        """Count realms for a tenant."""
+        stmt = select(func.count()).select_from(RealmModel).where(
+            RealmModel.tenant_id == tenant_id
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar() or 0
+
+    async def find_pending_realms(
+        self, 
+        older_than_seconds: int = 300
+    ) -> List[RealmModel]:
+        """Find pending realms stuck for too long."""
+        threshold = datetime.utcnow() - timedelta(seconds=older_than_seconds)
+        from sqlalchemy import and_
+        stmt = select(RealmModel).where(
+            and_(
+                RealmModel.status == "pending",
+                RealmModel.created_at < threshold,
+            )
+        )
+        result = await self.session.execute(stmt)
+        return list(result.scalars().all())
 
 
 # ===================================================================

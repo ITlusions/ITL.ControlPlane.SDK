@@ -18,7 +18,7 @@ Usage::
 """
 
 from datetime import datetime
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List
 import uuid
 
 from enum import Enum as PyEnum
@@ -174,6 +174,12 @@ class TenantModel(TimestampMixin, AuditMixin, TagsMixin, PropertiesMixin, Base):
         "ResourceGroupModel",
         back_populates="tenant",
     )
+    # One-to-many: tenant → realms (identity instances)
+    realms = relationship(
+        "RealmModel",
+        back_populates="tenant",
+        cascade="all, delete-orphan",
+    )
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -183,6 +189,118 @@ class TenantModel(TimestampMixin, AuditMixin, TagsMixin, PropertiesMixin, Base):
             "tenant_id": self.tenant_id,
             "description": self.description,
             "state": self.state,
+            "provisioning_state": self.provisioning_state,
+            "tags": self.tags or {},
+            "properties": self.properties or {},
+            "created_at": self.created_at.isoformat() if self.created_at else None,
+            "updated_at": self.updated_at.isoformat() if self.updated_at else None,
+        }
+
+
+# ===================================================================
+# Realms (Identity/Authentication instances for tenants)
+# ===================================================================
+
+class RealmModel(TimestampMixin, AuditMixin, TagsMixin, PropertiesMixin, Base):
+    """
+    Realm — Keycloak identity instance linked to a tenant.
+    
+    Supports multiple realms per tenant for different identity
+    configurations (e.g., production vs staging, different IdP providers).
+    
+    Relationships:
+        - Many realms belong to one tenant
+        - Each realm maps to a Keycloak realm instance
+        - realm_id is the Keycloak realm ID (unique)
+    """
+    __tablename__ = "realms"
+
+    id: Mapped[str] = mapped_column(String(255), primary_key=True)
+    name: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    display_name: Mapped[str] = mapped_column(String(500), nullable=False)
+    realm_id: Mapped[str] = mapped_column(
+        String(36), unique=True, nullable=False, index=True,
+        doc="Keycloak realm ID (UUID from Keycloak)"
+    )
+    keycloak_realm_id: Mapped[Optional[str]] = mapped_column(
+        String(255), nullable=True,
+        doc="Explicit Keycloak realm reference"
+    )
+    
+    # Foreign key to tenant (GUID-based, not ARM path)
+    tenant_id: Mapped[str] = mapped_column(
+        String(36),
+        ForeignKey("tenants.tenant_id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+        doc="Parent tenant ID (GUID - always unique identifier)"
+    )
+    
+    # Status tracking
+    status: Mapped[str] = mapped_column(
+        String(50), default="pending", nullable=False,
+        doc="Realm status: pending, active, failed"
+    )
+    location: Mapped[str] = mapped_column(
+        String(100), default="global", nullable=False
+    )
+    enabled: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    
+    # Sync tracking
+    synced_at: Mapped[Optional[datetime]] = mapped_column(
+        DateTime(timezone=True), nullable=True,
+        doc="When realm was last synced to Core Provider"
+    )
+    
+    # Failure tracking
+    failure_type: Mapped[Optional[str]] = mapped_column(
+        String(50), nullable=True,
+        doc="Type of failure: timeout, error, invalid_spec"
+    )
+    failure_message: Mapped[Optional[str]] = mapped_column(
+        Text, nullable=True,
+        doc="Detailed failure message"
+    )
+    failed_at: Mapped[Optional[datetime]] = mapped_column(
+        DateTime(timezone=True), nullable=True,
+        doc="When realm creation/sync failed"
+    )
+    
+    description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    provisioning_state: Mapped[str] = mapped_column(
+        String(50), default="Succeeded", nullable=False
+    )
+    
+    # Relationships
+    tenant = relationship(
+        "TenantModel",
+        back_populates="realms",
+        doc="Parent tenant"
+    )
+    
+    # Unique constraint: one realm name per tenant
+    __table_args__ = (
+        UniqueConstraint('tenant_id', 'name', name='uq_tenant_realm_name'),
+        Index('idx_realm_status', 'status'),
+        Index('idx_realm_tenant_status', 'tenant_id', 'status'),
+    )
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "display_name": self.display_name,
+            "realm_id": self.realm_id,
+            "keycloak_realm_id": self.keycloak_realm_id,
+            "tenant_id": self.tenant_id,
+            "status": self.status,
+            "location": self.location,
+            "enabled": self.enabled,
+            "synced_at": self.synced_at.isoformat() if self.synced_at else None,
+            "failure_type": self.failure_type,
+            "failure_message": self.failure_message,
+            "failed_at": self.failed_at.isoformat() if self.failed_at else None,
+            "description": self.description,
             "provisioning_state": self.provisioning_state,
             "tags": self.tags or {},
             "properties": self.properties or {},
@@ -810,3 +928,66 @@ class AuditEventModel(Base):
             user_agent=user_agent,
             extra_data=extra_data or {},
         )
+
+
+# ===================================================================
+# Generic Provider Resource (for ResourceProvider implementations)
+# ===================================================================
+
+class ProviderResourceModel(Base, TimestampMixin, TagsMixin, PropertiesMixin, AuditMixin):
+    """
+    Generic resource model for provider-managed resources.
+    
+    Allows any ResourceProvider to store resources without needing
+    a dedicated table. Uses ARM-style resource IDs as primary key.
+    
+    Example usage:
+        - ITL.Identity/realms
+        - ITL.Identity/users
+        - ITL.Compute/virtualMachines
+        - Custom provider resources
+    """
+    __tablename__ = "provider_resources"
+    
+    # ARM-style resource ID (primary key)
+    # Format: /subscriptions/{sub}/resourceGroups/{rg}/providers/{namespace}/{type}/{name}
+    id: Mapped[str] = mapped_column(String(1024), primary_key=True)
+    
+    # Resource metadata
+    name: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    type: Mapped[str] = mapped_column(String(255), nullable=False, index=True)  # e.g., "ITL.Identity/realms"
+    location: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    
+    # Hierarchy for filtering
+    subscription_id: Mapped[Optional[str]] = mapped_column(String(100), nullable=True, index=True)
+    resource_group: Mapped[Optional[str]] = mapped_column(String(100), nullable=True, index=True)
+    provider_namespace: Mapped[str] = mapped_column(String(100), nullable=False, index=True)  # e.g., "ITL.Identity"
+    resource_type: Mapped[str] = mapped_column(String(100), nullable=False, index=True)  # e.g., "realms"
+    
+    # Provisioning state
+    provisioning_state: Mapped[str] = mapped_column(
+        String(50), default="Succeeded", nullable=False
+    )
+    
+    __table_args__ = (
+        Index("ix_provider_resources_hierarchy", "subscription_id", "resource_group", "provider_namespace", "resource_type"),
+        Index("ix_provider_resources_type_name", "type", "name"),
+    )
+    
+    def to_dict(self) -> dict:
+        """Convert to dictionary for API responses."""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "type": self.type,
+            "location": self.location,
+            "properties": self.properties or {},
+            "tags": self.tags or {},
+            "provisioningState": self.provisioning_state,
+            "createdAt": self.created_at.isoformat() if self.created_at else None,
+            "updatedAt": self.updated_at.isoformat() if self.updated_at else None,
+        }
+    
+    def dict(self) -> dict:
+        """Alias for to_dict() for Pydantic compatibility."""
+        return self.to_dict()

@@ -803,44 +803,29 @@ See [PIPELINE_SETUP.md](./PIPELINE_SETUP.md) for complete pipeline documentation
 
 ## Documentation
 
-### Getting Started (1-4)
-1. [**Scoped Resource Handler**](./docs/01-SCOPED_RESOURCE_HANDLER.md) - Complete guide to scope-aware resource management
-2. [**Resource ID Strategy**](./docs/02-RESOURCE_ID_STRATEGY.md) - Hybrid path + GUID resource identification
-3. [**Modular Architecture**](./docs/03-MODULAR_ARCHITECTURE.md) - Module organization and design patterns
-4. [**Architecture Overview**](./docs/04-ARCHITECTURE.md) - Detailed SDK architecture and components
+**Phase 2 Complete:** Documentation has been consolidated from 26 scattered files into 9 comprehensive, well-organized guides. [See consolidation details »](./docs/99-Archive/CONSOLIDATION_MANIFEST.md)
 
-### FastAPI Integration (5-7)
-5. [**FastAPI Module**](./docs/05-FASTAPI_MODULE.md) - Complete FastAPI integration guide
-6. [**FastAPI Integration**](./docs/06-FASTAPI_INTEGRATION.md) - Integration patterns and examples
-7. [**FastAPI Quick Reference**](./docs/07-FASTAPI_QUICK_REFERENCE.md) - FastAPI API quick reference
+### Foundation (01-04)
+1. [**Architecture Complete**](./docs/02-ARCHITECTURE.md) - Complete system architecture, components, and design principles
+2. [**Core Concepts**](./docs/03-CORE_CONCEPTS.md) - Scoped handlers, resource ID strategy, and modular architecture (foundation concepts)
+3. [**Resource Groups**](./docs/04-RESOURCE_GROUPS.md) - Complete resource group implementation with creation flow and extensibility patterns
 
-### CI/CD & Operations (8-10)
-8. [**Pipeline Setup**](./docs/08-PIPELINE_SETUP.md) - Complete CI/CD pipeline documentation
-9. [**Automated Versioning**](./docs/09-AUTOMATED_VERSIONING.md) - Git tag-based version management
-10. [**Version Update Guide**](./docs/10-VERSIONING_UPDATE.md) - Version update procedures
+### Handler Patterns (05-07)
+4. [**Handler Mixins**](./docs/06-HANDLER_MIXINS.md) - TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler (Big 3)
+5. [**Location Validation**](./docs/07-LOCATION_VALIDATION.md) - Location handler, validation, and 30+ Azure regions + 24 ITL custom locations
+6. [**API Endpoints**](./docs/08-API_ENDPOINTS.md) - FastAPI integration, AppFactory, middleware, and HTTP routing
 
-### Resource Group & Handlers (11-13)
-11. [**Resource Group Creation Flow**](./docs/11-RESOURCE_GROUP_CREATION_FLOW.md) - Step-by-step RG creation process
-12. [**Resource Group Big 3 Integration**](./docs/12-RESOURCE_GROUP_BIG_3_INTEGRATION.md) - RG with handler mixins
-13. [**Scoped Resources Overview**](./docs/13-SCOPED_RESOURCES_OVERVIEW.md) - Comprehensive scoped resource guide
+### Advanced Features (08-09)
+7. [**Async Patterns**](./docs/09-ASYNC_PATTERNS.md) - Service Bus integration, async provider modes, and message queuing
+8. [**Worker Roles**](./docs/11-WORKER_ROLES.md) - Job queue, worker lifecycle, async offloading, and scaling patterns
+9. [**CI/CD Pipelines**](./docs/14-CI_CD_PIPELINES.md) - GitHub Actions workflows, automated versioning, and publishing
 
-### Quick References (14-15)
-14. [**Quick Reference**](./docs/14-QUICK_REFERENCE.md) - SDK API quick reference
-15. [**Big 3 Quick Reference**](./docs/15-QUICK_REFERENCE_BIG_3.md) - Handler mixin quick reference
-
-### Location Management (16-20)
-16. [**Locations Handler**](./docs/16-LOCATIONS_HANDLER.md) - Location handler implementation guide
-17. [**Big 3 Implementation**](./docs/17-BIG_3_IMPLEMENTATION.md) - Complete handler mixin implementation
-18. [**ITL Locations Schema**](./docs/18-ITL_LOCATIONS_SCHEMA.md) - Custom location validation
-19. [**Dynamic Locations Summary**](./docs/19-DYNAMIC_LOCATIONS_SUMMARY.md) - Dynamic location management overview
-20. [**Dynamic Locations Complete**](./docs/20-DYNAMIC_LOCATIONS_COMPLETE.md) - Complete location system docs
-
-### Advanced Topics (21-23)
-21. [**Big 3 Summary**](./docs/21-BIG_3_SUMMARY.md) - Handler mixin feature summary
-22. [**Big 3 Complete Summary**](./docs/22-BIG_3_COMPLETE_SUMMARY.md) - Detailed handler mixin documentation
-23. [**Architecture Summary**](./docs/23-ARCHITECTURE_SUMMARY.md) - Quick architecture overview
+### Quick References & Tools
+- [**Quick Reference**](./docs/14-QUICK_REFERENCE.md) - Handler API quick lookup
+- [**Getting Started Guide**](./docs/00-GETTING-STARTED/) - Onboarding and setup
 
 ### Additional Resources
+- [**Archive & Consolidation Details**](./docs/99-Archive/README.md) - Explains document consolidation and where to find old content
 - [**PyPI Setup Guide**](./.github/PYPI_SETUP.md) - Package publishing configuration
 - [**Examples Directory**](./examples/) - Working code examples and usage patterns
 

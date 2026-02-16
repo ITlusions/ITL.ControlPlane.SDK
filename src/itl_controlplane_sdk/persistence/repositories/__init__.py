@@ -7,6 +7,7 @@ Exports all repository classes for resource persistence via SQLAlchemy ORM.
 from .repositories import (
     BaseRepository,
     TenantRepository,
+    RealmRepository,
     ManagementGroupRepository,
     SubscriptionRepository,
     ResourceGroupRepository,
@@ -22,14 +23,6 @@ from .repositories import (
 __all__ = [
     "BaseRepository",
     "TenantRepository",
-    "ManagementGroupRepository",
-    "SubscriptionRepository",
-    "ResourceGroupRepository",
-    "LocationRepository",
-    "ExtendedLocationRepository",
-    "PolicyRepository",
-    "TagRepository",
-    "DeploymentRepository",
-    "RelationshipRepository",
+    "RealmRepository",
     "AuditEventRepository",
 ]

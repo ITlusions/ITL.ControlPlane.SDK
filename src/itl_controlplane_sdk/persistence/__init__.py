@@ -28,6 +28,7 @@ from .data import (
     Base,
     DEFAULT_TENANT_NAME,
     TenantModel,
+    RealmModel,
     ManagementGroupModel,
     SubscriptionModel,
     ResourceGroupModel,
@@ -48,6 +49,7 @@ from .sync import Neo4jSyncService
 from .repositories import (
     BaseRepository,
     TenantRepository,
+    RealmRepository,
     ManagementGroupRepository,
     SubscriptionRepository,
     ResourceGroupRepository,
@@ -97,6 +99,7 @@ __all__ = [
     "Base",
     "DEFAULT_TENANT_NAME",
     "TenantModel",
+    "RealmModel",
     "ManagementGroupModel",
     "SubscriptionModel",
     "ResourceGroupModel",
@@ -110,6 +113,7 @@ __all__ = [
     # Repositories
     "BaseRepository",
     "TenantRepository",
+    "RealmRepository",
     "ManagementGroupRepository",
     "SubscriptionRepository",
     "ResourceGroupRepository",

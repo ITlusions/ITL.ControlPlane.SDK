@@ -12,9 +12,11 @@ from itl_controlplane_sdk.core.models import (
     ProvisioningState,
     ResourceMetadata,
     ResourceRequest,
+    ListResourceRequest,
     ResourceResponse,
     ResourceListResponse,
     ErrorResponse,
+    ProviderContext,
     # Infrastructure Models
     Tag,
     ResourceGroup,
@@ -77,6 +79,7 @@ from itl_controlplane_sdk.core.models import (
     RESOURCE_TYPE_LOCATIONS,
     RESOURCE_TYPE_EXTENDED_LOCATIONS,
     RESOURCE_TYPE_TENANTS,
+    DEFAULT_TENANT,
     DEFAULT_TENANT_ID,
     ITL_RESOURCE_TYPES,
     DEFAULT_LOCATIONS,
@@ -112,6 +115,7 @@ __all__ = [
     "ResourceResponse",
     "ResourceListResponse",
     "ErrorResponse",
+    "ProviderContext",
     # Infrastructure Models
     "Tag",
     "ResourceGroup",
@@ -174,7 +178,8 @@ __all__ = [
     "RESOURCE_TYPE_LOCATIONS",
     "RESOURCE_TYPE_EXTENDED_LOCATIONS",
     "RESOURCE_TYPE_TENANTS",
-    "DEFAULT_TENANT_ID",
+    "DEFAULT_TENANT",
+    "DEFAULT_TENANT_ID",  # Deprecated: use DEFAULT_TENANT instead
     "ITL_RESOURCE_TYPES",
     "DEFAULT_LOCATIONS",
     "EXTENDED_LOCATIONS",

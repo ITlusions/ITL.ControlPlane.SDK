@@ -15,7 +15,8 @@ requires-python = ">=3.8"
 dependencies = [
     "pydantic>=2.0.0,<3.0.0",
     "typing-extensions>=4.0.0",
-    "pydantic-settings>=2.0.0"
+    "pydantic-settings>=2.0.0",
+    "prometheus-client>=0.17.0"
 ]
 
 [project.optional-dependencies]
@@ -66,9 +67,12 @@ messaging-rabbitmq = [
     "itl-controlplane-sdk[messaging]",
     "aio-pika>=9.0.0"
 ]
+cli = [
+    "click>=8.0.0"
+]
 # Convenience: install everything
 all = [
-    "itl-controlplane-sdk[identity,fastapi,pulumi,graphdb,persistence,persistence-sqlalchemy,messaging]"
+    "itl-controlplane-sdk[identity,fastapi,pulumi,graphdb,persistence,persistence-sqlalchemy,messaging,cli]"
 ]
 # --- Development extras ---
 dev = [

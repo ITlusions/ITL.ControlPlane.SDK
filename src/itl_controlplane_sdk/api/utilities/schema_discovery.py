@@ -253,8 +253,55 @@ def create_schema_routes(app: FastAPI, registry: SchemaRegistry) -> None:
         return schema.get_examples()
 
 
+def discover_resource_schema(resource_type: str) -> Optional[ResourceTypeSchema]:
+    """
+    Discover a resource schema from the global registry.
+    
+    Args:
+        resource_type: The resource type to discover (e.g., "ITL.Core/subscriptions")
+    
+    Returns:
+        ResourceTypeSchema if found, None otherwise
+    """
+    from . import _schema_registry
+    if _schema_registry is None:
+        return None
+    return _schema_registry.get(resource_type)
+
+
+def get_operation_schema(resource_type: str, operation: str) -> Optional[Dict[str, Any]]:
+    """
+    Get schema for a specific operation on a resource.
+    
+    Args:
+        resource_type: The resource type
+        operation: The operation (create, read, update, delete, list)
+    
+    Returns:
+        Schema dict for the operation if found, None otherwise
+    """
+    schema = discover_resource_schema(resource_type)
+    if not schema or operation not in schema.operations:
+        return None
+    
+    if operation == "read" or operation == "get":
+        return schema.get_response_schema()
+    elif operation == "create" or operation == "update" or operation == "put":
+        return schema.get_request_schema()
+    elif operation == "list":
+        return schema.get_response_schema()
+    
+    return None
+
+
+# Module-level schema registry for discovery support
+_schema_registry: Optional['SchemaRegistry'] = None
+
+
 __all__ = [
     "ResourceTypeSchema",
     "SchemaRegistry",
     "create_schema_routes",
+    "discover_resource_schema",
+    "get_operation_schema",
 ]

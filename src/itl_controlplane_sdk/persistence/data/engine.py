@@ -25,8 +25,9 @@ Usage::
 import os
 import logging
 from contextlib import asynccontextmanager
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
+from sqlalchemy import select, delete
 from sqlalchemy.ext.asyncio import (
     create_async_engine,
     async_sessionmaker,
@@ -35,6 +36,7 @@ from sqlalchemy.ext.asyncio import (
 )
 
 from .models import Base
+from .models import ProviderResourceModel
 from ..repositories import (
     TenantRepository,
     ManagementGroupRepository,
@@ -314,3 +316,149 @@ class SQLAlchemyStorageEngine:
             stats["neo4j"] = {"connected": False}
 
         return stats
+
+    # ===================================================================
+    # Generic Provider Resource CRUD
+    # For ResourceProvider implementations (Identity, Compute, etc.)
+    # ===================================================================
+
+    async def upsert_resource(self, resource_data: Dict[str, Any]) -> ProviderResourceModel:
+        """
+        Create or update a generic provider resource.
+        
+        Args:
+            resource_data: Dict containing:
+                - id: ARM-style resource ID (required)
+                - name: Resource name (required)
+                - type: Resource type (required, e.g., "ITL.Identity/realms")
+                - location: Azure region (optional)
+                - properties: JSONB properties (optional)
+                - tags: Resource tags (optional)
+                
+        Returns:
+            ProviderResourceModel instance
+        """
+        resource_id = resource_data["id"]
+        
+        # Parse resource ID to extract hierarchy
+        # Format: /subscriptions/{sub}/resourceGroups/{rg}/providers/{namespace}/{type}/{name}
+        parts = resource_id.split("/")
+        subscription_id = None
+        resource_group = None
+        provider_namespace = None
+        resource_type = None
+        
+        for i, part in enumerate(parts):
+            if part == "subscriptions" and i + 1 < len(parts):
+                subscription_id = parts[i + 1]
+            elif part == "resourceGroups" and i + 1 < len(parts):
+                resource_group = parts[i + 1]
+            elif part == "providers" and i + 1 < len(parts):
+                provider_namespace = parts[i + 1]
+                if i + 2 < len(parts):
+                    resource_type = parts[i + 2]
+        
+        async with self.session() as session:
+            # Check if exists
+            stmt = select(ProviderResourceModel).where(ProviderResourceModel.id == resource_id)
+            result = await session.execute(stmt)
+            existing = result.scalar_one_or_none()
+            
+            if existing:
+                # Update existing
+                existing.name = resource_data.get("name", existing.name)
+                existing.type = resource_data.get("type", existing.type)
+                existing.location = resource_data.get("location", existing.location)
+                existing.properties = resource_data.get("properties", existing.properties)
+                existing.tags = resource_data.get("tags", existing.tags)
+                existing.provisioning_state = resource_data.get("properties", {}).get(
+                    "provisioningState", existing.provisioning_state
+                )
+                resource = existing
+            else:
+                # Create new
+                resource = ProviderResourceModel(
+                    id=resource_id,
+                    name=resource_data["name"],
+                    type=resource_data.get("type", f"{provider_namespace}/{resource_type}"),
+                    location=resource_data.get("location"),
+                    subscription_id=subscription_id,
+                    resource_group=resource_group,
+                    provider_namespace=provider_namespace or "Unknown",
+                    resource_type=resource_type or "unknown",
+                    properties=resource_data.get("properties", {}),
+                    tags=resource_data.get("tags", {}),
+                    provisioning_state=resource_data.get("properties", {}).get(
+                        "provisioningState", "Succeeded"
+                    ),
+                )
+                session.add(resource)
+            
+            await session.commit()
+            return resource
+
+    async def get_resource(self, resource_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Get a generic provider resource by ID.
+        
+        Args:
+            resource_id: ARM-style resource ID
+            
+        Returns:
+            Resource dict or None if not found
+        """
+        async with self.session() as session:
+            stmt = select(ProviderResourceModel).where(ProviderResourceModel.id == resource_id)
+            result = await session.execute(stmt)
+            resource = result.scalar_one_or_none()
+            return resource.to_dict() if resource else None
+
+    async def list_resources(
+        self,
+        subscription_id: str = None,
+        resource_group: str = None,
+        resource_type: str = None,
+        provider_namespace: str = None,
+    ) -> List[ProviderResourceModel]:
+        """
+        List generic provider resources with optional filtering.
+        
+        Args:
+            subscription_id: Filter by subscription
+            resource_group: Filter by resource group
+            resource_type: Filter by resource type (e.g., "realms")
+            provider_namespace: Filter by provider (e.g., "ITL.Identity")
+            
+        Returns:
+            List of ProviderResourceModel instances
+        """
+        async with self.session() as session:
+            stmt = select(ProviderResourceModel)
+            
+            if subscription_id:
+                stmt = stmt.where(ProviderResourceModel.subscription_id == subscription_id)
+            if resource_group:
+                stmt = stmt.where(ProviderResourceModel.resource_group == resource_group)
+            if resource_type:
+                stmt = stmt.where(ProviderResourceModel.resource_type == resource_type)
+            if provider_namespace:
+                stmt = stmt.where(ProviderResourceModel.provider_namespace == provider_namespace)
+            
+            result = await session.execute(stmt)
+            return list(result.scalars().all())
+
+    async def delete_resource(self, resource_id: str) -> bool:
+        """
+        Delete a generic provider resource.
+        
+        Args:
+            resource_id: ARM-style resource ID
+            
+        Returns:
+            True if deleted, False if not found
+        """
+        async with self.session() as session:
+            stmt = delete(ProviderResourceModel).where(ProviderResourceModel.id == resource_id)
+            result = await session.execute(stmt)
+            await session.commit()
+            return result.rowcount > 0

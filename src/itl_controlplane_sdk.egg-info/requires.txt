@@ -1,9 +1,13 @@
 pydantic<3.0.0,>=2.0.0
 typing-extensions>=4.0.0
 pydantic-settings>=2.0.0
+prometheus-client>=0.17.0
 
 [all]
-itl-controlplane-sdk[fastapi,graphdb,identity,messaging,pulumi,storage,storage-sqlalchemy]
+itl-controlplane-sdk[cli,fastapi,graphdb,identity,messaging,persistence,persistence-sqlalchemy,pulumi]
+
+[cli]
+click>=8.0.0
 
 [dev]
 pytest>=7.0.0
@@ -43,24 +47,24 @@ email-validator>=2.0.0
 itl-controlplane-sdk[messaging]
 aio-pika>=9.0.0
 
-[pulumi]
-pulumi>=3.0.0
-pulumi-kubernetes>=4.0.0
-
-[storage]
+[persistence]
 itl-controlplane-sdk[graphdb]
 
-[storage-postgres]
-itl-controlplane-sdk[graphdb-postgres,storage]
+[persistence-postgres]
+itl-controlplane-sdk[graphdb-postgres,persistence]
 
-[storage-sqlalchemy]
+[persistence-sqlalchemy]
 sqlalchemy[asyncio]>=2.0.0
 asyncpg>=0.29.0
 alembic>=1.13.0
 
-[storage-sqlalchemy-neo4j]
-itl-controlplane-sdk[storage-sqlalchemy]
+[persistence-sqlalchemy-neo4j]
+itl-controlplane-sdk[persistence-sqlalchemy]
 neo4j>=5.0.0
+
+[pulumi]
+pulumi>=3.0.0
+pulumi-kubernetes>=4.0.0
 
 [test]
 pytest>=7.0.0

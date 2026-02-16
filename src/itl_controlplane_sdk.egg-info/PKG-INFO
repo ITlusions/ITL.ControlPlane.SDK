@@ -3,7 +3,196 @@ Name: itl-controlplane-sdk
 Version: 1.0.0
 Summary: ITL ControlPlane SDK - Core framework for resource management
 Author: ITL Team
-License: Apache-2.0
+License:                                  Apache License
+                                   Version 2.0, January 2004
+                                http://www.apache.org/licenses/
+        
+           TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+        
+           1. Definitions.
+        
+              "License" shall mean the terms and conditions for use, reproduction,
+              and distribution as defined by Sections 1 through 9 of this document.
+        
+              "Licensor" shall mean the copyright owner or entity authorized by
+              the copyright owner that is granting the License.
+        
+              "Legal Entity" shall mean the union of the acting entity and all
+              other entities that control, are controlled by, or are under common
+              control with that entity. For the purposes of this definition,
+              "control" means (i) the power, direct or indirect, to cause the
+              direction or management of such entity, whether by contract or
+              otherwise, or (ii) ownership of fifty percent (50%) or more of the
+              outstanding shares, or (iii) beneficial ownership of such entity.
+        
+              "You" (or "Your") shall mean an individual or Legal Entity
+              exercising permissions granted by this License.
+        
+              "Source" form shall mean the preferred form for making modifications,
+              including but not limited to software source code, documentation
+              source, and configuration files.
+        
+              "Object" form shall mean any form resulting from mechanical
+              transformation or translation of a Source form, including but
+              not limited to compiled object code, generated documentation,
+              and conversions to other media types.
+        
+              "Work" shall mean the work of authorship, whether in Source or
+              Object form, made available under the License, as indicated by a
+              copyright notice that is included in or attached to the work
+              (an example is provided in the Appendix below).
+        
+              "Derivative Works" shall mean any work, whether in Source or Object
+              form, that is based on (or derived from) the Work and for which the
+              editorial revisions, annotations, elaborations, or other modifications
+              represent, as a whole, an original work of authorship. For the purposes
+              of this License, Derivative Works shall not include works that remain
+              separable from, or merely link (or bind by name) to the interfaces of,
+              the Work and Derivative Works thereof.
+        
+              "Contribution" shall mean any work of authorship, including
+              the original version of the Work and any modifications or additions
+              to that Work or Derivative Works thereof, that is intentionally
+              submitted to the Licensor for inclusion in the Work by the copyright owner
+              or by an individual or Legal Entity authorized to submit on behalf of
+              the copyright owner. For the purposes of this definition, "submitted"
+              means any form of electronic, verbal, or written communication sent
+              to the Licensor or its representatives, including but not limited to
+              communication on electronic mailing lists, source code control systems,
+              and issue tracking systems that are managed by, or on behalf of, the
+              Licensor for the purpose of discussing and improving the Work, but
+              excluding communication that is conspicuously marked or otherwise
+              designated in writing by the copyright owner as "Not a Contribution."
+        
+              "Contributor" shall mean Licensor and any individual or Legal Entity
+              on behalf of whom a Contribution has been received by Licensor and
+              subsequently incorporated within the Work.
+        
+           2. Grant of Copyright License. Subject to the terms and conditions of
+              this License, each Contributor hereby grants to You a perpetual,
+              worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+              copyright license to reproduce, prepare Derivative Works of,
+              publicly display, publicly perform, sublicense, and distribute the
+              Work and such Derivative Works in Source or Object form.
+        
+           3. Grant of Patent License. Subject to the terms and conditions of
+              this License, each Contributor hereby grants to You a perpetual,
+              worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+              (except as stated in this section) patent license to make, have made,
+              use, offer to sell, sell, import, and otherwise transfer the Work,
+              where such license applies only to those patent claims licensable
+              by such Contributor that are necessarily infringed by their
+              Contribution(s) alone or by combination of their Contribution(s)
+              with the Work to which such Contribution(s) was submitted. If You
+              institute patent litigation against any entity (including a
+              cross-claim or counterclaim in a lawsuit) alleging that the Work
+              or a Contribution incorporated within the Work constitutes direct
+              or contributory patent infringement, then any patent licenses
+              granted to You under this License for that Work shall terminate
+              as of the date such litigation is filed.
+        
+           4. Redistribution. You may reproduce and distribute copies of the
+              Work or Derivative Works thereof in any medium, with or without
+              modifications, and in Source or Object form, provided that You
+              meet the following conditions:
+        
+              (a) You must give any other recipients of the Work or
+                  Derivative Works a copy of this License; and
+        
+              (b) You must cause any modified files to carry prominent notices
+                  stating that You changed the files; and
+        
+              (c) You must retain, in the Source form of any Derivative Works
+                  that You distribute, all copyright, patent, trademark, and
+                  attribution notices from the Source form of the Work,
+                  excluding those notices that do not pertain to any part of
+                  the Derivative Works; and
+        
+              (d) If the Work includes a "NOTICE" text file as part of its
+                  distribution, then any Derivative Works that You distribute must
+                  include a readable copy of the attribution notices contained
+                  within such NOTICE file, excluding those notices that do not
+                  pertain to any part of the Derivative Works, in at least one
+                  of the following places: within a NOTICE text file distributed
+                  as part of the Derivative Works; within the Source form or
+                  documentation, if provided along with the Derivative Works; or,
+                  within a display generated by the Derivative Works, if and
+                  wherever such third-party notices normally appear. The contents
+                  of the NOTICE file are for informational purposes only and
+                  do not modify the License. You may add Your own attribution
+                  notices within Derivative Works that You distribute, alongside
+                  or as an addendum to the NOTICE text from the Work, provided
+                  that such additional attribution notices cannot be construed
+                  as modifying the License.
+        
+              You may add Your own copyright statement to Your modifications and
+              may provide additional or different license terms and conditions
+              for use, reproduction, or distribution of Your modifications, or
+              for any such Derivative Works as a whole, provided Your use,
+              reproduction, and distribution of the Work otherwise complies with
+              the conditions stated in this License.
+        
+           5. Submission of Contributions. Unless You explicitly state otherwise,
+              any Contribution intentionally submitted for inclusion in the Work
+              by You to the Licensor shall be under the terms and conditions of
+              this License, without any additional terms or conditions.
+              Notwithstanding the above, nothing herein shall supersede or modify
+              the terms of any separate license agreement you may have executed
+              with Licensor regarding such Contributions.
+        
+           6. Trademarks. This License does not grant permission to use the trade
+              names, trademarks, service marks, or product names of the Licensor,
+              except as required for reasonable and customary use in describing the
+              origin of the Work and reproducing the content of the NOTICE file.
+        
+           7. Disclaimer of Warranty. Unless required by applicable law or
+              agreed to in writing, Licensor provides the Work (and each
+              Contributor provides its Contributions) on an "AS IS" BASIS,
+              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+              implied, including, without limitation, any warranties or conditions
+              of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+              PARTICULAR PURPOSE. You are solely responsible for determining the
+              appropriateness of using or redistributing the Work and assume any
+              risks associated with Your exercise of permissions under this License.
+        
+           8. Limitation of Liability. In no event and under no legal theory,
+              whether in tort (including negligence), contract, or otherwise,
+              unless required by applicable law (such as deliberate and grossly
+              negligent acts) or agreed to in writing, shall any Contributor be
+              liable to You for damages, including any direct, indirect, special,
+              incidental, or consequential damages of any character arising as a
+              result of this License or out of the use or inability to use the
+              Work (including but not limited to damages for loss of goodwill,
+              work stoppage, computer failure or malfunction, or any and all
+              other commercial damages or losses), even if such Contributor
+              has been advised of the possibility of such damages.
+        
+           9. Accepting Warranty or Additional Liability. While redistributing
+              the Work or Derivative Works thereof, You may choose to offer,
+              and charge a fee for, acceptance of support, warranty, indemnity,
+              or other liability obligations and/or rights consistent with this
+              License. However, in accepting such obligations, You may act only
+              on Your own behalf and on Your sole responsibility, not on behalf
+              of any other Contributor, and only if You agree to indemnify,
+              defend, and hold each Contributor harmless for any liability
+              incurred by, or claims asserted against, such Contributor by reason
+              of your accepting any such warranty or additional liability.
+        
+           END OF TERMS AND CONDITIONS
+        
+           Copyright 2026 ITlusions
+        
+           Licensed under the Apache License, Version 2.0 (the "License");
+           you may not use this file except in compliance with the License.
+           You may obtain a copy of the License at
+        
+               http://www.apache.org/licenses/LICENSE-2.0
+        
+           Unless required by applicable law or agreed to in writing, software
+           distributed under the License is distributed on an "AS IS" BASIS,
+           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+           See the License for the specific language governing permissions and
+           limitations under the License.
         
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
@@ -11,6 +200,7 @@ License-File: LICENSE
 Requires-Dist: pydantic<3.0.0,>=2.0.0
 Requires-Dist: typing-extensions>=4.0.0
 Requires-Dist: pydantic-settings>=2.0.0
+Requires-Dist: prometheus-client>=0.17.0
 Provides-Extra: identity
 Requires-Dist: email-validator>=2.0.0; extra == "identity"
 Provides-Extra: fastapi
@@ -27,23 +217,25 @@ Requires-Dist: neo4j>=5.0.0; extra == "graphdb-neo4j"
 Provides-Extra: graphdb-postgres
 Requires-Dist: itl-controlplane-sdk[graphdb]; extra == "graphdb-postgres"
 Requires-Dist: psycopg2-binary>=2.9.0; extra == "graphdb-postgres"
-Provides-Extra: storage
-Requires-Dist: itl-controlplane-sdk[graphdb]; extra == "storage"
-Provides-Extra: storage-postgres
-Requires-Dist: itl-controlplane-sdk[graphdb-postgres,storage]; extra == "storage-postgres"
-Provides-Extra: storage-sqlalchemy
-Requires-Dist: sqlalchemy[asyncio]>=2.0.0; extra == "storage-sqlalchemy"
-Requires-Dist: asyncpg>=0.29.0; extra == "storage-sqlalchemy"
-Requires-Dist: alembic>=1.13.0; extra == "storage-sqlalchemy"
-Provides-Extra: storage-sqlalchemy-neo4j
-Requires-Dist: itl-controlplane-sdk[storage-sqlalchemy]; extra == "storage-sqlalchemy-neo4j"
-Requires-Dist: neo4j>=5.0.0; extra == "storage-sqlalchemy-neo4j"
+Provides-Extra: persistence
+Requires-Dist: itl-controlplane-sdk[graphdb]; extra == "persistence"
+Provides-Extra: persistence-postgres
+Requires-Dist: itl-controlplane-sdk[graphdb-postgres,persistence]; extra == "persistence-postgres"
+Provides-Extra: persistence-sqlalchemy
+Requires-Dist: sqlalchemy[asyncio]>=2.0.0; extra == "persistence-sqlalchemy"
+Requires-Dist: asyncpg>=0.29.0; extra == "persistence-sqlalchemy"
+Requires-Dist: alembic>=1.13.0; extra == "persistence-sqlalchemy"
+Provides-Extra: persistence-sqlalchemy-neo4j
+Requires-Dist: itl-controlplane-sdk[persistence-sqlalchemy]; extra == "persistence-sqlalchemy-neo4j"
+Requires-Dist: neo4j>=5.0.0; extra == "persistence-sqlalchemy-neo4j"
 Provides-Extra: messaging
 Provides-Extra: messaging-rabbitmq
 Requires-Dist: itl-controlplane-sdk[messaging]; extra == "messaging-rabbitmq"
 Requires-Dist: aio-pika>=9.0.0; extra == "messaging-rabbitmq"
+Provides-Extra: cli
+Requires-Dist: click>=8.0.0; extra == "cli"
 Provides-Extra: all
-Requires-Dist: itl-controlplane-sdk[fastapi,graphdb,identity,messaging,pulumi,storage,storage-sqlalchemy]; extra == "all"
+Requires-Dist: itl-controlplane-sdk[cli,fastapi,graphdb,identity,messaging,persistence,persistence-sqlalchemy,pulumi]; extra == "all"
 Provides-Extra: dev
 Requires-Dist: pytest>=7.0.0; extra == "dev"
 Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
@@ -249,7 +441,7 @@ org = await keycloak_provider.create_organization(
 ### FastAPI Application
 
 ```python
-from itl_controlplane_sdk.fastapi import create_app
+from itl_controlplane_sdk.api import create_app
 from itl_controlplane_sdk import resource_registry
 
 # Register your providers
@@ -290,7 +482,7 @@ ITL.ControlPlane.SDK/
 │       │   ├── resource_handlers.py       # Big 3 mixins (Validated, Provisioning, Timestamped)
 │       │   ├── resource_group_handler.py  # ResourceGroupHandler reference implementation
 │       │   ├── locations.py               # Location management base
-│       │   └── itl_locations.py           # ITLLocationsHandler (27 regions)
+│       │   └── locations.py (unified)           # LocationsHandler (27 regions)
 │       ├── identity/
 │       │   ├── __init__.py
 │       │   ├── identity_provider_base.py  # IdentityProvider abstract base class
@@ -368,7 +560,7 @@ ITL.ControlPlane.SDK/
 │   │       └── pulumi_deployment_example.py # Pulumi multi-env IaC
 │   └── tests/
 │       ├── unit/
-│       │   └── test_itl_locations.py      # Location validation (27 regions)
+│       │   └── test_locations.py (unified)      # Location validation (27 regions)
 │       └── integration/
 │           └── test_resource_group_big_3.py # Handler testing patterns
 │
@@ -442,26 +634,236 @@ Modules are loaded lazily so consumers only pay the import cost for what they us
 - **Extensibility**: Easy to extend with custom providers and handlers
 - **Backward Compatibility**: `from itl_controlplane_sdk import Tenant` still works (lazy-loaded transparently)
 
-## Related Components
+## ITL ControlPlane Ecosystem
 
-This SDK is part of the ITL ControlPlane ecosystem. Other components are in independent repositories:
+The SDK is the foundation of the ITL ControlPlane ecosystem — a modular, Azure ARM-compatible cloud management platform. All components depend on this SDK for shared models, providers, storage, and FastAPI patterns.
 
-### Core Infrastructure
-- **ITL.ControlPlane.API**: REST API layer with ARM-compatible endpoints
-- **ITL.ControlPlane.GraphDB**: Graph database for metadata storage and relationships
-- **ITL.ControlPlane.CLI**: Command-line interface for resource management
+### Architecture Overview
 
-### Resource Providers
-- **ITL.ControlPlane.ResourceProvider.Core**: Core Azure-style resources (subscriptions, resource groups, deployments)
-- **ITL.ControlPlane.ResourceProvider.IAM**: Identity and access management (Keycloak integration)
-- **ITL.ControlPlane.ResourceProvider.Compute**: Virtual machines and compute resources
-- **ITL.ControlPlane.ResourceProvider.Network**: Virtual networks, subnets, and network security
-- **ITL.ControlPlane.ResourceProvider.Storage**: Storage accounts, blob containers, and file shares
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                               User Interfaces                                    │
+│  ┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────────┐  │
+│  │   Admin Portal      │  │  Customer Portal    │  │   Dashboard (Dev)       │  │
+│  │   Port 8091         │  │  Port 8090          │  │   Port 8080             │  │
+│  │   Full Infra Access │  │  No Infra Access    │  │   Combined (legacy)     │  │
+│  └─────────┬───────────┘  └─────────┬───────────┘  └───────────┬─────────────┘  │
+└────────────┼───────────────────────┼───────────────────────────┼────────────────┘
+             │                       │                           │
+             └───────────────────────┴───────────────────────────┘
+                                     │
+┌────────────────────────────────────▼────────────────────────────────────────────┐
+│                           ITL.ControlPlane.Api                                   │
+│             API Gateway — Lightweight Proxy, ARM Routing, JWT Validation         │
+│                                  Port 8080                                       │
+└────────────┬────────────────────────┬────────────────────────┬──────────────────┘
+             │                        │                        │
+     ┌───────▼───────┐        ┌───────▼───────┐        ┌───────▼───────┐
+     │ Core Provider │        │  IAM Provider │        │Compute Provider│
+     │   Port 8000   │        │   Port 8001   │        │   Port 8003   │
+     │  Subscriptions│        │    Realms     │        │     VMs       │
+     │  ResourceGroups│       │    Users      │        │   Disks       │
+     │  Deployments  │        │   Clients     │        │   Images      │
+     │  Locations    │        │Organizations  │        │               │
+     └───────┬───────┘        └───────┬───────┘        └───────┬───────┘
+             │                        │                        │
+     ┌───────┴────────────────────────┴────────────────────────┴───────┐
+     │                    ITL.ControlPanel.SDK                          │
+     │  Models · Providers · Storage · FastAPI · Identity · Exceptions  │
+     └───────────────────────────────────┬─────────────────────────────┘
+                                         │
+┌────────────────────────────────────────▼────────────────────────────────────────┐
+│                           Supporting Services                                    │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌────────────┐  │
+│  │   PostgreSQL    │  │    Keycloak     │  │     Neo4j       │  │  RabbitMQ  │  │
+│  │   Storage       │  │    Identity     │  │   Graph Sync    │  │  Events    │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  └────────────┘  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
 
-### Tools & Extensions
-- **ITL.ControlPlane.Portal**: Web-based management portal
-- **ITL.ControlPlane.Terraform**: Terraform provider for infrastructure as code
-- **ITL.ControlPlane.Ansible**: Ansible modules for automation
+### Component Repositories
+
+#### 📦 Core SDK
+
+| Repository | Purpose | Port |
+|------------|---------|------|
+| **ITL.ControlPanel.SDK** | Shared library — models, providers, storage, FastAPI, identity, exceptions | N/A (library) |
+
+This SDK provides:
+- `ResourceProvider` base class for building resource providers
+- `AppFactory` for consistent FastAPI application creation
+- `SQLAlchemyStorageEngine` for PostgreSQL persistence
+- Pydantic v2 models with ARM-compatible resource shapes
+- Exception hierarchy mapped to HTTP status codes
+- Identity provider framework (Keycloak, Azure AD)
+
+---
+
+#### 🚪 API Gateway
+
+| Repository | Purpose | Port |
+|------------|---------|------|
+| **ITL.ControlPlane.Api** | API Gateway — ARM-style routing, provider discovery, JWT validation | 8080 |
+
+The gateway:
+- Routes `/subscriptions/.../providers/ITL.{Domain}/...` requests to resource providers
+- Manages provider registration and health monitoring
+- Exposes `/providers/register` for dynamic provider onboarding
+- Provides unified OpenAPI spec across all providers
+
+---
+
+#### 🔧 Resource Providers
+
+| Repository | Namespace | Resources | Port |
+|------------|-----------|-----------|------|
+| **ITL.ControlPlane.ResourceProvider.Core** | `ITL.Core` | subscriptions, resourceGroups, managementGroups, deployments, locations, tags, policies, tenants | 8000 |
+| **ITL.ControlPlane.ResourceProvider.IAM** | `ITL.IAM` | realms, users, clients, organizations, tenants | 8001 |
+| **ITL.ControlPlane.ResourceProvider.Compute** | `ITL.Compute` | virtualMachines, disks, images, availabilitySets | 8003 |
+
+Each provider:
+- Subclasses `ResourceProvider` from the SDK
+- Registers at startup with the API Gateway
+- Implements CRUD operations for its resource types
+- Uses SDK storage engine or custom backends
+
+---
+
+#### 🖥️ User Interfaces
+
+| Repository | Audience | Features | Port |
+|------------|----------|----------|------|
+| **ITL.ControlPlane.Admin** | Platform Operators | Full infrastructure access, Docker/K8s monitoring, container management | 8091 |
+| **ITL.ControlPlane.Portal** | Customers | Self-service resources, NO infrastructure access, secure by design | 8090 |
+| **ITL.ControlPlane.Dashboard** | Developers | Combined portal (legacy), full access, development/testing | 8080 |
+
+Portal separation follows:
+- Admin Portal = Internal SRE tools (full infrastructure visibility)
+- Customer Portal = Self-service resource management only, no infrastructure access
+- Dashboard = Development/testing environment
+
+---
+
+#### 🗄️ Supporting Infrastructure
+
+| Repository | Purpose |
+|------------|---------|
+| **ITL.ControlPlane.GraphDB** | Neo4j graph database integration for resource relationships and metadata sync |
+| **ITLAuth** | Keycloak deployment and configuration for OIDC/OAuth2 authentication |
+
+---
+
+#### 📝 Partner & Template Projects
+
+| Repository | Purpose |
+|------------|---------|
+| **ITL.ControlPlane.ResourceProvider** | Template/example for partners building custom resource providers |
+
+Partners use this as a starting point to build their own resource providers following SDK patterns.
+
+---
+
+#### 📦 Client SDK (Public Distribution)
+
+| Repository | License | Purpose |
+|------------|---------|---------|
+| **ITL.ControlPanel.SDK.Client** | MIT | Public Python client for customers consuming the ControlPlane API |
+
+```bash
+pip install itl-controlplane-client
+```
+
+The Client SDK provides:
+- **Pydantic models** for API responses (Resource, Subscription, ResourceGroup, Location, etc.)
+- **Async HTTP client** (`ControlPlaneClient`) with typed operations
+- **Auth helpers** (OIDCAuth for Keycloak, BearerAuth, APIKeyAuth)
+- **No internal implementation** — only models and HTTP operations
+
+##### Two-Tier SDK Strategy
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                              CONSUMERS                                   │
+├─────────────────────────────────┬───────────────────────────────────────┤
+│        ITL / PARTNERS           │              CUSTOMERS                │
+│   (Build Resource Providers)    │      (Use ControlPlane API)           │
+└───────────────┬─────────────────┴──────────────────┬────────────────────┘
+                │                                    │
+                ▼                                    ▼
+┌───────────────────────────────┐    ┌───────────────────────────────────┐
+│   itl-controlplane-sdk        │    │   itl-controlplane-client         │
+│   (Apache 2.0 / Internal)     │    │   (MIT / Public PyPI)             │
+├───────────────────────────────┤    ├───────────────────────────────────┤
+│ ✓ Full provider base classes  │    │ ✓ Pydantic response models        │
+│ ✓ Storage engines (SQLAlchemy)│    │ ✓ Async HTTP client               │
+│ ✓ FastAPI integration         │    │ ✓ Auth helpers (OIDC/Bearer/Key)  │
+│ ✓ Identity providers          │    │ ✓ Typed operations                │
+│ ✓ Message broker integration  │    │ ✗ No provider implementation      │
+│ ✓ Core models & exceptions    │    │ ✗ No storage/database access      │
+└───────────────────────────────┘    └───────────────────────────────────┘
+```
+
+**Why two SDKs?**
+- **Security**: Customers cannot access internal implementation details
+- **Simplicity**: Client SDK is lightweight (~50KB vs ~2MB full SDK)
+- **Independence**: Client SDK has no dependency on internal SDK
+- **Licensing**: MIT for maximum customer adoption, Apache 2.0 for patent protection internally
+
+---
+
+### Dependency Flow
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        CUSTOMER APPLICATIONS                         │
+│                   (uses itl-controlplane-client)                     │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │ HTTPS / REST
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                          API GATEWAY                                 │
+│                   ITL.ControlPlane.Api (8080)                        │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │ Internal routing
+                                ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                       RESOURCE PROVIDERS                             │
+│        Core (8000) · IAM (8001) · Compute (8003) · Partners          │
+│                   (uses itl-controlplane-sdk)                        │
+└───────────────────────────────┬─────────────────────────────────────┘
+                                │
+                ┌───────────────┼───────────────┐
+                ▼               ▼               ▼
+           PostgreSQL       Keycloak        Neo4j
+```
+
+**Key principles**:
+- All providers depend on the SDK, never on each other directly
+- Provider-to-provider communication goes through API Gateway or message broker
+- Customers use Client SDK to interact with the platform via API Gateway
+- Internal SDK is never exposed to customers
+
+---
+
+### Quick Reference: Resource Provider Development
+
+To build a new resource provider:
+
+1. **Install SDK**: `pip install itl-controlplane-sdk[fastapi,persistence-sqlalchemy]`
+2. **Subclass `ResourceProvider`**: Implement CRUD methods
+3. **Use `AppFactory`**: Create FastAPI app with standard middleware
+4. **Register with Gateway**: POST to `/providers/register` on startup
+5. **Deploy**: Docker container with Helm chart
+
+See [.github/agents/ITLResourceProvider.agent.md](.github/agents/ITLResourceProvider.agent.md) for complete patterns and examples.
+
+---
+
+### Related Ecosystem Projects
+
+| Project | Purpose |
+|---------|---------|
+| **ITL.Talos.HardenedOS** | Hardened Talos Linux images for secure clusters |
 
 ## Key Concepts
 
@@ -657,46 +1059,90 @@ See [PIPELINE_SETUP.md](./PIPELINE_SETUP.md) for complete pipeline documentation
 
 ## Documentation
 
-### Getting Started (1-4)
-1. [**Scoped Resource Handler**](./docs/01-SCOPED_RESOURCE_HANDLER.md) - Complete guide to scope-aware resource management
-2. [**Resource ID Strategy**](./docs/02-RESOURCE_ID_STRATEGY.md) - Hybrid path + GUID resource identification
-3. [**Modular Architecture**](./docs/03-MODULAR_ARCHITECTURE.md) - Module organization and design patterns
-4. [**Architecture Overview**](./docs/04-ARCHITECTURE.md) - Detailed SDK architecture and components
+**Phase 2 Complete:** Documentation has been consolidated from 26 scattered files into 9 comprehensive, well-organized guides. [See consolidation details »](./docs/99-Archive/CONSOLIDATION_MANIFEST.md)
 
-### FastAPI Integration (5-7)
-5. [**FastAPI Module**](./docs/05-FASTAPI_MODULE.md) - Complete FastAPI integration guide
-6. [**FastAPI Integration**](./docs/06-FASTAPI_INTEGRATION.md) - Integration patterns and examples
-7. [**FastAPI Quick Reference**](./docs/07-FASTAPI_QUICK_REFERENCE.md) - FastAPI API quick reference
+### Foundation (01-04)
+1. [**Architecture Complete**](./docs/02-ARCHITECTURE.md) - Complete system architecture, components, and design principles
+2. [**Core Concepts**](./docs/03-CORE_CONCEPTS.md) - Scoped handlers, resource ID strategy, and modular architecture (foundation concepts)
+3. [**Resource Groups**](./docs/04-RESOURCE_GROUPS.md) - Complete resource group implementation with creation flow and extensibility patterns
 
-### CI/CD & Operations (8-10)
-8. [**Pipeline Setup**](./docs/08-PIPELINE_SETUP.md) - Complete CI/CD pipeline documentation
-9. [**Automated Versioning**](./docs/09-AUTOMATED_VERSIONING.md) - Git tag-based version management
-10. [**Version Update Guide**](./docs/10-VERSIONING_UPDATE.md) - Version update procedures
+### Handler Patterns (05-07)
+4. [**Handler Mixins**](./docs/06-HANDLER_MIXINS.md) - TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler (Big 3)
+5. [**Location Validation**](./docs/07-LOCATION_VALIDATION.md) - Location handler, validation, and 30+ Azure regions + 24 ITL custom locations
+6. [**API Endpoints**](./docs/08-API_ENDPOINTS.md) - FastAPI integration, AppFactory, middleware, and HTTP routing
 
-### Resource Group & Handlers (11-13)
-11. [**Resource Group Creation Flow**](./docs/11-RESOURCE_GROUP_CREATION_FLOW.md) - Step-by-step RG creation process
-12. [**Resource Group Big 3 Integration**](./docs/12-RESOURCE_GROUP_BIG_3_INTEGRATION.md) - RG with handler mixins
-13. [**Scoped Resources Overview**](./docs/13-SCOPED_RESOURCES_OVERVIEW.md) - Comprehensive scoped resource guide
+### Advanced Features (08-09)
+7. [**Async Patterns**](./docs/09-ASYNC_PATTERNS.md) - Service Bus integration, async provider modes, and message queuing
+8. [**Worker Roles**](./docs/11-WORKER_ROLES.md) - Job queue, worker lifecycle, async offloading, and scaling patterns
+9. [**CI/CD Pipelines**](./docs/14-CI_CD_PIPELINES.md) - GitHub Actions workflows, automated versioning, and publishing
 
-### Quick References (14-15)
-14. [**Quick Reference**](./docs/14-QUICK_REFERENCE.md) - SDK API quick reference
-15. [**Big 3 Quick Reference**](./docs/15-QUICK_REFERENCE_BIG_3.md) - Handler mixin quick reference
-
-### Location Management (16-20)
-16. [**Locations Handler**](./docs/16-LOCATIONS_HANDLER.md) - Location handler implementation guide
-17. [**Big 3 Implementation**](./docs/17-BIG_3_IMPLEMENTATION.md) - Complete handler mixin implementation
-18. [**ITL Locations Schema**](./docs/18-ITL_LOCATIONS_SCHEMA.md) - Custom location validation
-19. [**Dynamic Locations Summary**](./docs/19-DYNAMIC_LOCATIONS_SUMMARY.md) - Dynamic location management overview
-20. [**Dynamic Locations Complete**](./docs/20-DYNAMIC_LOCATIONS_COMPLETE.md) - Complete location system docs
-
-### Advanced Topics (21-23)
-21. [**Big 3 Summary**](./docs/21-BIG_3_SUMMARY.md) - Handler mixin feature summary
-22. [**Big 3 Complete Summary**](./docs/22-BIG_3_COMPLETE_SUMMARY.md) - Detailed handler mixin documentation
-23. [**Architecture Summary**](./docs/23-ARCHITECTURE_SUMMARY.md) - Quick architecture overview
+### Quick References & Tools
+- [**Quick Reference**](./docs/14-QUICK_REFERENCE.md) - Handler API quick lookup
+- [**Getting Started Guide**](./docs/00-GETTING-STARTED/) - Onboarding and setup
 
 ### Additional Resources
+- [**Archive & Consolidation Details**](./docs/99-Archive/README.md) - Explains document consolidation and where to find old content
 - [**PyPI Setup Guide**](./.github/PYPI_SETUP.md) - Package publishing configuration
 - [**Examples Directory**](./examples/) - Working code examples and usage patterns
+
+## Versioning and Releases
+
+This project uses **semantic versioning** with **automatic releases on merge** to main/develop.
+
+> **Automatic Releases**: When you merge to `main` or `develop`, versions are automatically bumped and released to PyPI. No manual tagging needed!
+
+### Quick Start
+
+Check current version:
+```bash
+python scripts/version.py --get-version
+```
+
+### How It Works
+
+1. **Push to `develop`** → Auto-bumps patch version (`1.0.0` → `1.0.1`) → Auto-released to PyPI
+2. **Push to `main`** → Auto-bumps minor version (`1.0.1` → `1.1.0`) → Auto-released to PyPI
+3. **Push to `feature/*`** → Dev version only (Test PyPI, no release)
+
+See [AUTO_RELEASE_WORKFLOW.md](AUTO_RELEASE_WORKFLOW.md) for detailed flow.
+
+### Documentation
+
+- **[AUTO_RELEASE_WORKFLOW.md](AUTO_RELEASE_WORKFLOW.md)** - **START HERE** - How automatic releases work
+- **[VERSIONING_QUICKSTART.md](VERSIONING_QUICKSTART.md)** - Quick reference guide
+- **[VERSIONING.md](VERSIONING.md)** - Complete branching strategy and versioning guide
+- **[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)** - Pre-release verification checklist (for manual releases)
+- **[COMMANDS_CHEATSHEET.md](COMMANDS_CHEATSHEET.md)** - Git and version tool commands
+
+### Branch Behavior
+
+| Branch | Auto-Release | Version Format | PyPI | Notes |
+|--------|---|---|---|---|
+| `main` | Yes (Minor bump) | → `1.1.0` | Prod | Feature release |
+| `develop` | Yes (Patch bump) | → `1.0.1` | Prod | Bug fix release |
+| `feature/*` | No | `1.0.1.dev+feature...` | Test | Feature development |
+| Tag `v1.0.0` | Manual | `1.0.0` | Prod | Manual release |
+
+### Version Management Tools
+
+- **Version Script**: [scripts/version.py](scripts/version.py) - Core semantic versioning tool
+- **PowerShell Wrapper**: [scripts/version.ps1](scripts/version.ps1) - Windows convenience script
+- **Bash Wrapper**: [scripts/version.sh](scripts/version.sh) - Linux/macOS convenience script
+
+### CI/CD Pipeline
+
+All pushes trigger automated workflows:
+
+```
+Push to main/develop
+  ↓ Test & Build (1-2 min)
+  ↓ Auto-Tag Job (bumps version, creates git tag)
+  ↓ Release Workflow (triggered by tag)
+  ↓ Publish to PyPI + Create GitHub Release (2 min)
+  DONE (total: 3-5 minutes)
+```
+
+**No manual steps needed for releases!**
 
 ## Support and Contributing
 
@@ -711,3 +1157,4 @@ For questions, issues, or contributions:
 ## License
 
 This project is licensed under the terms specified in the LICENSE file.
+

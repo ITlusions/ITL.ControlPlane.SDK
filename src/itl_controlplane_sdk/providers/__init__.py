@@ -14,7 +14,7 @@ Provides:
 """
 
 # Core abstractions
-from .base import ResourceProvider, ProviderServer
+from .base import ResourceProvider, ProviderServer, HealthStatus, ResourceStatus
 
 # Resource handlers
 from .handlers import (
@@ -50,6 +50,8 @@ __all__ = [
     # Core abstractions
     "ResourceProvider",
     "ProviderServer",
+    "HealthStatus",
+    "ResourceStatus",
     # Scope handling
     "ScopedResourceHandler",
     "UniquenessScope",
