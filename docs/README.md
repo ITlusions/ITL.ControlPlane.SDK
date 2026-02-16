@@ -4,7 +4,7 @@ Complete documentation for the ITL ControlPlane SDK, organized by topic.
 
 ---
 
-## 📚 Getting Started
+## Getting Started
 
 Start here to understand the core concepts and architecture of the SDK.
 
@@ -30,7 +30,7 @@ Start here to understand the core concepts and architecture of the SDK.
 
 ---
 
-## 🌐 FastAPI Integration
+## FastAPI Integration
 
 HTTP layer integration with FastAPI framework.
 
@@ -51,7 +51,7 @@ HTTP layer integration with FastAPI framework.
 
 ---
 
-## 🔧 CI/CD & Operations
+## CI/CD & Operations
 
 Continuous integration, deployment, and version management.
 
@@ -72,7 +72,7 @@ Continuous integration, deployment, and version management.
 
 ---
 
-## 🏗️ Resource Group & Handlers
+## Resource Group & Handlers
 
 Resource group implementation and handler patterns.
 
@@ -93,7 +93,7 @@ Resource group implementation and handler patterns.
 
 ---
 
-## ⚡ Quick References
+## Quick References
 
 Fast lookup guides for common tasks.
 
@@ -109,7 +109,7 @@ Fast lookup guides for common tasks.
 
 ---
 
-## 📍 Location Management
+## Location Management
 
 Dynamic location validation and management.
 
@@ -140,7 +140,7 @@ Dynamic location validation and management.
 
 ---
 
-## 🎯 Advanced Topics
+## Advanced Topics
 
 Deep dives into advanced features and patterns.
 
@@ -161,7 +161,30 @@ Deep dives into advanced features and patterns.
 
 ---
 
-## 📖 Documentation by Use Case
+## Future Development & Roadmap
+
+Planning documents for upcoming SDK enhancements.
+
+### [Mixin Design Roadmap](./07-MIXIN_DESIGN_ROADMAP.md)
+**What**: Strategic design for 11 advanced resource handler mixins  
+**Topics**: 
+- **Tier 1 (High Priority)**: AuditedResourceHandler, TagRequiredResourceHandler, ComplianceTagResourceHandler, SoftDeleteResourceHandler, ResourceVersioningHandler, CachedResourceHandler
+- **Tier 2 (Medium Priority)**: CascadingResourceHandler, LifecycleHookResourceHandler, ImmutableResourceHandler, BatchResourceHandler
+- **Tier 3 (Lower Priority)**: QuotaAwareResourceHandler
+
+**For**: Planning future SDK features, understanding enterprise requirements, proposing new mixins
+
+**Key Info**:
+- Detailed problem statements for each mixin
+- Implementation complexity ratings (Simple to Complex)
+- Code examples and real-world use cases
+- Recommended rollout phases (Weeks 1-6+)
+- Performance impact analysis
+- Composition strategy for multiple mixins
+
+---
+
+## Documentation by Use Case
 
 ### I want to create a new resource provider
 1. Start with [Architecture Overview](./04-ARCHITECTURE.md)
@@ -191,7 +214,7 @@ Deep dives into advanced features and patterns.
 
 ---
 
-## 🔗 External Resources
+## External Resources
 
 - **[Main README](../README.md)** - Project overview and quick start
 - **[Examples Directory](../examples/)** - Working code examples
@@ -200,7 +223,7 @@ Deep dives into advanced features and patterns.
 
 ---
 
-## 📝 Document Conventions
+## Document Conventions
 
 - **Numbered Docs (01-23)**: Core documentation in recommended reading order
 - **Topics Section**: Quick overview of document contents
@@ -210,7 +233,7 @@ Deep dives into advanced features and patterns.
 
 ---
 
-## 🆘 Need Help?
+## Need Help?
 
 1. **Quick Task**: Check [Quick Reference](./14-QUICK_REFERENCE.md) or [Big 3 Quick Reference](./15-QUICK_REFERENCE_BIG_3.md)
 2. **Understanding Concepts**: Start with [Getting Started](#-getting-started) section

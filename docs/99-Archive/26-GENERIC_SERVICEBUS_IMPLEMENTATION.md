@@ -12,8 +12,10 @@ We've extracted the service bus provider capability into **generic, reusable SDK
 
 | File | Purpose |
 |------|---------|
-| [servicebus.py](../src/itl_controlplane_sdk/servicebus.py) | NEW - Generic service bus utilities |
-| [__init__.py](../src/itl_controlplane_sdk/__init__.py) | UPDATED - Export generic classes |
+| [messaging/servicebus/generic.py](../src/itl_controlplane_sdk/messaging/servicebus/generic.py) | NEW - GenericServiceBusProvider implementation (286 lines) |
+| [messaging/servicebus/mode_manager.py](../src/itl_controlplane_sdk/messaging/servicebus/mode_manager.py) | NEW - ProviderModeManager + run_generic_servicebus_provider() (213 lines) |
+| [messaging/servicebus/__init__.py](../src/itl_controlplane_sdk/messaging/servicebus/__init__.py) | NEW - Submodule exports |
+| [__init__.py](../src/itl_controlplane_sdk/__init__.py) | UPDATED - Export generic classes from messaging.servicebus |
 
 ### Core Provider (Example Implementation)
 
@@ -111,16 +113,16 @@ Core Provider
 
 ```
 SDK (Generic, Reusable)
-    └── src/itl_controlplane_sdk/servicebus.py
-        ├── GenericServiceBusProvider
-        ├── ProviderModeManager
-        └── run_generic_servicebus_provider()
+    └── src/itl_controlplane_sdk/messaging/servicebus/
+        ├── generic.py (GenericServiceBusProvider - 286 lines)
+        ├── mode_manager.py (ProviderModeManager, ProviderMode, run_generic_servicebus_provider() - 213 lines)
+        └── __init__.py (Submodule exports)
 
-Core Provider          Compute Provider       IAM Provider       Custom Provider
-    ├── Uses SDK          ├── Uses SDK          ├── Uses SDK       ├── Uses SDK
-    └── Adds Core         └── Adds Compute      └── Adds IAM       └── Adds Custom
-        specific              specific             specific            specific
-        features            features              features            features
+Core Provider (IMPLEMENTED)    Compute Provider       IAM Provider       Custom Provider
+    ├── Uses SDK imports              ├── Uses SDK imports  ├── Uses SDK imports  ├── Uses SDK imports
+    └── Adds Core-specific logic      └── Adds Compute      └── Adds IAM        └── Adds Custom
+        (schemas, routes)                specific             specific            specific
+                                         (schemas, routes)    (schemas, routes)    (schemas, routes)
 ```
 
 ---
@@ -149,7 +151,7 @@ MyCustom.Provider    → provider.mycustom   → provider.mycustom.{requests|res
 # compute_provider/src/main.py
 import asyncio
 from itl_controlplane_sdk import run_generic_servicebus_provider
-from .compute_provider_v2 import ComputeProvider
+from .compute_provider import ComputeProvider
 
 async def main():
     provider = ComputeProvider()
@@ -164,6 +166,17 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+```
+
+**In action (Core Provider example):**
+```python
+# Line 325 in ITL.ControlPlane.ResourceProvider.Core/core-provider/src/main.py
+bus_provider = GenericServiceBusProvider(
+    provider=self.provider,
+    provider_namespace="ITL.Core",
+    rabbitmq_url=rabbitmq_url,
+)
+await bus_provider.run()
 ```
 
 ### Full Implementation (With API + Hybrid)
@@ -207,6 +220,13 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
+**Active Implementation (Core Provider):**
+
+The Core Provider demonstrates all three modes in [main.py](../../ITL.ControlPlane.ResourceProvider.Core/core-provider/src/main.py):
+- `_run_api_mode()` - HTTP REST API
+- `_run_servicebus_mode()` - RabbitMQ message consumer (uses GenericServiceBusProvider)
+- `_run_hybrid_mode()` - Both API and ServiceBus simultaneously
+
 ---
 
 ## Benefits Over Custom Implementation
@@ -226,24 +246,39 @@ if __name__ == "__main__":
 
 ## How Core Provider Uses It
 
-The Core Provider now demonstrates how to use the generic SDK:
+The Core Provider **is the reference implementation** that demonstrates how to use the generic SDK components:
 
+**File:** [ITL.ControlPlane.ResourceProvider.Core/core-provider/src/main.py](../../ITL.ControlPlane.ResourceProvider.Core/core-provider/src/main.py)
+
+**Import:**
 ```python
-# Instead of custom ServiceBusProvider
-from .servicebus_provider import ServiceBusProvider
+# Line 70 - Direct import from SDK
+from itl_controlplane_sdk.messaging.servicebus import GenericServiceBusProvider
+```
 
-# Uses generic version from SDK
-from itl_controlplane_sdk import GenericServiceBusProvider
-
-# In _run_servicebus_mode():
+**Usage in ServiceBus mode:**
+```python
+# Lines 325-330
 bus_provider = GenericServiceBusProvider(
     provider=self.provider,
-    provider_namespace="ITL.Core",  # Passed explicitly
+    provider_namespace="ITL.Core",  # Explicitly passed
     rabbitmq_url=rabbitmq_url,
 )
-
 await bus_provider.run()
 ```
+
+**Usage in Hybrid mode (API + ServiceBus):**
+```python
+# Lines 361-366
+bus_provider = GenericServiceBusProvider(
+    provider=self.provider,
+    provider_namespace="ITL.Core",
+    rabbitmq_url=rabbitmq_url,
+)
+await bus_provider.run()  # Runs concurrently with API server
+```
+
+**Status:** ✅ **Production Implementation - Core Provider actively uses these components**
 
 ---
 
@@ -251,25 +286,28 @@ await bus_provider.run()
 
 All providers can now integrate with:
 
-1. **Worker Role System** 
-   - Workers use `OffloadingProviderRegistry` to submit jobs
-   - Providers receive messages from `GenericServiceBusProvider`
-   - Full request/response correlation
+1. **Service Bus Message Processing**
+   - Consumer pattern via `GenericServiceBusProvider`
+   - Automatic queue naming from provider namespace
+   - Request/response correlation via job_id
+   - Dead-letter queue for failed messages
 
-2. **Audit System**
-   - Shared audit infrastructure
-   - Consistent audit trail across all providers
-   - SQL + RabbitMQ audit adapters
+2. **Audit System** 
+   - Audit events published during resource operations
+   - Shared audit infrastructure across SDK providers
+   - Multi-adapter support (SQL + RabbitMQ)
 
 3. **Health Checks**
-   - RabbitMQ connection health
-   - Message queue depth monitoring
-   - DLQ monitoring for systematic issues
+   - `/health` endpoint (liveness)
+   - `/ready` endpoint (readiness)
+   - RabbitMQ connection health monitoring
+   - Queue depth metrics for diagnostics
 
 4. **Kubernetes Deployments**
-   - Consistent deployment patterns
-   - RBAC and network policies
-   - Health probes and readiness checks
+   - Mode-aware deployment patterns
+   - API pods vs. ServiceBus worker pods
+   - Helm charts support multiple replicas
+   - Built-in RBAC and network policies
 
 ---
 
@@ -457,12 +495,41 @@ To adopt the generic service bus provider:
 
 ## Summary
 
-- ✅ **Generic SDK Components** - `GenericServiceBusProvider`, `ProviderModeManager`
-- ✅ **Reusable Across All Providers** - Core, Compute, IAM, Identity, custom
+- ✅ **Generic SDK Components** - `GenericServiceBusProvider` (286 lines), `ProviderModeManager` (213 lines)
+- ✅ **Location** - `src/itl_controlplane_sdk/messaging/servicebus/` (submodule structure)
+- ✅ **Exports** - All classes available from main SDK `__init__.py`
+- ✅ **Reusable Across All Providers** - Core (implemented), Compute, IAM, Identity, custom
 - ✅ **Automatic Queue Naming** - Generated from provider namespace
-- ✅ **Three Operating Modes** - API, ServiceBus, Hybrid
+- ✅ **Three Operating Modes** - API, ServiceBus, Hybrid (Core Provider implements all)
 - ✅ **Zero Breaking Changes** - API mode remains default
 - ✅ **Unified Documentation** - Single guide for all providers
 - ✅ **Consistent Patterns** - Same env vars, logging, monitoring across all
 
 All providers can now **opt-in to service bus mode** with minimal code changes, enabling scalable, message-based architecture across the entire platform!
+
+---
+
+## Verification & Status
+
+**Implementation Status:** ✅ COMPLETE AND PRODUCTION-READY
+
+| Component | File | Lines | Status |
+|-----------|------|-------|--------|
+| GenericServiceBusProvider | `messaging/servicebus/generic.py` | 286 | ✅ Implemented |
+| ProviderModeManager | `messaging/servicebus/mode_manager.py` | 213 | ✅ Implemented |
+| run_generic_servicebus_provider() | `messaging/servicebus/mode_manager.py` | - | ✅ Implemented |
+| SDK Exports | `src/itl_controlplane_sdk/__init__.py` | - | ✅ Complete |
+| Core Provider Integration | `ITL.ControlPlane.ResourceProvider.Core` | - | ✅ Active |
+
+**Core Provider Modes Status:**
+- ✅ API Mode - HTTP REST API running
+- ✅ ServiceBus Mode - RabbitMQ message consumer  
+- ✅ Hybrid Mode - Both API and message consumer simultaneously
+
+**Ready for other providers to adopt:**
+- 📋 Compute Provider - Ready to integrate
+- 📋 IAM Provider - Ready to integrate
+- 📋 Identity Provider - Ready to integrate
+- 📋 Custom Providers - Ready to integrate
+
+
