@@ -1,247 +1,99 @@
-# ITL ControlPlane SDK - Documentation Index
+﻿# ITL ControlPlane SDK — Documentation
 
-Complete documentation for the ITL ControlPlane SDK, organized by topic.
-
----
-
-## Getting Started
-
-Start here to understand the core concepts and architecture of the SDK.
-
-### 1. [Scoped Resource Handler](./01-SCOPED_RESOURCE_HANDLER.md)
-**What**: Complete guide to scope-aware resource management  
-**Topics**: Uniqueness scopes, duplicate detection, storage keys, resource IDs  
-**For**: Understanding how resources are managed across different scopes
-
-### 2. [Resource ID Strategy](./02-RESOURCE_ID_STRATEGY.md)
-**What**: Hybrid path + GUID resource identification  
-**Topics**: Path-based IDs, GUIDs, hierarchical structure  
-**For**: Understanding resource identification and addressing
-
-### 3. [Modular Architecture](./03-MODULAR_ARCHITECTURE.md)
-**What**: Module organization and design patterns  
-**Topics**: Layer separation, dependency management, extensibility  
-**For**: Understanding the SDK's modular structure
-
-### 4. [Architecture Overview](./04-ARCHITECTURE.md)
-**What**: Detailed SDK architecture and components  
-**Topics**: Core layers, provider framework, identity integration  
-**For**: Deep dive into SDK architecture and design decisions
+> **Root docs:** [quick-start.md](./quick-start.md) · [quick-reference.md](./quick-reference.md)  
+> **Onboarding:** [getting-started/](./getting-started/README.md)
 
 ---
 
-## FastAPI Integration
+## Structure
 
-HTTP layer integration with FastAPI framework.
-
-### 5. [FastAPI Module](./05-FASTAPI_MODULE.md)
-**What**: Complete FastAPI integration guide  
-**Topics**: App factory, middleware, routes, configuration  
-**For**: Adding HTTP endpoints to your resource providers
-
-### 6. [FastAPI Integration](./06-FASTAPI_INTEGRATION.md)
-**What**: Integration patterns and examples  
-**Topics**: Provider integration, error handling, custom routes  
-**For**: Practical FastAPI integration patterns
-
-### 7. [FastAPI Quick Reference](./07-FASTAPI_QUICK_REFERENCE.md)
-**What**: FastAPI API quick reference  
-**Topics**: Common tasks, middleware setup, route configuration  
-**For**: Quick lookup of FastAPI integration patterns
+```
+docs/
+├── quick-start.md          ← Start here (new to the SDK)
+├── quick-reference.md      ← Handler API cheat-sheet
+├── getting-started/        ← Installation, 5-min example, key concepts
+│
+├── architecture/           ← System design & internals
+├── features/               ← Feature-specific guides
+├── guides/                 ← How-to guides, patterns, operations
+├── ci-cd/                  ← CI/CD pipelines & versioning
+├── roadmap/                ← Planned features & design docs
+│
+└── archive/                ← Superseded docs (historical reference)
+```
 
 ---
 
-## CI/CD & Operations
+## Architecture
 
-Continuous integration, deployment, and version management.
-
-### 8. [Pipeline Setup](./08-PIPELINE_SETUP.md)
-**What**: Complete CI/CD pipeline documentation  
-**Topics**: GitHub Actions, testing, publishing, security  
-**For**: Setting up automated testing and publishing
-
-### 9. [Automated Versioning](./09-AUTOMATED_VERSIONING.md)
-**What**: Git tag-based version management  
-**Topics**: Semantic versioning, tag creation, automated bumps  
-**For**: Managing SDK versions with Git tags
-
-### 10. [Version Update Guide](./10-VERSIONING_UPDATE.md)
-**What**: Version update procedures  
-**Topics**: Release process, changelog, breaking changes  
-**For**: Updating versions and creating releases
+| File | Description |
+|------|-------------|
+| [architecture/architecture.md](./architecture/architecture.md) | Complete system architecture, components, design principles |
+| [architecture/core-concepts.md](./architecture/core-concepts.md) | Scoped handlers, resource ID strategy, modular architecture |
 
 ---
 
-## Resource Group & Handlers
+## Features
 
-Resource group implementation and handler patterns.
-
-### 11. [Resource Group Creation Flow](./11-RESOURCE_GROUP_CREATION_FLOW.md)
-**What**: Step-by-step RG creation process  
-**Topics**: Validation, timestamps, provisioning states, storage  
-**For**: Understanding what happens when creating a resource group
-
-### 12. [Resource Group Big 3 Integration](./12-RESOURCE_GROUP_BIG_3_INTEGRATION.md)
-**What**: Resource group with handler mixins  
-**Topics**: Timestamps, provisioning states, validation integration  
-**For**: See how Big 3 mixins work in production
-
-### 13. [Scoped Resources Overview](./13-SCOPED_RESOURCES_OVERVIEW.md)
-**What**: Comprehensive scoped resource guide  
-**Topics**: Architecture, usage patterns, storage keys, examples  
-**For**: Complete understanding of scoped resource system
+| File | Description |
+|------|-------------|
+| [features/resource-groups.md](./features/resource-groups.md) | Resource group creation, scoped uniqueness, extensibility |
+| [features/handler-mixins.md](./features/handler-mixins.md) | Big 3: TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler |
+| [features/location-validation.md](./features/location-validation.md) | LocationsHandler, 30+ Azure regions, 24 ITL custom locations |
+| [features/api-endpoints.md](./features/api-endpoints.md) | FastAPI integration, AppFactory, middleware, HTTP routing |
+| [features/async-patterns.md](./features/async-patterns.md) | Service Bus, async provider modes, message queuing |
+| [features/worker-roles.md](./features/worker-roles.md) | Job queue, worker lifecycle, async offloading, scaling |
 
 ---
 
-## Quick References
+## How-To Guides
 
-Fast lookup guides for common tasks.
-
-### 14. [Quick Reference](./14-QUICK_REFERENCE.md)
-**What**: SDK API quick reference  
-**Topics**: Common tasks, scope configuration, API calls  
-**For**: Quick lookup of SDK APIs and patterns
-
-### 15. [Big 3 Quick Reference](./15-QUICK_REFERENCE_BIG_3.md)
-**What**: Handler mixin quick reference  
-**Topics**: Timestamps, provisioning states, validation usage  
-**For**: Quick lookup of handler mixin features
-
----
-
-## Location Management
-
-Dynamic location validation and management.
-
-### 16. [Locations Handler](./16-LOCATIONS_HANDLER.md)
-**What**: Location handler implementation guide  
-**Topics**: Azure regions, validation, region grouping  
-**For**: Understanding dynamic location management
-
-### 17. [Big 3 Implementation](./17-BIG_3_IMPLEMENTATION.md)
-**What**: Complete handler mixin implementation  
-**Topics**: Mixin pattern, MRO, integration testing  
-**For**: Deep dive into handler mixin implementation
-
-### 18. [ITL Locations Schema](./18-ITL_LOCATIONS_SCHEMA.md)
-**What**: Custom ITL location validation  
-**Topics**: ITL regions, custom locations, validation  
-**For**: Using custom ITL location schema
-
-### 19. [Dynamic Locations Summary](./19-DYNAMIC_LOCATIONS_SUMMARY.md)
-**What**: Dynamic location management overview  
-**Topics**: LocationsHandler, region metadata, validation  
-**For**: Quick overview of dynamic location features
-
-### 20. [Dynamic Locations Complete](./20-DYNAMIC_LOCATIONS_COMPLETE.md)
-**What**: Complete location system documentation  
-**Topics**: Implementation, usage, testing, migration  
-**For**: Complete reference for location management
+| File | Description |
+|------|-------------|
+| [guides/advanced-patterns.md](./guides/advanced-patterns.md) | Advanced handler patterns and composition |
+| [guides/common-patterns.md](./guides/common-patterns.md) | Common development patterns |
+| [guides/testing-guide.md](./guides/testing-guide.md) | Unit & integration testing strategies |
+| [guides/deployment.md](./guides/deployment.md) | Kubernetes, Docker, environment configuration |
+| [guides/monitoring.md](./guides/monitoring.md) | Observability, metrics, health checks |
+| [guides/troubleshooting.md](./guides/troubleshooting.md) | Common issues and solutions |
+| [guides/error-handling.md](./guides/error-handling.md) | Error handling patterns and best practices |
+| [guides/rest-api-reference.md](./guides/rest-api-reference.md) | REST API conventions and reference |
+| [guides/concurrency-and-async.md](./guides/concurrency-and-async.md) | Concurrency patterns and async usage |
+| [guides/data-modeling-and-schemas.md](./guides/data-modeling-and-schemas.md) | Pydantic models, schemas, validation |
+| [guides/migration-and-upgrades.md](./guides/migration-and-upgrades.md) | Version migration and upgrade procedures |
+| [guides/seeding-guide.md](./guides/seeding-guide.md) | Database seeding and seed data management |
+| [guides/tenant-realm-id-integration.md](./guides/tenant-realm-id-integration.md) | Tenant/realm ID integration guide |
+| [guides/full-documentation-reference.md](./guides/full-documentation-reference.md) | Lifecycle hooks full reference |
 
 ---
 
-## Advanced Topics
+## CI/CD & Versioning
 
-Deep dives into advanced features and patterns.
-
-### 21. [Big 3 Summary](./21-BIG_3_SUMMARY.md)
-**What**: Handler mixin feature summary  
-**Topics**: TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler  
-**For**: Understanding the three core handler mixins
-
-### 22. [Big 3 Complete Summary](./22-BIG_3_COMPLETE_SUMMARY.md)
-**What**: Detailed handler mixin documentation  
-**Topics**: Implementation details, testing, performance, integration  
-**For**: Complete reference for handler mixins
-
-### 23. [Architecture Summary](./23-ARCHITECTURE_SUMMARY.md)
-**What**: Quick architecture overview  
-**Topics**: Core abstractions, scope configuration, storage format  
-**For**: Quick architecture reference
+| File | Description |
+|------|-------------|
+| [ci-cd/ci-cd-pipelines.md](./ci-cd/ci-cd-pipelines.md) | GitHub Actions workflows, automated versioning, PyPI publishing |
 
 ---
 
-## Future Development & Roadmap
+## Roadmap & Design
 
-Planning documents for upcoming SDK enhancements.
-
-### [Mixin Design Roadmap](./07-MIXIN_DESIGN_ROADMAP.md)
-**What**: Strategic design for 11 advanced resource handler mixins  
-**Topics**: 
-- **Tier 1 (High Priority)**: AuditedResourceHandler, TagRequiredResourceHandler, ComplianceTagResourceHandler, SoftDeleteResourceHandler, ResourceVersioningHandler, CachedResourceHandler
-- **Tier 2 (Medium Priority)**: CascadingResourceHandler, LifecycleHookResourceHandler, ImmutableResourceHandler, BatchResourceHandler
-- **Tier 3 (Lower Priority)**: QuotaAwareResourceHandler
-
-**For**: Planning future SDK features, understanding enterprise requirements, proposing new mixins
-
-**Key Info**:
-- Detailed problem statements for each mixin
-- Implementation complexity ratings (Simple to Complex)
-- Code examples and real-world use cases
-- Recommended rollout phases (Weeks 1-6+)
-- Performance impact analysis
-- Composition strategy for multiple mixins
-
----
-
-## Documentation by Use Case
-
-### I want to create a new resource provider
-1. Start with [Architecture Overview](./04-ARCHITECTURE.md)
-2. Read [Scoped Resource Handler](./01-SCOPED_RESOURCE_HANDLER.md)
-3. Review [Big 3 Summary](./21-BIG_3_SUMMARY.md)
-4. Use [Quick Reference](./14-QUICK_REFERENCE.md) for API calls
-
-### I want to add HTTP endpoints
-1. Read [FastAPI Module](./05-FASTAPI_MODULE.md)
-2. Review [FastAPI Integration](./06-FASTAPI_INTEGRATION.md)
-3. Use [FastAPI Quick Reference](./07-FASTAPI_QUICK_REFERENCE.md)
-
-### I want to implement location validation
-1. Start with [Locations Handler](./16-LOCATIONS_HANDLER.md)
-2. Review [Dynamic Locations Complete](./20-DYNAMIC_LOCATIONS_COMPLETE.md)
-3. Check [ITL Locations Schema](./18-ITL_LOCATIONS_SCHEMA.md) for custom locations
-
-### I want to set up CI/CD
-1. Read [Pipeline Setup](./08-PIPELINE_SETUP.md)
-2. Review [Automated Versioning](./09-AUTOMATED_VERSIONING.md)
-3. Follow [Version Update Guide](./10-VERSIONING_UPDATE.md)
-
-### I want to understand resource groups
-1. Read [Resource Group Creation Flow](./11-RESOURCE_GROUP_CREATION_FLOW.md)
-2. Review [Resource Group Big 3 Integration](./12-RESOURCE_GROUP_BIG_3_INTEGRATION.md)
-3. Check [Scoped Resources Overview](./13-SCOPED_RESOURCES_OVERVIEW.md)
+| File | Description |
+|------|-------------|
+| [roadmap/mixin-design-roadmap.md](./roadmap/mixin-design-roadmap.md) | Strategic plan for 11 advanced handler mixins (Tiers 1-3) |
+| [roadmap/lifecycle-hooks-integration.md](./roadmap/lifecycle-hooks-integration.md) | Lifecycle hooks integration design |
+| [roadmap/iam-implementation.md](./roadmap/iam-implementation.md) | IAM module: Keycloak wrapper, tokens, S2S auth, multi-tenant (#1–#6) |
+| [roadmap/resource-id-scopes.md](./roadmap/resource-id-scopes.md) | UniquenessScope fixes and new scopes: SUBSCRIPTION_ONLY, PARENT_RESOURCE (#7–#10) |
+| [roadmap/pulumi-integration.md](./roadmap/pulumi-integration.md) | Pulumi dual-target components and standalone package (#11–#12) |
 
 ---
 
 ## External Resources
 
-- **[Main README](../README.md)** - Project overview and quick start
-- **[Examples Directory](../examples/)** - Working code examples
-- **[PyPI Setup Guide](../.github/PYPI_SETUP.md)** - Package publishing
-- **[Test Suite](../tests/)** - Comprehensive test examples
+- **[../README.md](../README.md)** — Project overview and quick start
+- **[../examples/](../examples/README.md)** — Working code examples
+- **[../.github/PYPI_SETUP.md](../.github/PYPI_SETUP.md)** — PyPI publishing setup
+- **[archive/README.md](./archive/README.md)** — Legacy docs and consolidation history
 
 ---
 
-## Document Conventions
-
-- **Numbered Docs (01-23)**: Core documentation in recommended reading order
-- **Topics Section**: Quick overview of document contents
-- **For Section**: Who should read this and why
-- **Code Examples**: Inline examples throughout all documents
-- **Cross-References**: Links to related documents
-
----
-
-## Need Help?
-
-1. **Quick Task**: Check [Quick Reference](./14-QUICK_REFERENCE.md) or [Big 3 Quick Reference](./15-QUICK_REFERENCE_BIG_3.md)
-2. **Understanding Concepts**: Start with [Getting Started](#-getting-started) section
-3. **Implementation Details**: Check [Advanced Topics](#-advanced-topics) section
-4. **Integration**: See [FastAPI Integration](#-fastapi-integration) or [Location Management](#-location-management)
-5. **Operations**: Review [CI/CD & Operations](#-cicd--operations) section
-
----
-
-**Last Updated**: February 3, 2026  
-**SDK Version**: 1.0.0
+**Last Updated**: April 20, 2026 · **SDK Version**: 1.x

@@ -139,12 +139,12 @@ async def seed_default_resource_groups(
     # ISSUE #1 FIX: Validate subscriptions exist (dependency check)
     logger.info(f"Checking for existing subscriptions in tenant {tenant_id}...")
     
-    # Get map of subscription names to (resource_id, subscription_uuid)
-    # Note: Foreign key references subscriptions.id (resource ID)  
-    # But resource group ID generation uses subscription_id (UUID)
+# Get map of subscription names to (subscription_uuid, subscription_resource_id)
+    # subscription_uuid: The UUID stored in subscriptions.subscription_id column
+    # subscription_resource_id: The full resource ID stored in subscriptions.id column
     result = await session.execute(
         sa.text("""
-            SELECT name, id, subscription_id 
+            SELECT name, subscription_id, id 
             FROM subscriptions 
             WHERE tenant_id = :tenant_id
         """),
@@ -152,8 +152,8 @@ async def seed_default_resource_groups(
     )
     subscriptions = {}
     for row in result.fetchall():
-        name, resource_id, sub_uuid = row[0], row[1], row[2]
-        subscriptions[name] = {"id": resource_id, "subscription_id": sub_uuid}
+        name, sub_uuid, resource_id = row[0], row[1], row[2]
+        subscriptions[name] = {"subscription_id": sub_uuid, "id": resource_id}
     
     # ISSUE #1 FIX: Check that subscriptions were found
     if not subscriptions:
@@ -186,13 +186,12 @@ async def seed_default_resource_groups(
             missing_subscriptions.append(sub_name)
             continue
 
-        # ISSUE #3 FIX: Log FK values for debugging constraint violations
-        subscription_id_fk = subscriptions[sub_name]["id"]  # Use resource ID for FK
-        subscription_uuid = subscriptions[sub_name]["subscription_id"]  # Use UUID for ID generation
+        # Use subscription_id (UUID) for the FK column
+        subscription_uuid = subscriptions[sub_name]["subscription_id"]  # UUID
         
         logger.debug(
             f"Processing RGs for subscription '{sub_name}': "
-            f"FK={subscription_id_fk}, UUID={subscription_uuid}"
+            f"subscription_id (UUID)={subscription_uuid}"
         )
 
         for rg_def in rg_list:
@@ -203,9 +202,9 @@ async def seed_default_resource_groups(
             result = await session.execute(
                 sa.text("""
                     SELECT id FROM resource_groups 
-                    WHERE id = :id OR (subscription_id = :sub_fk_id AND name = :name)
+                    WHERE id = :id OR (subscription_id = :sub_id AND name = :name)
                 """),
-                {"id": rg_id, "sub_fk_id": subscription_id_fk, "name": rg_name},
+                {"id": rg_id, "sub_id": subscription_uuid, "name": rg_name},
             )
             if result.scalar():
                 logger.debug(f"Resource group '{rg_name}' already exists in subscription '{sub_name}', skipping")
@@ -230,7 +229,7 @@ async def seed_default_resource_groups(
                     {
                         "id": rg_id,
                         "name": rg_name,
-                        "subscription_id": subscription_id_fk,  # FK to subscriptions(id)
+                        "subscription_id": subscription_uuid,  # UUID for FK column
                         "tenant_id": tenant_id,
                         "location": rg_def.get("location", "westeurope"),
                         "provisioning_state": "Succeeded",

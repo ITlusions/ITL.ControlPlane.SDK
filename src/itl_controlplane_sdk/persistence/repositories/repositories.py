@@ -735,11 +735,15 @@ class ResourceGroupRepository(BaseRepository[ResourceGroupModel]):
         # Fallback: construct ARM path from ref (may fail FK constraint)
         return f"/subscriptions/{subscription_ref}"
 
-    async def list_by_subscription(self, subscription_name: str) -> List[ResourceGroupModel]:
-        """List all resource groups in a subscription."""
-        sub_db_id = f"/subscriptions/{subscription_name}"
+    async def list_by_subscription(self, subscription_id: str) -> List[ResourceGroupModel]:
+        """List all resource groups in a subscription by subscription ID (UUID or name)."""
+        # subscription_id can be either:
+        # - UUID: 8e735f21-afaa-5314-9b31-53f6a7774ba9 (FK column value)
+        # - Full ID: subscription:uuid:region (resource ID)
+        # - Name: itl-prod-westeurope
+        
         stmt = select(ResourceGroupModel).where(
-            ResourceGroupModel.subscription_id == sub_db_id
+            ResourceGroupModel.subscription_id == subscription_id
         )
         result = await self.session.execute(stmt)
         return list(result.scalars().all())
