@@ -745,9 +745,9 @@ config = FastAPIConfig(log_level="WARNING")
 
 ## Related Documentation
 
-- [07-LOCATION_VALIDATION.md](07-LOCATION_VALIDATION.md) - Location validation in endpoints
-- [06-HANDLER_MIXINS.md](06-HANDLER_MIXINS.md) - Handler patterns for endpoints
-- [23-BEST_PRACTICES.md](23-BEST_PRACTICES.md) - API design patterns
+- [07-LOCATION_VALIDATION.md](location-validation.md) - Location validation in endpoints
+- [06-HANDLER_MIXINS.md](handler-mixins.md) - Handler patterns for endpoints
+- [23-BEST_PRACTICES.md](../quick-reference.md) - API design patterns
 
 ---
 

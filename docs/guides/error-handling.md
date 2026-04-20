@@ -1,4 +1,4 @@
-# Error Handling Reference
+﻿# Error Handling Reference
 
 Complete guide to error handling in resource providers.
 
@@ -520,10 +520,10 @@ async def create_multiple_resources(requests):
 
 ## Related Documentation
 
-- [14-MONITORING.md](14-MONITORING.md) - Error monitoring
-- [15-TROUBLESHOOTING.md](15-TROUBLESHOOTING.md) - Debugging guide
-- [SDK API Reference](../03-API_REFERENCE.md) - All exceptions
-- [12-TESTING_GUIDE.md](12-TESTING_GUIDE.md) - Testing errors
+- [14-MONITORING.md](monitoring.md) - Error monitoring
+- [15-TROUBLESHOOTING.md](troubleshooting.md) - Debugging guide
+- [SDK API Reference](rest-api-reference.md) - All exceptions
+- [12-TESTING_GUIDE.md](testing-guide.md) - Testing errors
 
 ---
 

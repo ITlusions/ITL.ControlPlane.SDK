@@ -910,10 +910,10 @@ finally:
 
 ## Related Documentation
 
-- [08-API_ENDPOINTS.md](08-API_ENDPOINTS.md) - FastAPI integration
-- [06-HANDLER_MIXINS.md](06-HANDLER_MIXINS.md) - Handler patterns
-- [07-LOCATION_VALIDATION.md](07-LOCATION_VALIDATION.md) - Validation
-- [23-BEST_PRACTICES.md](23-BEST_PRACTICES.md) - Best practices
+- [08-API_ENDPOINTS.md](api-endpoints.md) - FastAPI integration
+- [06-HANDLER_MIXINS.md](handler-mixins.md) - Handler patterns
+- [07-LOCATION_VALIDATION.md](location-validation.md) - Validation
+- [23-BEST_PRACTICES.md](../quick-reference.md) - Best practices
 
 ---
 

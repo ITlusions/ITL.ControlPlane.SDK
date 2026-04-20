@@ -474,10 +474,10 @@ async def main():
 
 ## Related Documentation
 
-- [12-TESTING_GUIDE.md](12-TESTING_GUIDE.md) - Load testing patterns
-- [14-MONITORING.md](14-MONITORING.md) - Performance monitoring
-- [10-ADVANCED_PATTERNS.md](10-ADVANCED_PATTERNS.md) - Async patterns
-- [SDK API Reference](../03-API_REFERENCE.md) - All async methods
+- [12-TESTING_GUIDE.md](testing-guide.md) - Load testing patterns
+- [14-MONITORING.md](monitoring.md) - Performance monitoring
+- [10-ADVANCED_PATTERNS.md](advanced-patterns.md) - Async patterns
+- [SDK API Reference](rest-api-reference.md) - All async methods
 
 ---
 

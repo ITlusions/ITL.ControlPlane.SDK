@@ -1,4 +1,4 @@
-# Troubleshooting Guide
+﻿# Troubleshooting Guide
 
 Solutions to common issues when building with the ITL ControlPlane SDK.
 
@@ -457,10 +457,10 @@ pip install itl-controlplane-sdk==1.2.3
 
 ## Related Documentation
 
-- [10-ADVANCED_PATTERNS.md](10-ADVANCED_PATTERNS.md) - Design patterns
-- [12-TESTING_GUIDE.md](12-TESTING_GUIDE.md) - Testing strategies
-- [14-MONITORING.md](14-MONITORING.md) - Monitoring troubleshooting
-- [SDK API Reference](../03-API_REFERENCE.md) - All methods
+- [10-ADVANCED_PATTERNS.md](advanced-patterns.md) - Design patterns
+- [12-TESTING_GUIDE.md](testing-guide.md) - Testing strategies
+- [14-MONITORING.md](monitoring.md) - Monitoring troubleshooting
+- [SDK API Reference](rest-api-reference.md) - All methods
 
 ---
 

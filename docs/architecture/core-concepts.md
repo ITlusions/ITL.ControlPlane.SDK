@@ -798,10 +798,10 @@ registry.register_provider("ITL.Compute", "virtualmachines", ComputeProvider())
 
 ## Related Documentation
 
-- [02-ARCHITECTURE.md](02-ARCHITECTURE.md) - Complete system architecture overview
-- [06-HANDLER_MIXINS.md](06-HANDLER_MIXINS.md) - Advanced handler patterns (TimestampedResourceHandler, etc.)
-- [04-RESOURCE_GROUPS.md](04-RESOURCE_GROUPS.md) - Resource group implementation details
-- [08-API_ENDPOINTS.md](08-API_ENDPOINTS.md) - FastAPI integration patterns
+- [02-ARCHITECTURE.md](architecture.md) - Complete system architecture overview
+- [06-HANDLER_MIXINS.md](../features/handler-mixins.md) - Advanced handler patterns (TimestampedResourceHandler, etc.)
+- [04-RESOURCE_GROUPS.md](../features/resource-groups.md) - Resource group implementation details
+- [08-API_ENDPOINTS.md](../features/api-endpoints.md) - FastAPI integration patterns
 
 ---
 

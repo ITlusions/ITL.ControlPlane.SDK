@@ -621,10 +621,10 @@ app = factory.create_app(routers=[...])
 
 ## Related Documents
 
-- [06-HANDLER_MIXINS.md](06-HANDLER_MIXINS.md) - Validation (Big 3)
-- [04-RESOURCE_GROUPS.md](04-RESOURCE_GROUPS.md) - Real-world example
-- [05-RESOURCE_HANDLERS.md](05-RESOURCE_HANDLERS.md) - Creating handlers
-- [23-BEST_PRACTICES.md](23-BEST_PRACTICES.md) - Validation patterns
+- [06-HANDLER_MIXINS.md](handler-mixins.md) - Validation (Big 3)
+- [04-RESOURCE_GROUPS.md](resource-groups.md) - Real-world example
+- [05-RESOURCE_HANDLERS.md](handler-mixins.md) - Creating handlers
+- [23-BEST_PRACTICES.md](../quick-reference.md) - Validation patterns
 
 ---
 

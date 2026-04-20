@@ -770,7 +770,7 @@ except ValueError as e:
 
 ## Testing Guide
 
-See [15-TESTING_GUIDE.md](15-TESTING_GUIDE.md) for comprehensive testing patterns.
+See [15-TESTING_GUIDE.md](../guides/testing-guide.md) for comprehensive testing patterns.
 
 ### Unit Test Template
 
@@ -847,7 +847,7 @@ The Big 3 are production-ready. We've designed **11 additional mixins** for futu
 **Tier 3 - Lower Priority** (Special cases)
 - **QuotaAwareResourceHandler** - Enforce resource quotas
 
-See **[07-MIXIN_DESIGN_ROADMAP.md](07-MIXIN_DESIGN_ROADMAP.md)** for:
+See **[07-MIXIN_DESIGN_ROADMAP.md](../roadmap/mixin-design-roadmap.md)** for:
 - Detailed problem statements and use cases
 - Code examples for each mixin
 - Implementation complexity ratings
@@ -860,18 +860,18 @@ This roadmap is grounded in real requirements from your codebase (audit infrastr
 
 ## Related Documents
 
-- [04-RESOURCE_GROUPS.md](04-RESOURCE_GROUPS.md) - ResourceGroupHandler use cases
-- [05-RESOURCE_HANDLERS.md](05-RESOURCE_HANDLERS.md) - How to create custom handlers
-- [07-MIXIN_DESIGN_ROADMAP.md](07-MIXIN_DESIGN_ROADMAP.md) - Future mixin designs (11 advanced mixins)
-- [15-TESTING_GUIDE.md](15-TESTING_GUIDE.md) - Comprehensive testing patterns
-- [23-BEST_PRACTICES.md](23-BEST_PRACTICES.md) - Handler design best practices
+- [04-RESOURCE_GROUPS.md](resource-groups.md) - ResourceGroupHandler use cases
+- [05-RESOURCE_HANDLERS.md](handler-mixins.md) - How to create custom handlers
+- [07-MIXIN_DESIGN_ROADMAP.md](../roadmap/mixin-design-roadmap.md) - Future mixin designs (11 advanced mixins)
+- [15-TESTING_GUIDE.md](../guides/testing-guide.md) - Comprehensive testing patterns
+- [23-BEST_PRACTICES.md](../quick-reference.md) - Handler design best practices
 
 ---
 
 ## Getting Help
 
 **Question**: How do I...?  
-**Answer**: Check the Quick Reference section above or see examples in [examples/big_3_examples.py](../examples/big_3_examples.py)
+**Answer**: Check the Quick Reference section above or see examples in [examples/big_3_examples.py](../../examples/compute/intermediate/big_3_examples.py)
 
 **Issue**: Validation failing  
 **Solution**: Review your Pydantic schema validator - ensure error messages are clear

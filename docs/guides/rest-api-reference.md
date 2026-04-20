@@ -560,10 +560,10 @@ const response = await fetch(
 
 ## Related Documentation
 
-- [02-INSTALLATION.md](../02-INSTALLATION.md) - SDK setup
-- [03-API_REFERENCE.md](../03-API_REFERENCE.md) - Detailed API methods
-- [16-ERROR_HANDLING.md](16-ERROR_HANDLING.md) - Error codes
-- [15-TROUBLESHOOTING.md](15-TROUBLESHOOTING.md) - Common issues
+- [02-INSTALLATION.md](../getting-started/README.md) - SDK setup
+- [03-API_REFERENCE.md](rest-api-reference.md) - Detailed API methods
+- [16-ERROR_HANDLING.md](error-handling.md) - Error codes
+- [15-TROUBLESHOOTING.md](troubleshooting.md) - Common issues
 
 ---
 

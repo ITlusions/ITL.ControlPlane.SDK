@@ -515,9 +515,9 @@ For detailed information, see:
 
 ## Related Documentation
 
-- [08-API_ENDPOINTS.md](08-API_ENDPOINTS.md) — FastAPI application creation
-- [11-WORKER_ROLES.md](11-WORKER_ROLES.md) — Worker deployment
-- [23-BEST_PRACTICES.md](23-BEST_PRACTICES.md) — Development best practices
+- [08-API_ENDPOINTS.md](../features/api-endpoints.md) — FastAPI application creation
+- [11-WORKER_ROLES.md](../features/worker-roles.md) — Worker deployment
+- [23-BEST_PRACTICES.md](../quick-reference.md) — Development best practices
 
 ---
 

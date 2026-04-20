@@ -543,9 +543,9 @@ services:
 
 ## Related Documentation
 
-- [13-DEPLOYMENT.md](13-DEPLOYMENT.md) - Deployment guide
-- [SDK Getting Started](../01-GETTING_STARTED.md) - Quick start
-- [Troubleshooting](14-TROUBLESHOOTING.md) - Common issues
+- [13-DEPLOYMENT.md](deployment.md) - Deployment guide
+- [SDK Getting Started](../getting-started/README.md) - Quick start
+- [Troubleshooting](troubleshooting.md) - Common issues
 
 ---
 

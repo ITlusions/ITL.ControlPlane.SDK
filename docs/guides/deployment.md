@@ -1,4 +1,4 @@
-# Deployment Guide: From Development to Production
+﻿# Deployment Guide: From Development to Production
 
 Complete guide to containerizing and deploying resource providers.
 
@@ -610,9 +610,9 @@ spec:
 
 ## Related Documentation
 
-- [13-MONITORING.md](13-MONITORING.md) - Detailed monitoring guide
-- [SDK Installation](../02-INSTALLATION.md) - SDK setup
-- [Getting Started](../01-GETTING_STARTED.md) - Quick start
+- [13-MONITORING.md](monitoring.md) - Detailed monitoring guide
+- [SDK Installation](../getting-started/README.md) - SDK setup
+- [Getting Started](../getting-started/README.md) - Quick start
 
 ---
 

@@ -755,10 +755,10 @@ mode = os.getenv("PROVIDER_MODE", "api")
 
 ## Related Documentation
 
-- [11-WORKER_ROLES.md](11-WORKER_ROLES.md) — Job-based async processing
-- [08-API_ENDPOINTS.md](08-API_ENDPOINTS.md) — FastAPI integration
-- [24-WORKER_RETRY_AND_DLQ.md](24-WORKER_RETRY_AND_DLQ.md) — Retry strategies
-- [23-BEST_PRACTICES.md](23-BEST_PRACTICES.md) — Architecture patterns
+- [11-WORKER_ROLES.md](worker-roles.md) — Job-based async processing
+- [08-API_ENDPOINTS.md](api-endpoints.md) — FastAPI integration
+- [24-WORKER_RETRY_AND_DLQ.md](../archive/24-WORKER_RETRY_AND_DLQ.md) — Retry strategies
+- [23-BEST_PRACTICES.md](../quick-reference.md) — Architecture patterns
 
 ---
 

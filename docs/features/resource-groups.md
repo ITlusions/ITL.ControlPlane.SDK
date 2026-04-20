@@ -667,10 +667,10 @@ When you create a resource group, you automatically get:
 
 ## Related Documentation
 
-- [03-CORE_CONCEPTS.md](03-CORE_CONCEPTS.md) - Scoped handlers, ID strategy, modular architecture
-- [02-ARCHITECTURE.md](02-ARCHITECTURE.md) - Complete system architecture overview
-- [06-HANDLER_MIXINS.md](06-HANDLER_MIXINS.md) - TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler
-- [07-LOCATION_VALIDATION.md](07-LOCATION_VALIDATION.md) - Location validation details
+- [03-CORE_CONCEPTS.md](../architecture/core-concepts.md) - Scoped handlers, ID strategy, modular architecture
+- [02-ARCHITECTURE.md](../architecture/architecture.md) - Complete system architecture overview
+- [06-HANDLER_MIXINS.md](handler-mixins.md) - TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler
+- [07-LOCATION_VALIDATION.md](location-validation.md) - Location validation details
 
 ---
 

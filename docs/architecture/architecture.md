@@ -754,11 +754,11 @@ result = self.rg_handler.get_resource(
 
 ## Related Documentation
 
-- [01-SCOPED_RESOURCE_HANDLER.md](01-SCOPED_RESOURCE_HANDLER.md) - Core handler implementation details
-- [03-CORE_CONCEPTS.md](03-CORE_CONCEPTS.md) - Resource ID strategy and modular architecture
-- [06-HANDLER_MIXINS.md](06-HANDLER_MIXINS.md) - TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler
-- [08-API_ENDPOINTS.md](08-API_ENDPOINTS.md) - FastAPI integration and AppFactory
-- [11-WORKER_ROLES.md](11-WORKER_ROLES.md) - Async worker patterns
+- [01-SCOPED_RESOURCE_HANDLER.md](../archive/01-SCOPED_RESOURCE_HANDLER.md) - Core handler implementation details
+- [03-CORE_CONCEPTS.md](core-concepts.md) - Resource ID strategy and modular architecture
+- [06-HANDLER_MIXINS.md](../features/handler-mixins.md) - TimestampedResourceHandler, ProvisioningStateHandler, ValidatedResourceHandler
+- [08-API_ENDPOINTS.md](../features/api-endpoints.md) - FastAPI integration and AppFactory
+- [11-WORKER_ROLES.md](../11-WORKER_ROLES.md) - Async worker patterns
 
 ---
 

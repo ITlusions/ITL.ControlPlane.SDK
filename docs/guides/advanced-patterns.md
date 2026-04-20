@@ -300,11 +300,11 @@ class SafeProvider(ResourceProvider):
 
 ## Related Documentation
 
-- [03-CORE_CONCEPTS.md](../03-CORE_CONCEPTS.md) - Scoped handlers deep dive
-- [06-HANDLER_MIXINS.md](../06-HANDLER_MIXINS.md) - Big 3 handler details
-- [09-ASYNC_PATTERNS.md](../09-ASYNC_PATTERNS.md) - Async patterns and Service Bus
+- [03-CORE_CONCEPTS.md](../architecture/core-concepts.md) - Scoped handlers deep dive
+- [06-HANDLER_MIXINS.md](../features/handler-mixins.md) - Big 3 handler details
+- [09-ASYNC_PATTERNS.md](../features/async-patterns.md) - Async patterns and Service Bus
 - [12-TESTING_GUIDE.md](../10-GUIDES/12-TESTING_GUIDE.md) - Testing these patterns
-- [15-EXAMPLES](../15-EXAMPLES/) - Complete working examples
+- [15-EXAMPLES](../../examples/) - Complete working examples
 
 ---
 

@@ -468,10 +468,10 @@ async def get_nic_with_vnet(self, nic_id):
 
 ## Related Documentation
 
-- [03-CORE_CONCEPTS.md](../03-CORE_CONCEPTS.md) - Scoped handlers
-- [06-HANDLER_MIXINS.md](../06-HANDLER_MIXINS.md) - Handler features
-- [13-DEPLOYMENT.md](13-DEPLOYMENT.md) - Database setup
-- [17-REST_API_REFERENCE.md](17-REST_API_REFERENCE.md) - API contracts
+- [03-CORE_CONCEPTS.md](../architecture/core-concepts.md) - Scoped handlers
+- [06-HANDLER_MIXINS.md](../features/handler-mixins.md) - Handler features
+- [13-DEPLOYMENT.md](deployment.md) - Database setup
+- [17-REST_API_REFERENCE.md](rest-api-reference.md) - API contracts
 
 ---
 

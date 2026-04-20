@@ -1,4 +1,4 @@
-# Mixin Design Roadmap: Advanced Resource Handlers for ITL SDK
+﻿# Mixin Design Roadmap: Advanced Resource Handlers for ITL SDK
 
 **Status**: Design Document  
 **Version**: 1.0  
@@ -680,7 +680,7 @@ All mixins are:
 ## Getting Help
 
 For questions about mixin design:
-1. See [Big 3 Handler Mixins](./06-HANDLER_MIXINS.md) for production patterns
+1. See [Big 3 Handler Mixins](../features/handler-mixins.md) for production patterns
 2. Review code examples above for composition strategies
 3. Check integration tests for real-world scenarios
 4. Post questions in #sdk-development Slack channel

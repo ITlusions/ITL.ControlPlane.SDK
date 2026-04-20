@@ -1,4 +1,4 @@
-# Common Patterns and Recipes
+﻿# Common Patterns and Recipes
 
 Quick reference for common provider implementation patterns.
 
@@ -439,9 +439,9 @@ class ProductionProvider(
 
 ## Related Documentation
 
-- [10-ADVANCED_PATTERNS.md](10-ADVANCED_PATTERNS.md) - Complex patterns
-- [15-EXAMPLES](../15-EXAMPLES/) - Complete working examples
-- [12-TESTING_GUIDE.md](12-TESTING_GUIDE.md) - Testing patterns
+- [10-ADVANCED_PATTERNS.md](advanced-patterns.md) - Complex patterns
+- [15-EXAMPLES](../../examples/) - Complete working examples
+- [12-TESTING_GUIDE.md](testing-guide.md) - Testing patterns
 
 ---
 

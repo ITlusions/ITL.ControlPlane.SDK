@@ -251,10 +251,10 @@ ITL.ControlPlane.ResourceProvider.Core/docs/  (optional reference copies)
 **Goal:** Implement the system
 **Time:** 4-10 hours (depending on path)
 
-1. Read [02-IMPLEMENTATION.md](./02-IMPLEMENTATION.md) (45 min)
-2. Review [03-EXAMPLES.md](./03-EXAMPLES.md) (45 min)
+1. Read [02-IMPLEMENTATION.md](advanced-patterns.md) (45 min)
+2. Review [03-EXAMPLES.md](../../examples/README.md) (45 min)
 3. Copy code from examples
-4. Follow [ACTION_ITEMS.md](./ACTION_ITEMS.md) checklist
+4. Follow [ACTION_ITEMS.md](../README.md) checklist
 5. Test and deploy
 
 ---
@@ -264,8 +264,8 @@ ITL.ControlPlane.ResourceProvider.Core/docs/  (optional reference copies)
 **Time:** 2-3 hours
 
 1. Read [README.md](./README.md) (this file, 20 min)
-2. Read [01-ARCHITECTURE.md](./01-ARCHITECTURE.md) (60 min)
-3. Review patterns in [03-EXAMPLES.md](./03-EXAMPLES.md) (30 min)
+2. Read [01-ARCHITECTURE.md](../architecture/architecture.md) (60 min)
+3. Review patterns in [03-EXAMPLES.md](../../examples/README.md) (30 min)
 4. Choose implementation path
 
 ---
@@ -275,7 +275,7 @@ ITL.ControlPlane.ResourceProvider.Core/docs/  (optional reference copies)
 **Time:** 2-3 hours
 
 1. Read [DEPLOYMENT.md](./DEPLOYMENT.md) (30 min)
-2. Review [docker-compose-examples.yaml](./docker-compose-examples.yaml) (15 min)
+2. Review [docker-compose-examples.yaml](../../examples/README.md) (15 min)
 3. Set environment variables
 4. Deploy with docker-compose
 5. Verify monitoring dashboards
@@ -286,8 +286,8 @@ ITL.ControlPlane.ResourceProvider.Core/docs/  (optional reference copies)
 **Goal:** Verify implementation
 **Time:** 2-3 hours
 
-1. Review test examples in [03-EXAMPLES.md](./03-EXAMPLES.md) (45 min)
-2. Read [TESTING.md](./TESTING.md) (30 min)
+1. Review test examples in [03-EXAMPLES.md](../../examples/README.md) (45 min)
+2. Read [TESTING.md](testing-guide.md) (30 min)
 3. Execute provided pytest examples
 4. Verify hook behavior
 5. Load test with K6
@@ -368,11 +368,11 @@ The major finding from Session 19: **CoreProvider already calls hooks correctly!
 
 1. **Choose your path:** A (Full), B (Validation), C (Monitoring), or D (Learning)
 2. **Read appropriate guide:**
-   - All: [01-ARCHITECTURE.md](./01-ARCHITECTURE.md)
-   - Dev: [02-IMPLEMENTATION.md](./02-IMPLEMENTATION.md)
+   - All: [01-ARCHITECTURE.md](../architecture/architecture.md)
+   - Dev: [02-IMPLEMENTATION.md](advanced-patterns.md)
    - DevOps: [DEPLOYMENT.md](./DEPLOYMENT.md)
-   - QA: [TESTING.md](./TESTING.md)
-3. **Follow checklist:** [ACTION_ITEMS.md](./ACTION_ITEMS.md)
+   - QA: [TESTING.md](testing-guide.md)
+3. **Follow checklist:** [ACTION_ITEMS.md](../README.md)
 4. **Implement:** Phase by phase (7-11 hours)
 5. **Deploy & verify:** Monitoring, testing, production
 
@@ -398,4 +398,4 @@ REFERENCE:
 
 ---
 
-**Next:** [01-ARCHITECTURE.md](./01-ARCHITECTURE.md) (if architect) or [02-IMPLEMENTATION.md](./02-IMPLEMENTATION.md) (if developer) or [DEPLOYMENT.md](./DEPLOYMENT.md) (if DevOps)
+**Next:** [01-ARCHITECTURE.md](../architecture/architecture.md) (if architect) or [02-IMPLEMENTATION.md](advanced-patterns.md) (if developer) or [DEPLOYMENT.md](./DEPLOYMENT.md) (if DevOps)

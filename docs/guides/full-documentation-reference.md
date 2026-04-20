@@ -54,26 +54,26 @@
 ### For Understanding the System
 1. SDK: [INDEX.md](./INDEX.md)
 2. SDK: [README.md](./README.md)
-3. SDK: [01-ARCHITECTURE.md](./01-ARCHITECTURE.md)
-4. CoreProvider: [HOOKS_INTEGRATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_INTEGRATION_GUIDE.md)
+3. SDK: [01-ARCHITECTURE.md](../architecture/architecture.md)
+4. CoreProvider: [HOOKS_INTEGRATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
 
 ### For Implementation
-1. SDK: [02-IMPLEMENTATION.md](./02-IMPLEMENTATION.md)
-2. CoreProvider: [HOOKS_MODIFICATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_MODIFICATION_GUIDE.md)
-3. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_IMPLEMENTATION_EXAMPLES.md)
-4. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/ACTION_ITEMS.md)
+1. SDK: [02-IMPLEMENTATION.md](advanced-patterns.md)
+2. CoreProvider: [HOOKS_MODIFICATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
+3. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
+4. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
 
 ### For Reference
-1. SDK: [QUICK_REFERENCE.md](./QUICK_REFERENCE.md)
-2. CoreProvider: [README_HOOKS_INTEGRATION.md](../../../ITL.ControlPlane.ResourceProvider.Core/README_HOOKS_INTEGRATION.md)
+1. SDK: [QUICK_REFERENCE.md](../quick-reference.md)
+2. CoreProvider: [README_HOOKS_INTEGRATION.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
 
 ### For Deployment
 1. SDK: [DEPLOYMENT.md](./DEPLOYMENT.md)
-2. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/ACTION_ITEMS.md) - Phase 5
+2. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) - Phase 5
 
 ### For Testing
-1. SDK: [TESTING.md](./TESTING.md)
-2. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_IMPLEMENTATION_EXAMPLES.md) - Testing section
+1. SDK: [TESTING.md](testing-guide.md)
+2. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) - Testing section
 
 ---
 
@@ -85,11 +85,11 @@
 **Time:** 4-10 hours
 
 **Path:**
-1. SDK: [02-IMPLEMENTATION.md](./02-IMPLEMENTATION.md) (understand SDK changes)
-2. CoreProvider: [HOOKS_MODIFICATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_MODIFICATION_GUIDE.md) (exact changes)
-3. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_IMPLEMENTATION_EXAMPLES.md) (copy code)
-4. SDK: [TESTING.md](./TESTING.md) (test examples)
-5. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/ACTION_ITEMS.md) (step-by-step checklist)
+1. SDK: [02-IMPLEMENTATION.md](advanced-patterns.md) (understand SDK changes)
+2. CoreProvider: [HOOKS_MODIFICATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) (exact changes)
+3. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) (copy code)
+4. SDK: [TESTING.md](testing-guide.md) (test examples)
+5. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) (step-by-step checklist)
 
 ---
 
@@ -100,9 +100,9 @@
 
 **Path:**
 1. SDK: [README.md](./README.md) (overview)
-2. SDK: [01-ARCHITECTURE.md](./01-ARCHITECTURE.md) (detailed architecture)
-3. CoreProvider: [HOOKS_INTEGRATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_INTEGRATION_GUIDE.md) (real-world patterns)
-4. SDK: [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) (quick lookup)
+2. SDK: [01-ARCHITECTURE.md](../architecture/architecture.md) (detailed architecture)
+3. CoreProvider: [HOOKS_INTEGRATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) (real-world patterns)
+4. SDK: [QUICK_REFERENCE.md](../quick-reference.md) (quick lookup)
 
 ---
 
@@ -113,8 +113,8 @@
 
 **Path:**
 1. SDK: [DEPLOYMENT.md](./DEPLOYMENT.md) (deployment concepts)
-2. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/ACTION_ITEMS.md) - Phase 5 (practical deployment)
-3. SDK: [QUICK_REFERENCE.md](./QUICK_REFERENCE.md) - Key Commands (useful commands)
+2. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) - Phase 5 (practical deployment)
+3. SDK: [QUICK_REFERENCE.md](../quick-reference.md) - Key Commands (useful commands)
 
 ---
 
@@ -124,9 +124,9 @@
 **Time:** 2-3 hours
 
 **Path:**
-1. SDK: [TESTING.md](./TESTING.md) (strategy)
-2. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_IMPLEMENTATION_EXAMPLES.md) - Testing section (examples)
-3. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/ACTION_ITEMS.md) - Phase 4 (test checklist)
+1. SDK: [TESTING.md](testing-guide.md) (strategy)
+2. CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) - Testing section (examples)
+3. CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md) - Phase 4 (test checklist)
 
 ---
 
@@ -237,25 +237,25 @@ Example Files (to create):
 
 ### Option 1: Understand First (2-3 hours)
 1. Read SDK: [README.md](./README.md)
-2. Read SDK: [01-ARCHITECTURE.md](./01-ARCHITECTURE.md)
-3. Scan CoreProvider: [HOOKS_INTEGRATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_INTEGRATION_GUIDE.md)
+2. Read SDK: [01-ARCHITECTURE.md](../architecture/architecture.md)
+3. Scan CoreProvider: [HOOKS_INTEGRATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
 
 **Result:** Deep understanding
 
 ---
 
 ### Option 2: Implement Now (8-10 hours)
-1. Scan SDK: [02-IMPLEMENTATION.md](./02-IMPLEMENTATION.md)
-2. Follow CoreProvider: [HOOKS_MODIFICATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_MODIFICATION_GUIDE.md)
-3. Copy from CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_IMPLEMENTATION_EXAMPLES.md)
-4. Follow CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/ACTION_ITEMS.md)
+1. Scan SDK: [02-IMPLEMENTATION.md](advanced-patterns.md)
+2. Follow CoreProvider: [HOOKS_MODIFICATION_GUIDE.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
+3. Copy from CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
+4. Follow CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
 
 **Result:** Complete working system
 
 ---
 
 ### Option 3: Quick Reference (10 min)
-1. SDK: [QUICK_REFERENCE.md](./QUICK_REFERENCE.md)
+1. SDK: [QUICK_REFERENCE.md](../quick-reference.md)
 
 **Result:** Quick lookup for signatures and patterns
 
@@ -266,10 +266,10 @@ Example Files (to create):
 **Choose your starting point:**
 
 - **New to hooks?** → SDK: [README.md](./README.md)
-- **Want to implement?** → CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/ACTION_ITEMS.md)
-- **Need code?** → CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/HOOKS_IMPLEMENTATION_EXAMPLES.md)
-- **Quick lookup?** → SDK: [QUICK_REFERENCE.md](./QUICK_REFERENCE.md)
-- **Full details?** → SDK: [01-ARCHITECTURE.md](./01-ARCHITECTURE.md)
+- **Want to implement?** → CoreProvider: [ACTION_ITEMS.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
+- **Need code?** → CoreProvider: [HOOKS_IMPLEMENTATION_EXAMPLES.md](../../../ITL.ControlPlane.ResourceProvider.Core/README.md)
+- **Quick lookup?** → SDK: [QUICK_REFERENCE.md](../quick-reference.md)
+- **Full details?** → SDK: [01-ARCHITECTURE.md](../architecture/architecture.md)
 
 ---
 

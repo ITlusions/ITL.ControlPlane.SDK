@@ -579,10 +579,10 @@ curl http://localhost:8000/health
 
 ## Related Documentation
 
-- [13-DEPLOYMENT.md](13-DEPLOYMENT.md) - Deployment strategies
-- [14-MONITORING.md](14-MONITORING.md) - Monitoring deployments
-- [19-DATA_MODELING_AND_SCHEMAS.md](19-DATA_MODELING_AND_SCHEMAS.md) - Schema design
-- [02-INSTALLATION.md](../02-INSTALLATION.md) - SDK installation
+- [13-DEPLOYMENT.md](deployment.md) - Deployment strategies
+- [14-MONITORING.md](monitoring.md) - Monitoring deployments
+- [19-DATA_MODELING_AND_SCHEMAS.md](data-modeling-and-schemas.md) - Schema design
+- [02-INSTALLATION.md](../getting-started/README.md) - SDK installation
 
 ---
 

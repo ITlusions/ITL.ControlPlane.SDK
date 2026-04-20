@@ -475,10 +475,10 @@ async def test_request():
 
 ## Related Documentation
 
-- [06-HANDLER_MIXINS.md](../06-HANDLER_MIXINS.md) - What handlers do
-- [10-ADVANCED_PATTERNS.md](../10-GUIDES/10-ADVANCED_PATTERNS.md) - Complex patterns
-- [SDK API Reference](../03-API_REFERENCE.md) - All available methods
+- [06-HANDLER_MIXINS.md](../features/handler-mixins.md) - What handlers do
+- [10-ADVANCED_PATTERNS.md](../guides/advanced-patterns.md) - Complex patterns
+- [SDK API Reference](../guides/rest-api-reference.md) - All available methods
 
 ---
 
-See [15-EXAMPLES](../15-EXAMPLES/) for complete working test suites.
+See [15-EXAMPLES](../../examples/) for complete working test suites.

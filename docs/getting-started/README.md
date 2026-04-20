@@ -287,15 +287,15 @@ rg_id, config = handler.create_resource(
 ## Next Steps
 
 1. **Explore Examples**
-   - See [`examples/`](../examples/) for complete examples
+   - See [`examples/`](../../examples/) for complete examples
    - Read [`docs/`](../) for detailed architecture
 
 2. **Build a Provider**
-   - See [Provider Guide](../02-RESOURCE_ID_STRATEGY.md)
+   - See [Provider Guide](../archive/02-RESOURCE_ID_STRATEGY.md)
    - Implement your own resource types
 
 3. **Set Up Web API**
-   - Read [FastAPI Guide](../05-FASTAPI_MODULE.md)
+   - Read [FastAPI Guide](../archive/05-FASTAPI_MODULE.md)
    - Create REST endpoints
 
 4. **Add Database**
@@ -362,7 +362,7 @@ handler.create_resource(
 ## Need Help?
 
 - **API Reference**: `python -c "from itl_controlplane_sdk import *; help()"`
-- **Examples**: [`examples/`](../examples/)
+- **Examples**: [`examples/`](../../examples/)
 - **Docs**: [`docs/`](../)
 - **GitHub**: https://github.com/ITlusions/ITL.ControlPlane.SDK
 - **Issues**: https://github.com/ITlusions/ITL.ControlPlane.SDK/issues
@@ -373,9 +373,9 @@ handler.create_resource(
 
 Now that you've completed the basics, explore:
 
-- **[Scoped Resources](../01-SCOPED_RESOURCE_HANDLER.md)** - Advanced scoping patterns
-- **[Big 3 Handler Mixins](../12-RESOURCE_GROUP_BIG_3_INTEGRATION.md)** - Validation, timestamps, state
-- **[FastAPI Integration](../06-FASTAPI_INTEGRATION.md)** - Build web APIs
-- **[Custom Providers](../17-BIG_3_IMPLEMENTATION.md)** - Implement your resource types
+- **[Scoped Resources](../archive/01-SCOPED_RESOURCE_HANDLER.md)** - Advanced scoping patterns
+- **[Big 3 Handler Mixins](../archive/12-RESOURCE_GROUP_BIG_3_INTEGRATION.md)** - Validation, timestamps, state
+- **[FastAPI Integration](../archive/06-FASTAPI_INTEGRATION.md)** - Build web APIs
+- **[Custom Providers](../archive/17-BIG_3_IMPLEMENTATION.md)** - Implement your resource types
 
 Happy coding! 

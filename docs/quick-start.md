@@ -1,4 +1,4 @@
-# Quick Start: ITL ControlPlane SDK in 5 Minutes
+﻿# Quick Start: ITL ControlPlane SDK in 5 Minutes
 
 Get up and running with the ITL ControlPlane SDK in just 5 minutes.
 
@@ -159,11 +159,11 @@ python main.py
 
 ## Next Steps
 
-- **Advanced Features**: See [10-ADVANCED_PATTERNS.md](../10-GUIDES/10-ADVANCED_PATTERNS.md)
-- **Scope-Aware Resources**: See [03-CORE_CONCEPTS.md](../03-CORE_CONCEPTS.md)
-- **Handler Patterns**: See [06-HANDLER_MIXINS.md](../06-HANDLER_MIXINS.md)
-- **FastAPI Integration**: See [08-API_ENDPOINTS.md](../08-API_ENDPOINTS.md)
-- **Complete Examples**: See [15-EXAMPLES](../15-EXAMPLES/)
+- **Advanced Features**: See [10-ADVANCED_PATTERNS.md](guides/advanced-patterns.md)
+- **Scope-Aware Resources**: See [03-CORE_CONCEPTS.md](architecture/core-concepts.md)
+- **Handler Patterns**: See [06-HANDLER_MIXINS.md](features/handler-mixins.md)
+- **FastAPI Integration**: See [08-API_ENDPOINTS.md](features/api-endpoints.md)
+- **Complete Examples**: See [15-EXAMPLES](../examples/)
 
 ---
 
