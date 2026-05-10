@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "westeurope"
+    },
+    "environment": {
+      "type": "string",
+      "defaultValue": "production"
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "defaultValue": "1.30"
+    }
+  },
+  "resources": [
+    {
+      "type": "ITL.Resources/resourceGroups",
+      "apiVersion": "2024-01-01",
+      "name": "acme-prod-rg",
+      "location": "[parameters('location')]",
+      "tags": {
+        "environment": "[parameters('environment')]",
+        "owner": "platform-team"
+      }
+    },
+    {
+      "type": "ITL.Compute/managedClusters",
+      "apiVersion": "2024-01-01",
+      "name": "acme-prod-aks",
+      "location": "[parameters('location')]",
+      "resourceGroup": "acme-prod-rg",
+      "properties": {
+        "kubernetesVersion": "[parameters('kubernetesVersion')]",
+        "agentPoolProfiles": [
+          {
+            "name": "system",
+            "count": 3,
+            "vmSize": "Standard_D4s_v5"
+          }
+        ]
+      }
+    },
+    {
+      "type": "ITL.Security/pricings",
+      "apiVersion": "2024-01-01",
+      "name": "Containers",
+      "properties": { "pricingTier": "Standard" }
+    },
+    {
+      "type": "ITL.Security/pricings",
+      "apiVersion": "2024-01-01",
+      "name": "VirtualMachines",
+      "properties": { "pricingTier": "Standard" }
+    },
+    {
+      "type": "ITL.Security/pricings",
+      "apiVersion": "2024-01-01",
+      "name": "StorageAccounts",
+      "properties": { "pricingTier": "Standard" }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+name: itl-enterprise-multitenant
+runtime: python
+description: >
+  Enterprise multi-tenant omgeving — Management Groups per afdeling,
+  aparte landing zones per team, Defender op alle subscriptions.

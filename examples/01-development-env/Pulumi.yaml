@@ -1,0 +1,5 @@
+name: itl-dev-landing-zone
+runtime: python
+description: >
+  Minimale ontwikkelomgeving — één resource group, geen AKS, geen Defender.
+  Geschikt voor feature branches en exploratief werk.

@@ -1,0 +1,6 @@
+name: itl-blue-green-aks
+runtime: python
+description: >
+  Blue/green AKS deployment met twee clusters achter één Traffic Manager profiel.
+  Flux stuurt productieverkeer naar blue; green wordt geupgrade en getest
+  voordat de switch plaatsvindt.

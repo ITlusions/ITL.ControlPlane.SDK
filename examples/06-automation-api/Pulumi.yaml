@@ -1,0 +1,6 @@
+name: itl-automation-api
+runtime: python
+description: >
+  Pulumi Automation API voorbeeld — programmatisch stacks deployen zonder
+  CLI. Geschikt voor CI/CD pipelines, SaaS tenant provisioning en
+  self-service portals.

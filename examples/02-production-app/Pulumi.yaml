@@ -1,0 +1,5 @@
+name: itl-production-app
+runtime: python
+description: >
+  Productie applicatieplatform — volledige landing zone met AKS, GitOps via
+  Flux, Defender for Cloud en een delete-lock op de resource group.

@@ -1,0 +1,6 @@
+name: itl-multi-region-dr
+runtime: python
+description: >
+  Multi-region disaster recovery setup: primaire regio westeurope, failover
+  northeurope. Geo-replicatie via Azure Traffic Manager met automatische
+  failover. Beide regios draaien een AKS cluster gestuurd door Flux.

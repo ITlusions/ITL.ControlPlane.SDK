@@ -163,6 +163,19 @@ _LAZY_IMPORTS: dict[str, tuple[str, str]] = {
     "MessageBroker":             ("itl_controlplane_sdk.messaging", "MessageBroker"),
     "InMemoryBroker":            ("itl_controlplane_sdk.messaging", "InMemoryBroker"),
     "MessageBrokerManager":      ("itl_controlplane_sdk.messaging", "MessageBrokerManager"),
+    # IaC renderers (pure code generation — no extra runtime deps required)
+    "get_renderer":              ("itl_controlplane_sdk.iac", "get_renderer"),
+    "IaCRenderer":               ("itl_controlplane_sdk.iac", "IaCRenderer"),
+    "RenderContext":             ("itl_controlplane_sdk.iac", "RenderContext"),
+    "RenderOutput":              ("itl_controlplane_sdk.iac", "RenderOutput"),
+    "RendererType":              ("itl_controlplane_sdk.iac", "RendererType"),
+    "IaCPlatform":               ("itl_controlplane_sdk.iac", "Platform"),
+    "IaCComponentType":          ("itl_controlplane_sdk.iac", "ComponentType"),
+    "ARMRenderer":               ("itl_controlplane_sdk.iac", "ARMRenderer"),
+    "BicepRenderer":             ("itl_controlplane_sdk.iac", "BicepRenderer"),
+    "TerraformRenderer":         ("itl_controlplane_sdk.iac", "TerraformRenderer"),
+    "PulumiRenderer":            ("itl_controlplane_sdk.iac", "PulumiRenderer"),
+    "ITLAzureStack":             ("itl_controlplane_sdk.pulumi.azure", "ITLAzureStack"),
 }
 
 
