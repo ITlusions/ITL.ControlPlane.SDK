@@ -34,6 +34,15 @@ pulumi = [
     "pulumi>=3.0.0",
     "pulumi-kubernetes>=4.0.0"
 ]
+iac = [
+    # ARM and Bicep: no extra runtime deps (pure string generation)
+    # Terraform: no extra runtime deps (pure HCL generation)
+    # Pulumi code-gen: no extra runtime deps (generates Python files, does not run them)
+]
+iac-azure = [
+    "itl-controlplane-sdk[iac,pulumi]",
+    "pulumi-azure-native>=2.0.0"
+]
 graphdb = [
     # In-memory graph database — no extra dependencies
 ]
@@ -72,7 +81,7 @@ cli = [
 ]
 # Convenience: install everything
 all = [
-    "itl-controlplane-sdk[identity,fastapi,pulumi,graphdb,persistence,persistence-sqlalchemy,messaging,cli]"
+    "itl-controlplane-sdk[identity,fastapi,pulumi,iac,graphdb,persistence,persistence-sqlalchemy,messaging,cli]"
 ]
 # --- Development extras ---
 dev = [
@@ -100,6 +109,11 @@ where = ["src"]
 
 [tool.setuptools.package-dir]
 "" = "src"
+
+[project.scripts]
+itl-arm-deploy = "itl_controlplane_sdk.pulumi.arm_deployment:_main"
+itl-arm-convert = "itl_controlplane_sdk.pulumi.arm_converter:_main"
+itl-seed = "itl_controlplane_sdk.cli.seed:cli"
 
 [tool.black]
 line-length = 100
