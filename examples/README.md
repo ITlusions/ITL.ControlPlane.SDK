@@ -62,6 +62,41 @@ Production-ready examples organized by **resource type** and **difficulty level*
 |-------|------|-------------|
 | Intermediate | [pulumi_deployment_example.py](deployment/intermediate/pulumi_deployment_example.py) | Pulumi IaC — multi-environment deploy (dev, staging, production) |
 
+### pulumi/ (DSL — Pulumi ComponentResource)
+
+Productie-klare Pulumi programma's die dezelfde patronen gebruiken als het ITL platform zelf.
+Elk component ondersteunt `azure_enabled` (deployt naar Azure) én `itl_enabled` (registreert in ITL ControlPlane).
+
+| # | Folder | Use case | Componenten |
+|---|--------|----------|-------------|
+| 01 | [01-development-env](01-development-env/) | Feature branch / sandbox | `ResourceGroup` |
+| 02 | [02-production-app](02-production-app/) | Productie Kubernetes platform | `ITLLandingZone` · `AKSCluster` · `DefenderInitiative` |
+| 03 | [03-enterprise-multitenant](03-enterprise-multitenant/) | Multi-afdeling governance | `ManagementGroup` · `ITLLandingZone` · `AKSCluster` · `DefenderInitiative` |
+| 04 | [04-blue-green-aks](04-blue-green-aks/) | Zero-downtime cluster upgrades | `ResourceGroup` · `AKSCluster` (×2) · Traffic Manager |
+| 05 | [05-multi-region-dr](05-multi-region-dr/) | HA/DR, RPO < 1 min | `ResourceGroup` (×2) · `AKSCluster` (×2) · `DefenderInitiative` · Traffic Manager |
+| 06 | [06-automation-api](06-automation-api/) | CI/CD / SaaS tenant provisioning | Pulumi Automation API + inline program |
+
+**Platformpatroon — dual-target deployment:**
+```python
+from itl_controlplane_sdk.pulumi import ResourceGroup, AKSCluster, DefenderInitiative
+
+rg = ResourceGroup(
+    "mijn-rg",
+    location="westeurope",
+    environment="production",
+    azure_enabled=True,   # → Azure ResourceGroup + delete-lock
+    itl_enabled=True,     # → ITL ControlPlane API PUT /api/v1/resource-group/mijn-rg
+)
+```
+
+**Snelstart:**
+```bash
+cd 01-development-env
+pulumi stack init dev
+pulumi config set azure-native:location westeurope
+pulumi up
+```
+
 ### tests/
 | Level | File | Description |
 |-------|------|-------------|
@@ -169,6 +204,14 @@ Learn testing patterns and location validation.
 ### Path 6: Deploy Infrastructure (1 hour)
 1. [core/quickstart.py](core/quickstart.py) — Basics
 2. [deployment/intermediate/pulumi_deployment_example.py](deployment/intermediate/pulumi_deployment_example.py) — Multi-env deployment
+
+### Path 7: Pulumi DSL — van sandbox tot enterprise (2 uur)
+1. [01-development-env/__main__.py](01-development-env/__main__.py) — Minimale `ResourceGroup`
+2. [02-production-app/__main__.py](02-production-app/__main__.py) — `ITLLandingZone` + `AKSCluster` + `DefenderInitiative`
+3. [03-enterprise-multitenant/__main__.py](03-enterprise-multitenant/__main__.py) — `ManagementGroup` hiërarchie + meerdere subscriptions
+4. [04-blue-green-aks/__main__.py](04-blue-green-aks/__main__.py) — Blue/green met Traffic Manager priority routing
+5. [05-multi-region-dr/__main__.py](05-multi-region-dr/__main__.py) — Multi-region DR met automatische failover
+6. [06-automation-api/provision_tenant.py](06-automation-api/provision_tenant.py) — Pulumi Automation API voor programmatische tenant provisioning
 
 ## Key Concepts
 

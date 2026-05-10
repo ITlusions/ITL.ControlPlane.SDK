@@ -1,8 +1,9 @@
 # Pulumi Integration Roadmap
 
-**Status**: Open  
-**Version**: 1.0  
+**Status**: In Progress  
+**Version**: 1.2  
 **Created**: 2026-04-20  
+**Last Updated**: 2026-04-21  
 **Issues**: [#11](https://github.com/ITlusions/ITL.ControlPlane.SDK/issues/11) · [#12](https://github.com/ITlusions/ITL.ControlPlane.SDK/issues/12)
 
 ---
@@ -22,9 +23,54 @@ itl-controlplane-pulumi   ← new standalone package (#12)
 
 ---
 
+## Architecture Decision: SDK vs Resource Provider split
+
+**Decision date**: 2026-04-21
+
+The `pulumi/` module must be split across two responsibility layers.  The SDK owns the **contract**; resource providers own the **implementations**.
+
+### SDK owns (`ITL.ControlPanel.SDK`)
+
+| Module | Responsibility |
+|--------|---------------|
+| `pulumi/component.py` | `ITLPulumiComponent` ABC + `PulumiITLNativeProvider` dynamic provider |
+| `pulumi/arm_deployment.py` | `ITLARMDeployment` — direct ARM→ITL deploy client |
+| `pulumi/arm_converter.py` | `ARMConverter` — ARM/Bicep template → Pulumi Python codegen |
+| `pulumi/stack.py` | `PulumiStack`, `StackConfig`, `StackEnvironment` |
+| `pulumi/deployment.py` | `PulumiDeployment` — Automation API wrapper |
+| `pulumi/resource_mapper.py` | `ResourceMapper` |
+
+### Resource Providers own (per provider repo)
+
+| Module | Repo | ITL namespace |
+|--------|------|---------------|
+| `pulumi/resource_group.py` | `ITL.ControlPlane.ResourceProvider.Core` | `ITL.Resources` |
+| `pulumi/management_group.py` | `ITL.ControlPlane.ResourceProvider.Core` | `ITL.Management` |
+| `pulumi/landing_zone.py` | `ITL.ControlPlane.ResourceProvider.Core` | composed |
+| `pulumi/aks.py` | `ITL.ControlPlane.ResourceProvider.Compute` | `ITL.Compute` |
+| `pulumi/virtual_machine.py` | `ITL.ControlPlane.ResourceProvider.Compute` | `ITL.Compute` |
+| `pulumi/defender.py` | `ITL.ControlPlane.ResourceProvider.IAM` | `ITL.Security` |
+
+**Import chain** (no circular deps):
+```python
+# Resource provider imports from SDK
+from itl_controlplane_sdk.pulumi import ITLPulumiComponent
+
+class AKSCluster(ITLPulumiComponent):   # lives in ResourceProvider.Compute
+    ...
+
+# End-user Pulumi program imports from provider packages
+from itl_controlplane_sdk_compute.pulumi import AKSCluster
+from itl_controlplane_sdk_core.pulumi import ResourceGroup, ITLLandingZone
+```
+
+**Rule**: Anything that references a specific `ITL.*` namespace belongs in the provider for that namespace, not the SDK.
+
+---
+
 ## CP-SDK-011: Pulumi Dual-Target Module — `#11`
 
-**Status**: Open  
+**Status**: ✅ Core complete — resource provider split pending  
 **Location**: `pulumi/` module in `ITL.ControlPlane.SDK`  
 **Related**: ITL.ControlPlane.PolicyBuilder #9 (Pulumi serializer, input format)
 
@@ -49,13 +95,31 @@ class ITLPulumiComponent(pulumi.ComponentResource):
     def _deploy_to_itl(self, resource_dict: dict): ...
 ```
 
-**Components to implement**:
+**Components implemented** (temporarily in SDK, to migrate per architecture decision above):
 
-| Component | Purpose |
-|-----------|---------|
-| `DefenderInitiative` | Deploy Defender for Cloud initiative to Azure and/or ITL ControlPlane |
-| `ITLLandingZone` | Full landing zone: governance, security, observability, networking |
-| `AKSCluster` | AKS with Flux, Defender, logging pre-configured |
+| Component | Location now | Target location | Status |
+|-----------|-------------|-----------------|--------|
+| `DefenderInitiative` | `pulumi/defender.py` | ResourceProvider.IAM | ✅ Done, pending move |
+| `ITLLandingZone` | `pulumi/landing_zone.py` | ResourceProvider.Core | ✅ Done, pending move |
+| `AKSCluster` | `pulumi/aks.py` | ResourceProvider.Compute | ✅ Done, pending move |
+| `ResourceGroup` | `pulumi/resource_group.py` | ResourceProvider.Core | ✅ Done, pending move |
+| `ManagementGroup` | `pulumi/management_group.py` | ResourceProvider.Core | ✅ Done, pending move |
+
+**ARM tooling** (stays in SDK):
+
+| Module | Status | Description |
+|--------|--------|-------------|
+| `arm_converter.py` | ✅ Done | ARM/Bicep → Pulumi Python codegen CLI (`itl-arm-convert`) |
+| `arm_deployment.py` | ✅ Done | Direct ARM→ITL deployment client, no Pulumi needed (`itl-arm-deploy`) |
+
+**ITL namespace support** — both `Microsoft.*` and `ITL.*` ARM types are accepted and normalised:
+
+| ITL type | Microsoft equivalent |
+|----------|---------------------|
+| `ITL.Resources/resourceGroups` | `Microsoft.Resources/resourceGroups` |
+| `ITL.Compute/managedClusters` | `Microsoft.ContainerService/managedClusters` |
+| `ITL.Security/pricings` | `Microsoft.Security/pricings` |
+| `ITL.Management/managementGroups` | `Microsoft.Management/managementGroups` |
 
 **Usage**:
 ```python
@@ -76,6 +140,16 @@ landing_zone = ITLLandingZone("payments",
 )
 ```
 
+**ARM deploy (no Pulumi required)**:
+```bash
+# Same UX as az deployment group create
+itl-arm-deploy create \
+    --name prod-deployment \
+    --template-file template.json \
+    --parameters @params.json \
+    --subscription-id 00000000-...
+```
+
 **What ITL ControlPlane adds over Azure-only**:
 
 | Capability | Azure | ITL ControlPlane |
@@ -88,11 +162,19 @@ landing_zone = ITLLandingZone("payments",
 
 ### Acceptance Criteria
 
-- [ ] `ITLLandingZone` deploys to Azure when `azure_enabled=True`
-- [ ] `ITLLandingZone` calls ITL ControlPlane API when `itl_enabled=True`
-- [ ] Both targets can be active simultaneously without conflict
-- [ ] `DefenderInitiative` wraps `itl_policy_builder.templates.defender` — no logic duplication
-- [ ] `AKSCluster` accepts `flux_repo` and applies correct platform profile
+- [x] `ITLPulumiComponent` base class implemented with `azure_enabled` / `itl_enabled` flags
+- [x] `PulumiITLNativeProvider` dynamic provider renamed from `_ITLRegistrationProvider` (public API)
+- [x] `ITLLandingZone` deploys to Azure when `azure_enabled=True`
+- [x] `ITLLandingZone` calls ITL ControlPlane API when `itl_enabled=True`
+- [x] Both targets can be active simultaneously without conflict
+- [x] `DefenderInitiative` wraps `itl_policy_builder.templates.defender` — no logic duplication
+- [x] `AKSCluster` accepts `flux_repo` and applies correct platform profile
+- [x] `ARMConverter` — ARM templates → Pulumi Python code
+- [x] `ITLARMDeployment` — ARM templates → ITL ControlPlane (direct, no Pulumi)
+- [x] CLI entry-points: `itl-arm-deploy`, `itl-arm-convert`
+- [x] Both `ITL.*` and `Microsoft.*` namespace types supported
+- [x] 6 advanced example Pulumi programs created (`examples/pulumi/`)
+- [ ] Resource-specific components moved to respective resource provider repos
 - [ ] Unit tests mock both target APIs independently
 
 ---
@@ -169,8 +251,16 @@ With this package:
 ## Implementation Order
 
 ```
-#11  Pulumi dual-target module (in SDK)    ← build first; #12 depends on it
-#12  ITL.ControlPlane.Pulumi package       ← thin wrapper around #11
+#11  Pulumi dual-target module (in SDK)              ← ✅ Core done
+     └─ Resource provider split                      ← next step
+          ├─ aks.py → ITL.ControlPlane.ResourceProvider.Compute
+          ├─ defender.py → ITL.ControlPlane.ResourceProvider.IAM
+          ├─ resource_group.py → ITL.ControlPlane.ResourceProvider.Core
+          ├─ management_group.py → ITL.ControlPlane.ResourceProvider.Core
+          └─ landing_zone.py → ITL.ControlPlane.ResourceProvider.Core
+
+#12  ITL.ControlPlane.Pulumi package                 ← after split complete
+     └─ thin wrapper that re-exports from provider packages
 ```
 
 **Note**: #11 also depends on ITL.ControlPlane.PolicyBuilder #9 (Pulumi serializer) being available.
