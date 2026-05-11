@@ -1,5 +1,10 @@
 # ITL ControlPlane SDK
 
+![Status](https://img.shields.io/badge/status-alpha-orange?style=flat-square)
+![Development](https://img.shields.io/badge/development-in%20progress-yellow?style=flat-square)
+
+> **Alpha** — This project is under active development. APIs, data models, and behaviour may change without notice.
+
 The core SDK framework for ITL ControlPlane, providing a complete resource management platform with identity integration, scoped resources, and production-ready handler patterns.
 
 ## Features
