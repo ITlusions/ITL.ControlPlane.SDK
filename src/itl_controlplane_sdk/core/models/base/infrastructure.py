@@ -1,4 +1,4 @@
-"""
+﻿"""
 Infrastructure dataclass models for the ITL ControlPlane SDK.
 
 Domain models representing core infrastructure resources:
@@ -6,7 +6,7 @@ Tag, ResourceGroup, ManagementGroup, Deployment, Subscription,
 Location, ExtendedLocation, Policy, and ProviderConfiguration.
 """
 from typing import Dict, List, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from dataclasses import dataclass, field
 
 from itl_controlplane_sdk.core.models.base.enums import ResourceState, DeploymentState
@@ -18,7 +18,7 @@ class Tag:
     key: str
     value: str
     resource_id: Optional[str] = None
-    created_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 @dataclass
@@ -34,8 +34,8 @@ class ResourceGroup:
     description: Optional[str] = None
     tags: Dict[str, str] = field(default_factory=dict)
     state: ResourceState = ResourceState.ACTIVE
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     owner: Optional[str] = None
     properties: Dict[str, Any] = field(default_factory=dict)
 
@@ -52,8 +52,8 @@ class ManagementGroup:
     parent_id: Optional[str] = None
     description: Optional[str] = None
     policies: List[str] = field(default_factory=list)
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     properties: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -69,8 +69,8 @@ class Deployment:
     parameters: Dict[str, Any] = field(default_factory=dict)
     state: DeploymentState = DeploymentState.RUNNING
     resource_group_id: Optional[str] = None
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     created_by: Optional[str] = None
     properties: Dict[str, Any] = field(default_factory=dict)
     error_details: Optional[str] = None
@@ -90,8 +90,8 @@ class Subscription:
     state: ResourceState = ResourceState.ACTIVE
     quota_cores: int = 100
     quota_storage_gb: int = 1000
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     owner: Optional[str] = None
     properties: Dict[str, Any] = field(default_factory=dict)
 
@@ -139,8 +139,8 @@ class Policy:
     rules: Dict[str, Any] = field(default_factory=dict)
     enabled: bool = True
     scope: Optional[str] = None
-    created_at: datetime = field(default_factory=datetime.utcnow)
-    updated_at: datetime = field(default_factory=datetime.utcnow)
+    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    updated_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     created_by: Optional[str] = None
     properties: Dict[str, Any] = field(default_factory=dict)
 

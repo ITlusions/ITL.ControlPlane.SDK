@@ -1,11 +1,11 @@
-"""
+﻿"""
 Graph Relationship type for ITL ControlPlane SDK.
 
 Relationships represent connections between nodes in the resource graph.
 """
 from dataclasses import dataclass, field
 from typing import Dict, Any
-from datetime import datetime
+from datetime import datetime, timezone
 import uuid
 
 from .enums import RelationshipType
@@ -19,7 +19,7 @@ class GraphRelationship:
     target_id: str
     relationship_type: RelationshipType
     properties: Dict[str, Any] = field(default_factory=dict)
-    created_time: datetime = field(default_factory=datetime.utcnow)
+    created_time: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
     def __post_init__(self):
         if not self.id:

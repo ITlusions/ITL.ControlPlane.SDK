@@ -1,4 +1,4 @@
-"""
+﻿"""
 Tenant Management Example
 
 Demonstrates the multi-tenancy model in the ITL ControlPlane SDK:
@@ -12,7 +12,7 @@ A Tenant = a Keycloak realm. Each tenant provides complete isolation
 for users, roles, and organizations within it.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from uuid import uuid4
 
 from itl_controlplane_sdk.identity.tenant import (
@@ -173,7 +173,7 @@ def example_3_tenant_lifecycle():
     # Transition to ACTIVE (after Keycloak realm is created)
     tenant.status = TenantStatus.ACTIVE
     tenant.keycloak_realm_id = str(uuid4())
-    tenant.updated_at = datetime.utcnow()
+    tenant.updated_at = datetime.now(timezone.utc)
     tenant.updated_by = "system-admin"
     print(f"\n→ Status: {tenant.status.value}")
     print(f"  Active:  {tenant.is_active()}")
@@ -181,7 +181,7 @@ def example_3_tenant_lifecycle():
 
     # Suspend tenant
     tenant.status = TenantStatus.SUSPENDED
-    tenant.updated_at = datetime.utcnow()
+    tenant.updated_at = datetime.now(timezone.utc)
     tenant.updated_by = "security-team"
     print(f"\n→ Status: {tenant.status.value}")
     print(f"  Active:     {tenant.is_active()}")
@@ -189,11 +189,11 @@ def example_3_tenant_lifecycle():
 
     # Soft delete
     tenant.status = TenantStatus.DELETING
-    tenant.updated_at = datetime.utcnow()
+    tenant.updated_at = datetime.now(timezone.utc)
     print(f"\n→ Status: {tenant.status.value}")
 
     tenant.status = TenantStatus.DELETED
-    tenant.updated_at = datetime.utcnow()
+    tenant.updated_at = datetime.now(timezone.utc)
     print(f"→ Status: {tenant.status.value}")
     print(f"  Active:     {tenant.is_active()}")
     print(f"  Deletable:  {tenant.is_deletable()}")

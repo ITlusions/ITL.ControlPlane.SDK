@@ -1,4 +1,4 @@
-"""
+﻿"""
 FastAPI App Factory Example
 
 Demonstrates building a complete API application using the SDK's AppFactory:
@@ -17,7 +17,7 @@ import logging
 from typing import Dict, Any
 from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
-from datetime import datetime
+from datetime import datetime, timezone
 
 from itl_controlplane_sdk.api import AppFactory, FastAPIConfig
 
@@ -65,7 +65,7 @@ async def create_resource(body: Dict[str, Any]):
     return {
         "name": body.get("name", "unnamed"),
         "provisioning_state": "Creating",
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat() + "Z",
     }
 
 

@@ -1,0 +1,236 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "Ga direct naar inhoud" [ref=e4] [cursor=pointer]:
+      - /url: "#content-wrapper"
+    - link "Rijksoverheid" [ref=e7] [cursor=pointer]:
+      - /url: /
+      - figure "Rijksoverheid" [ref=e8]:
+        - img "Logo Rijksoverheid – Naar de homepage van rijksoverheid.nl" [ref=e9]
+        - generic [ref=e11]: Rijksoverheid
+  - generic [ref=e13]:
+    - navigation "U bevindt zich hier:" [ref=e14]:
+      - generic [ref=e15]: "U bevindt zich hier:"
+      - link "Home " [ref=e16] [cursor=pointer]:
+        - /url: /
+      - link "Ministeries " [ref=e17] [cursor=pointer]:
+        - /url: /ministeries
+      - generic [ref=e18]: Ministerie van Binnenlandse Zaken en Koninkrijksrelaties
+    - search [ref=e19]:
+      - generic:
+        - generic [ref=e20]: Zoeken binnen Rijksoverheid.nl
+        - textbox "Zoeken binnen Rijksoverheid.nl":
+          - /placeholder: Zoeken
+        - button "Open zoekveld " [ref=e21] [cursor=pointer]
+  - main [ref=e22]:
+    - generic [ref=e25]:
+      - figure:
+        - generic [ref=e26]: "Beeld: John van Helvert"
+    - list [ref=e29]:
+      - listitem [ref=e30]:
+        - link " Organisatie" [ref=e31] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/organisatie
+      - listitem [ref=e32]:
+        - link " Contact met BZK" [ref=e33] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/contact
+      - listitem [ref=e34]:
+        - link " Evenementen" [ref=e35] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/evenementen
+      - listitem [ref=e36]:
+        - link " Privacy" [ref=e37] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/privacy
+      - listitem [ref=e38]:
+        - link " Over BZK" [ref=e39] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/verhaal-van-bzk
+      - listitem [ref=e40]:
+        - link " Agenda" [ref=e41] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/agenda
+      - listitem [ref=e42]:
+        - link " Nieuws" [ref=e43] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/nieuws
+      - listitem [ref=e44]:
+        - link " Onderwerpen" [ref=e45] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/onderwerpen
+      - listitem [ref=e46]:
+        - link " Documenten" [ref=e47] [cursor=pointer]:
+          - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/documenten
+      - listitem [ref=e48]:
+        - link " Informatie voor de pers" [ref=e49] [cursor=pointer]:
+          - /url: /persinformatie-ministerie-van-bzk
+    - generic [ref=e50]:
+      - heading "Ministerie van Binnenlandse Zaken en Koninkrijksrelaties" [level=1] [ref=e51]
+      - paragraph [ref=e54]: "Werken aan de basis van onze samenleving. Een basis waarop iedereen prettig kan leven en wonen. Daar zet het ministerie van Binnenlandse Zaken en Koninkrijksrelaties zich elke dag voor in. In Nederland en in het Caribische deel van ons Koninkrijk. Ons grootste goed is daarbij het uitgangspunt: de Grondwet en wat wij daarin hebben afgesproken. Dat iedereen meetelt bijvoorbeeld. Dat je altijd en overal kan zijn wie je bent, kan vinden wat je vindt, gelijke kansen hebt en mee kan doen. Thuis, op school en op het werk. Dat iedereen een dak boven het hoofd heeft en kan wonen en werken, kan leven, in een prettige en veilige omgeving. We doen dat voor de samenleving en werken tegelijkertijd aan de basis voor de hele Rijksoverheid. Zodat ook andere ministeries hun werk voor Nederland goed kunnen doen."
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - heading "Uitgelicht" [level=2] [ref=e57]
+          - link "Introductiedossier Introductiedossier om de aangetreden bewindspersonen wegwijs te maken bij het ministerie van Binnenlandse Zaken en Koninkrijksrelaties." [ref=e59] [cursor=pointer]:
+            - /url: /documenten/richtlijnen/2026/02/23/introductiedossier-bewindspersonen-ministerie-van-bzk
+            - heading "Introductiedossier" [level=3] [ref=e60]
+            - figure [ref=e62]:
+              - generic [ref=e63]: "Beeld: John van Helvert"
+            - paragraph [ref=e65]: Introductiedossier om de aangetreden bewindspersonen wegwijs te maken bij het ministerie van Binnenlandse Zaken en Koninkrijksrelaties.
+          - link "Democratie" [ref=e67] [cursor=pointer]:
+            - /url: /onderwerpen/democratie
+            - generic [ref=e68]: Democratie
+            - figure [ref=e70]:
+              - generic [ref=e71]: "Beeld: ©Ministerie van Binnenlandse Zaken"
+          - link "Caribisch deel van het Koninkrijk" [ref=e73] [cursor=pointer]:
+            - /url: /onderwerpen/caribische-deel-van-het-koninkrijk
+            - generic [ref=e74]: Caribisch deel van het Koninkrijk
+            - figure [ref=e76]:
+              - generic [ref=e77]: "Beeld: ©Hollandse Hoogte"
+        - generic [ref=e78]:
+          - heading "Bewindspersonen" [level=2] [ref=e79]
+          - link "Pieter Heerma Minister van Binnenlandse Zaken en Koninkrijksrelaties" [ref=e81] [cursor=pointer]:
+            - /url: /regering/bewindspersonen/pieter-heerma
+            - heading "Pieter Heerma" [level=3] [ref=e82]
+            - figure [ref=e84]:
+              - generic [ref=e85]: "Beeld: Martijn Beekman"
+            - paragraph [ref=e87]: Minister van Binnenlandse Zaken en Koninkrijksrelaties
+          - link "Elanor Boekholt-O'Sullivan Minister van Volkshuisvesting en Ruimtelijke Ordening" [ref=e89] [cursor=pointer]:
+            - /url: /regering/bewindspersonen/elanor-boekholt-osullivan
+            - heading "Elanor Boekholt-O'Sullivan" [level=3] [ref=e90]
+            - figure [ref=e92]:
+              - generic [ref=e93]: "Beeld: Martijn Beekman"
+            - paragraph [ref=e95]: Minister van Volkshuisvesting en Ruimtelijke Ordening
+          - link "Eric van der Burg Staatssecretaris Koninkrijksrelaties en Slagvaardige Overheid" [ref=e97] [cursor=pointer]:
+            - /url: /regering/bewindspersonen/eric-van-der-burg
+            - heading "Eric van der Burg" [level=3] [ref=e98]
+            - figure [ref=e100]:
+              - generic [ref=e101]: "Beeld: Martijn Beekman"
+            - paragraph [ref=e103]: Staatssecretaris Koninkrijksrelaties en Slagvaardige Overheid
+        - generic [ref=e104]:
+          - heading "Nieuws" [level=2] [ref=e105]
+          - link "Kabinet investeert € 120 miljoen in bouw ouderenwoningen 13-05-2026 | 07:00 Het kabinet investeert € 120 miljoen in de bouw van nieuwe woonvormen voor ouderen. Vanaf 18 mei 2026 openen 2 subsidieregelingen ..." [ref=e107] [cursor=pointer]:
+            - /url: /actueel/nieuws/2026/05/13/kabinet-investeert-%E2%82%AC120-miljoen-in-bouw-ouderenwoningen
+            - heading "Kabinet investeert € 120 miljoen in bouw ouderenwoningen" [level=3] [ref=e108]
+            - generic [ref=e109]:
+              - paragraph [ref=e110]:
+                - generic [ref=e111]: 13-05-2026 | 07:00
+              - paragraph [ref=e112]: Het kabinet investeert € 120 miljoen in de bouw van nieuwe woonvormen voor ouderen. Vanaf 18 mei 2026 openen 2 subsidieregelingen ...
+          - link "€ 35 miljoen aangevraagd voor 822 betaalbare koopwoningen 12-05-2026 | 16:10 Ontwikkelaars hebben tot nu toe ruim € 35 miljoen aangevraagd via het Nationaal Fonds Betaalbare Koopwoningen (NFBK), goed voor ..." [ref=e114] [cursor=pointer]:
+            - /url: /actueel/nieuws/2026/05/12/%E2%82%AC-35-miljoen-aangevraagd-voor-822-betaalbare-koopwoningen
+            - heading "€ 35 miljoen aangevraagd voor 822 betaalbare koopwoningen" [level=3] [ref=e115]
+            - generic [ref=e116]:
+              - paragraph [ref=e117]:
+                - generic [ref=e118]: 12-05-2026 | 16:10
+              - paragraph [ref=e119]: Ontwikkelaars hebben tot nu toe ruim € 35 miljoen aangevraagd via het Nationaal Fonds Betaalbare Koopwoningen (NFBK), goed voor ...
+          - link "Budget vanuit Nij Begun voor activiteiten van inwoners in Groningen en Noord-Drenthe 12-05-2026 | 09:59 Vandaag start het Inwonersbudget Nij Begun. Dit is budget voor initiatieven van, voor en door inwoners van de provincie Groningen ..." [ref=e121] [cursor=pointer]:
+            - /url: /actueel/nieuws/2026/05/12/budget-vanuit-nij-begun-voor-activiteiten-van-inwoners-in-groningen-en-noord-drenthe
+            - heading "Budget vanuit Nij Begun voor activiteiten van inwoners in Groningen en Noord-Drenthe" [level=3] [ref=e122]
+            - generic [ref=e123]:
+              - paragraph [ref=e124]:
+                - generic [ref=e125]: 12-05-2026 | 09:59
+              - paragraph [ref=e126]: Vandaag start het Inwonersbudget Nij Begun. Dit is budget voor initiatieven van, voor en door inwoners van de provincie Groningen ...
+          - link "Benoeming directeur-generaal Migratie bij Justitie en Veiligheid 08-05-2026 | 13:45 Esther Pijs wordt directeur-generaal Migratie bij het ministerie van Justitie en Veiligheid. De ministerraad heeft hiermee ..." [ref=e128] [cursor=pointer]:
+            - /url: /actueel/nieuws/2026/05/08/esther-pijs-directeur-generaal-migratie-bij-jenv
+            - heading "Benoeming directeur-generaal Migratie bij Justitie en Veiligheid" [level=3] [ref=e129]
+            - generic [ref=e130]:
+              - paragraph [ref=e131]:
+                - generic [ref=e132]: 08-05-2026 | 13:45
+              - paragraph [ref=e133]: Esther Pijs wordt directeur-generaal Migratie bij het ministerie van Justitie en Veiligheid. De ministerraad heeft hiermee ...
+          - link "2,7% loonstijging voor rijksambtenaren in 2026 30-04-2026 | 09:57 De minister van Binnenlandse Zaken en Koninkrijksrelaties (BZK) en de vakbonden hebben afspraken gemaakt voor een cao in 2026 ..." [ref=e135] [cursor=pointer]:
+            - /url: /actueel/nieuws/2026/04/30/27-loonstijging-voor-rijksambtenaren-in-2026
+            - heading "2,7% loonstijging voor rijksambtenaren in 2026" [level=3] [ref=e136]
+            - generic [ref=e137]:
+              - paragraph [ref=e138]:
+                - generic [ref=e139]: 30-04-2026 | 09:57
+              - paragraph [ref=e140]: De minister van Binnenlandse Zaken en Koninkrijksrelaties (BZK) en de vakbonden hebben afspraken gemaakt voor een cao in 2026 ...
+          - link "Kabinet werkt aan weerbare democratie, sterke regio’s en een slagvaardige overheid 24-04-2026 | 13:30 Nederland kent een sterke democratische rechtsstaat. De kracht daarvan zit niet alleen in instituties en wetten, maar vooral in ..." [ref=e142] [cursor=pointer]:
+            - /url: /actueel/nieuws/2026/04/24/kabinet-werkt-aan-weerbare-democratie-sterke-regios-en-een-slagvaardige-overheid
+            - heading "Kabinet werkt aan weerbare democratie, sterke regio’s en een slagvaardige overheid" [level=3] [ref=e143]
+            - generic [ref=e144]:
+              - paragraph [ref=e145]:
+                - generic [ref=e146]: 24-04-2026 | 13:30
+              - paragraph [ref=e147]: Nederland kent een sterke democratische rechtsstaat. De kracht daarvan zit niet alleen in instituties en wetten, maar vooral in ...
+          - link " Meer nieuws" [ref=e148] [cursor=pointer]:
+            - /url: /ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties/nieuws
+      - complementary [ref=e149]:
+        - generic [ref=e150]:
+          - heading "Sociale media" [level=2] [ref=e151]
+          - list [ref=e152]:
+            - listitem [ref=e153]:
+              - link " Instagram BZK" [ref=e154] [cursor=pointer]:
+                - /url: https://www.instagram.com/minbzk/
+            - listitem [ref=e155]:
+              - link " LinkedIn BZK" [ref=e156] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/ministerie-van-bzk
+            - listitem [ref=e157]:
+              - link " Mastodon BZK" [ref=e158] [cursor=pointer]:
+                - /url: https://social.overheid.nl/@minbzk
+            - listitem [ref=e159]:
+              - link " X BZK" [ref=e160] [cursor=pointer]:
+                - /url: https://x.com/minbzk
+            - listitem [ref=e161]:
+              - link " YouTube BZK" [ref=e162] [cursor=pointer]:
+                - /url: https://www.youtube.com/user/MinBZK
+  - contentinfo [ref=e163]:
+    - generic [ref=e164]:
+      - generic [ref=e165]: De Rijksoverheid. Voor Nederland
+      - generic [ref=e166]:
+        - heading "Service" [level=2] [ref=e167]
+        - list [ref=e168]:
+          - listitem [ref=e169]:
+            - link " Contact" [ref=e170] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e171]:
+            - link " Abonneren" [ref=e172] [cursor=pointer]:
+              - /url: /abonneren
+          - listitem [ref=e173]:
+            - link " RSS" [ref=e174] [cursor=pointer]:
+              - /url: /rss
+          - listitem [ref=e175]:
+            - link " Vacatures" [ref=e176] [cursor=pointer]:
+              - /url: /vacatures
+          - listitem [ref=e177]:
+            - link " Sitemap" [ref=e178] [cursor=pointer]:
+              - /url: /sitemap
+          - listitem [ref=e179]:
+            - link " Help" [ref=e180] [cursor=pointer]:
+              - /url: /help
+          - listitem [ref=e181]:
+            - link " Archief" [ref=e182] [cursor=pointer]:
+              - /url: /archief
+      - generic [ref=e183]:
+        - heading "Over deze site" [level=2] [ref=e184]
+        - list [ref=e185]:
+          - listitem [ref=e186]:
+            - link " Over Rijksoverheid.nl" [ref=e187] [cursor=pointer]:
+              - /url: /over-rijksoverheid-nl
+          - listitem [ref=e188]:
+            - link " Copyright" [ref=e189] [cursor=pointer]:
+              - /url: /copyright
+          - listitem [ref=e190]:
+            - link " Privacy" [ref=e191] [cursor=pointer]:
+              - /url: /privacy
+          - listitem [ref=e192]:
+            - link " Cookies" [ref=e193] [cursor=pointer]:
+              - /url: /cookies
+          - listitem [ref=e194]:
+            - link " AI-gebruik" [ref=e195] [cursor=pointer]:
+              - /url: /ai-gebruik
+          - listitem [ref=e196]:
+            - link " Toegankelijkheid" [ref=e197] [cursor=pointer]:
+              - /url: /toegankelijkheid
+          - listitem [ref=e198]:
+            - link " Open data" [ref=e199] [cursor=pointer]:
+              - /url: /opendata
+          - listitem [ref=e200]:
+            - link " Kwetsbaarheid melden" [ref=e201] [cursor=pointer]:
+              - /url: /kwetsbaarheid-melden
+    - navigation "Deze website in andere talen:" [ref=e202]:
+      - generic [ref=e203]:
+        - paragraph [ref=e204]: "Deze website in andere talen:"
+        - list [ref=e205]:
+          - listitem [ref=e206]: Nederlands
+          - listitem [ref=e207]:
+            - link "English" [ref=e208] [cursor=pointer]:
+              - /url: https://www.government.nl
+          - listitem [ref=e209]:
+            - link "Papiamento" [ref=e210] [cursor=pointer]:
+              - /url: https://www.gobiernodireino.nl/
+          - listitem [ref=e211]:
+            - link "Papiamentu" [ref=e212] [cursor=pointer]:
+              - /url: https://www.gobiernudireino.nl/
+          - listitem [ref=e213]:
+            - link "Nederlandse Gebarentaal" [ref=e214] [cursor=pointer]:
+              - /url: https://www.rijksoverheid.nl/onderwerpen/overheidscommunicatie/nederlandse-gebarentaal

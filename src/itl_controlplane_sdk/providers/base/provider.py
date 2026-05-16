@@ -1,4 +1,4 @@
-"""
+﻿"""
 Core Resource Provider base classes and interfaces for the ITL ControlPlane SDK
 
 This module defines the ResourceProvider abstract base class (ABC) that all
@@ -33,7 +33,7 @@ Example::
 import abc
 import logging
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Any, Optional
 
 from prometheus_client import Counter, Histogram
@@ -89,7 +89,7 @@ class HealthStatus:
         self.status = status
         self.message = message
         self.checks = checks or {}
-        self.timestamp = timestamp or datetime.utcnow()
+        self.timestamp = timestamp or datetime.now(timezone.utc)
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""

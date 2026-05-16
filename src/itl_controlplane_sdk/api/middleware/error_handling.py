@@ -1,4 +1,4 @@
-"""
+﻿"""
 Error Handling Middleware
 
 Global exception handlers for consistent error responses.
@@ -7,7 +7,7 @@ Global exception handlers for consistent error responses.
 import logging
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, Optional
 
 logger = logging.getLogger(__name__)
@@ -61,7 +61,7 @@ def setup_exception_handlers(app: FastAPI) -> None:
                 "error": exc.message,
                 "code": exc.code,
                 "request_id": request.headers.get("x-request-id"),
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
                 "details": exc.details if exc.details else None,
             }
         )
@@ -75,7 +75,7 @@ def setup_exception_handlers(app: FastAPI) -> None:
                 "error": str(exc),
                 "code": "VALIDATION_ERROR",
                 "request_id": request.headers.get("x-request-id"),
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
             }
         )
     
@@ -88,7 +88,7 @@ def setup_exception_handlers(app: FastAPI) -> None:
                 "error": f"Resource not found: {str(exc)}",
                 "code": "NOT_FOUND",
                 "request_id": request.headers.get("x-request-id"),
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
             }
         )
     
@@ -106,6 +106,6 @@ def setup_exception_handlers(app: FastAPI) -> None:
                 "error": "Internal server error",
                 "code": "INTERNAL_ERROR",
                 "request_id": request.headers.get("x-request-id"),
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
             }
         )

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Test suite for the Big 3 Resource Handlers.
 
 Tests:
@@ -8,7 +8,7 @@ Tests:
 """
 
 import pytest
-from datetime import datetime
+from datetime import datetime, timezone
 from pydantic import BaseModel, validator, Field
 
 from itl_controlplane_sdk.providers import (
@@ -32,14 +32,14 @@ class TestTimestampedResourceHandler:
         storage = {}
         handler = TimestampedResourceHandler(storage)
         
-        before = datetime.utcnow().isoformat()
+        before = datetime.now(timezone.utc).isoformat()
         resource_id, config = handler.create_resource(
             "test-resource",
             {"setting": "value"},
             "Test/resource",
             {"subscription_id": "sub-1", "user_id": "user@company.com"}
         )
-        after = datetime.utcnow().isoformat()
+        after = datetime.now(timezone.utc).isoformat()
         
         # Should have timestamps
         assert "createdTime" in config

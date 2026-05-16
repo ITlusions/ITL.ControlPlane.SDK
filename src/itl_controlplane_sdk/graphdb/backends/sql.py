@@ -1,4 +1,4 @@
-"""
+﻿"""
 SQL-based Graph Database Backend for ITL ControlPlane SDK.
 
 Provides persistent storage for graph nodes and relationships using
@@ -29,7 +29,7 @@ Usage::
 import json
 import logging
 from abc import ABC, abstractmethod
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Sequence, Tuple
 
@@ -405,7 +405,7 @@ class SQLGraphDatabase(GraphDatabaseInterface):
         if row:
             raise ValueError(f"Node with ID {node.id} already exists")
 
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         node.created_time = now
         node.modified_time = now
         data = json.dumps(_node_to_dict(node))
@@ -427,7 +427,7 @@ class SQLGraphDatabase(GraphDatabaseInterface):
         if not row:
             raise ValueError(f"Node with ID {node.id} not found")
 
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         node.modified_time = now
         data = json.dumps(_node_to_dict(node))
 
@@ -481,7 +481,7 @@ class SQLGraphDatabase(GraphDatabaseInterface):
             if not a.fetchone(a.sql("SELECT 1 FROM nodes WHERE id = ?"), (endpoint,)):
                 raise ValueError(f"{label} node {endpoint} not found")
 
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         relationship.created_time = now
         data = json.dumps(_rel_to_dict(relationship))
 

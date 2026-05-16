@@ -1,0 +1,246 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "ITL Control Plane" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e5]
+      - text: ITL Control Plane
+    - generic [ref=e8]: Attestation Service
+    - generic [ref=e9]: Healthy
+    - generic [ref=e12]: Demo Mode
+    - link "Dashboard" [ref=e13] [cursor=pointer]:
+      - /url: /
+      - img [ref=e14]
+    - link "Audit Log" [ref=e16] [cursor=pointer]:
+      - /url: /audit
+      - img [ref=e17]
+    - link "Query" [ref=e20] [cursor=pointer]:
+      - /url: /query
+      - img [ref=e21]
+    - button "Notifications" [ref=e23] [cursor=pointer]:
+      - img [ref=e24]
+    - generic "n.weistra@itlusions.com" [ref=e27] [cursor=pointer]: NW
+    - generic [ref=e28] [cursor=pointer]: n.weistra
+  - generic [ref=e29]:
+    - navigation [ref=e30]:
+      - generic [ref=e31] [cursor=pointer]:
+        - generic [ref=e32]: IT
+        - generic [ref=e33]:
+          - generic [ref=e34]: ITL Control Plane
+          - generic [ref=e35]: Attestation Service
+        - img [ref=e37]
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - text: Monitor
+          - button "Collapse" [ref=e41] [cursor=pointer]:
+            - img [ref=e42]
+        - link "Overview" [ref=e44] [cursor=pointer]:
+          - /url: /
+          - img [ref=e46]
+          - generic [ref=e48]: Overview
+        - link "Machines 27" [ref=e49] [cursor=pointer]:
+          - /url: /machines
+          - img [ref=e51]
+          - generic [ref=e53]: Machines
+          - generic [ref=e54]: "27"
+        - link "Pending approval 4" [ref=e55] [cursor=pointer]:
+          - /url: /machines?status=pending_approval
+          - img [ref=e57]
+          - generic [ref=e59]: Pending approval
+          - generic [ref=e60]: "4"
+        - link "Audit log" [ref=e61] [cursor=pointer]:
+          - /url: /audit
+          - img [ref=e63]
+          - generic [ref=e65]: Audit log
+        - generic [ref=e67]: Settings
+        - link "Configuration" [ref=e68] [cursor=pointer]:
+          - /url: /configuration
+          - img [ref=e70]
+          - generic [ref=e73]: Configuration
+        - link "Policies" [ref=e74] [cursor=pointer]:
+          - /url: /policies
+          - img [ref=e76]
+          - generic [ref=e78]: Policies
+      - generic [ref=e79]:
+        - generic [ref=e80]: NW
+        - generic [ref=e81]:
+          - generic [ref=e82]: n.weistra
+          - generic [ref=e83]: ITL Administrator
+        - button "More" [ref=e84] [cursor=pointer]:
+          - img [ref=e85]
+    - main [ref=e87]:
+      - generic [ref=e88]:
+        - img [ref=e90]
+        - generic [ref=e92]:
+          - heading "Attestation Overview" [level=1] [ref=e93]
+          - generic [ref=e94]: TPM 2.0 remote attestation dashboard — 27 machines registered
+        - generic [ref=e95]:
+          - link "View all machines" [ref=e96] [cursor=pointer]:
+            - /url: /machines
+          - link "Audit log" [ref=e97] [cursor=pointer]:
+            - /url: /audit
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - img [ref=e101]
+          - generic [ref=e104]:
+            - generic [ref=e105]: "27"
+            - generic [ref=e106]: Total Machines
+        - generic [ref=e107]:
+          - img [ref=e109]
+          - generic [ref=e112]:
+            - generic [ref=e113]: "20"
+            - generic [ref=e114]: Attested
+        - generic [ref=e115]:
+          - img [ref=e117]
+          - generic [ref=e120]:
+            - generic [ref=e121]: "2"
+            - generic [ref=e122]: Registered
+        - generic [ref=e123]:
+          - img [ref=e125]
+          - generic [ref=e127]:
+            - generic [ref=e128]: "4"
+            - generic [ref=e129]: Pending Approval
+        - generic [ref=e130]:
+          - img [ref=e132]
+          - generic [ref=e134]:
+            - generic [ref=e135]: "1"
+            - generic [ref=e136]: Locked
+        - generic [ref=e137]:
+          - img [ref=e139]
+          - generic [ref=e142]:
+            - generic [ref=e143]: "0"
+            - generic [ref=e144]: Revoked
+      - generic [ref=e145]:
+        - generic [ref=e146]:
+          - generic [ref=e147]:
+            - generic [ref=e148]:
+              - text: Compliance by Role
+              - generic [ref=e149]: "Last updated: now"
+            - generic [ref=e150]:
+              - generic [ref=e151]:
+                - generic [ref=e152]: Control Plane
+                - generic [ref=e155]: 100%
+              - generic [ref=e156]:
+                - generic [ref=e157]: Worker Infra
+                - generic [ref=e160]: 75%
+              - generic [ref=e161]:
+                - generic [ref=e162]: Worker App
+                - generic [ref=e165]: 61%
+              - generic [ref=e166]:
+                - img [ref=e167]
+                - text: 20 of 27 machines fully attested. 4 pending approval.
+          - generic [ref=e170]:
+            - generic [ref=e171]:
+              - text: Recent Activity
+              - link "View all" [ref=e172] [cursor=pointer]:
+                - /url: /audit
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - img [ref=e176]
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - strong [ref=e182]: c7d8e9f0……
+                    - text: — register
+                  - generic [ref=e183]: 14 May 2026, 18:44 • SYSTEM
+              - generic [ref=e184]:
+                - img [ref=e186]
+                - generic [ref=e190]:
+                  - generic [ref=e191]:
+                    - strong [ref=e192]: b6c7d8e9……
+                    - text: — register
+                  - generic [ref=e193]: 14 May 2026, 14:44 • SYSTEM
+              - generic [ref=e194]:
+                - img [ref=e196]
+                - generic [ref=e198]:
+                  - generic [ref=e199]:
+                    - strong [ref=e200]: a5b6c7d8……
+                    - text: — approve
+                  - generic [ref=e201]: 14 May 2026, 04:34 • admin
+              - generic [ref=e202]:
+                - img [ref=e204]
+                - generic [ref=e208]:
+                  - generic [ref=e209]:
+                    - strong [ref=e210]: a5b6c7d8……
+                    - text: — register
+                  - generic [ref=e211]: 14 May 2026, 04:39 • SYSTEM
+              - generic [ref=e212]:
+                - img [ref=e214]
+                - generic [ref=e217]:
+                  - generic [ref=e218]:
+                    - strong [ref=e219]: f4a5b6c7……
+                    - text: — attest
+                  - generic [ref=e220]: 12 May 2026, 05:44 • SYSTEM
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - text: Pending Approval
+            - generic [ref=e223]: 4 machines require action
+          - table [ref=e224]:
+            - rowgroup [ref=e225]:
+              - row "Machine ID Hostname Hardware Role Registered Actions" [ref=e226]:
+                - columnheader "Machine ID" [ref=e227]
+                - columnheader "Hostname" [ref=e228]
+                - columnheader "Hardware" [ref=e229]
+                - columnheader "Role" [ref=e230]
+                - columnheader "Registered" [ref=e231]
+                - columnheader "Actions" [ref=e232]
+            - rowgroup [ref=e233]:
+              - row "a7b8c9d0-e1f2-34…… worker-app-03 Dell PowerEdge R650 SN789012345 Worker App 14 May 2026, 21:44 Approve Reject" [ref=e234] [cursor=pointer]:
+                - cell "a7b8c9d0-e1f2-34……" [ref=e235]:
+                  - link "a7b8c9d0-e1f2-34……" [ref=e236]:
+                    - /url: /machines/a7b8c9d0-e1f2-3456-1234-567890123456
+                - cell "worker-app-03" [ref=e237]
+                - cell "Dell PowerEdge R650 SN789012345" [ref=e238]:
+                  - generic [ref=e239]: Dell PowerEdge R650
+                  - generic [ref=e240]: SN789012345
+                - cell "Worker App" [ref=e241]:
+                  - generic [ref=e242]: Worker App
+                - cell "14 May 2026, 21:44" [ref=e243]
+                - cell "Approve Reject" [ref=e244]:
+                  - button "Approve" [ref=e245]
+                  - button "Reject" [ref=e246]
+              - row "f6a7b8c9-d0e1-23…… worker-app-02 HPE ProLiant DL360 Gen10 SN678901234 Worker App 14 May 2026, 19:44 Approve Reject" [ref=e247] [cursor=pointer]:
+                - cell "f6a7b8c9-d0e1-23……" [ref=e248]:
+                  - link "f6a7b8c9-d0e1-23……" [ref=e249]:
+                    - /url: /machines/f6a7b8c9-d0e1-2345-f123-456789012345
+                - cell "worker-app-02" [ref=e250]
+                - cell "HPE ProLiant DL360 Gen10 SN678901234" [ref=e251]:
+                  - generic [ref=e252]: HPE ProLiant DL360 Gen10
+                  - generic [ref=e253]: SN678901234
+                - cell "Worker App" [ref=e254]:
+                  - generic [ref=e255]: Worker App
+                - cell "14 May 2026, 19:44" [ref=e256]
+                - cell "Approve Reject" [ref=e257]:
+                  - button "Approve" [ref=e258]
+                  - button "Reject" [ref=e259]
+              - row "c7d8e9f0-a1b2-34…… worker-infra-05 Dell PowerEdge R650 SN789012347 Worker Infra 14 May 2026, 18:44 Approve Reject" [ref=e260] [cursor=pointer]:
+                - cell "c7d8e9f0-a1b2-34……" [ref=e261]:
+                  - link "c7d8e9f0-a1b2-34……" [ref=e262]:
+                    - /url: /machines/c7d8e9f0-a1b2-3456-1234-567890123456
+                - cell "worker-infra-05" [ref=e263]
+                - cell "Dell PowerEdge R650 SN789012347" [ref=e264]:
+                  - generic [ref=e265]: Dell PowerEdge R650
+                  - generic [ref=e266]: SN789012347
+                - cell "Worker Infra" [ref=e267]:
+                  - generic [ref=e268]: Worker Infra
+                - cell "14 May 2026, 18:44" [ref=e269]
+                - cell "Approve Reject" [ref=e270]:
+                  - button "Approve" [ref=e271]
+                  - button "Reject" [ref=e272]
+              - row "b6c7d8e9-f0a1-23…… worker2-app-06 HPE ProLiant DL380 Gen11 SN678901236 Worker App 14 May 2026, 14:44 Approve Reject" [ref=e273] [cursor=pointer]:
+                - cell "b6c7d8e9-f0a1-23……" [ref=e274]:
+                  - link "b6c7d8e9-f0a1-23……" [ref=e275]:
+                    - /url: /machines/b6c7d8e9-f0a1-2345-0123-456789012345
+                - cell "worker2-app-06" [ref=e276]
+                - cell "HPE ProLiant DL380 Gen11 SN678901236" [ref=e277]:
+                  - generic [ref=e278]: HPE ProLiant DL380 Gen11
+                  - generic [ref=e279]: SN678901236
+                - cell "Worker App" [ref=e280]:
+                  - generic [ref=e281]: Worker App
+                - cell "14 May 2026, 14:44" [ref=e282]
+                - cell "Approve Reject" [ref=e283]:
+                  - button "Approve" [ref=e284]
+                  - button "Reject" [ref=e285]
+  - complementary [ref=e286]:
+    - generic [ref=e287]:
+      - generic [ref=e289]: Machine Detail
+      - button "Close" [ref=e290] [cursor=pointer]:
+        - img [ref=e291]

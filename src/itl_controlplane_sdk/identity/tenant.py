@@ -1,4 +1,4 @@
-"""
+﻿"""
 Production-grade Tenant models for ITL Control Plane.
 
 A Tenant represents an isolated Keycloak realm that can contain multiple organizations.
@@ -12,7 +12,7 @@ Design Principles:
 - Clear error semantics
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Dict, Optional
 from uuid import UUID
@@ -179,7 +179,7 @@ class Tenant(BaseModel):
     )
 
     created_at: datetime = Field(
-        default_factory=datetime.utcnow,
+        default_factory=lambda: datetime.now(timezone.utc),
         description="When tenant was created",
     )
 

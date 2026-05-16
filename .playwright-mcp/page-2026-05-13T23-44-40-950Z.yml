@@ -1,0 +1,150 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - link "Overslaan en naar de inhoud gaan" [ref=e6] [cursor=pointer]:
+      - /url: "#ContentArea"
+    - generic: 
+    - link "Logo Rijksoverheid – Naar de homepage" [ref=e8] [cursor=pointer]:
+      - /url: /publiek
+  - generic [ref=e10]:
+    - text:  
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10233
+        - listitem [ref=e20]:
+          - link "Rijkshuisstijl" [ref=e22] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10237
+      - text: 
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - button "Menu in- of uitklappen" [expanded] [ref=e26] [cursor=pointer]:
+        - generic [ref=e28]: 
+      - list [ref=e31]:
+        - listitem [ref=e32]:
+          - list [ref=e33]:
+            - listitem [ref=e34]:
+              - generic [ref=e35]:
+                - link "Over de rijkshuisstijl" [ref=e36] [cursor=pointer]:
+                  - generic [ref=e37]: Over de rijkshuisstijl
+                - button "Open item" [ref=e38] [cursor=pointer]:
+                  - generic [ref=e39]: 
+            - listitem [ref=e40]:
+              - generic [ref=e41]:
+                - link "Type rijksorganisatie en stijl van de communicatie" [ref=e42] [cursor=pointer]:
+                  - generic [ref=e43]: Type rijksorganisatie en stijl van de communicatie
+                - button "Open item" [ref=e44] [cursor=pointer]:
+                  - generic [ref=e45]: 
+            - listitem [ref=e46]:
+              - generic [ref=e47]:
+                - link "Basiselementen ''nieuw''" [ref=e48] [cursor=pointer]:
+                  - generic [ref=e49]: Basiselementen ''nieuw''
+                - button "Open item" [expanded] [ref=e50] [cursor=pointer]:
+                  - generic [ref=e51]: 
+              - list [ref=e52]:
+                - listitem [ref=e53]:
+                  - generic [ref=e54]:
+                    - link "Logo" [ref=e55] [cursor=pointer]:
+                      - generic [ref=e56]: Logo
+                    - button "Open item" [ref=e57] [cursor=pointer]:
+                      - generic [ref=e58]: 
+                - listitem [ref=e59]:
+                  - generic [ref=e60]:
+                    - link "Kleuren" [ref=e61] [cursor=pointer]:
+                      - generic [ref=e62]: Kleuren
+                    - button "Open item" [ref=e63] [cursor=pointer]:
+                      - generic [ref=e64]: 
+                - listitem [ref=e65]:
+                  - generic [ref=e66]:
+                    - link "Typografie" [ref=e67] [cursor=pointer]:
+                      - generic [ref=e68]: Typografie
+                    - button "Open item" [ref=e69] [cursor=pointer]:
+                      - generic [ref=e70]: 
+                - listitem [ref=e71]:
+                  - generic [ref=e72]:
+                    - link "Vormtaal" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]: Vormtaal
+                    - button "Open item" [ref=e75] [cursor=pointer]:
+                      - generic [ref=e76]: 
+                - listitem [ref=e77]:
+                  - generic [ref=e78]:
+                    - link "Beeldtaal" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]: Beeldtaal
+                    - button "Open item" [ref=e81] [cursor=pointer]:
+                      - generic [ref=e82]: 
+                - listitem [ref=e83]:
+                  - link "Basis layout" [ref=e85] [cursor=pointer]:
+                    - generic [ref=e86]: Basis layout
+                - listitem [ref=e87]:
+                  - link "Digitoegankelijkheid" [ref=e89] [cursor=pointer]:
+                    - generic [ref=e90]: Digitoegankelijkheid
+            - listitem [ref=e91]:
+              - generic [ref=e92]:
+                - link "Richtlijnen middelen ''nieuw''" [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]: Richtlijnen middelen ''nieuw''
+                - button "Open item" [ref=e95] [cursor=pointer]:
+                  - generic [ref=e96]: 
+            - listitem [ref=e97]:
+              - generic [ref=e98]:
+                - link "Basiselementen ''oud''" [ref=e99] [cursor=pointer]:
+                  - generic [ref=e100]: Basiselementen ''oud''
+                - button "Open item" [ref=e101] [cursor=pointer]:
+                  - generic [ref=e102]: 
+            - listitem [ref=e103]:
+              - generic [ref=e104]:
+                - link "Richtlijnen middelen ''oud''" [ref=e105] [cursor=pointer]:
+                  - generic [ref=e106]: Richtlijnen middelen ''oud''
+                - button "Open item" [ref=e107] [cursor=pointer]:
+                  - generic [ref=e108]: 
+            - listitem [ref=e109]:
+              - generic [ref=e110]:
+                - link "Thema's" [ref=e111] [cursor=pointer]:
+                  - generic [ref=e112]: Thema's
+                - button "Open item" [ref=e113] [cursor=pointer]:
+                  - generic [ref=e114]: 
+    - generic [ref=e115]:
+      - heading "Basiselementen ''nieuw''" [level=1] [ref=e118]
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - paragraph [ref=e121]: De Rijkshuisstijl herken je snel dankzij een aantal vaste basiselementen. Deze zie je overal terugkomen. Ga je met een productie voor de Rijksoverheid aan de slag? Zorg dan dat je deze basiselementen goed kent. Het helpt je namelijk gelijk goed op weg.
+          - paragraph [ref=e122]
+        - list [ref=e127]:
+          - listitem [ref=e128]:
+            - heading "Logo" [level=3] [ref=e133] [cursor=pointer]
+          - listitem [ref=e134]:
+            - heading "Kleuren" [level=3] [ref=e139] [cursor=pointer]
+          - listitem [ref=e140]:
+            - heading "Typografie" [level=3] [ref=e145] [cursor=pointer]
+          - listitem [ref=e146]:
+            - heading "Vormtaal" [level=3] [ref=e151] [cursor=pointer]
+          - listitem [ref=e152]:
+            - heading "Beeldtaal" [level=3] [ref=e157] [cursor=pointer]
+          - listitem [ref=e158]:
+            - heading "Basis layout" [level=3] [ref=e163] [cursor=pointer]
+          - listitem [ref=e164]:
+            - heading "Digitoegankelijkheid" [level=3] [ref=e169] [cursor=pointer]
+  - text: 
+  - generic [ref=e170]:
+    - generic [ref=e174]:
+      - generic [ref=e176]:
+        - heading "Over deze site" [level=3] [ref=e177]
+        - list:
+          - listitem:
+            - link "Copyright" [ref=e178] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6736&OriginalItemId=6736
+          - listitem:
+            - link "Privacy" [ref=e179] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6737&OriginalItemId=6737
+          - listitem:
+            - link "Cookies" [ref=e180] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9144&OriginalItemId=9144
+          - listitem:
+            - link "Toegankelijkheid" [ref=e181] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9279&OriginalItemId=9279
+      - generic [ref=e182]:
+        - heading "Service" [level=3] [ref=e183]
+        - list:
+          - listitem:
+            - link "Over de rijkshuisstijl" [ref=e184] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6738&OriginalItemId=6738
+    - generic [ref=e187]: Powered by Spotler Brand ID

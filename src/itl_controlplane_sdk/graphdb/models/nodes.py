@@ -1,11 +1,11 @@
-"""
+﻿"""
 Graph Node types for ITL ControlPlane SDK.
 
 Specific node implementations for subscriptions, resource groups, resources, etc.
 """
 from dataclasses import dataclass, field
 from typing import Dict, Any, Optional, Set
-from datetime import datetime
+from datetime import datetime, timezone
 import uuid
 
 from .enums import NodeType
@@ -19,8 +19,8 @@ class GraphNode:
     name: str
     properties: Dict[str, Any] = field(default_factory=dict)
     labels: Set[str] = field(default_factory=set)
-    created_time: datetime = field(default_factory=datetime.utcnow)
-    modified_time: datetime = field(default_factory=datetime.utcnow)
+    created_time: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    modified_time: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
     def __post_init__(self):
         if not self.id:

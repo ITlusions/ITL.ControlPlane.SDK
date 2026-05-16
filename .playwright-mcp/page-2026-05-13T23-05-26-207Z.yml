@@ -1,0 +1,192 @@
+- generic [active] [ref=e1]:
+  - link "Ga naar inhoud" [ref=e2] [cursor=pointer]:
+    - /url: http://127.0.0.1:8000/#welkom-bij-de-github-pagina-van-de-bio2
+  - complementary [ref=e4]:
+    - banner [ref=e6]:
+      - generic [ref=e7]:
+        - link "Ga direct naar inhoud" [ref=e8] [cursor=pointer]:
+          - /url: http://127.0.0.1:8000/#content
+        - link "Rijksoverheid" [ref=e9] [cursor=pointer]:
+          - /url: https://www.rijksoverheid.nl
+          - img [ref=e10]
+          - generic [ref=e14]: Rijksoverheid
+        - generic "Ministerie" [ref=e15]: Ministerie van Binnenlandse Zaken en Koninkrijksrelaties
+  - banner [ref=e16]:
+    - navigation "Header" [ref=e17]:
+      - link "Baseline Informatiebeveiliging Overheid 2 (BIO2)" [ref=e18] [cursor=pointer]:
+        - /url: http://127.0.0.1:8000/
+        - img [ref=e19]
+      - generic [ref=e22]:
+        - generic [ref=e24]: Baseline Informatiebeveiliging Overheid 2 (BIO2)
+        - generic:
+          - generic: Home
+      - dialog [ref=e25]:
+        - search [ref=e26]:
+          - generic [ref=e27]:
+            - textbox "Zoeken" [ref=e28]
+            - generic:
+              - img
+            - navigation "Zoeken":
+              - button "Leegmaken":
+                - img
+          - generic [ref=e31]: Typ om te beginnen met zoeken
+      - link "GitHub 56 14" [ref=e33] [cursor=pointer]:
+        - /url: https://github.com/MinBZK/Baseline-Informatiebeveiliging-Overheid
+        - img [ref=e35]
+        - generic [ref=e37]:
+          - text: GitHub
+          - list [ref=e38]:
+            - listitem [ref=e39]: "56"
+            - listitem [ref=e40]: "14"
+    - navigation "Tabs" [ref=e41]:
+      - list [ref=e43]:
+        - listitem [ref=e44]:
+          - link "Home" [ref=e45] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/
+        - listitem [ref=e46]:
+          - link "Ontwerp BIO2" [ref=e47] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/ontwerp/
+        - listitem [ref=e48]:
+          - link "BIO2 Deel 1 BIO2-Kader" [ref=e49] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/inleiding/
+        - listitem [ref=e50]:
+          - link "BIO2 Deel 2 BIO-overheidsmaatregelen" [ref=e51] [cursor=pointer]:
+            - /url: http://127.0.0.1:8000/maatregelen/
+  - generic [ref=e52]:
+    - main [ref=e53]:
+      - generic [ref=e54]:
+        - navigation "Navigatie" [ref=e58]:
+          - list [ref=e59]:
+            - listitem [ref=e60]:
+              - link "Home":
+                - /url: http://127.0.0.1:8000/
+                - generic: Home
+        - navigation "Inhoudsopgave" [ref=e64]:
+          - generic [ref=e65]: Inhoudsopgave
+          - list [ref=e66]:
+            - listitem [ref=e67]:
+              - link "Doorontwikkeling BIO2" [ref=e68] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/#doorontwikkeling-bio2
+                - generic [ref=e69]: Doorontwikkeling BIO2
+            - listitem [ref=e70]:
+              - link "Wijzigingen BIO2" [ref=e71] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/#wijzigingen-bio2
+                - generic [ref=e72]: Wijzigingen BIO2
+            - listitem [ref=e73]:
+              - link "Leeswijzer BIO2" [ref=e74] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/#leeswijzer-bio2
+                - generic [ref=e75]: Leeswijzer BIO2
+            - listitem [ref=e76]:
+              - link "Meer informatie BIO" [ref=e77] [cursor=pointer]:
+                - /url: http://127.0.0.1:8000/#meer-informatie-bio
+                - generic [ref=e78]: Meer informatie BIO
+        - article [ref=e80]:
+          - link "Wijzig deze pagina" [ref=e81] [cursor=pointer]:
+            - /url: https://github.com/MinBZK/Baseline-Informatiebeveiliging-Overheid/edit/main/docs/index.md
+            - img [ref=e82]
+          - link "Bron van deze pagina bekijken" [ref=e84] [cursor=pointer]:
+            - /url: https://github.com/MinBZK/Baseline-Informatiebeveiliging-Overheid/raw/main/docs/index.md
+            - img [ref=e85]
+          - heading "Welkom bij de GitHub-pagina van de BIO2 ¶" [level=1] [ref=e87]:
+            - text: Welkom bij de GitHub-pagina van de BIO2
+            - link "¶" [ref=e88] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/#welkom-bij-de-github-pagina-van-de-bio2
+          - heading "Doorontwikkeling BIO2 ¶" [level=2] [ref=e89]:
+            - text: Doorontwikkeling BIO2
+            - link "¶" [ref=e90] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/#doorontwikkeling-bio2
+          - paragraph [ref=e91]:
+            - text: In deze GitHub-omgeving wordt gewerkt aan de BIO2, het het kader voor informatiebeveiliging voor de overheid. Hierin is feedback verwerkt, afkomstig uit GitHub. Ook met het
+            - link "evaluatierapport van de BIO" [ref=e92] [cursor=pointer]:
+              - /url: https://bio-overheid.nl/category/producten/rapport-bio-evaluatie
+            - text: en workshops met de overheden is nuttige feedback opgehaald. Op deze GitHub-pagina blijven we ook in de toekomst samenwerken tijdens het onderhoud op de BIO2.
+          - heading "Wijzigingen BIO2 ¶" [level=2] [ref=e93]:
+            - text: Wijzigingen BIO2
+            - link "¶" [ref=e94] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/#wijzigingen-bio2
+          - paragraph [ref=e95]:
+            - text: Heb je een een wijzigingsverzoek voor de BIO2, deel jouw inbreng via GitHub. In
+            - link "CONTRIBUTING" [ref=e96] [cursor=pointer]:
+              - /url: https://github.com/MinBZK/Baseline-Informatiebeveiliging-Overheid/blob/main/CONTRIBUTING.md
+            - text: staat hoe je kan bijdragen. De aanvullingen die we ontvangen, worden beoordeeld door het het beheerteam BIO, de werkgroep BIO en/of het kern-IBO.
+          - heading "Leeswijzer BIO2 ¶" [level=2] [ref=e97]:
+            - text: Leeswijzer BIO2
+            - link "¶" [ref=e98] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/#leeswijzer-bio2
+          - paragraph [ref=e99]:
+            - text: Via het horizontale navigatiemenu aan de bovenzijde kom je bij de documenten/onderdelen van de BIO2.
+            - text: "De volgende documenten/onderdelen zijn beschikbaar: - Ontwerp - BIO2 inleiding - Verplichte maatregelen en richtlijnen"
+          - heading "Meer informatie BIO ¶" [level=2] [ref=e100]:
+            - text: Meer informatie BIO
+            - link "¶" [ref=e101] [cursor=pointer]:
+              - /url: http://127.0.0.1:8000/#meer-informatie-bio
+          - paragraph [ref=e102]:
+            - text: Wil je meer weten over de huidige versie, de achtergrond van de BIO en ondersteunende documentatie, ga naar
+            - link "bio-overheid.nl" [ref=e103] [cursor=pointer]:
+              - /url: https://bio-overheid.nl/over-de-bio
+            - text: .
+          - complementary [ref=e104]:
+            - generic [ref=e105]:
+              - generic "Laatst geüpdatet" [ref=e106]:
+                - img [ref=e107]
+              - generic "10 februari 2026 12:48:03 UTC" [ref=e109]: 10 februari 2026
+            - generic [ref=e110]:
+              - generic "Gecreëerd" [ref=e111]:
+                - img [ref=e112]
+              - generic "30 april 2024 14:01:27 UTC" [ref=e114]: 30 april 2024
+      - button "Terug naar boven":
+        - img
+        - text: Terug naar boven
+    - contentinfo [ref=e115]:
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - img [ref=e118]
+          - generic [ref=e122]:
+            - generic [ref=e123]: Rijksoverheid
+            - generic [ref=e124]:
+              - text: Ministerie van Binnenlandse Zaken
+              - text: en Koninkrijksrelaties
+        - navigation "Footer navigatie" [ref=e125]:
+          - generic [ref=e126]:
+            - heading "BIO2" [level=2] [ref=e127]
+            - list [ref=e128]:
+              - listitem [ref=e129]:
+                - link "Home" [ref=e130] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/
+              - listitem [ref=e131]:
+                - link "Ontwerp BIO2" [ref=e132] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/
+              - listitem [ref=e133]:
+                - link "BIO2 Deel 1 BIO2-Kader" [ref=e134] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/
+              - listitem [ref=e135]:
+                - link "BIO2 Deel 2 BIO-overheidsmaatregelen" [ref=e136] [cursor=pointer]:
+                  - /url: http://127.0.0.1:8000/
+          - generic [ref=e137]:
+            - heading "Bronnen" [level=2] [ref=e138]
+            - list [ref=e139]:
+              - listitem [ref=e140]:
+                - link "GitHub repository" [ref=e141] [cursor=pointer]:
+                  - /url: https://github.com/MinBZK/Baseline-Informatiebeveiliging-Overheid
+              - listitem [ref=e142]:
+                - link "Digitale Overheid — BIO" [ref=e143] [cursor=pointer]:
+                  - /url: https://www.digitaleoverheid.nl/overzicht-van-alle-onderwerpen/cybersecurity/bio-en-ensia/
+              - listitem [ref=e144]:
+                - link "MinBZK" [ref=e145] [cursor=pointer]:
+                  - /url: https://www.rijksoverheid.nl/ministeries/ministerie-van-binnenlandse-zaken-en-koninkrijksrelaties
+          - generic [ref=e146]:
+            - heading "Over deze site" [level=2] [ref=e147]
+            - list [ref=e148]:
+              - listitem [ref=e149]:
+                - link "Copyright" [ref=e150] [cursor=pointer]:
+                  - /url: https://www.rijksoverheid.nl/copyright
+              - listitem [ref=e151]:
+                - link "Privacy" [ref=e152] [cursor=pointer]:
+                  - /url: https://www.rijksoverheid.nl/privacy
+              - listitem [ref=e153]:
+                - link "Cookies" [ref=e154] [cursor=pointer]:
+                  - /url: https://www.rijksoverheid.nl/cookies
+              - listitem [ref=e155]:
+                - link "Toegankelijkheid" [ref=e156] [cursor=pointer]:
+                  - /url: https://www.rijksoverheid.nl/toegankelijkheid
+      - paragraph [ref=e158]: De Rijksoverheid. Voor Nederland.

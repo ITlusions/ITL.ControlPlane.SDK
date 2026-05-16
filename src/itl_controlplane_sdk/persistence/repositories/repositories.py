@@ -25,7 +25,7 @@ Usage::
 
 import logging
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Type, TypeVar, Generic
 
 from sqlalchemy import select, delete as sa_delete, func, update
@@ -245,7 +245,7 @@ class TenantRepository(BaseRepository[TenantModel]):
         # Mark as synced with realm
         if not tenant.properties:
             tenant.properties = {}
-        tenant.properties["realm_synced_at"] = datetime.utcnow().isoformat()
+        tenant.properties["realm_synced_at"] = datetime.now(timezone.utc).isoformat()
         tenant.properties["realm_id"] = realm_id  # Also store for reference
         
         await self.session.flush()
@@ -438,7 +438,7 @@ class RealmRepository(BaseRepository[RealmModel]):
         older_than_seconds: int = 300
     ) -> List[RealmModel]:
         """Find pending realms stuck for too long."""
-        threshold = datetime.utcnow() - timedelta(seconds=older_than_seconds)
+        threshold = datetime.now(timezone.utc) - timedelta(seconds=older_than_seconds)
         from sqlalchemy import and_
         stmt = select(RealmModel).where(
             and_(

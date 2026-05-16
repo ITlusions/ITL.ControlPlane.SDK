@@ -1,10 +1,10 @@
-"""
+﻿"""
 Tenant seeding module.
 
 Creates the default ITL tenant if it doesn't exist.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict
 import logging
 import uuid
@@ -35,7 +35,7 @@ async def seed_default_tenant(session: AsyncSession) -> Dict[str, int]:
         Dictionary with count of created/skipped tenants:
         {"created": 1, "skipped": 0}
     """
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
 
     # Check if tenant already exists
     result = await session.execute(

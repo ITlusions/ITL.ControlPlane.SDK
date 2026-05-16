@@ -1,4 +1,4 @@
-"""
+﻿"""
 In-Memory Graph Database Implementation for ITL ControlPlane SDK.
 
 Fast, zero-dependency backend suitable for development, testing,
@@ -6,7 +6,7 @@ and single-instance deployments.
 """
 import logging
 from typing import Dict, List, Any, Optional, Set
-from datetime import datetime
+from datetime import datetime, timezone
 
 from ..interfaces import GraphDatabaseInterface
 from ..models import (
@@ -45,8 +45,8 @@ class InMemoryGraphDatabase(GraphDatabaseInterface):
     async def create_node(self, node: GraphNode) -> GraphNode:
         if node.id in self.nodes:
             raise ValueError(f"Node with ID {node.id} already exists")
-        node.created_time = datetime.utcnow()
-        node.modified_time = datetime.utcnow()
+        node.created_time = datetime.now(timezone.utc)
+        node.modified_time = datetime.now(timezone.utc)
         self.nodes[node.id] = node
         self.node_relationships[node.id] = set()
         logger.debug("Created node: %s (%s)", node.id, node.node_type.value)
@@ -55,7 +55,7 @@ class InMemoryGraphDatabase(GraphDatabaseInterface):
     async def update_node(self, node: GraphNode) -> GraphNode:
         if node.id not in self.nodes:
             raise ValueError(f"Node with ID {node.id} not found")
-        node.modified_time = datetime.utcnow()
+        node.modified_time = datetime.now(timezone.utc)
         self.nodes[node.id] = node
         logger.debug("Updated node: %s", node.id)
         return node
@@ -81,7 +81,7 @@ class InMemoryGraphDatabase(GraphDatabaseInterface):
             raise ValueError(f"Source node {relationship.source_id} not found")
         if relationship.target_id not in self.nodes:
             raise ValueError(f"Target node {relationship.target_id} not found")
-        relationship.created_time = datetime.utcnow()
+        relationship.created_time = datetime.now(timezone.utc)
         self.relationships[relationship.id] = relationship
         self.node_relationships[relationship.source_id].add(relationship.id)
         self.node_relationships[relationship.target_id].add(relationship.id)

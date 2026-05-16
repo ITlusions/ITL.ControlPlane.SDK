@@ -1,4 +1,4 @@
-"""
+﻿"""
 Custom ResourceProvider Implementation Example
 
 Demonstrates how to build your own resource provider by extending the
@@ -15,7 +15,7 @@ Shows:
 
 import asyncio
 from typing import Dict, List, Any
-from datetime import datetime
+from datetime import datetime, timezone
 
 from itl_controlplane_sdk.providers.base import ResourceProvider
 from itl_controlplane_sdk.providers.registry import ResourceProviderRegistry
@@ -75,7 +75,7 @@ class DnsZoneProvider(ResourceProvider):
         )
 
         is_update = resource_id in self._zones
-        now = datetime.utcnow().isoformat() + "Z"
+        now = datetime.now(timezone.utc).isoformat() + "Z"
 
         properties = {
             "zoneType": request.body.get("zoneType", "Public"),

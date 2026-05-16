@@ -1,0 +1,144 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - link "Overslaan en naar de inhoud gaan" [ref=e6] [cursor=pointer]:
+      - /url: "#ContentArea"
+    - generic: 
+    - link "Logo Rijksoverheid – Naar de homepage" [ref=e8] [cursor=pointer]:
+      - /url: /publiek
+  - generic [ref=e10]:
+    - text:  
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10233
+        - listitem [ref=e20]:
+          - link "Rijkshuisstijl" [ref=e22] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10237
+      - text: 
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - button "Menu in- of uitklappen" [expanded] [ref=e26] [cursor=pointer]:
+        - generic [ref=e28]: 
+      - list [ref=e31]:
+        - listitem [ref=e32]:
+          - list [ref=e33]:
+            - listitem [ref=e34]:
+              - generic [ref=e35]:
+                - link "Over de rijkshuisstijl" [ref=e36] [cursor=pointer]:
+                  - generic [ref=e37]: Over de rijkshuisstijl
+                - button "Open item" [expanded] [ref=e38] [cursor=pointer]:
+                  - generic [ref=e39]: 
+              - list [ref=e40]:
+                - listitem [ref=e41]:
+                  - generic [ref=e42]:
+                    - link "Afzenderschap" [ref=e43] [cursor=pointer]:
+                      - generic [ref=e44]: Afzenderschap
+                    - button "Open item" [ref=e45] [cursor=pointer]:
+                      - generic [ref=e46]: 
+                - listitem [ref=e47]:
+                  - link "Organisaties in de rijkshuisstijl" [ref=e49] [cursor=pointer]:
+                    - generic [ref=e50]: Organisaties in de rijkshuisstijl
+                - listitem [ref=e51]:
+                  - link "Huisstijlcoördinatoren" [ref=e53] [cursor=pointer]:
+                    - generic [ref=e54]: Huisstijlcoördinatoren
+                - listitem [ref=e55]:
+                  - link "Auteursrecht" [ref=e57] [cursor=pointer]:
+                    - generic [ref=e58]: Auteursrecht
+                - listitem [ref=e59]:
+                  - link "Updates rijkshuisstijl" [ref=e61] [cursor=pointer]:
+                    - generic [ref=e62]: Updates rijkshuisstijl
+            - listitem [ref=e63]:
+              - generic [ref=e64]:
+                - link "Type rijksorganisatie en stijl van de communicatie" [ref=e65] [cursor=pointer]:
+                  - generic [ref=e66]: Type rijksorganisatie en stijl van de communicatie
+                - button "Open item" [ref=e67] [cursor=pointer]:
+                  - generic [ref=e68]: 
+            - listitem [ref=e69]:
+              - generic [ref=e70]:
+                - link "Basiselementen ''nieuw''" [ref=e71] [cursor=pointer]:
+                  - generic [ref=e72]: Basiselementen ''nieuw''
+                - button "Open item" [ref=e73] [cursor=pointer]:
+                  - generic [ref=e74]: 
+            - listitem [ref=e75]:
+              - generic [ref=e76]:
+                - link "Richtlijnen middelen ''nieuw''" [ref=e77] [cursor=pointer]:
+                  - generic [ref=e78]: Richtlijnen middelen ''nieuw''
+                - button "Open item" [ref=e79] [cursor=pointer]:
+                  - generic [ref=e80]: 
+            - listitem [ref=e81]:
+              - generic [ref=e82]:
+                - link "Basiselementen ''oud''" [ref=e83] [cursor=pointer]:
+                  - generic [ref=e84]: Basiselementen ''oud''
+                - button "Open item" [ref=e85] [cursor=pointer]:
+                  - generic [ref=e86]: 
+            - listitem [ref=e87]:
+              - generic [ref=e88]:
+                - link "Richtlijnen middelen ''oud''" [ref=e89] [cursor=pointer]:
+                  - generic [ref=e90]: Richtlijnen middelen ''oud''
+                - button "Open item" [ref=e91] [cursor=pointer]:
+                  - generic [ref=e92]: 
+            - listitem [ref=e93]:
+              - generic [ref=e94]:
+                - link "Thema's" [ref=e95] [cursor=pointer]:
+                  - generic [ref=e96]: Thema's
+                - button "Open item" [ref=e97] [cursor=pointer]:
+                  - generic [ref=e98]: 
+    - generic [ref=e99]:
+      - heading "Over de rijkshuisstijl" [level=1] [ref=e102]
+      - generic [ref=e104]:
+        - paragraph [ref=e105]: De ministerraad besloot op 4 juli 2007 dat alle organisaties die rechtstreeks onder ministeriële verantwoordelijkheid vallen, de rijkshuisstijl moeten voeren. Dit zijn ministeries, inspecties, (uitvoerings)organisaties, agentschappen en interdepartementale afzenders.
+        - heading "Doel rijkshuisstijl" [level=2] [ref=e106]
+        - paragraph [ref=e107]: De invoering van één logo en huisstijl was de randvoorwaarde voor een herkenbare en toegankelijke Rijksoverheid. Want ontkokering in beleid, uitvoering en dienstverlening kan niet zonder eenheid in communicatie. Door de invoering van één logo en huisstijl is de Rijksoverheid direct als afzender herkenbaar.
+        - heading "Missie en motto" [level=2] [ref=e108]
+        - paragraph [ref=e109]: De Rijksoverheid werkt aan herkenbaarheid, eenduidigheid en toegankelijkheid. Missie en motto onderstrepen waar de eenduidige Rijksoverheid voor staat. Ze geven het rijkslogo een inhoudelijke lading. De missie verwoordt wat alle organisaties van de Rijksoverheid bindt.
+        - heading "Missie" [level=3] [ref=e110]: Missie
+        - paragraph [ref=e111]: “De Rijksoverheid werkt aan een rechtvaardige, ondernemende en duurzame samenleving. In onze democratische rechtsstaat is het belangrijk dat mensen en maatschappelijke organisaties zich in vrijheid en veiligheid kunnen ontplooien. Daarvoor zijn keuzes nodig, in Nederland, in Europa, in de wereld. De Rijksoverheid weegt belangen tegen elkaar af, investeert in de toekomst en treedt op als dat nodig is. Dat doet zij met hart voor de publieke zaak, integer en met kennis van zaken. De Rijksoverheid. Voor Nederland. ”
+        - heading "Motto" [level=3] [ref=e112]
+        - paragraph [ref=e113]: “De Rijksoverheid. Voor Nederland.”
+        - paragraph [ref=e114]
+        - heading "De gemoderniseerde rijkshuisstijl" [level=1] [ref=e115]
+        - paragraph [ref=e116]: De rijkshuisstijl is in 2008 gelanceerd en het Rijksoverheid logo is inmiddels niet meer weg te denken. In 2024 is de rijkshuisstijl gemoderniseerd. Deze gemoderniseerde rijkshuisstijl sluit beter aan bij de huidige Rijksoverheid, die herkenbaar is en vertrouwen uitstraalt. Daarnaast is hij beter toepasbaar op moderne digitale kanalen en draagt bij aan de toegankelijkheid.
+        - heading "Wat is er aangepast" [level=2] [ref=e117]
+        - paragraph [ref=e118]: Het blauwe Rijksoverheid logo is zeker niet verdwenen, wel is het woordmerk anders opgemaakt. Daarnaast zijn de vormtaal, het lettertype, de kleuren en richtlijnen voor beeldtaal aangepast.
+        - paragraph [ref=e119]: "Zie voor de uitwerking:"
+        - paragraph [ref=e120]:
+          - link "Type rijksorganisatie en stijl van de communicatie" [ref=e121] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/modules/product/DigitalStyleGuide/default/grouplist.aspx?ItemId=10910
+        - paragraph [ref=e122]:
+          - link "Basiselementen ''nieuw''" [ref=e123] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/modules/folder/brandguide/default/grouplist.aspx?ItemId=10479
+        - paragraph [ref=e124]:
+          - link "Richtlijnen middelen ''nieuw''" [ref=e125] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/modules/folder/brandguide/default/grouplist.aspx?ItemId=10582
+        - paragraph [ref=e126]: Er komt geen eenmalige overgangsdatum, maar er is gekozen voor een geleidelijke invoering. Daarom zal komende jaren de huidige uitstraling van de Rijksoverheid in stappen steeds meer veranderen naar de gemoderniseerde uitstraling.
+        - paragraph [ref=e127]:
+          - text: Neem voor vragen over de gemoderniseerde rijkshuisstijl contact op met één van de
+          - link "huisstijlcoördinatoren" [ref=e128] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/modules/product/DigitalStyleGuide/default/index.aspx?ItemId=8734
+          - text: .
+  - text: 
+  - generic [ref=e129]:
+    - generic [ref=e133]:
+      - generic [ref=e135]:
+        - heading "Over deze site" [level=3] [ref=e136]
+        - list:
+          - listitem:
+            - link "Copyright" [ref=e137] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6736&OriginalItemId=6736
+          - listitem:
+            - link "Privacy" [ref=e138] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6737&OriginalItemId=6737
+          - listitem:
+            - link "Cookies" [ref=e139] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9144&OriginalItemId=9144
+          - listitem:
+            - link "Toegankelijkheid" [ref=e140] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9279&OriginalItemId=9279
+      - generic [ref=e141]:
+        - heading "Service" [level=3] [ref=e142]
+        - list:
+          - listitem:
+            - link "Over de rijkshuisstijl" [ref=e143] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6738&OriginalItemId=6738
+    - generic [ref=e146]: Powered by Spotler Brand ID

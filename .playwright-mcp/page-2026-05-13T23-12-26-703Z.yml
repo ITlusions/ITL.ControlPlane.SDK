@@ -1,0 +1,1272 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+              - generic [ref=e53]: Search or jump to...
+              - img [ref=e55]
+            - link "Sign in" [ref=e59] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fnl-design-system%2Frijkshuisstijl-community
+            - link "Sign up" [ref=e60] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=nl-design-system%2Frijkshuisstijl-community
+            - button "Appearance settings" [ref=e63] [cursor=pointer]:
+              - img
+  - main [ref=e67]:
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e71]:
+          - img [ref=e72]
+          - link "nl-design-system" [ref=e75] [cursor=pointer]:
+            - /url: /nl-design-system
+          - generic [ref=e76]: /
+          - strong [ref=e77]:
+            - link "rijkshuisstijl-community" [ref=e78] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community
+          - generic [ref=e79]: Public
+        - generic [ref=e80]:
+          - list:
+            - listitem [ref=e81]:
+              - link "You must be signed in to change notification settings" [ref=e82] [cursor=pointer]:
+                - /url: /login?return_to=%2Fnl-design-system%2Frijkshuisstijl-community
+                - img [ref=e83]
+                - text: Notifications
+            - listitem [ref=e85]:
+              - link "Fork 9" [ref=e86] [cursor=pointer]:
+                - /url: /login?return_to=%2Fnl-design-system%2Frijkshuisstijl-community
+                - img [ref=e87]
+                - text: Fork
+                - generic "9" [ref=e89]
+            - listitem [ref=e90]:
+              - link "You must be signed in to star a repository" [ref=e92] [cursor=pointer]:
+                - /url: /login?return_to=%2Fnl-design-system%2Frijkshuisstijl-community
+                - img [ref=e93]
+                - text: Star
+                - generic "25 users starred this repository" [ref=e95]: "25"
+      - navigation "Repository" [ref=e96]:
+        - list [ref=e97]:
+          - listitem [ref=e98]:
+            - link "Code" [ref=e99] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community
+              - img [ref=e100]
+              - generic [ref=e102]: Code
+          - listitem [ref=e103]:
+            - link "Issues 238" [ref=e104] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/issues
+              - img [ref=e105]
+              - generic [ref=e108]: Issues
+              - generic "238" [ref=e109]
+          - listitem [ref=e110]:
+            - link "Pull requests 47" [ref=e111] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/pulls
+              - img [ref=e112]
+              - generic [ref=e114]: Pull requests
+              - generic "47" [ref=e115]
+          - listitem [ref=e116]:
+            - link "Discussions" [ref=e117] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/discussions
+              - img [ref=e118]
+              - generic [ref=e120]: Discussions
+          - listitem [ref=e121]:
+            - link "Actions" [ref=e122] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/actions
+              - img [ref=e123]
+              - generic [ref=e125]: Actions
+          - listitem [ref=e126]:
+            - link "Projects" [ref=e127] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/projects
+              - img [ref=e128]
+              - generic [ref=e130]: Projects
+          - listitem [ref=e131]:
+            - link "Wiki" [ref=e132] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/wiki
+              - img [ref=e133]
+              - generic [ref=e135]: Wiki
+          - listitem [ref=e136]:
+            - link "Security and quality" [ref=e137] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/security
+              - img [ref=e138]
+              - generic [ref=e140]: Security and quality
+          - listitem [ref=e141]:
+            - link "Insights" [ref=e142] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/pulse
+              - img [ref=e143]
+              - generic [ref=e145]: Insights
+    - generic [ref=e158]:
+      - heading "nl-design-system/rijkshuisstijl-community" [level=1] [ref=e160]
+      - generic [ref=e161]:
+        - generic [ref=e164]:
+          - generic [ref=e165]:
+            - generic [ref=e166]:
+              - button "main branch" [ref=e168] [cursor=pointer]:
+                - generic [ref=e169]:
+                  - generic [ref=e171]:
+                    - img [ref=e173]
+                    - generic [ref=e176]: main
+                  - generic:
+                    - img
+              - generic [ref=e177]:
+                - link "128 Branches" [ref=e178] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/branches
+                  - generic [ref=e179]:
+                    - generic:
+                      - img
+                    - generic [ref=e181]:
+                      - strong [ref=e182]: "128"
+                      - text: Branches
+                - link "1905 Tags" [ref=e183] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/tags
+                  - generic [ref=e184]:
+                    - generic:
+                      - img
+                    - generic [ref=e186]:
+                      - strong [ref=e187]: "1905"
+                      - text: Tags
+            - generic [ref=e188]:
+              - generic [ref=e192]:
+                - img [ref=e194]
+                - combobox "Go to file" [ref=e196]
+              - button "Code" [ref=e197] [cursor=pointer]:
+                - generic [ref=e198]:
+                  - generic:
+                    - img
+                  - generic [ref=e199]: Code
+                  - generic:
+                    - img
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - heading "Folders and files" [level=2] [ref=e202]
+              - table "Folders and files" [ref=e203]:
+                - rowgroup:
+                  - row "Name Last commit message Last commit date":
+                    - columnheader "Name"
+                    - columnheader "Last commit message":
+                      - generic "Last commit message"
+                    - columnheader "Last commit date":
+                      - generic "Last commit date"
+                - rowgroup [ref=e204]:
+                  - row "Latest commit NeslihanUTUK commits by NeslihanUTUK 2556 fieldset cssreact componenten opsplitsen (#2605) success Commit f756388 · May 13, 202611 hours ago History 1,307 Commits" [ref=e205]:
+                    - cell "Latest commit NeslihanUTUK commits by NeslihanUTUK 2556 fieldset cssreact componenten opsplitsen (#2605) success Commit f756388 · May 13, 202611 hours ago History 1,307 Commits" [ref=e206]:
+                      - generic [ref=e207]:
+                        - heading "Latest commit" [level=2] [ref=e208]
+                        - generic [ref=e209]:
+                          - generic [ref=e211]:
+                            - link "NeslihanUTUK" [ref=e212] [cursor=pointer]:
+                              - /url: /NeslihanUTUK
+                              - img "NeslihanUTUK" [ref=e213]
+                            - link "commits by NeslihanUTUK" [ref=e214] [cursor=pointer]:
+                              - /url: /nl-design-system/rijkshuisstijl-community/commits?author=NeslihanUTUK
+                              - text: NeslihanUTUK
+                          - generic [ref=e215]:
+                            - generic [ref=e217]:
+                              - link "2556 fieldset cssreact componenten opsplitsen (" [ref=e218] [cursor=pointer]:
+                                - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                              - link "#2605" [ref=e219] [cursor=pointer]:
+                                - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2605
+                              - link ")" [ref=e220] [cursor=pointer]:
+                                - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                            - button "success" [ref=e221] [cursor=pointer]:
+                              - img [ref=e222]
+                        - generic [ref=e224]:
+                          - generic [ref=e226]:
+                            - link "Commit f756388" [ref=e227] [cursor=pointer]:
+                              - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                              - text: f756388
+                            - text: ·
+                            - generic "May 13, 2026, 1:56 PM GMT+2" [ref=e228]: May 13, 202611 hours ago
+                          - generic [ref=e229]:
+                            - heading "History" [level=2] [ref=e230]
+                            - link "1,307 Commits" [ref=e231] [cursor=pointer]:
+                              - /url: /nl-design-system/rijkshuisstijl-community/commits/main/
+                              - generic [ref=e232]:
+                                - generic:
+                                  - img
+                                - generic [ref=e233]: 1,307 Commits
+                  - row ".changeset, (Directory) 2556 fieldset cssreact componenten opsplitsen (#2605) May 13, 202611 hours ago" [ref=e234]:
+                    - cell ".changeset, (Directory)" [ref=e235]:
+                      - generic [ref=e236]:
+                        - img [ref=e237]
+                        - link ".changeset, (Directory)" [ref=e242] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/tree/main/.changeset
+                          - text: .changeset
+                    - cell "2556 fieldset cssreact componenten opsplitsen (#2605)" [ref=e243]:
+                      - generic [ref=e245]:
+                        - link "2556 fieldset cssreact componenten opsplitsen (" [ref=e246] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                        - link "#2605" [ref=e247] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2605
+                        - link ")" [ref=e248] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                    - cell "May 13, 202611 hours ago" [ref=e249]:
+                      - generic [ref=e250]: May 13, 202611 hours ago
+                  - 'row ".github, (Directory) ci: don''t persist credentials in actions/checkout May 12, 20262 days ago" [ref=e251]':
+                    - cell ".github, (Directory)" [ref=e252]:
+                      - generic [ref=e253]:
+                        - img [ref=e254]
+                        - link ".github, (Directory)" [ref=e259] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/tree/main/.github
+                          - text: .github
+                    - 'cell "ci: don''t persist credentials in actions/checkout" [ref=e260]':
+                      - 'link "ci: don''t persist credentials in actions/checkout" [ref=e263] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/7c852d39f098fbc0dcccd5d303d186b12c5d223a
+                    - cell "May 12, 20262 days ago" [ref=e264]:
+                      - generic [ref=e265]: May 12, 20262 days ago
+                  - 'row ".husky, (Directory) build: patch round 2024-06 Jun 15, 20242 years ago" [ref=e266]':
+                    - cell ".husky, (Directory)" [ref=e267]:
+                      - generic [ref=e268]:
+                        - img [ref=e269]
+                        - link ".husky, (Directory)" [ref=e274] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/tree/main/.husky
+                          - text: .husky
+                    - 'cell "build: patch round 2024-06" [ref=e275]':
+                      - 'link "build: patch round 2024-06" [ref=e278] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/74cc1e55cb92be494462d9b6145d19c98d1c32e7
+                    - cell "Jun 15, 20242 years ago" [ref=e279]:
+                      - generic [ref=e280]: Jun 15, 20242 years ago
+                  - 'row "apps, (Directory) refactor: lint fixes May 5, 2026last week" [ref=e281]':
+                    - cell "apps, (Directory)" [ref=e282]:
+                      - generic [ref=e283]:
+                        - img [ref=e284]
+                        - link "apps, (Directory)" [ref=e289] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/tree/main/apps
+                          - text: apps
+                    - 'cell "refactor: lint fixes" [ref=e290]':
+                      - 'link "refactor: lint fixes" [ref=e293] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/32c364839c99d2d9a35a129742783e473f8439da
+                    - cell "May 5, 2026last week" [ref=e294]:
+                      - generic [ref=e295]: May 5, 2026last week
+                  - row "packages, (Directory) 2556 fieldset cssreact componenten opsplitsen (#2605) May 13, 202611 hours ago" [ref=e296]:
+                    - cell "packages, (Directory)" [ref=e297]:
+                      - generic [ref=e298]:
+                        - img [ref=e299]
+                        - link "packages, (Directory)" [ref=e304] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/tree/main/packages
+                          - text: packages
+                    - cell "2556 fieldset cssreact componenten opsplitsen (#2605)" [ref=e305]:
+                      - generic [ref=e307]:
+                        - link "2556 fieldset cssreact componenten opsplitsen (" [ref=e308] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                        - link "#2605" [ref=e309] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2605
+                        - link ")" [ref=e310] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                    - cell "May 13, 202611 hours ago" [ref=e311]:
+                      - generic [ref=e312]: May 13, 202611 hours ago
+                  - 'row "proprietary, (Directory) style: make fluid font sizes opt-in May 11, 20263 days ago" [ref=e313]':
+                    - cell "proprietary, (Directory)" [ref=e314]:
+                      - generic [ref=e315]:
+                        - img [ref=e316]
+                        - link "proprietary, (Directory)" [ref=e321] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/tree/main/proprietary
+                          - text: proprietary
+                    - 'cell "style: make fluid font sizes opt-in" [ref=e322]':
+                      - 'link "style: make fluid font sizes opt-in" [ref=e325] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/daa5c996aeb923f664b6d8226bbcaaa72976025f
+                    - cell "May 11, 20263 days ago" [ref=e326]:
+                      - generic [ref=e327]: May 11, 20263 days ago
+                  - 'row ".editorconfig, (File) build: patch round 2024-07 Jul 24, 20242 years ago" [ref=e328]':
+                    - cell ".editorconfig, (File)" [ref=e329]:
+                      - generic [ref=e330]:
+                        - img [ref=e331]
+                        - link ".editorconfig, (File)" [ref=e336] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.editorconfig
+                          - text: .editorconfig
+                    - 'cell "build: patch round 2024-07" [ref=e337]':
+                      - 'link "build: patch round 2024-07" [ref=e340] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/f4edc3fa7c49a26e6dc987e57db4fd27d834e9b2
+                    - cell "Jul 24, 20242 years ago" [ref=e341]:
+                      - generic [ref=e342]: Jul 24, 20242 years ago
+                  - 'row ".eslintrc.js.json, (File) chore: fixed duplicate class name issues (#653) Sep 18, 20242 years ago" [ref=e343]':
+                    - cell ".eslintrc.js.json, (File)" [ref=e344]:
+                      - generic [ref=e345]:
+                        - img [ref=e346]
+                        - link ".eslintrc.js.json, (File)" [ref=e351] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.eslintrc.js.json
+                          - text: .eslintrc.js.json
+                    - 'cell "chore: fixed duplicate class name issues (#653)" [ref=e352]':
+                      - generic [ref=e354]:
+                        - 'link "chore: fixed duplicate class name issues (" [ref=e355] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/ce67158b2472db91b0f8cbb39f0f4cc40f089ab8
+                        - link "#653" [ref=e356] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/653
+                        - link ")" [ref=e357] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/ce67158b2472db91b0f8cbb39f0f4cc40f089ab8
+                    - cell "Sep 18, 20242 years ago" [ref=e358]:
+                      - generic [ref=e359]: Sep 18, 20242 years ago
+                  - row ".eslintrc.react.json, (File) Initial commit Mar 7, 20233 years ago" [ref=e360]:
+                    - cell ".eslintrc.react.json, (File)" [ref=e361]:
+                      - generic [ref=e362]:
+                        - img [ref=e363]
+                        - link ".eslintrc.react.json, (File)" [ref=e368] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.eslintrc.react.json
+                          - text: .eslintrc.react.json
+                    - cell "Initial commit" [ref=e369]:
+                      - link "Initial commit" [ref=e372] [cursor=pointer]:
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/d87ce2e9c80122e97d173f9db4fad14a8e28daf6
+                    - cell "Mar 7, 20233 years ago" [ref=e373]:
+                      - generic [ref=e374]: Mar 7, 20233 years ago
+                  - row ".gitattributes, (File) Initial commit Mar 7, 20233 years ago" [ref=e375]:
+                    - cell ".gitattributes, (File)" [ref=e376]:
+                      - generic [ref=e377]:
+                        - img [ref=e378]
+                        - link ".gitattributes, (File)" [ref=e383] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.gitattributes
+                          - text: .gitattributes
+                    - cell "Initial commit" [ref=e384]:
+                      - link "Initial commit" [ref=e387] [cursor=pointer]:
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/d87ce2e9c80122e97d173f9db4fad14a8e28daf6
+                    - cell "Mar 7, 20233 years ago" [ref=e388]:
+                      - generic [ref=e389]: Mar 7, 20233 years ago
+                  - row ".gitignore, (File) Angular component library and angular storybook packages (#1428) Apr 3, 2025last year" [ref=e390]:
+                    - cell ".gitignore, (File)" [ref=e391]:
+                      - generic [ref=e392]:
+                        - img [ref=e393]
+                        - link ".gitignore, (File)" [ref=e398] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.gitignore
+                          - text: .gitignore
+                    - cell "Angular component library and angular storybook packages (#1428)" [ref=e399]:
+                      - generic [ref=e401]:
+                        - link "Angular component library and angular storybook packages (" [ref=e402] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/6deb00ee1c397a6900216d7b4c140314803e34ba
+                        - link "#1428" [ref=e403] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/1428
+                        - link ")" [ref=e404] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/6deb00ee1c397a6900216d7b4c140314803e34ba
+                    - cell "Apr 3, 2025last year" [ref=e405]:
+                      - generic [ref=e406]: Apr 3, 2025last year
+                  - 'row ".htmlvalidate.json, (File) ci: disable HTML linting of doctype casing, Prettier does that Sep 28, 20233 years ago" [ref=e407]':
+                    - cell ".htmlvalidate.json, (File)" [ref=e408]:
+                      - generic [ref=e409]:
+                        - img [ref=e410]
+                        - link ".htmlvalidate.json, (File)" [ref=e415] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.htmlvalidate.json
+                          - text: .htmlvalidate.json
+                    - 'cell "ci: disable HTML linting of doctype casing, Prettier does that" [ref=e416]':
+                      - 'link "ci: disable HTML linting of doctype casing, Prettier does that" [ref=e419] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/320387b44a60147c3334014c6076e49cd6bdb4b2
+                    - cell "Sep 28, 20233 years ago" [ref=e420]:
+                      - generic [ref=e421]: Sep 28, 20233 years ago
+                  - 'row ".lintstagedrc.json, (File) chore: add .mjs files May 8, 20242 years ago" [ref=e422]':
+                    - cell ".lintstagedrc.json, (File)" [ref=e423]:
+                      - generic [ref=e424]:
+                        - img [ref=e425]
+                        - link ".lintstagedrc.json, (File)" [ref=e430] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.lintstagedrc.json
+                          - text: .lintstagedrc.json
+                    - 'cell "chore: add .mjs files" [ref=e431]':
+                      - 'link "chore: add .mjs files" [ref=e434] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/dd36b7b693717df61aef34a38e6de5e9dc56e5a6
+                    - cell "May 8, 20242 years ago" [ref=e435]:
+                      - generic [ref=e436]: May 8, 20242 years ago
+                  - row ".markdownlint.json, (File) Initial commit Mar 7, 20233 years ago" [ref=e437]:
+                    - cell ".markdownlint.json, (File)" [ref=e438]:
+                      - generic [ref=e439]:
+                        - img [ref=e440]
+                        - link ".markdownlint.json, (File)" [ref=e445] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.markdownlint.json
+                          - text: .markdownlint.json
+                    - cell "Initial commit" [ref=e446]:
+                      - link "Initial commit" [ref=e449] [cursor=pointer]:
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/d87ce2e9c80122e97d173f9db4fad14a8e28daf6
+                    - cell "Mar 7, 20233 years ago" [ref=e450]:
+                      - generic [ref=e451]: Mar 7, 20233 years ago
+                  - 'row ".markdownlintignore, (File) fix: card-footer-render-even-with-no-props (#1303) Feb 24, 2025last year" [ref=e452]':
+                    - cell ".markdownlintignore, (File)" [ref=e453]:
+                      - generic [ref=e454]:
+                        - img [ref=e455]
+                        - link ".markdownlintignore, (File)" [ref=e460] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.markdownlintignore
+                          - text: .markdownlintignore
+                    - 'cell "fix: card-footer-render-even-with-no-props (#1303)" [ref=e461]':
+                      - generic [ref=e463]:
+                        - 'link "fix: card-footer-render-even-with-no-props (" [ref=e464] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/0715283a0a07e827aee909353ac99574ccd18b10
+                        - link "#1303" [ref=e465] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/1303
+                        - link ")" [ref=e466] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/0715283a0a07e827aee909353ac99574ccd18b10
+                    - cell "Feb 24, 2025last year" [ref=e467]:
+                      - generic [ref=e468]: Feb 24, 2025last year
+                  - 'row ".ncurc.major.cjs, (File) build: patch round 2024-07 Jul 24, 20242 years ago" [ref=e469]':
+                    - cell ".ncurc.major.cjs, (File)" [ref=e470]:
+                      - generic [ref=e471]:
+                        - img [ref=e472]
+                        - link ".ncurc.major.cjs, (File)" [ref=e477] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.ncurc.major.cjs
+                          - text: .ncurc.major.cjs
+                    - 'cell "build: patch round 2024-07" [ref=e478]':
+                      - 'link "build: patch round 2024-07" [ref=e481] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/f4edc3fa7c49a26e6dc987e57db4fd27d834e9b2
+                    - cell "Jul 24, 20242 years ago" [ref=e482]:
+                      - generic [ref=e483]: Jul 24, 20242 years ago
+                  - 'row ".ncurc.minor.cjs, (File) chore: rename .ncurc.*.js -> .cjs Mar 25, 20242 years ago" [ref=e484]':
+                    - cell ".ncurc.minor.cjs, (File)" [ref=e485]:
+                      - generic [ref=e486]:
+                        - img [ref=e487]
+                        - link ".ncurc.minor.cjs, (File)" [ref=e492] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.ncurc.minor.cjs
+                          - text: .ncurc.minor.cjs
+                    - 'cell "chore: rename .ncurc.*.js -> .cjs" [ref=e493]':
+                      - 'link "chore: rename .ncurc.*.js -> .cjs" [ref=e496] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/58a5f0f5a10f8bc65350a2cdef8cdec6882095b5
+                    - cell "Mar 25, 20242 years ago" [ref=e497]:
+                      - generic [ref=e498]: Mar 25, 20242 years ago
+                  - 'row ".ncurc.patch.cjs, (File) chore: configure a cooldown of 1 day for npm-check-updates Nov 18, 20256 months ago" [ref=e499]':
+                    - cell ".ncurc.patch.cjs, (File)" [ref=e500]:
+                      - generic [ref=e501]:
+                        - img [ref=e502]
+                        - link ".ncurc.patch.cjs, (File)" [ref=e507] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.ncurc.patch.cjs
+                          - text: .ncurc.patch.cjs
+                    - 'cell "chore: configure a cooldown of 1 day for npm-check-updates" [ref=e508]':
+                      - 'link "chore: configure a cooldown of 1 day for npm-check-updates" [ref=e511] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/c4b628e906a93812d2fe2bd2f819387df2769ad5
+                    - cell "Nov 18, 20256 months ago" [ref=e512]:
+                      - generic [ref=e513]: Nov 18, 20256 months ago
+                  - 'row ".npmrc, (File) ci: enable npm publishing with OIDC Oct 27, 20257 months ago" [ref=e514]':
+                    - cell ".npmrc, (File)" [ref=e515]:
+                      - generic [ref=e516]:
+                        - img [ref=e517]
+                        - link ".npmrc, (File)" [ref=e522] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.npmrc
+                          - text: .npmrc
+                    - 'cell "ci: enable npm publishing with OIDC" [ref=e523]':
+                      - 'link "ci: enable npm publishing with OIDC" [ref=e526] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/6b804330e9b9f97dc397411282749289e2073afd
+                    - cell "Oct 27, 20257 months ago" [ref=e527]:
+                      - generic [ref=e528]: Oct 27, 20257 months ago
+                  - 'row ".nvmrc, (File) chore: upgrade Node.js to 24 (#2182) Jan 13, 20264 months ago" [ref=e529]':
+                    - cell ".nvmrc, (File)" [ref=e530]:
+                      - generic [ref=e531]:
+                        - img [ref=e532]
+                        - link ".nvmrc, (File)" [ref=e537] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.nvmrc
+                          - text: .nvmrc
+                    - 'cell "chore: upgrade Node.js to 24 (#2182)" [ref=e538]':
+                      - generic [ref=e540]:
+                        - 'link "chore: upgrade Node.js to 24 (" [ref=e541] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/72bf3ad99a8d9589ea0ad148c319687b7707e2f4
+                        - link "#2182" [ref=e542] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2182
+                        - link ")" [ref=e543] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/72bf3ad99a8d9589ea0ad148c319687b7707e2f4
+                    - cell "Jan 13, 20264 months ago" [ref=e544]:
+                      - generic [ref=e545]: Jan 13, 20264 months ago
+                  - 'row ".prettierignore, (File) REFACTOR: removed unneccessary web component packages (#1175) Jan 31, 2025last year" [ref=e546]':
+                    - cell ".prettierignore, (File)" [ref=e547]:
+                      - generic [ref=e548]:
+                        - img [ref=e549]
+                        - link ".prettierignore, (File)" [ref=e554] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.prettierignore
+                          - text: .prettierignore
+                    - 'cell "REFACTOR: removed unneccessary web component packages (#1175)" [ref=e555]':
+                      - generic [ref=e557]:
+                        - 'link "REFACTOR: removed unneccessary web component packages (" [ref=e558] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/39c8aebb65d9400f4d0337955febee4862061f2a
+                        - link "#1175" [ref=e559] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/1175
+                        - link ")" [ref=e560] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/39c8aebb65d9400f4d0337955febee4862061f2a
+                    - cell "Jan 31, 2025last year" [ref=e561]:
+                      - generic [ref=e562]: Jan 31, 2025last year
+                  - 'row ".stylelintignore, (File) chore: remove deprecated token directories (#1950) Oct 13, 20257 months ago" [ref=e563]':
+                    - cell ".stylelintignore, (File)" [ref=e564]:
+                      - generic [ref=e565]:
+                        - img [ref=e566]
+                        - link ".stylelintignore, (File)" [ref=e571] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.stylelintignore
+                          - text: .stylelintignore
+                    - 'cell "chore: remove deprecated token directories (#1950)" [ref=e572]':
+                      - generic [ref=e574]:
+                        - 'link "chore: remove deprecated token directories (" [ref=e575] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/eee2ad63567214ff6f0b345efecd692d16ecba7d
+                        - link "#1950" [ref=e576] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/1950
+                        - link ")" [ref=e577] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/eee2ad63567214ff6f0b345efecd692d16ecba7d
+                    - cell "Oct 13, 20257 months ago" [ref=e578]:
+                      - generic [ref=e579]: Oct 13, 20257 months ago
+                  - 'row ".stylelintrc.json, (File) build: increase precision of colors Mar 23, 20262 months ago" [ref=e580]':
+                    - cell ".stylelintrc.json, (File)" [ref=e581]:
+                      - generic [ref=e582]:
+                        - img [ref=e583]
+                        - link ".stylelintrc.json, (File)" [ref=e588] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.stylelintrc.json
+                          - text: .stylelintrc.json
+                    - 'cell "build: increase precision of colors" [ref=e589]':
+                      - 'link "build: increase precision of colors" [ref=e592] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/bbde06e819a3ccb51c555fb63198452bbb99e262
+                    - cell "Mar 23, 20262 months ago" [ref=e593]:
+                      - generic [ref=e594]: Mar 23, 20262 months ago
+                  - 'row "CODE_OF_CONDUCT.md, (File) chore: update pnpm versie & kernteam@ naar info@ (#2272) Feb 20, 20263 months ago" [ref=e595]':
+                    - cell "CODE_OF_CONDUCT.md, (File)" [ref=e596]:
+                      - generic [ref=e597]:
+                        - img [ref=e598]
+                        - link "CODE_OF_CONDUCT.md, (File)" [ref=e603] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/CODE_OF_CONDUCT.md
+                          - text: CODE_OF_CONDUCT.md
+                    - 'cell "chore: update pnpm versie & kernteam@ naar info@ (#2272)" [ref=e604]':
+                      - generic [ref=e606]:
+                        - 'link "chore: update pnpm versie & kernteam@ naar info@ (" [ref=e607] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/cdab6e477acc27b17316226054a09495cb70314b
+                        - link "#2272" [ref=e608] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2272
+                        - link ")" [ref=e609] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/cdab6e477acc27b17316226054a09495cb70314b
+                    - cell "Feb 20, 20263 months ago" [ref=e610]:
+                      - generic [ref=e611]: Feb 20, 20263 months ago
+                  - 'row "CODE_OF_CONDUCT.nl.md, (File) chore: update pnpm versie & kernteam@ naar info@ (#2272) Feb 20, 20263 months ago" [ref=e612]':
+                    - cell "CODE_OF_CONDUCT.nl.md, (File)" [ref=e613]:
+                      - generic [ref=e614]:
+                        - img [ref=e615]
+                        - link "CODE_OF_CONDUCT.nl.md, (File)" [ref=e620] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/CODE_OF_CONDUCT.nl.md
+                          - text: CODE_OF_CONDUCT.nl.md
+                    - 'cell "chore: update pnpm versie & kernteam@ naar info@ (#2272)" [ref=e621]':
+                      - generic [ref=e623]:
+                        - 'link "chore: update pnpm versie & kernteam@ naar info@ (" [ref=e624] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/cdab6e477acc27b17316226054a09495cb70314b
+                        - link "#2272" [ref=e625] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2272
+                        - link ")" [ref=e626] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/cdab6e477acc27b17316226054a09495cb70314b
+                    - cell "Feb 20, 20263 months ago" [ref=e627]:
+                      - generic [ref=e628]: Feb 20, 20263 months ago
+                  - row "LICENSE.md, (File) Initial commit Mar 7, 20233 years ago" [ref=e629]:
+                    - cell "LICENSE.md, (File)" [ref=e630]:
+                      - generic [ref=e631]:
+                        - img [ref=e632]
+                        - link "LICENSE.md, (File)" [ref=e637] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/LICENSE.md
+                          - text: LICENSE.md
+                    - cell "Initial commit" [ref=e638]:
+                      - link "Initial commit" [ref=e641] [cursor=pointer]:
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/d87ce2e9c80122e97d173f9db4fad14a8e28daf6
+                    - cell "Mar 7, 20233 years ago" [ref=e642]:
+                      - generic [ref=e643]: Mar 7, 20233 years ago
+                  - row "NOTICE.md, (File) Initial commit Mar 7, 20233 years ago" [ref=e644]:
+                    - cell "NOTICE.md, (File)" [ref=e645]:
+                      - generic [ref=e646]:
+                        - img [ref=e647]
+                        - link "NOTICE.md, (File)" [ref=e652] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/NOTICE.md
+                          - text: NOTICE.md
+                    - cell "Initial commit" [ref=e653]:
+                      - link "Initial commit" [ref=e656] [cursor=pointer]:
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/d87ce2e9c80122e97d173f9db4fad14a8e28daf6
+                    - cell "Mar 7, 20233 years ago" [ref=e657]:
+                      - generic [ref=e658]: Mar 7, 20233 years ago
+                  - 'row "README.md, (File) docs: update node version in readme (#2531) May 1, 20262 weeks ago" [ref=e659]':
+                    - cell "README.md, (File)" [ref=e660]:
+                      - generic [ref=e661]:
+                        - img [ref=e662]
+                        - link "README.md, (File)" [ref=e667] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/README.md
+                          - text: README.md
+                    - 'cell "docs: update node version in readme (#2531)" [ref=e668]':
+                      - generic [ref=e670]:
+                        - 'link "docs: update node version in readme (" [ref=e671] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/9f295c9a0bcae09b93dd144eae01c4d647a6a990
+                        - link "#2531" [ref=e672] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2531
+                        - link ")" [ref=e673] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/9f295c9a0bcae09b93dd144eae01c4d647a6a990
+                    - cell "May 1, 20262 weeks ago" [ref=e674]:
+                      - generic [ref=e675]: May 1, 20262 weeks ago
+                  - 'row "eslint.config.mjs, (File) ci: add eslint-plugin-regexp May 5, 2026last week" [ref=e676]':
+                    - cell "eslint.config.mjs, (File)" [ref=e677]:
+                      - generic [ref=e678]:
+                        - img [ref=e679]
+                        - link "eslint.config.mjs, (File)" [ref=e684] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/eslint.config.mjs
+                          - text: eslint.config.mjs
+                    - 'cell "ci: add eslint-plugin-regexp" [ref=e685]':
+                      - 'link "ci: add eslint-plugin-regexp" [ref=e688] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/367d525667f9c86da3d81ca9642db3632e568910
+                        - text: "ci: add"
+                        - code [ref=e689]: eslint-plugin-regexp
+                    - cell "May 5, 2026last week" [ref=e690]:
+                      - generic [ref=e691]: May 5, 2026last week
+                  - row "lerna.json, (File) Initial commit Mar 7, 20233 years ago" [ref=e692]:
+                    - cell "lerna.json, (File)" [ref=e693]:
+                      - generic [ref=e694]:
+                        - img [ref=e695]
+                        - link "lerna.json, (File)" [ref=e700] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/lerna.json
+                          - text: lerna.json
+                    - cell "Initial commit" [ref=e701]:
+                      - link "Initial commit" [ref=e704] [cursor=pointer]:
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/d87ce2e9c80122e97d173f9db4fad14a8e28daf6
+                    - cell "Mar 7, 20233 years ago" [ref=e705]:
+                      - generic [ref=e706]: Mar 7, 20233 years ago
+                  - 'row "npmpackagejsonlint.config.cjs, (File) chore: update npm-package-json-lint config Aug 1, 20242 years ago" [ref=e707]':
+                    - cell "npmpackagejsonlint.config.cjs, (File)" [ref=e708]:
+                      - generic [ref=e709]:
+                        - img [ref=e710]
+                        - link "npmpackagejsonlint.config.cjs, (File)" [ref=e715] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/npmpackagejsonlint.config.cjs
+                          - text: npmpackagejsonlint.config.cjs
+                    - 'cell "chore: update npm-package-json-lint config" [ref=e716]':
+                      - 'link "chore: update npm-package-json-lint config" [ref=e719] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/d13fa44134962f02523d0c101af36faf72cc610d
+                    - cell "Aug 1, 20242 years ago" [ref=e720]:
+                      - generic [ref=e721]: Aug 1, 20242 years ago
+                  - 'row "package.json, (File) ci: add eslint-plugin-regexp May 5, 2026last week" [ref=e722]':
+                    - cell "package.json, (File)" [ref=e723]:
+                      - generic [ref=e724]:
+                        - img [ref=e725]
+                        - link "package.json, (File)" [ref=e730] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/package.json
+                          - text: package.json
+                    - 'cell "ci: add eslint-plugin-regexp" [ref=e731]':
+                      - 'link "ci: add eslint-plugin-regexp" [ref=e734] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/367d525667f9c86da3d81ca9642db3632e568910
+                        - text: "ci: add"
+                        - code [ref=e735]: eslint-plugin-regexp
+                    - cell "May 5, 2026last week" [ref=e736]:
+                      - generic [ref=e737]: May 5, 2026last week
+                  - row "pnpm-lock.yaml, (File) 2556 fieldset cssreact componenten opsplitsen (#2605) May 13, 202611 hours ago" [ref=e738]:
+                    - cell "pnpm-lock.yaml, (File)" [ref=e739]:
+                      - generic [ref=e740]:
+                        - img [ref=e741]
+                        - link "pnpm-lock.yaml, (File)" [ref=e746] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/pnpm-lock.yaml
+                          - text: pnpm-lock.yaml
+                    - cell "2556 fieldset cssreact componenten opsplitsen (#2605)" [ref=e747]:
+                      - generic [ref=e749]:
+                        - link "2556 fieldset cssreact componenten opsplitsen (" [ref=e750] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                        - link "#2605" [ref=e751] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/2605
+                        - link ")" [ref=e752] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/f75638854a3f1ff2918115a34c3cc2170b4e0b6d
+                    - cell "May 13, 202611 hours ago" [ref=e753]:
+                      - generic [ref=e754]: May 13, 202611 hours ago
+                  - 'row "pnpm-workspace.yaml, (File) fix: critical audit Axios has a NO_PROXY Hostname Normalization Bypass Apr 10, 2026last month" [ref=e755]':
+                    - cell "pnpm-workspace.yaml, (File)" [ref=e756]:
+                      - generic [ref=e757]:
+                        - img [ref=e758]
+                        - link "pnpm-workspace.yaml, (File)" [ref=e763] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/pnpm-workspace.yaml
+                          - text: pnpm-workspace.yaml
+                    - 'cell "fix: critical audit Axios has a NO_PROXY Hostname Normalization Bypass" [ref=e764]':
+                      - 'link "fix: critical audit Axios has a NO_PROXY Hostname Normalization Bypass" [ref=e767] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/4c5ea71d384c1962f2c520f7c22f78e1e4a0d072
+                    - cell "Apr 10, 2026last month" [ref=e768]:
+                      - generic [ref=e769]: Apr 10, 2026last month
+                  - 'row "prettier.config.cjs, (File) fix: remove prettier support for .twig files (#1298) (#1299) Feb 20, 2025last year" [ref=e770]':
+                    - cell "prettier.config.cjs, (File)" [ref=e771]:
+                      - generic [ref=e772]:
+                        - img [ref=e773]
+                        - link "prettier.config.cjs, (File)" [ref=e778] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/prettier.config.cjs
+                          - text: prettier.config.cjs
+                    - 'cell "fix: remove prettier support for .twig files (#1298) (#1299)" [ref=e779]':
+                      - generic [ref=e781]:
+                        - 'link "fix: remove prettier support for .twig files (" [ref=e782] [cursor=pointer]':
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/a29f690e2ded971a6469693c1c3ab010e4df8426
+                        - link "#1298" [ref=e783] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/issues/1298
+                        - link ") (" [ref=e784] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/a29f690e2ded971a6469693c1c3ab010e4df8426
+                        - link "#1299" [ref=e785] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/pull/1299
+                        - link ")" [ref=e786] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/commit/a29f690e2ded971a6469693c1c3ab010e4df8426
+                    - cell "Feb 20, 2025last year" [ref=e787]:
+                      - generic [ref=e788]: Feb 20, 2025last year
+                  - 'row "tsconfig.json, (File) build: configure tsconfig.json lib in one place, upgrade to es2023 May 5, 2026last week" [ref=e789]':
+                    - cell "tsconfig.json, (File)" [ref=e790]:
+                      - generic [ref=e791]:
+                        - img [ref=e792]
+                        - link "tsconfig.json, (File)" [ref=e797] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/tsconfig.json
+                          - text: tsconfig.json
+                    - 'cell "build: configure tsconfig.json lib in one place, upgrade to es2023" [ref=e798]':
+                      - 'link "build: configure tsconfig.json lib in one place, upgrade to es2023" [ref=e801] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/8f4408d16ce098b23aa0187cbd8241cc58ae44c5
+                        - text: "build: configure tsconfig.json"
+                        - code [ref=e802]: lib
+                        - text: in one place, upgrade to es2023
+                    - cell "May 5, 2026last week" [ref=e803]:
+                      - generic [ref=e804]: May 5, 2026last week
+                  - 'row "vercel.json, (File) chore: automatically cancel Vercel jobs Apr 10, 2025last year" [ref=e805]':
+                    - cell "vercel.json, (File)" [ref=e806]:
+                      - generic [ref=e807]:
+                        - img [ref=e808]
+                        - link "vercel.json, (File)" [ref=e813] [cursor=pointer]:
+                          - /url: /nl-design-system/rijkshuisstijl-community/blob/main/vercel.json
+                          - text: vercel.json
+                    - 'cell "chore: automatically cancel Vercel jobs" [ref=e814]':
+                      - 'link "chore: automatically cancel Vercel jobs" [ref=e817] [cursor=pointer]':
+                        - /url: /nl-design-system/rijkshuisstijl-community/commit/3e12778b8eaf37d1d68bb535b679e471436b0aae
+                    - cell "Apr 10, 2025last year" [ref=e818]:
+                      - generic [ref=e819]: Apr 10, 2025last year
+            - generic [ref=e821]:
+              - generic [ref=e822]:
+                - heading "Repository files navigation" [level=2] [ref=e823]
+                - navigation "Repository files" [ref=e824]:
+                  - list [ref=e825]:
+                    - listitem [ref=e826]:
+                      - link "README" [ref=e827] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e829]
+                        - generic [ref=e831]: README
+                    - listitem [ref=e832]:
+                      - link "Code of conduct" [ref=e833] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e835]
+                        - generic [ref=e837]: Code of conduct
+                    - listitem [ref=e838]:
+                      - link "EUPL-1.2 license" [ref=e839] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e841]
+                        - generic [ref=e843]: EUPL-1.2 license
+                - button "Outline" [ref=e844] [cursor=pointer]:
+                  - img [ref=e845]
+              - article [ref=e848]:
+                - generic [ref=e849]:
+                  - heading "Rijkshuisstijl Community Componenten" [level=1] [ref=e850]
+                  - 'link "Permalink: Rijkshuisstijl Community Componenten" [ref=e851] [cursor=pointer]':
+                    - /url: "#rijkshuisstijl-community-componenten"
+                    - img [ref=e852]
+                - paragraph [ref=e854]:
+                  - strong [ref=e855]:
+                    - text: Direct aan de slag met
+                    - link "CSS" [ref=e856] [cursor=pointer]:
+                      - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/components-css/library-css/README.md
+                    - text: "|"
+                    - link "React" [ref=e857] [cursor=pointer]:
+                      - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/components-react/library-react/README.md
+                    - text: "|"
+                    - link "Web Components" [ref=e858] [cursor=pointer]:
+                      - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/web-components/README.md
+                    - text: "|"
+                    - link "Twig" [ref=e859] [cursor=pointer]:
+                      - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/components-twig/README.md
+                - separator [ref=e860]
+                - paragraph [ref=e861]:
+                  - emphasis [ref=e862]:
+                    - text: Dit project wordt
+                    - strong [ref=e863]: niet
+                    - text: gesteund door het Ministerie van Algemene Zaken.
+                - paragraph [ref=e864]:
+                  - strong [ref=e865]: Het toepassen van design-elementen uit dit project is strikt verboden voor organisaties die geen deel uitmaken van de centrale overheid van Nederland.
+                - paragraph [ref=e866]:
+                  - text: Dit project maakt deel uit van een samenwerkingsverband om
+                  - link "NL Design System" [ref=e867] [cursor=pointer]:
+                    - /url: https://nldesignsystem.nl
+                  - text: "-componenten te gebruiken voor projecten die moeten voldoen aan de Rijkshuisstijl. Organisaties van de centrale overheid van Nederland (bijvoorbeeld:"
+                  - link "Belastingdienst" [ref=e868] [cursor=pointer]:
+                    - /url: https://www.belastingdienst.nl/
+                  - text: ","
+                  - link "DUO" [ref=e869] [cursor=pointer]:
+                    - /url: https://www.duo.nl
+                  - text: ","
+                  - link "Logius" [ref=e870] [cursor=pointer]:
+                    - /url: http://logius.nl
+                  - text: ","
+                  - link "SVB" [ref=e871] [cursor=pointer]:
+                    - /url: https://www.svb.nl/
+                  - text: ) en degenen die door hen zijn ingehuurd voor het ontwikkelen van websites en apps, kunnen via dit project samenwerken.
+                - generic [ref=e872]:
+                  - heading "Voordat je begint" [level=2] [ref=e873]
+                  - 'link "Permalink: Voordat je begint" [ref=e874] [cursor=pointer]':
+                    - /url: "#voordat-je-begint"
+                    - img [ref=e875]
+                - generic [ref=e877]:
+                  - heading "Node" [level=3] [ref=e878]
+                  - 'link "Permalink: Node" [ref=e879] [cursor=pointer]':
+                    - /url: "#node"
+                    - img [ref=e880]
+                - paragraph [ref=e882]:
+                  - text: In dit project wordt Node.js versie
+                  - strong [ref=e883]:
+                    - emphasis [ref=e884]: "24"
+                  - text: gebruikt. Dit project bevat een
+                  - link ".nvmrc" [ref=e885] [cursor=pointer]:
+                    - /url: /nl-design-system/rijkshuisstijl-community/blob/main/.nvmrc
+                  - text: bestand en helpt je met het installeren van de juiste versie met behulp van
+                  - code [ref=e886]: nvm
+                  - text: .
+                - list [ref=e887]:
+                  - listitem [ref=e888]:
+                    - text: Als je nvm nog niet hebt,
+                    - link "installeer nvm" [ref=e889] [cursor=pointer]:
+                      - /url: https://github.com/nvm-sh/nvm#install--update-script
+                      - text: installeer
+                      - code [ref=e890]: nvm
+                    - text: .
+                - paragraph [ref=e891]:
+                  - text: Zodra je
+                  - code [ref=e892]: nvm
+                  - text: "hebt geïnstalleerd, run je het commando:"
+                - generic [ref=e893]:
+                  - generic [ref=e894]: nvm use
+                  - button "Copy code to clipboard" [ref=e896] [cursor=pointer]:
+                    - img [ref=e897]
+                - paragraph [ref=e900]:
+                  - text: Als je de juiste versie nog niet hebt, wordt gevraagd om deze te installeren door middel van
+                  - code [ref=e901]: nvm install
+                  - text: . Als de juiste versie al is geïnstalleerd, of nadat hij is geïnstalleerd, wordt hij ingesteld als de huidige versie.
+                - generic [ref=e902]:
+                  - heading "SCSS/SASS" [level=3] [ref=e903]
+                  - 'link "Permalink: SCSS/SASS" [ref=e904] [cursor=pointer]':
+                    - /url: "#scsssass"
+                    - img [ref=e905]
+                - paragraph [ref=e907]: De componenten gebruiken scss, zorg dat jouw project scss-bestanden kan verwerken.
+                - generic [ref=e908]:
+                  - heading "Aan de slag" [level=2] [ref=e909]
+                  - 'link "Permalink: Aan de slag" [ref=e910] [cursor=pointer]':
+                    - /url: "#aan-de-slag"
+                    - img [ref=e911]
+                - paragraph [ref=e913]: De componenten van de Rijkshuisstijl Community zijn te gebruiken met en zonder framework. Bekijk de README van elke package voor informatie over implementatie.
+                - table [ref=e915]:
+                  - rowgroup [ref=e916]:
+                    - row "Package Purpose" [ref=e917]:
+                      - columnheader "Package" [ref=e918]
+                      - columnheader "Purpose" [ref=e919]
+                  - rowgroup [ref=e920]:
+                    - row "components-css Hier kunnen CSS-componenten toegevoegd worden die nog niet bestaan in de NL Design System-community." [ref=e921]:
+                      - cell "components-css" [ref=e922]:
+                        - link "components-css" [ref=e923] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/components-css/library-css/README.md
+                      - cell "Hier kunnen CSS-componenten toegevoegd worden die nog niet bestaan in de NL Design System-community." [ref=e924]
+                    - row "components-react Optioneel voor het toevoegen van een React-wrapper aan een CSS-component als die nog niet bestaat." [ref=e925]:
+                      - cell "components-react" [ref=e926]:
+                        - link "components-react" [ref=e927] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/components-react/library-react/README.md
+                      - cell "Optioneel voor het toevoegen van een React-wrapper aan een CSS-component als die nog niet bestaat." [ref=e928]
+                    - row "web-components Optioneel voor het toevoegen van een Web Component wrapper aan een CSS-component als die nog niet bestaat." [ref=e929]:
+                      - cell "web-components" [ref=e930]:
+                        - link "web-components" [ref=e931] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/web-components/README.md
+                      - cell "Optioneel voor het toevoegen van een Web Component wrapper aan een CSS-component als die nog niet bestaat." [ref=e932]
+                    - row "components-twig Optioneel voor het toevoegen van een Twig-wrapper aan een CSS-component als die nog niet bestaat." [ref=e933]:
+                      - cell "components-twig" [ref=e934]:
+                        - link "components-twig" [ref=e935] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/components-twig/README.md
+                      - cell "Optioneel voor het toevoegen van een Twig-wrapper aan een CSS-component als die nog niet bestaat." [ref=e936]
+                    - row "font Dit npm pakketje met fonts kun je gebruiken als alternatief op de officiële Rijkshuisstijl fonts, voor situaties waar je geen toestemming hebt om de officiële fonts te gebruiken. Daarnaast staat hier ook uitgelegd hoe je de officiële fonts kan gebruiken indien je wel toestemming hebt." [ref=e937]:
+                      - cell "font" [ref=e938]:
+                        - link "font" [ref=e939] [cursor=pointer]:
+                          - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/font/README.md
+                      - cell "Dit npm pakketje met fonts kun je gebruiken als alternatief op de officiële Rijkshuisstijl fonts, voor situaties waar je geen toestemming hebt om de officiële fonts te gebruiken. Daarnaast staat hier ook uitgelegd hoe je de officiële fonts kan gebruiken indien je wel toestemming hebt." [ref=e940]
+                - generic [ref=e941]:
+                  - heading "Licentie" [level=2] [ref=e942]
+                  - 'link "Permalink: Licentie" [ref=e943] [cursor=pointer]':
+                    - /url: "#licentie"
+                    - img [ref=e944]
+                - paragraph [ref=e946]:
+                  - text: Dit project bevat zowel eigen als vrije en open-source software die wordt gelicentieerd onder de
+                  - link "European Union Public License (EUPL) v1.2" [ref=e947] [cursor=pointer]:
+                    - /url: /nl-design-system/rijkshuisstijl-community/blob/main/LICENSE.md
+                  - text: .
+                - paragraph [ref=e948]:
+                  - text: Lees de
+                  - link "NOTICE file" [ref=e949] [cursor=pointer]:
+                    - /url: /nl-design-system/rijkshuisstijl-community/blob/main/NOTICE.md
+                  - text: voor informatie over eigen assets in deze repository.
+                - generic [ref=e950]:
+                  - heading "Logo en stijlgids" [level=3] [ref=e951]
+                  - 'link "Permalink: Logo en stijlgids" [ref=e952] [cursor=pointer]':
+                    - /url: "#logo-en-stijlgids"
+                    - img [ref=e953]
+                - paragraph [ref=e955]: Copyright geldt voor het Rijkshuisstijl-logo en merkidentiteit. Gebruik hiervan is strikt verboden, behalve voor het ontwikkelen van websites en apps voor de Rijksoverheid.
+                - generic [ref=e956]:
+                  - heading "Fonts" [level=3] [ref=e957]
+                  - 'link "Permalink: Fonts" [ref=e958] [cursor=pointer]':
+                    - /url: "#fonts"
+                    - img [ref=e959]
+                - paragraph [ref=e961]:
+                  - link "De lettertypen voor de Rijkshuisstijl" [ref=e962] [cursor=pointer]:
+                    - /url: https://www.rijkshuisstijl.nl/basiselementen/basiselementen-online/webfonts
+                  - text: zijn
+                  - link "speciaal ontworpen voor de Rijksoverheid" [ref=e963] [cursor=pointer]:
+                    - /url: https://www.rijkshuisstijl.nl/basiselementen/documenten/verzamelingen-afbeeldingen/2014/06/01/achtergrondartikel-rijkshuisstijl-webfonts
+                  - text: en zijn niet open source. Gebruik tot toestemming, systeemlettertypen zoals Arial, Verdana of Times New Roman of het
+                  - link "@rijkshuisstijl-community/font" [ref=e964] [cursor=pointer]:
+                    - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/font/README.md
+                  - text: .
+                - generic [ref=e965]:
+                  - heading "Open source varianten" [level=4] [ref=e966]
+                  - 'link "Permalink: Open source varianten" [ref=e967] [cursor=pointer]':
+                    - /url: "#open-source-varianten"
+                    - img [ref=e968]
+                - paragraph [ref=e970]: Gebruik tijdens ontwikkeling placeholder varianten voor assets die een licentie vereisen, zoals logo’s, lettertypen en iconen.
+                - paragraph [ref=e971]:
+                  - strong [ref=e972]:
+                    - emphasis [ref=e973]: Lettertypen
+                - paragraph [ref=e974]:
+                  - text: Bekijk de
+                  - link "packages/font/README.md" [ref=e975] [cursor=pointer]:
+                    - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/main/packages/font/README.md
+                  - text: voor de meerdere manieren om de lettertypen te installeren voor jouw project.
+                - paragraph [ref=e976]:
+                  - strong [ref=e977]:
+                    - emphasis [ref=e978]: Logo
+                - paragraph [ref=e979]:
+                  - text: Omdat buiten officiële Rijksoverheids-media het logo van de Rijksoverheid niet mag worden gebruik, wordt binnen dit project standaard het icoon met id
+                  - code [ref=e980]: nederland-map
+                  - text: gebruiken, met een witte achtergrond.
+                - paragraph [ref=e981]:
+                  - strong [ref=e982]:
+                    - emphasis [ref=e983]: Icons
+                - paragraph [ref=e984]:
+                  - text: Binnen dit project zijn de iconen standaard afkomstig uit de open source
+                  - link "Tabler Icons" [ref=e985] [cursor=pointer]:
+                    - /url: https://tabler.io/icons
+                  - text: icon set of handmatig geïmplementeerd door contributors van de Rijkshuisstijl Community. Er kunnen eigen iconen worden toegevoegd aan de standaard icon set, zie hiervoor instructies op de
+                  - link "storybook pagina van de Icon component" [ref=e986] [cursor=pointer]:
+                    - /url: https://rijkshuisstijl-community.vercel.app/?path=/docs/rhc-icon--docs
+                  - text: .
+                - generic [ref=e987]:
+                  - heading "Toestemming" [level=2] [ref=e988]
+                  - 'link "Permalink: Toestemming" [ref=e989] [cursor=pointer]':
+                    - /url: "#toestemming"
+                    - img [ref=e990]
+                - paragraph [ref=e992]:
+                  - text: Wanneer je een website voor de Nederlandse overheid ontwikkelt, kun je toestemming aanvragen door
+                  - link "contact op te nemen met het Ministerie van Algemene Zaken" [ref=e993] [cursor=pointer]:
+                    - /url: https://www.rijkshuisstijl.nl/contact
+                  - text: .
+                - generic [ref=e994]:
+                  - heading "Gedragscode" [level=2] [ref=e995]
+                  - 'link "Permalink: Gedragscode" [ref=e996] [cursor=pointer]':
+                    - /url: "#gedragscode"
+                    - img [ref=e997]
+                - paragraph [ref=e999]:
+                  - text: We beloven op een manier te handelen die bijdraagt aan een open, gastvrije, diverse, inclusieve en gezonde gemeenschap. Lees onze
+                  - link "gedragscode" [ref=e1000] [cursor=pointer]:
+                    - /url: https://github.com/nl-design-system/rijkshuisstijl-community/blob/feature/filter-by-tags/CODE_OF_CONDUCT.md
+                  - text: als je dat nog niet hebt gedaan.
+                - generic [ref=e1001]:
+                  - heading "Ontwikkeling" [level=2] [ref=e1002]
+                  - 'link "Permalink: Ontwikkeling" [ref=e1003] [cursor=pointer]':
+                    - /url: "#ontwikkeling"
+                    - img [ref=e1004]
+                - paragraph [ref=e1006]: Dit project is gebaseerd op de NL Design System-template en kan worden gebruikt door Rijksoverheidsorganisaties die het NL Design System willen gebruiken en willen samenwerken aan extra componenten, een gedeeld thema en storybook-sjablonen.
+                - generic [ref=e1007]:
+                  - heading "NodeJS and pnpm" [level=3] [ref=e1008]
+                  - 'link "Permalink: NodeJS and pnpm" [ref=e1009] [cursor=pointer]':
+                    - /url: "#nodejs-and-pnpm"
+                    - img [ref=e1010]
+                - paragraph [ref=e1012]:
+                  - text: We gebruiken NodeJS om onze JavaScript-pakketten te beheren. Controleer in je terminal met
+                  - code [ref=e1013]: node -v
+                  - text: of je NodeJS hebt geïnstalleerd. Installeer NodeJS anders via
+                  - link "nodejs.org" [ref=e1014] [cursor=pointer]:
+                    - /url: https://nodejs.org/en
+                  - text: .
+                - paragraph [ref=e1015]:
+                  - text: NodeJS bevat
+                  - code [ref=e1016]: npm
+                  - text: ", maar we gebruiken"
+                  - code [ref=e1017]: pnpm
+                  - text: voor stabiele pakketresolutie. Controleer of je
+                  - code [ref=e1018]: pnpm
+                  - text: hebt door
+                  - code [ref=e1019]: pnpm -v
+                  - text: te typen. Installeer het met
+                  - code [ref=e1020]: npm install -g pnpm
+                  - text: als dat niet zo is.
+                - generic [ref=e1021]:
+                  - heading "Handige commando's" [level=3] [ref=e1022]
+                  - 'link "Permalink: Handige commando''s" [ref=e1023] [cursor=pointer]':
+                    - /url: "#handige-commandos"
+                    - img [ref=e1024]
+                - paragraph [ref=e1026]: "Alle commando’s worden uitgevoerd vanuit de root van het project, in een terminal:"
+                - table [ref=e1028]:
+                  - rowgroup [ref=e1029]:
+                    - row "Command Action" [ref=e1030]:
+                      - columnheader "Command" [ref=e1031]
+                      - columnheader "Action" [ref=e1032]
+                  - rowgroup [ref=e1033]:
+                    - row "pnpm install Installeert dependencies." [ref=e1034]:
+                      - cell "pnpm install" [ref=e1035]:
+                        - code [ref=e1036]: pnpm install
+                      - cell "Installeert dependencies." [ref=e1037]
+                    - row "pnpm run storybook Start de lokale ontwikkelserver op localhost:6006." [ref=e1038]:
+                      - cell "pnpm run storybook" [ref=e1039]:
+                        - code [ref=e1040]: pnpm run storybook
+                      - cell "Start de lokale ontwikkelserver op localhost:6006." [ref=e1041]:
+                        - text: Start de lokale ontwikkelserver op
+                        - code [ref=e1042]: localhost:6006
+                        - text: .
+                    - row "pnpm run build Bouw je productie-site naar ./dist/." [ref=e1043]:
+                      - cell "pnpm run build" [ref=e1044]:
+                        - code [ref=e1045]: pnpm run build
+                      - cell "Bouw je productie-site naar ./dist/." [ref=e1046]:
+                        - text: Bouw je productie-site naar
+                        - code [ref=e1047]: ./dist/
+                        - text: .
+                    - row "pnpm run lint Voert de lint-scripts uit om de code aan de projectstandaarden te voldoen." [ref=e1048]:
+                      - cell "pnpm run lint" [ref=e1049]:
+                        - code [ref=e1050]: pnpm run lint
+                      - cell "Voert de lint-scripts uit om de code aan de projectstandaarden te voldoen." [ref=e1051]
+                    - row "pnpm run lint-fix Voert lint-scripts uit en herstelt automatisch fouten mits die gevonden zijn." [ref=e1052]:
+                      - cell "pnpm run lint-fix" [ref=e1053]:
+                        - code [ref=e1054]: pnpm run lint-fix
+                      - cell "Voert lint-scripts uit en herstelt automatisch fouten mits die gevonden zijn." [ref=e1055]
+                - paragraph [ref=e1056]:
+                  - text: Vanuit
+                  - code [ref=e1057]: packages/components-react/library-react
+                  - text: "krijg je een gedetailleerder overzicht van tests:"
+                - table [ref=e1059]:
+                  - rowgroup [ref=e1060]:
+                    - row "Command Action" [ref=e1061]:
+                      - columnheader "Command" [ref=e1062]
+                      - columnheader "Action" [ref=e1063]
+                  - rowgroup [ref=e1064]:
+                    - row "pnpm run test Voert alle test suites uit." [ref=e1065]:
+                      - cell "pnpm run test" [ref=e1066]:
+                        - code [ref=e1067]: pnpm run test
+                      - cell "Voert alle test suites uit." [ref=e1068]
+                - generic [ref=e1069]:
+                  - heading "Proprietary" [level=3] [ref=e1070]
+                  - 'link "Permalink: Proprietary" [ref=e1071] [cursor=pointer]':
+                    - /url: "#proprietary"
+                    - img [ref=e1072]
+                - paragraph [ref=e1074]:
+                  - text: Branding, lettertypen en andere assets moeten vaak niet deel uitmaken van de EUPL-licentie. Door deze in de
+                  - code [ref=e1075]: proprietary
+                  - text: pakketten toe te voegen, worden ze juridisch uitgesloten op basis van de LICENSE en NOTICE-bestanden. Elke Rijksoverheidsorganisatie die met een NL Design System-thema werkt, kan hier hun thema als pakket toevoegen.
+                - generic [ref=e1076]:
+                  - heading "Wie werkt er aan dit project?" [level=3] [ref=e1077]
+                  - 'link "Permalink: Wie werkt er aan dit project?" [ref=e1078] [cursor=pointer]':
+                    - /url: "#wie-werkt-er-aan-dit-project"
+                    - img [ref=e1079]
+                - paragraph [ref=e1081]: Dit project is een samenwerking tussen frontend-ontwikkelaars, ontwerpers en enthousiastelingen uit diverse velden binnen de IT-sector en overheidsorganisaties.
+                - generic [ref=e1082]:
+                  - heading "Links" [level=2] [ref=e1083]
+                  - 'link "Permalink: Links" [ref=e1084] [cursor=pointer]':
+                    - /url: "#links"
+                    - img [ref=e1085]
+                - list [ref=e1087]:
+                  - listitem [ref=e1088]:
+                    - paragraph [ref=e1089]:
+                      - strong [ref=e1090]:
+                        - emphasis [ref=e1091]: Bug gevonden of code bekijken?
+                      - text: Bezoek onze
+                      - link "GitHub repository" [ref=e1092] [cursor=pointer]:
+                        - /url: https://github.com/nl-design-system/rijkshuisstijl-community
+                      - text: .
+                  - listitem [ref=e1093]:
+                    - paragraph [ref=e1094]:
+                      - strong [ref=e1095]:
+                        - emphasis [ref=e1096]: Benieuwd naar onze voortgang?
+                      - text: Bekijk ons huidige werk op het
+                      - link "Sprint Board" [ref=e1097] [cursor=pointer]:
+                        - /url: https://github.com/orgs/nl-design-system/projects/59
+                      - text: .
+                  - listitem [ref=e1098]:
+                    - paragraph [ref=e1099]:
+                      - strong [ref=e1100]:
+                        - emphasis [ref=e1101]: Blijf in contact met de community!
+                      - text: Word lid van de
+                      - link "Code for NL Slack" [ref=e1102] [cursor=pointer]:
+                        - /url: https://praatmee.codefor.nl/
+                      - text: en join het
+                      - code [ref=e1103]: "#nl-design-system"
+                      - text: kanaal om samen te werken met de community.
+        - generic [ref=e1107]:
+          - generic [ref=e1110]:
+            - heading "About" [level=2] [ref=e1111]
+            - paragraph [ref=e1112]: Unofficial Rijkshuisstijl components and design tokens based on the NL Design System architecture. This project is not endorsed by the Dutch Ministry of General Affairs.
+            - generic [ref=e1113]:
+              - img [ref=e1114]
+              - link "www.rijkshuisstijl-community.nl/" [ref=e1117] [cursor=pointer]:
+                - /url: https://www.rijkshuisstijl-community.nl/
+            - heading "Topics" [level=3] [ref=e1118]
+            - generic [ref=e1120]:
+              - link "storybook" [ref=e1121] [cursor=pointer]:
+                - /url: /topics/storybook
+              - link "nl-design-system" [ref=e1122] [cursor=pointer]:
+                - /url: /topics/nl-design-system
+            - heading "Resources" [level=3] [ref=e1123]
+            - link "Readme" [ref=e1125] [cursor=pointer]:
+              - /url: "#readme-ov-file"
+              - img [ref=e1126]
+              - text: Readme
+            - heading "License" [level=3] [ref=e1128]
+            - link "EUPL-1.2 license" [ref=e1130] [cursor=pointer]:
+              - /url: "#EUPL-1.2-1-ov-file"
+              - img [ref=e1131]
+              - text: EUPL-1.2 license
+            - heading "Code of conduct" [level=3] [ref=e1133]
+            - link "Code of conduct" [ref=e1135] [cursor=pointer]:
+              - /url: "#coc-ov-file"
+              - img [ref=e1136]
+              - text: Code of conduct
+            - link "Activity" [ref=e1139] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/activity
+              - img [ref=e1140]
+              - text: Activity
+            - link "Custom properties" [ref=e1143] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/custom-properties
+              - img [ref=e1144]
+              - text: Custom properties
+            - heading "Stars" [level=3] [ref=e1146]
+            - link "25 stars" [ref=e1148] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/stargazers
+              - img [ref=e1149]
+              - strong [ref=e1151]: "25"
+              - text: stars
+            - heading "Watchers" [level=3] [ref=e1152]
+            - link "12 watching" [ref=e1154] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/watchers
+              - img [ref=e1155]
+              - strong [ref=e1157]: "12"
+              - text: watching
+            - heading "Forks" [level=3] [ref=e1158]
+            - link "9 forks" [ref=e1160] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/forks
+              - img [ref=e1161]
+              - strong [ref=e1163]: "9"
+              - text: forks
+            - link "Report repository" [ref=e1165] [cursor=pointer]:
+              - /url: /contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fnl-design-system%2Frijkshuisstijl-community&report=nl-design-system+%28user%29
+          - generic [ref=e1167]:
+            - heading "Releases 181" [level=2] [ref=e1168]:
+              - link "Releases 181" [ref=e1169] [cursor=pointer]:
+                - /url: /nl-design-system/rijkshuisstijl-community/releases
+                - text: Releases
+                - generic "181" [ref=e1170]
+            - link "@rijkshuisstijl-community/figure-css@1.0.1 Latest Apr 23, 20263 weeks ago" [ref=e1171] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/releases/tag/%40rijkshuisstijl-community%2Ffigure-css%401.0.1
+              - img [ref=e1172]
+              - generic [ref=e1174]:
+                - generic [ref=e1175]:
+                  - generic [ref=e1176]: "@rijkshuisstijl-community/figure-css@1.0.1"
+                  - 'generic "Label: Latest" [ref=e1177]': Latest
+                - generic [ref=e1178]: Apr 23, 20263 weeks ago
+            - link "+ 180 releases" [ref=e1180] [cursor=pointer]:
+              - /url: /nl-design-system/rijkshuisstijl-community/releases
+          - generic "Loading contributors" [ref=e1183]:
+            - generic:
+              - heading "Contributors" [level=2] [ref=e1184]:
+                - link "Contributors" [ref=e1185] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/graphs/contributors
+              - list [ref=e1186]:
+                - listitem [ref=e1187]
+                - listitem [ref=e1189]
+                - listitem [ref=e1191]
+          - generic [ref=e1194]:
+            - heading "Languages" [level=2] [ref=e1195]
+            - list [ref=e1205]:
+              - listitem [ref=e1206]:
+                - link "TypeScript 82.5%" [ref=e1207] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/search?l=typescript
+                  - img [ref=e1208]
+                  - generic [ref=e1210]: TypeScript
+                  - generic [ref=e1211]: 82.5%
+              - listitem [ref=e1212]:
+                - link "SCSS 11.0%" [ref=e1213] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/search?l=scss
+                  - img [ref=e1214]
+                  - generic [ref=e1216]: SCSS
+                  - generic [ref=e1217]: 11.0%
+              - listitem [ref=e1218]:
+                - link "HTML 2.3%" [ref=e1219] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/search?l=html
+                  - img [ref=e1220]
+                  - generic [ref=e1222]: HTML
+                  - generic [ref=e1223]: 2.3%
+              - listitem [ref=e1224]:
+                - link "CSS 2.0%" [ref=e1225] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/search?l=css
+                  - img [ref=e1226]
+                  - generic [ref=e1228]: CSS
+                  - generic [ref=e1229]: 2.0%
+              - listitem [ref=e1230]:
+                - link "JavaScript 1.8%" [ref=e1231] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/search?l=javascript
+                  - img [ref=e1232]
+                  - generic [ref=e1234]: JavaScript
+                  - generic [ref=e1235]: 1.8%
+              - listitem [ref=e1236]:
+                - link "Twig 0.3%" [ref=e1237] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/search?l=twig
+                  - img [ref=e1238]
+                  - generic [ref=e1240]: Twig
+                  - generic [ref=e1241]: 0.3%
+              - listitem [ref=e1242]:
+                - link "MDX 0.1%" [ref=e1243] [cursor=pointer]:
+                  - /url: /nl-design-system/rijkshuisstijl-community/search?l=mdx
+                  - img [ref=e1244]
+                  - generic [ref=e1246]: MDX
+                  - generic [ref=e1247]: 0.1%
+          - generic [ref=e1250]:
+            - text: Generated from
+            - link "nl-design-system/example" [ref=e1251] [cursor=pointer]:
+              - /url: /nl-design-system/example
+  - contentinfo [ref=e1253]:
+    - heading "Footer" [level=2] [ref=e1254]
+    - generic [ref=e1255]:
+      - generic [ref=e1256]:
+        - link "GitHub Homepage" [ref=e1257] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e1258]
+        - generic [ref=e1260]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e1261]:
+        - heading "Footer navigation" [level=3] [ref=e1262]
+        - list "Footer navigation" [ref=e1263]:
+          - listitem [ref=e1264]:
+            - link "Terms" [ref=e1265] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e1266]:
+            - link "Privacy" [ref=e1267] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e1268]:
+            - link "Security" [ref=e1269] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e1270]:
+            - link "Status" [ref=e1271] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e1272]:
+            - link "Community" [ref=e1273] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e1274]:
+            - link "Docs" [ref=e1275] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e1276]:
+            - link "Contact" [ref=e1277] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e1278]:
+            - button "Manage cookies" [ref=e1280] [cursor=pointer]
+          - listitem [ref=e1281]:
+            - button "Do not share my personal information" [ref=e1283] [cursor=pointer]

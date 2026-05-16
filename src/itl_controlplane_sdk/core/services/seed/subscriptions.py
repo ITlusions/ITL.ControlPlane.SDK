@@ -1,11 +1,11 @@
-"""
+﻿"""
 Subscriptions seeding module.
 
 Creates default ITLusions subscriptions.
 """
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Optional, List
 import logging
 import uuid
@@ -91,7 +91,7 @@ async def seed_default_subscriptions(
     if tenant_id is None:
         tenant_id = DEFAULT_TENANT_UUID
 
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     created = 0
     skipped = 0
 

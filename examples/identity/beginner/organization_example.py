@@ -1,4 +1,4 @@
-"""
+﻿"""
 Organization Management Example
 
 Demonstrates organization management within a tenant:
@@ -12,7 +12,7 @@ An Organization exists within a Tenant. Each tenant can have
 multiple organizations, each with its own users, domains, and settings.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from uuid import uuid4
 
 from itl_controlplane_sdk.identity.organization import (
@@ -164,7 +164,7 @@ def example_3_custom_domains():
 
     # Simulate verification
     primary_domain.status = DomainStatus.VERIFIED
-    primary_domain.verified_at = datetime.utcnow()
+    primary_domain.verified_at = datetime.now(timezone.utc)
     print(f"\n   Domain verified at: {primary_domain.verified_at}")
     print(f"   Is verified: {primary_domain.is_verified()}")
     print(f"   Is primary:  {primary_domain.is_primary()}")
@@ -263,7 +263,7 @@ def example_5_multi_org():
             domain_name=cfg["domain"],
             primary=True,
             status=DomainStatus.VERIFIED,
-            verified_at=datetime.utcnow(),
+            verified_at=datetime.now(timezone.utc),
         )
 
         admin = TenantAdminUser(

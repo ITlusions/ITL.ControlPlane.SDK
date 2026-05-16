@@ -1,11 +1,11 @@
-"""
+﻿"""
 IMPLEMENTATION: Add Default Hook Behavior to ResourceProvider Base Class
 
 This is how to modify ResourceProvider so ALL providers inherit default behaviors.
 """
 
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, Optional
 
 from itl_controlplane_sdk.core import (
@@ -86,7 +86,7 @@ class ResourceProviderWithDefaults:
                 resource_name=response.name,
                 user_id=context.user_id,
                 request_id=context.request_id,
-                timestamp=datetime.utcnow().isoformat(),
+                timestamp=datetime.now(timezone.utc).isoformat(),
             )
             
             # Default 2: Metrics recording
@@ -105,7 +105,7 @@ class ResourceProviderWithDefaults:
                 event_type="resource.created",
                 resource_id=response.id,
                 resource_type=request.resource_type,
-                timestamp=datetime.utcnow().isoformat(),
+                timestamp=datetime.now(timezone.utc).isoformat(),
             )
         
         except Exception as e:

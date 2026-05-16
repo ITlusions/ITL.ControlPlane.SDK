@@ -1,4 +1,4 @@
-"""
+﻿"""
 Health check routes for FastAPI applications.
 
 Provides standard /health and /ready endpoints for monitoring
@@ -6,7 +6,7 @@ application status and readiness for requests.
 """
 
 from fastapi import APIRouter
-from datetime import datetime
+from datetime import datetime, timezone
 
 router = APIRouter(tags=["health"])
 
@@ -20,7 +20,7 @@ async def health_check():
     """
     return {
         "status": "healthy",
-        "timestamp": datetime.utcnow().isoformat() + "Z"
+        "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
     }
 
 
@@ -33,5 +33,5 @@ async def readiness_check():
     """
     return {
         "ready": True,
-        "timestamp": datetime.utcnow().isoformat() + "Z"
+        "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
     }

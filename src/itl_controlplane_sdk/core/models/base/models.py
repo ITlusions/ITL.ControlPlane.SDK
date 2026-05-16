@@ -1,4 +1,4 @@
-"""
+﻿"""
 Base HTTP models for the ITL ControlPlane SDK.
 
 Contains the foundational request/response structures used across
@@ -6,7 +6,7 @@ all resource providers.
 """
 import uuid
 from typing import Dict, List, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from pydantic import BaseModel, Field, ConfigDict
 
@@ -142,7 +142,7 @@ class ProviderContext(CoreBaseModel):
         description="Correlation ID for distributed tracing"
     )
     timestamp: datetime = Field(
-        default_factory=datetime.utcnow,
+        default_factory=lambda: datetime.now(timezone.utc),
         description="Timestamp when context was created"
     )
     metadata: Dict[str, Any] = Field(

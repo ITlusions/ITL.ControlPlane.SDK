@@ -1,4 +1,4 @@
-"""
+﻿"""
 Advanced Resource Handler Mixins
 
 Provides production-ready mixins for resource handlers:
@@ -21,7 +21,7 @@ All providers have on_creating, on_created, on_updating, on_updated,
 on_getting, on_deleting, and on_deleted hooks available.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple, Type
 from enum import Enum
 from pydantic import BaseModel, ValidationError
@@ -98,7 +98,7 @@ class TimestampedResourceHandler:
         scope_context: Dict[str, Any]
     ) -> Tuple[str, Dict[str, Any]]:
         """Create resource with automatic timestamps."""
-        now = datetime.utcnow().isoformat() + "Z"
+        now = datetime.now(timezone.utc).isoformat() + "Z"
         user_id = scope_context.get("user_id", "system")
         
         resource_data = {
@@ -118,7 +118,7 @@ class TimestampedResourceHandler:
         scope_context: Dict[str, Any]
     ) -> Tuple[str, Dict[str, Any]]:
         """Update resource with new modified timestamp."""
-        now = datetime.utcnow().isoformat() + "Z"
+        now = datetime.now(timezone.utc).isoformat() + "Z"
         user_id = scope_context.get("user_id", "system")
         
         # Get existing resource to preserve createdTime
@@ -257,7 +257,7 @@ class ProvisioningStateHandler:
         
         # Update state
         current_config["provisioning_state"] = new_state.value
-        current_config["modifiedTime"] = datetime.utcnow().isoformat() + "Z"
+        current_config["modifiedTime"] = datetime.now(timezone.utc).isoformat() + "Z"
         current_config["modifiedBy"] = scope_context.get("user_id", "system")
         
         # Track transition
@@ -291,7 +291,7 @@ class ProvisioningStateHandler:
         
         self._state_history[resource_id].append({
             "state": state.value,
-            "timestamp": datetime.utcnow().isoformat() + "Z"
+            "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
         })
     
     def get_state_history(self, resource_id: str) -> List[Dict[str, str]]:

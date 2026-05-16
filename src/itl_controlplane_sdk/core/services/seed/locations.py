@@ -1,10 +1,10 @@
-"""
+﻿"""
 Locations seeding module.
 
 Creates default Azure regions and extended locations (edge zones).
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict
 import logging
 import sqlalchemy as sa
@@ -29,7 +29,7 @@ async def seed_locations(session: AsyncSession) -> Dict[str, int]:
         Dictionary with operation status:
         {"created": 24, "skipped": 0, "total": 24}
     """
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     created = 0
     skipped = 0
 

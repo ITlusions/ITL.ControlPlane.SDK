@@ -1,10 +1,10 @@
-"""
+﻿"""
 Management groups seeding module.
 
 Creates default management group hierarchy.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Optional
 import logging
 import sqlalchemy as sa
@@ -39,7 +39,7 @@ async def seed_default_management_groups(
     if tenant_id is None:
         tenant_id = DEFAULT_TENANT_UUID
 
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     created = 0
     skipped = 0
 

@@ -1,0 +1,648 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "ITL Control Plane" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img [ref=e5]
+      - text: ITL Control Plane
+    - generic [ref=e8]: Attestation Service
+    - generic [ref=e9]: Healthy
+    - generic [ref=e12]: Demo Mode
+    - link "Dashboard" [ref=e13] [cursor=pointer]:
+      - /url: /
+      - img [ref=e14]
+    - link "Audit Log" [ref=e16] [cursor=pointer]:
+      - /url: /audit
+      - img [ref=e17]
+    - link "Query" [ref=e20] [cursor=pointer]:
+      - /url: /query
+      - img [ref=e21]
+    - button "Notifications" [ref=e23] [cursor=pointer]:
+      - img [ref=e24]
+    - generic "n.weistra@itlusions.com" [ref=e27] [cursor=pointer]: NW
+    - generic [ref=e28] [cursor=pointer]: n.weistra
+  - generic [ref=e29]:
+    - navigation [ref=e30]:
+      - generic [ref=e31] [cursor=pointer]:
+        - generic [ref=e32]: IT
+        - generic [ref=e33]:
+          - generic [ref=e34]: ITL Control Plane
+          - generic [ref=e35]: Attestation Service
+        - img [ref=e37]
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - text: Monitor
+          - button "Collapse" [ref=e41] [cursor=pointer]:
+            - img [ref=e42]
+        - link "Overview" [ref=e44] [cursor=pointer]:
+          - /url: /
+          - img [ref=e46]
+          - generic [ref=e48]: Overview
+        - link "Machines 27" [ref=e49] [cursor=pointer]:
+          - /url: /machines
+          - img [ref=e51]
+          - generic [ref=e53]: Machines
+          - generic [ref=e54]: "27"
+        - link "Pending approval 4" [ref=e55] [cursor=pointer]:
+          - /url: /machines?status=pending_approval
+          - img [ref=e57]
+          - generic [ref=e59]: Pending approval
+          - generic [ref=e60]: "4"
+        - link "Audit log" [ref=e61] [cursor=pointer]:
+          - /url: /audit
+          - img [ref=e63]
+          - generic [ref=e65]: Audit log
+        - generic [ref=e67]: Settings
+        - link "Configuration" [ref=e68] [cursor=pointer]:
+          - /url: /configuration
+          - img [ref=e70]
+          - generic [ref=e73]: Configuration
+        - link "Policies" [ref=e74] [cursor=pointer]:
+          - /url: /policies
+          - img [ref=e76]
+          - generic [ref=e78]: Policies
+      - generic [ref=e79]:
+        - generic [ref=e80]: NW
+        - generic [ref=e81]:
+          - generic [ref=e82]: n.weistra
+          - generic [ref=e83]: ITL Administrator
+        - button "More" [ref=e84] [cursor=pointer]:
+          - img [ref=e85]
+    - main [ref=e87]:
+      - generic [ref=e88]:
+        - link "Home" [ref=e89] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e90]: ›
+        - generic [ref=e91]: Machines
+      - generic [ref=e92]:
+        - img [ref=e94]
+        - generic [ref=e97]:
+          - heading "Machine Attestation" [level=1] [ref=e98]
+          - generic [ref=e99]: TPM-based hardware attestation — ITL Control Plane
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - img [ref=e103]
+          - generic [ref=e106]:
+            - generic [ref=e107]: "27"
+            - generic [ref=e108]: Total
+        - generic [ref=e109]:
+          - img [ref=e111]
+          - generic [ref=e114]:
+            - generic [ref=e115]: "20"
+            - generic [ref=e116]: Attested
+        - generic [ref=e117]:
+          - img [ref=e119]
+          - generic [ref=e122]:
+            - generic [ref=e123]: "2"
+            - generic [ref=e124]: Registered
+        - generic [ref=e125]:
+          - img [ref=e127]
+          - generic [ref=e129]:
+            - generic [ref=e130]: "4"
+            - generic [ref=e131]: Pending
+        - generic [ref=e132]:
+          - img [ref=e134]
+          - generic [ref=e136]:
+            - generic [ref=e137]: "1"
+            - generic [ref=e138]: Locked
+        - generic [ref=e139]:
+          - img [ref=e141]
+          - generic [ref=e144]:
+            - generic [ref=e145]: "0"
+            - generic [ref=e146]: Revoked
+      - generic [ref=e147]:
+        - button "Register" [ref=e148] [cursor=pointer]:
+          - img [ref=e149]
+          - text: Register
+        - button "Refresh" [ref=e151] [cursor=pointer]:
+          - img [ref=e152]
+          - text: Refresh
+        - link "Export CSV" [ref=e155] [cursor=pointer]:
+          - /url: /machines/export.csv
+          - img [ref=e156]
+          - text: Export CSV
+        - generic [ref=e160]:
+          - text: Showing
+          - strong [ref=e161]: "27"
+          - text: machines
+      - generic [ref=e162]:
+        - generic [ref=e163]:
+          - img [ref=e164]
+          - textbox "Filter by machine ID, serial, MAC, hostname…" [ref=e166]
+        - button "All (27)" [ref=e167] [cursor=pointer]
+        - button "Pending (4)" [ref=e168] [cursor=pointer]
+        - button "Registered (2)" [ref=e169] [cursor=pointer]
+        - button "Attested (20)" [ref=e170] [cursor=pointer]
+        - button "Locked (1)" [ref=e171] [cursor=pointer]
+        - button "Revoked (0)" [ref=e172] [cursor=pointer]
+      - table [ref=e174]:
+        - rowgroup [ref=e175]:
+          - row "Machine ID Hardware Role Status EK Cert (truncated) Last Attested Actions" [ref=e176]:
+            - columnheader "Machine ID" [ref=e177]
+            - columnheader "Hardware" [ref=e178]
+            - columnheader "Role" [ref=e179]
+            - columnheader "Status" [ref=e180]
+            - columnheader "EK Cert (truncated)" [ref=e181]
+            - columnheader "Last Attested" [ref=e182]
+            - columnheader "Actions" [ref=e183]
+        - rowgroup [ref=e184]:
+          - row "a1b2c3d4-e5f6-… cp-node-01 Dell PowerEdge R640 SN123456789 Control Plane attested SHA384:1a2b3c4d5e6… 07 May 2026, 20:44 Lock Revoke" [ref=e185] [cursor=pointer]:
+            - cell "a1b2c3d4-e5f6-… cp-node-01" [ref=e186]:
+              - link "a1b2c3d4-e5f6-…" [ref=e187]:
+                - /url: /machines/a1b2c3d4-e5f6-7890-abcd-ef1234567890
+              - generic [ref=e188]: cp-node-01
+            - cell "Dell PowerEdge R640 SN123456789" [ref=e189]:
+              - generic [ref=e190]: Dell PowerEdge R640
+              - generic [ref=e191]: SN123456789
+            - cell "Control Plane" [ref=e192]:
+              - generic [ref=e193]: Control Plane
+            - cell "attested" [ref=e194]:
+              - generic [ref=e195]: attested
+            - cell "SHA384:1a2b3c4d5e6…" [ref=e197]
+            - cell "07 May 2026, 20:44" [ref=e198]
+            - cell "Lock Revoke" [ref=e199]:
+              - generic [ref=e200]:
+                - button "Lock" [ref=e201]
+                - button "Revoke" [ref=e202]
+          - row "b2c3d4e5-f6a7-… cp-node-02 Dell PowerEdge R640 SN234567890 Control Plane attested SHA384:2b3c4d5e6f7… 07 May 2026, 20:44 Lock Revoke" [ref=e203] [cursor=pointer]:
+            - cell "b2c3d4e5-f6a7-… cp-node-02" [ref=e204]:
+              - link "b2c3d4e5-f6a7-…" [ref=e205]:
+                - /url: /machines/b2c3d4e5-f6a7-8901-bcde-f12345678901
+              - generic [ref=e206]: cp-node-02
+            - cell "Dell PowerEdge R640 SN234567890" [ref=e207]:
+              - generic [ref=e208]: Dell PowerEdge R640
+              - generic [ref=e209]: SN234567890
+            - cell "Control Plane" [ref=e210]:
+              - generic [ref=e211]: Control Plane
+            - cell "attested" [ref=e212]:
+              - generic [ref=e213]: attested
+            - cell "SHA384:2b3c4d5e6f7…" [ref=e215]
+            - cell "07 May 2026, 20:44" [ref=e216]
+            - cell "Lock Revoke" [ref=e217]:
+              - generic [ref=e218]:
+                - button "Lock" [ref=e219]
+                - button "Revoke" [ref=e220]
+          - row "c3d4e5f6-a7b8-… worker-infra-01 Dell PowerEdge R740 SN345678901 Worker Infra attested SHA384:3c4d5e6f789… 08 May 2026, 21:44 Lock Revoke" [ref=e221] [cursor=pointer]:
+            - cell "c3d4e5f6-a7b8-… worker-infra-01" [ref=e222]:
+              - link "c3d4e5f6-a7b8-…" [ref=e223]:
+                - /url: /machines/c3d4e5f6-a7b8-9012-cdef-123456789012
+              - generic [ref=e224]: worker-infra-01
+            - cell "Dell PowerEdge R740 SN345678901" [ref=e225]:
+              - generic [ref=e226]: Dell PowerEdge R740
+              - generic [ref=e227]: SN345678901
+            - cell "Worker Infra" [ref=e228]:
+              - generic [ref=e229]: Worker Infra
+            - cell "attested" [ref=e230]:
+              - generic [ref=e231]: attested
+            - cell "SHA384:3c4d5e6f789…" [ref=e233]
+            - cell "08 May 2026, 21:44" [ref=e234]
+            - cell "Lock Revoke" [ref=e235]:
+              - generic [ref=e236]:
+                - button "Lock" [ref=e237]
+                - button "Revoke" [ref=e238]
+          - row "d4e5f6a7-b8c9-… worker-infra-02 Dell PowerEdge R740 SN456789012 Worker Infra attested SHA384:4d5e6f7890a… 08 May 2026, 21:44 Lock Revoke" [ref=e239] [cursor=pointer]:
+            - cell "d4e5f6a7-b8c9-… worker-infra-02" [ref=e240]:
+              - link "d4e5f6a7-b8c9-…" [ref=e241]:
+                - /url: /machines/d4e5f6a7-b8c9-0123-def1-234567890123
+              - generic [ref=e242]: worker-infra-02
+            - cell "Dell PowerEdge R740 SN456789012" [ref=e243]:
+              - generic [ref=e244]: Dell PowerEdge R740
+              - generic [ref=e245]: SN456789012
+            - cell "Worker Infra" [ref=e246]:
+              - generic [ref=e247]: Worker Infra
+            - cell "attested" [ref=e248]:
+              - generic [ref=e249]: attested
+            - cell "SHA384:4d5e6f7890a…" [ref=e251]
+            - cell "08 May 2026, 21:44" [ref=e252]
+            - cell "Lock Revoke" [ref=e253]:
+              - generic [ref=e254]:
+                - button "Lock" [ref=e255]
+                - button "Revoke" [ref=e256]
+          - row "e5f6a7b8-c9d0-… worker-app-01 HPE ProLiant DL360 Gen10 SN567890123 Worker App registered SHA384:5e6f7890abc… — Approve Lock Revoke" [ref=e257] [cursor=pointer]:
+            - cell "e5f6a7b8-c9d0-… worker-app-01" [ref=e258]:
+              - link "e5f6a7b8-c9d0-…" [ref=e259]:
+                - /url: /machines/e5f6a7b8-c9d0-1234-ef12-345678901234
+              - generic [ref=e260]: worker-app-01
+            - cell "HPE ProLiant DL360 Gen10 SN567890123" [ref=e261]:
+              - generic [ref=e262]: HPE ProLiant DL360 Gen10
+              - generic [ref=e263]: SN567890123
+            - cell "Worker App" [ref=e264]:
+              - generic [ref=e265]: Worker App
+            - cell "registered" [ref=e266]:
+              - generic [ref=e267]: registered
+            - cell "SHA384:5e6f7890abc…" [ref=e269]
+            - cell "—" [ref=e270]
+            - cell "Approve Lock Revoke" [ref=e271]:
+              - generic [ref=e272]:
+                - button "Approve" [ref=e273]
+                - button "Lock" [ref=e274]
+                - button "Revoke" [ref=e275]
+          - row "f6a7b8c9-d0e1-… worker-app-02 HPE ProLiant DL360 Gen10 SN678901234 Worker App pending_approval SHA384:6f7890abcde… — Approve Revoke" [ref=e276] [cursor=pointer]:
+            - cell "f6a7b8c9-d0e1-… worker-app-02" [ref=e277]:
+              - link "f6a7b8c9-d0e1-…" [ref=e278]:
+                - /url: /machines/f6a7b8c9-d0e1-2345-f123-456789012345
+              - generic [ref=e279]: worker-app-02
+            - cell "HPE ProLiant DL360 Gen10 SN678901234" [ref=e280]:
+              - generic [ref=e281]: HPE ProLiant DL360 Gen10
+              - generic [ref=e282]: SN678901234
+            - cell "Worker App" [ref=e283]:
+              - generic [ref=e284]: Worker App
+            - cell "pending_approval" [ref=e285]:
+              - generic [ref=e286]: pending_approval
+            - cell "SHA384:6f7890abcde…" [ref=e288]
+            - cell "—" [ref=e289]
+            - cell "Approve Revoke" [ref=e290]:
+              - generic [ref=e291]:
+                - button "Approve" [ref=e292]
+                - button "Revoke" [ref=e293]
+          - row "a7b8c9d0-e1f2-… worker-app-03 Dell PowerEdge R650 SN789012345 Worker App pending_approval SHA384:7890abcdef1… — Approve Revoke" [ref=e294] [cursor=pointer]:
+            - cell "a7b8c9d0-e1f2-… worker-app-03" [ref=e295]:
+              - link "a7b8c9d0-e1f2-…" [ref=e296]:
+                - /url: /machines/a7b8c9d0-e1f2-3456-1234-567890123456
+              - generic [ref=e297]: worker-app-03
+            - cell "Dell PowerEdge R650 SN789012345" [ref=e298]:
+              - generic [ref=e299]: Dell PowerEdge R650
+              - generic [ref=e300]: SN789012345
+            - cell "Worker App" [ref=e301]:
+              - generic [ref=e302]: Worker App
+            - cell "pending_approval" [ref=e303]:
+              - generic [ref=e304]: pending_approval
+            - cell "SHA384:7890abcdef1…" [ref=e306]
+            - cell "—" [ref=e307]
+            - cell "Approve Revoke" [ref=e308]:
+              - generic [ref=e309]:
+                - button "Approve" [ref=e310]
+                - button "Revoke" [ref=e311]
+          - row "b8c9d0e1-f2a3-… worker-infra-03 HPE ProLiant DL380 Gen10 SN890123456 Worker Infra locked SHA384:890abcdef12… 14 May 2026, 10:44 Unlock Revoke" [ref=e312] [cursor=pointer]:
+            - cell "b8c9d0e1-f2a3-… worker-infra-03" [ref=e313]:
+              - link "b8c9d0e1-f2a3-…" [ref=e314]:
+                - /url: /machines/b8c9d0e1-f2a3-4567-2345-678901234567
+              - generic [ref=e315]: worker-infra-03
+            - cell "HPE ProLiant DL380 Gen10 SN890123456" [ref=e316]:
+              - generic [ref=e317]: HPE ProLiant DL380 Gen10
+              - generic [ref=e318]: SN890123456
+            - cell "Worker Infra" [ref=e319]:
+              - generic [ref=e320]: Worker Infra
+            - cell "locked" [ref=e321]:
+              - generic [ref=e322]: locked
+            - cell "SHA384:890abcdef12…" [ref=e324]
+            - cell "14 May 2026, 10:44" [ref=e325]
+            - cell "Unlock Revoke" [ref=e326]:
+              - generic [ref=e327]:
+                - button "Unlock" [ref=e328]
+                - button "Revoke" [ref=e329]
+          - row "c9d0e1f2-a3b4-… cp-node-03 Dell PowerEdge R640 SN901234567 Control Plane attested SHA384:90abcdef123… 08 May 2026, 12:44 Lock Revoke" [ref=e330] [cursor=pointer]:
+            - cell "c9d0e1f2-a3b4-… cp-node-03" [ref=e331]:
+              - link "c9d0e1f2-a3b4-…" [ref=e332]:
+                - /url: /machines/c9d0e1f2-a3b4-5678-3456-789012345678
+              - generic [ref=e333]: cp-node-03
+            - cell "Dell PowerEdge R640 SN901234567" [ref=e334]:
+              - generic [ref=e335]: Dell PowerEdge R640
+              - generic [ref=e336]: SN901234567
+            - cell "Control Plane" [ref=e337]:
+              - generic [ref=e338]: Control Plane
+            - cell "attested" [ref=e339]:
+              - generic [ref=e340]: attested
+            - cell "SHA384:90abcdef123…" [ref=e342]
+            - cell "08 May 2026, 12:44" [ref=e343]
+            - cell "Lock Revoke" [ref=e344]:
+              - generic [ref=e345]:
+                - button "Lock" [ref=e346]
+                - button "Revoke" [ref=e347]
+          - row "d0e1f2a3-b4c5-… worker-infra-04 HPE ProLiant DL360 Gen10 SN012345678 Worker Infra attested SHA384:0abcdef1234… 09 May 2026, 15:44 Lock Revoke" [ref=e348] [cursor=pointer]:
+            - cell "d0e1f2a3-b4c5-… worker-infra-04" [ref=e349]:
+              - link "d0e1f2a3-b4c5-…" [ref=e350]:
+                - /url: /machines/d0e1f2a3-b4c5-6789-4567-890123456789
+              - generic [ref=e351]: worker-infra-04
+            - cell "HPE ProLiant DL360 Gen10 SN012345678" [ref=e352]:
+              - generic [ref=e353]: HPE ProLiant DL360 Gen10
+              - generic [ref=e354]: SN012345678
+            - cell "Worker Infra" [ref=e355]:
+              - generic [ref=e356]: Worker Infra
+            - cell "attested" [ref=e357]:
+              - generic [ref=e358]: attested
+            - cell "SHA384:0abcdef1234…" [ref=e360]
+            - cell "09 May 2026, 15:44" [ref=e361]
+            - cell "Lock Revoke" [ref=e362]:
+              - generic [ref=e363]:
+                - button "Lock" [ref=e364]
+                - button "Revoke" [ref=e365]
+          - row "e1f2a3b4-c5d6-… worker-app-04 Dell PowerEdge R740 SN123456780 Worker App attested SHA384:abcdef12345… 10 May 2026, 17:44 Lock Revoke" [ref=e366] [cursor=pointer]:
+            - cell "e1f2a3b4-c5d6-… worker-app-04" [ref=e367]:
+              - link "e1f2a3b4-c5d6-…" [ref=e368]:
+                - /url: /machines/e1f2a3b4-c5d6-7890-5678-901234567890
+              - generic [ref=e369]: worker-app-04
+            - cell "Dell PowerEdge R740 SN123456780" [ref=e370]:
+              - generic [ref=e371]: Dell PowerEdge R740
+              - generic [ref=e372]: SN123456780
+            - cell "Worker App" [ref=e373]:
+              - generic [ref=e374]: Worker App
+            - cell "attested" [ref=e375]:
+              - generic [ref=e376]: attested
+            - cell "SHA384:abcdef12345…" [ref=e378]
+            - cell "10 May 2026, 17:44" [ref=e379]
+            - cell "Lock Revoke" [ref=e380]:
+              - generic [ref=e381]:
+                - button "Lock" [ref=e382]
+                - button "Revoke" [ref=e383]
+          - row "f2a3b4c5-d6e7-… worker-app-05 Dell PowerEdge R740 SN234567891 Worker App attested SHA384:bcdef123456… 10 May 2026, 19:44 Lock Revoke" [ref=e384] [cursor=pointer]:
+            - cell "f2a3b4c5-d6e7-… worker-app-05" [ref=e385]:
+              - link "f2a3b4c5-d6e7-…" [ref=e386]:
+                - /url: /machines/f2a3b4c5-d6e7-8901-6789-012345678901
+              - generic [ref=e387]: worker-app-05
+            - cell "Dell PowerEdge R740 SN234567891" [ref=e388]:
+              - generic [ref=e389]: Dell PowerEdge R740
+              - generic [ref=e390]: SN234567891
+            - cell "Worker App" [ref=e391]:
+              - generic [ref=e392]: Worker App
+            - cell "attested" [ref=e393]:
+              - generic [ref=e394]: attested
+            - cell "SHA384:bcdef123456…" [ref=e396]
+            - cell "10 May 2026, 19:44" [ref=e397]
+            - cell "Lock Revoke" [ref=e398]:
+              - generic [ref=e399]:
+                - button "Lock" [ref=e400]
+                - button "Revoke" [ref=e401]
+          - row "a3b4c5d6-e7f8-… worker-app-06 HPE ProLiant DL380 Gen10 SN345678902 Worker App attested SHA384:cdef1234567… 11 May 2026, 13:44 Lock Revoke" [ref=e402] [cursor=pointer]:
+            - cell "a3b4c5d6-e7f8-… worker-app-06" [ref=e403]:
+              - link "a3b4c5d6-e7f8-…" [ref=e404]:
+                - /url: /machines/a3b4c5d6-e7f8-9012-7890-123456789012
+              - generic [ref=e405]: worker-app-06
+            - cell "HPE ProLiant DL380 Gen10 SN345678902" [ref=e406]:
+              - generic [ref=e407]: HPE ProLiant DL380 Gen10
+              - generic [ref=e408]: SN345678902
+            - cell "Worker App" [ref=e409]:
+              - generic [ref=e410]: Worker App
+            - cell "attested" [ref=e411]:
+              - generic [ref=e412]: attested
+            - cell "SHA384:cdef1234567…" [ref=e414]
+            - cell "11 May 2026, 13:44" [ref=e415]
+            - cell "Lock Revoke" [ref=e416]:
+              - generic [ref=e417]:
+                - button "Lock" [ref=e418]
+                - button "Revoke" [ref=e419]
+          - row "b4c5d6e7-f8a9-… cp2-node-01 Dell PowerEdge R650 SN456789013 Control Plane attested SHA384:def12345678… 10 May 2026, 00:44 Lock Revoke" [ref=e420] [cursor=pointer]:
+            - cell "b4c5d6e7-f8a9-… cp2-node-01" [ref=e421]:
+              - link "b4c5d6e7-f8a9-…" [ref=e422]:
+                - /url: /machines/b4c5d6e7-f8a9-0123-8901-234567890123
+              - generic [ref=e423]: cp2-node-01
+            - cell "Dell PowerEdge R650 SN456789013" [ref=e424]:
+              - generic [ref=e425]: Dell PowerEdge R650
+              - generic [ref=e426]: SN456789013
+            - cell "Control Plane" [ref=e427]:
+              - generic [ref=e428]: Control Plane
+            - cell "attested" [ref=e429]:
+              - generic [ref=e430]: attested
+            - cell "SHA384:def12345678…" [ref=e432]
+            - cell "10 May 2026, 00:44" [ref=e433]
+            - cell "Lock Revoke" [ref=e434]:
+              - generic [ref=e435]:
+                - button "Lock" [ref=e436]
+                - button "Revoke" [ref=e437]
+          - row "c5d6e7f8-a9b0-… cp2-node-02 Dell PowerEdge R650 SN567890124 Control Plane attested SHA384:ef123456789… 10 May 2026, 00:44 Lock Revoke" [ref=e438] [cursor=pointer]:
+            - cell "c5d6e7f8-a9b0-… cp2-node-02" [ref=e439]:
+              - link "c5d6e7f8-a9b0-…" [ref=e440]:
+                - /url: /machines/c5d6e7f8-a9b0-1234-9012-345678901234
+              - generic [ref=e441]: cp2-node-02
+            - cell "Dell PowerEdge R650 SN567890124" [ref=e442]:
+              - generic [ref=e443]: Dell PowerEdge R650
+              - generic [ref=e444]: SN567890124
+            - cell "Control Plane" [ref=e445]:
+              - generic [ref=e446]: Control Plane
+            - cell "attested" [ref=e447]:
+              - generic [ref=e448]: attested
+            - cell "SHA384:ef123456789…" [ref=e450]
+            - cell "10 May 2026, 00:44" [ref=e451]
+            - cell "Lock Revoke" [ref=e452]:
+              - generic [ref=e453]:
+                - button "Lock" [ref=e454]
+                - button "Revoke" [ref=e455]
+          - row "d6e7f8a9-b0c1-… cp2-node-03 Dell PowerEdge R650 SN678901235 Control Plane attested SHA384:f1234567890… 10 May 2026, 00:44 Lock Revoke" [ref=e456] [cursor=pointer]:
+            - cell "d6e7f8a9-b0c1-… cp2-node-03" [ref=e457]:
+              - link "d6e7f8a9-b0c1-…" [ref=e458]:
+                - /url: /machines/d6e7f8a9-b0c1-2345-0123-456789012345
+              - generic [ref=e459]: cp2-node-03
+            - cell "Dell PowerEdge R650 SN678901235" [ref=e460]:
+              - generic [ref=e461]: Dell PowerEdge R650
+              - generic [ref=e462]: SN678901235
+            - cell "Control Plane" [ref=e463]:
+              - generic [ref=e464]: Control Plane
+            - cell "attested" [ref=e465]:
+              - generic [ref=e466]: attested
+            - cell "SHA384:f1234567890…" [ref=e468]
+            - cell "10 May 2026, 00:44" [ref=e469]
+            - cell "Lock Revoke" [ref=e470]:
+              - generic [ref=e471]:
+                - button "Lock" [ref=e472]
+                - button "Revoke" [ref=e473]
+          - row "e7f8a9b0-c1d2-… worker2-infra-01 HPE ProLiant DL360 Gen11 SN789012346 Worker Infra attested SHA384:1234567890a… 10 May 2026, 05:44 Lock Revoke" [ref=e474] [cursor=pointer]:
+            - cell "e7f8a9b0-c1d2-… worker2-infra-01" [ref=e475]:
+              - link "e7f8a9b0-c1d2-…" [ref=e476]:
+                - /url: /machines/e7f8a9b0-c1d2-3456-1234-567890123456
+              - generic [ref=e477]: worker2-infra-01
+            - cell "HPE ProLiant DL360 Gen11 SN789012346" [ref=e478]:
+              - generic [ref=e479]: HPE ProLiant DL360 Gen11
+              - generic [ref=e480]: SN789012346
+            - cell "Worker Infra" [ref=e481]:
+              - generic [ref=e482]: Worker Infra
+            - cell "attested" [ref=e483]:
+              - generic [ref=e484]: attested
+            - cell "SHA384:1234567890a…" [ref=e486]
+            - cell "10 May 2026, 05:44" [ref=e487]
+            - cell "Lock Revoke" [ref=e488]:
+              - generic [ref=e489]:
+                - button "Lock" [ref=e490]
+                - button "Revoke" [ref=e491]
+          - row "f8a9b0c1-d2e3-… worker2-infra-02 HPE ProLiant DL360 Gen11 SN890123457 Worker Infra attested SHA384:234567890ab… 10 May 2026, 05:44 Lock Revoke" [ref=e492] [cursor=pointer]:
+            - cell "f8a9b0c1-d2e3-… worker2-infra-02" [ref=e493]:
+              - link "f8a9b0c1-d2e3-…" [ref=e494]:
+                - /url: /machines/f8a9b0c1-d2e3-4567-2345-678901234567
+              - generic [ref=e495]: worker2-infra-02
+            - cell "HPE ProLiant DL360 Gen11 SN890123457" [ref=e496]:
+              - generic [ref=e497]: HPE ProLiant DL360 Gen11
+              - generic [ref=e498]: SN890123457
+            - cell "Worker Infra" [ref=e499]:
+              - generic [ref=e500]: Worker Infra
+            - cell "attested" [ref=e501]:
+              - generic [ref=e502]: attested
+            - cell "SHA384:234567890ab…" [ref=e504]
+            - cell "10 May 2026, 05:44" [ref=e505]
+            - cell "Lock Revoke" [ref=e506]:
+              - generic [ref=e507]:
+                - button "Lock" [ref=e508]
+                - button "Revoke" [ref=e509]
+          - row "a9b0c1d2-e3f4-… worker2-infra-03 HPE ProLiant DL380 Gen11 SN901234568 Worker Infra attested SHA384:34567890abc… 10 May 2026, 07:44 Lock Revoke" [ref=e510] [cursor=pointer]:
+            - cell "a9b0c1d2-e3f4-… worker2-infra-03" [ref=e511]:
+              - link "a9b0c1d2-e3f4-…" [ref=e512]:
+                - /url: /machines/a9b0c1d2-e3f4-5678-3456-789012345678
+              - generic [ref=e513]: worker2-infra-03
+            - cell "HPE ProLiant DL380 Gen11 SN901234568" [ref=e514]:
+              - generic [ref=e515]: HPE ProLiant DL380 Gen11
+              - generic [ref=e516]: SN901234568
+            - cell "Worker Infra" [ref=e517]:
+              - generic [ref=e518]: Worker Infra
+            - cell "attested" [ref=e519]:
+              - generic [ref=e520]: attested
+            - cell "SHA384:34567890abc…" [ref=e522]
+            - cell "10 May 2026, 07:44" [ref=e523]
+            - cell "Lock Revoke" [ref=e524]:
+              - generic [ref=e525]:
+                - button "Lock" [ref=e526]
+                - button "Revoke" [ref=e527]
+          - row "b0c1d2e3-f4a5-… worker2-app-01 Dell PowerEdge R750 SN012345679 Worker App attested SHA384:4567890abcd… 11 May 2026, 09:44 Lock Revoke" [ref=e528] [cursor=pointer]:
+            - cell "b0c1d2e3-f4a5-… worker2-app-01" [ref=e529]:
+              - link "b0c1d2e3-f4a5-…" [ref=e530]:
+                - /url: /machines/b0c1d2e3-f4a5-6789-4567-890123456789
+              - generic [ref=e531]: worker2-app-01
+            - cell "Dell PowerEdge R750 SN012345679" [ref=e532]:
+              - generic [ref=e533]: Dell PowerEdge R750
+              - generic [ref=e534]: SN012345679
+            - cell "Worker App" [ref=e535]:
+              - generic [ref=e536]: Worker App
+            - cell "attested" [ref=e537]:
+              - generic [ref=e538]: attested
+            - cell "SHA384:4567890abcd…" [ref=e540]
+            - cell "11 May 2026, 09:44" [ref=e541]
+            - cell "Lock Revoke" [ref=e542]:
+              - generic [ref=e543]:
+                - button "Lock" [ref=e544]
+                - button "Revoke" [ref=e545]
+          - row "c1d2e3f4-a5b6-… worker2-app-02 Dell PowerEdge R750 SN123456781 Worker App attested SHA384:567890abcde… 11 May 2026, 09:44 Lock Revoke" [ref=e546] [cursor=pointer]:
+            - cell "c1d2e3f4-a5b6-… worker2-app-02" [ref=e547]:
+              - link "c1d2e3f4-a5b6-…" [ref=e548]:
+                - /url: /machines/c1d2e3f4-a5b6-7890-5678-901234567890
+              - generic [ref=e549]: worker2-app-02
+            - cell "Dell PowerEdge R750 SN123456781" [ref=e550]:
+              - generic [ref=e551]: Dell PowerEdge R750
+              - generic [ref=e552]: SN123456781
+            - cell "Worker App" [ref=e553]:
+              - generic [ref=e554]: Worker App
+            - cell "attested" [ref=e555]:
+              - generic [ref=e556]: attested
+            - cell "SHA384:567890abcde…" [ref=e558]
+            - cell "11 May 2026, 09:44" [ref=e559]
+            - cell "Lock Revoke" [ref=e560]:
+              - generic [ref=e561]:
+                - button "Lock" [ref=e562]
+                - button "Revoke" [ref=e563]
+          - row "d2e3f4a5-b6c7-… worker2-app-03 HPE ProLiant DL380 Gen11 SN234567892 Worker App attested SHA384:67890abcdef… 11 May 2026, 11:44 Lock Revoke" [ref=e564] [cursor=pointer]:
+            - cell "d2e3f4a5-b6c7-… worker2-app-03" [ref=e565]:
+              - link "d2e3f4a5-b6c7-…" [ref=e566]:
+                - /url: /machines/d2e3f4a5-b6c7-8901-6789-012345678901
+              - generic [ref=e567]: worker2-app-03
+            - cell "HPE ProLiant DL380 Gen11 SN234567892" [ref=e568]:
+              - generic [ref=e569]: HPE ProLiant DL380 Gen11
+              - generic [ref=e570]: SN234567892
+            - cell "Worker App" [ref=e571]:
+              - generic [ref=e572]: Worker App
+            - cell "attested" [ref=e573]:
+              - generic [ref=e574]: attested
+            - cell "SHA384:67890abcdef…" [ref=e576]
+            - cell "11 May 2026, 11:44" [ref=e577]
+            - cell "Lock Revoke" [ref=e578]:
+              - generic [ref=e579]:
+                - button "Lock" [ref=e580]
+                - button "Revoke" [ref=e581]
+          - row "e3f4a5b6-c7d8-… worker2-app-04 Dell PowerEdge R750 SN345678903 Worker App attested SHA384:7890abcdef1… 12 May 2026, 03:44 Lock Revoke" [ref=e582] [cursor=pointer]:
+            - cell "e3f4a5b6-c7d8-… worker2-app-04" [ref=e583]:
+              - link "e3f4a5b6-c7d8-…" [ref=e584]:
+                - /url: /machines/e3f4a5b6-c7d8-9012-7890-123456789012
+              - generic [ref=e585]: worker2-app-04
+            - cell "Dell PowerEdge R750 SN345678903" [ref=e586]:
+              - generic [ref=e587]: Dell PowerEdge R750
+              - generic [ref=e588]: SN345678903
+            - cell "Worker App" [ref=e589]:
+              - generic [ref=e590]: Worker App
+            - cell "attested" [ref=e591]:
+              - generic [ref=e592]: attested
+            - cell "SHA384:7890abcdef1…" [ref=e594]
+            - cell "12 May 2026, 03:44" [ref=e595]
+            - cell "Lock Revoke" [ref=e596]:
+              - generic [ref=e597]:
+                - button "Lock" [ref=e598]
+                - button "Revoke" [ref=e599]
+          - row "f4a5b6c7-d8e9-… worker2-app-05 HPE ProLiant DL360 Gen11 SN456789014 Worker App attested SHA384:890abcdef12… 12 May 2026, 05:44 Lock Revoke" [ref=e600] [cursor=pointer]:
+            - cell "f4a5b6c7-d8e9-… worker2-app-05" [ref=e601]:
+              - link "f4a5b6c7-d8e9-…" [ref=e602]:
+                - /url: /machines/f4a5b6c7-d8e9-0123-8901-234567890123
+              - generic [ref=e603]: worker2-app-05
+            - cell "HPE ProLiant DL360 Gen11 SN456789014" [ref=e604]:
+              - generic [ref=e605]: HPE ProLiant DL360 Gen11
+              - generic [ref=e606]: SN456789014
+            - cell "Worker App" [ref=e607]:
+              - generic [ref=e608]: Worker App
+            - cell "attested" [ref=e609]:
+              - generic [ref=e610]: attested
+            - cell "SHA384:890abcdef12…" [ref=e612]
+            - cell "12 May 2026, 05:44" [ref=e613]
+            - cell "Lock Revoke" [ref=e614]:
+              - generic [ref=e615]:
+                - button "Lock" [ref=e616]
+                - button "Revoke" [ref=e617]
+          - row "a5b6c7d8-e9f0-… worker-app-07 Dell PowerEdge R750 SN567890125 Worker App registered SHA384:90abcdef123… — Approve Lock Revoke" [ref=e618] [cursor=pointer]:
+            - cell "a5b6c7d8-e9f0-… worker-app-07" [ref=e619]:
+              - link "a5b6c7d8-e9f0-…" [ref=e620]:
+                - /url: /machines/a5b6c7d8-e9f0-1234-9012-345678901234
+              - generic [ref=e621]: worker-app-07
+            - cell "Dell PowerEdge R750 SN567890125" [ref=e622]:
+              - generic [ref=e623]: Dell PowerEdge R750
+              - generic [ref=e624]: SN567890125
+            - cell "Worker App" [ref=e625]:
+              - generic [ref=e626]: Worker App
+            - cell "registered" [ref=e627]:
+              - generic [ref=e628]: registered
+            - cell "SHA384:90abcdef123…" [ref=e630]
+            - cell "—" [ref=e631]
+            - cell "Approve Lock Revoke" [ref=e632]:
+              - generic [ref=e633]:
+                - button "Approve" [ref=e634]
+                - button "Lock" [ref=e635]
+                - button "Revoke" [ref=e636]
+          - row "b6c7d8e9-f0a1-… worker2-app-06 HPE ProLiant DL380 Gen11 SN678901236 Worker App pending_approval SHA384:0abcdef1234… — Approve Revoke" [ref=e637] [cursor=pointer]:
+            - cell "b6c7d8e9-f0a1-… worker2-app-06" [ref=e638]:
+              - link "b6c7d8e9-f0a1-…" [ref=e639]:
+                - /url: /machines/b6c7d8e9-f0a1-2345-0123-456789012345
+              - generic [ref=e640]: worker2-app-06
+            - cell "HPE ProLiant DL380 Gen11 SN678901236" [ref=e641]:
+              - generic [ref=e642]: HPE ProLiant DL380 Gen11
+              - generic [ref=e643]: SN678901236
+            - cell "Worker App" [ref=e644]:
+              - generic [ref=e645]: Worker App
+            - cell "pending_approval" [ref=e646]:
+              - generic [ref=e647]: pending_approval
+            - cell "SHA384:0abcdef1234…" [ref=e649]
+            - cell "—" [ref=e650]
+            - cell "Approve Revoke" [ref=e651]:
+              - generic [ref=e652]:
+                - button "Approve" [ref=e653]
+                - button "Revoke" [ref=e654]
+          - row "c7d8e9f0-a1b2-… worker-infra-05 Dell PowerEdge R650 SN789012347 Worker Infra pending_approval SHA384:abcdef12345… — Approve Revoke" [ref=e655] [cursor=pointer]:
+            - cell "c7d8e9f0-a1b2-… worker-infra-05" [ref=e656]:
+              - link "c7d8e9f0-a1b2-…" [ref=e657]:
+                - /url: /machines/c7d8e9f0-a1b2-3456-1234-567890123456
+              - generic [ref=e658]: worker-infra-05
+            - cell "Dell PowerEdge R650 SN789012347" [ref=e659]:
+              - generic [ref=e660]: Dell PowerEdge R650
+              - generic [ref=e661]: SN789012347
+            - cell "Worker Infra" [ref=e662]:
+              - generic [ref=e663]: Worker Infra
+            - cell "pending_approval" [ref=e664]:
+              - generic [ref=e665]: pending_approval
+            - cell "SHA384:abcdef12345…" [ref=e667]
+            - cell "—" [ref=e668]
+            - cell "Approve Revoke" [ref=e669]:
+              - generic [ref=e670]:
+                - button "Approve" [ref=e671]
+                - button "Revoke" [ref=e672]
+      - generic [ref=e673]:
+        - generic [ref=e674]: Showing all 27 machines
+        - generic [ref=e675]:
+          - button [disabled]:
+            - img
+          - button "1" [ref=e676] [cursor=pointer]
+          - button [disabled]:
+            - img
+  - complementary [ref=e677]:
+    - generic [ref=e678]:
+      - generic [ref=e680]: Machine Detail
+      - button "Close" [ref=e681] [cursor=pointer]:
+        - img [ref=e682]

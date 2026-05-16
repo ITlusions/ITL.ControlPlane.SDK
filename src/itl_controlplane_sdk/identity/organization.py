@@ -1,4 +1,4 @@
-"""
+﻿"""
 Production-grade Organization models for ITL Control Plane.
 
 An Organization is a business entity within a Tenant. Each tenant can have multiple
@@ -12,7 +12,7 @@ Design Principles:
 - Type-safe with comprehensive validation
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Dict, List, Optional
 import secrets
@@ -102,7 +102,7 @@ class TenantAdminUser(BaseModel):
     )
 
     created_at: datetime = Field(
-        default_factory=datetime.utcnow,
+        default_factory=lambda: datetime.now(timezone.utc),
         description="When admin user was created",
     )
 
@@ -168,7 +168,7 @@ class CustomDomain(BaseModel):
     )
 
     created_at: datetime = Field(
-        default_factory=datetime.utcnow,
+        default_factory=lambda: datetime.now(timezone.utc),
         description="When domain was added",
     )
 
@@ -429,7 +429,7 @@ class Organization(BaseModel):
     )
 
     created_at: datetime = Field(
-        default_factory=datetime.utcnow,
+        default_factory=lambda: datetime.now(timezone.utc),
         description="When organization was created",
     )
 

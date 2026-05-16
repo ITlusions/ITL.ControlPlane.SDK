@@ -1,11 +1,11 @@
-"""
+﻿"""
 Resource Groups seeding module.
 
 Creates default resource groups for each ITLusions subscription.
 """
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Optional, List
 import logging
 import uuid
@@ -131,7 +131,7 @@ async def seed_default_resource_groups(
     if tenant_id is None:
         tenant_id = DEFAULT_TENANT_UUID
 
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     created = 0
     skipped = 0
     missing_subscriptions = []

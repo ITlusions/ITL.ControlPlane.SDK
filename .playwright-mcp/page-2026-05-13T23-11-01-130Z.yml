@@ -1,0 +1,670 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - link "Overslaan en naar de inhoud gaan" [ref=e6] [cursor=pointer]:
+      - /url: "#ContentArea"
+    - generic: 
+    - link "Logo Rijksoverheid – Naar de homepage" [ref=e8] [cursor=pointer]:
+      - /url: /publiek
+  - generic [ref=e10]:
+    - text:  
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10233
+        - listitem [ref=e20]:
+          - link "Rijkshuisstijl" [ref=e22] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10237
+      - text: 
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - button "Menu in- of uitklappen" [expanded] [ref=e26] [cursor=pointer]:
+        - generic [ref=e28]: 
+      - list [ref=e31]:
+        - listitem [ref=e32]:
+          - list [ref=e33]:
+            - listitem [ref=e34]:
+              - generic [ref=e35]:
+                - link "Over de rijkshuisstijl" [ref=e36] [cursor=pointer]:
+                  - generic [ref=e37]: Over de rijkshuisstijl
+                - button "Open item" [ref=e38] [cursor=pointer]:
+                  - generic [ref=e39]: 
+            - listitem [ref=e40]:
+              - generic [ref=e41]:
+                - link "Type rijksorganisatie en stijl van de communicatie" [ref=e42] [cursor=pointer]:
+                  - generic [ref=e43]: Type rijksorganisatie en stijl van de communicatie
+                - button "Open item" [ref=e44] [cursor=pointer]:
+                  - generic [ref=e45]: 
+            - listitem [ref=e46]:
+              - generic [ref=e47]:
+                - link "Basiselementen ''nieuw''" [ref=e48] [cursor=pointer]:
+                  - generic [ref=e49]: Basiselementen ''nieuw''
+                - button "Open item" [expanded] [ref=e50] [cursor=pointer]:
+                  - generic [ref=e51]: 
+              - list [ref=e52]:
+                - listitem [ref=e53]:
+                  - generic [ref=e54]:
+                    - link "Logo" [ref=e55] [cursor=pointer]:
+                      - generic [ref=e56]: Logo
+                    - button "Open item" [ref=e57] [cursor=pointer]:
+                      - generic [ref=e58]: 
+                - listitem [ref=e59]:
+                  - generic [ref=e60]:
+                    - link "Kleuren" [ref=e61] [cursor=pointer]:
+                      - generic [ref=e62]: Kleuren
+                    - button "Open item" [expanded] [ref=e63] [cursor=pointer]:
+                      - generic [ref=e64]: 
+                  - list [ref=e65]:
+                    - listitem [ref=e66]:
+                      - generic [ref=e67]:
+                        - link "Kleuren specificaties" [ref=e68] [cursor=pointer]:
+                          - generic [ref=e69]: Kleuren specificaties
+                        - button "Open item" [expanded] [ref=e70] [cursor=pointer]:
+                          - generic [ref=e71]: 
+                      - list [ref=e72]:
+                        - listitem [ref=e73]:
+                          - link "Lintblauw" [ref=e75] [cursor=pointer]:
+                            - generic [ref=e76]: Lintblauw
+                        - listitem [ref=e77]:
+                          - link "Paars" [ref=e79] [cursor=pointer]:
+                            - generic [ref=e80]: Paars
+                        - listitem [ref=e81]:
+                          - link "Violet" [ref=e83] [cursor=pointer]:
+                            - generic [ref=e84]: Violet
+                        - listitem [ref=e85]:
+                          - link "Robijnrood" [ref=e87] [cursor=pointer]:
+                            - generic [ref=e88]: Robijnrood
+                        - listitem [ref=e89]:
+                          - link "Roze" [ref=e91] [cursor=pointer]:
+                            - generic [ref=e92]: Roze
+                        - listitem [ref=e93]:
+                          - link "Rood" [ref=e95] [cursor=pointer]:
+                            - generic [ref=e96]: Rood
+                        - listitem [ref=e97]:
+                          - link "Oranje" [ref=e99] [cursor=pointer]:
+                            - generic [ref=e100]: Oranje
+                        - listitem [ref=e101]:
+                          - link "Donkergeel" [ref=e103] [cursor=pointer]:
+                            - generic [ref=e104]: Donkergeel
+                        - listitem [ref=e105]:
+                          - link "Geel" [ref=e107] [cursor=pointer]:
+                            - generic [ref=e108]: Geel
+                        - listitem [ref=e109]:
+                          - link "Donkerbruin" [ref=e111] [cursor=pointer]:
+                            - generic [ref=e112]: Donkerbruin
+                        - listitem [ref=e113]:
+                          - link "Bruin" [ref=e115] [cursor=pointer]:
+                            - generic [ref=e116]: Bruin
+                        - listitem [ref=e117]:
+                          - link "Donkergroen" [ref=e119] [cursor=pointer]:
+                            - generic [ref=e120]: Donkergroen
+                        - listitem [ref=e121]:
+                          - link "Groen" [ref=e123] [cursor=pointer]:
+                            - generic [ref=e124]: Groen
+                        - listitem [ref=e125]:
+                          - link "Mosgroen" [ref=e127] [cursor=pointer]:
+                            - generic [ref=e128]: Mosgroen
+                        - listitem [ref=e129]:
+                          - link "Mintgroen" [ref=e131] [cursor=pointer]:
+                            - generic [ref=e132]: Mintgroen
+                        - listitem [ref=e133]:
+                          - link "Donkerblauw" [ref=e135] [cursor=pointer]:
+                            - generic [ref=e136]: Donkerblauw
+                        - listitem [ref=e137]:
+                          - link "Hemelsblauw" [ref=e139] [cursor=pointer]:
+                            - generic [ref=e140]: Hemelsblauw
+                        - listitem [ref=e141]:
+                          - link "Lichtblauw" [ref=e143] [cursor=pointer]:
+                            - generic [ref=e144]: Lichtblauw
+                        - listitem [ref=e145]:
+                          - link "Cool Gray" [ref=e147] [cursor=pointer]:
+                            - generic [ref=e148]: Cool Gray
+                - listitem [ref=e149]:
+                  - generic [ref=e150]:
+                    - link "Typografie" [ref=e151] [cursor=pointer]:
+                      - generic [ref=e152]: Typografie
+                    - button "Open item" [ref=e153] [cursor=pointer]:
+                      - generic [ref=e154]: 
+                - listitem [ref=e155]:
+                  - generic [ref=e156]:
+                    - link "Vormtaal" [ref=e157] [cursor=pointer]:
+                      - generic [ref=e158]: Vormtaal
+                    - button "Open item" [ref=e159] [cursor=pointer]:
+                      - generic [ref=e160]: 
+                - listitem [ref=e161]:
+                  - generic [ref=e162]:
+                    - link "Beeldtaal" [ref=e163] [cursor=pointer]:
+                      - generic [ref=e164]: Beeldtaal
+                    - button "Open item" [ref=e165] [cursor=pointer]:
+                      - generic [ref=e166]: 
+                - listitem [ref=e167]:
+                  - link "Basis layout" [ref=e169] [cursor=pointer]:
+                    - generic [ref=e170]: Basis layout
+                - listitem [ref=e171]:
+                  - link "Digitoegankelijkheid" [ref=e173] [cursor=pointer]:
+                    - generic [ref=e174]: Digitoegankelijkheid
+            - listitem [ref=e175]:
+              - generic [ref=e176]:
+                - link "Richtlijnen middelen ''nieuw''" [ref=e177] [cursor=pointer]:
+                  - generic [ref=e178]: Richtlijnen middelen ''nieuw''
+                - button "Open item" [ref=e179] [cursor=pointer]:
+                  - generic [ref=e180]: 
+            - listitem [ref=e181]:
+              - generic [ref=e182]:
+                - link "Basiselementen ''oud''" [ref=e183] [cursor=pointer]:
+                  - generic [ref=e184]: Basiselementen ''oud''
+                - button "Open item" [ref=e185] [cursor=pointer]:
+                  - generic [ref=e186]: 
+            - listitem [ref=e187]:
+              - generic [ref=e188]:
+                - link "Richtlijnen middelen ''oud''" [ref=e189] [cursor=pointer]:
+                  - generic [ref=e190]: Richtlijnen middelen ''oud''
+                - button "Open item" [ref=e191] [cursor=pointer]:
+                  - generic [ref=e192]: 
+            - listitem [ref=e193]:
+              - generic [ref=e194]:
+                - link "Thema's" [ref=e195] [cursor=pointer]:
+                  - generic [ref=e196]: Thema's
+                - button "Open item" [ref=e197] [cursor=pointer]:
+                  - generic [ref=e198]: 
+    - generic [ref=e199]:
+      - generic [ref=e201]:
+        - heading "Kleuren specificaties" [level=1] [ref=e202]
+        - link "Basiselementen ''nieuw''" [ref=e203] [cursor=pointer]:
+          - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10479
+        - text: /
+        - link "Kleuren" [ref=e204] [cursor=pointer]:
+          - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10489
+      - generic [ref=e210]:
+        - generic [ref=e211]:
+          - heading "Lintblauw" [level=2] [ref=e212]
+          - table [ref=e214]:
+            - rowgroup [ref=e215]:
+              - row "PMS 7462c" [ref=e216]:
+                - cell [ref=e217]
+                - cell [ref=e218]
+                - cell "PMS" [ref=e219]
+                - cell "7462c" [ref=e220]
+              - row "CMYK 100-45-06-28" [ref=e221]:
+                - cell [ref=e222]
+                - cell "CMYK" [ref=e223]
+                - cell "100-45-06-28" [ref=e224]
+              - row "RGB 21-66-115" [ref=e225]:
+                - cell [ref=e226]
+                - cell "RGB" [ref=e227]
+                - cell "21-66-115" [ref=e228]
+              - 'row "HEX #154273" [ref=e229]':
+                - cell [ref=e230]
+                - cell "HEX" [ref=e231]
+                - cell "#154273" [ref=e232]
+        - generic [ref=e234]:
+          - paragraph [ref=e235]:
+            - link "> Bekijk de specificaties van lintblauw" [ref=e236] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=9247
+          - paragraph [ref=e237]:
+            - text: Alleen voor bewegwijzering is een andere kleur beschikbaar gesteld. Zie
+            - link "kleur bewegwijzering" [ref=e238] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8675
+            - text: .
+        - generic [ref=e239]:
+          - heading "Paars" [level=2] [ref=e240]
+          - table [ref=e242]:
+            - rowgroup [ref=e243]:
+              - row "PMS 2627c" [ref=e244]:
+                - cell [ref=e245]
+                - cell [ref=e246]
+                - cell "PMS" [ref=e247]
+                - cell "2627c" [ref=e248]
+              - row "CMYK 81-100-06-35" [ref=e249]:
+                - cell [ref=e250]
+                - cell "CMYK" [ref=e251]
+                - cell "81-100-06-35" [ref=e252]
+              - row "RGB 66-20-95" [ref=e253]:
+                - cell [ref=e254]
+                - cell "RGB" [ref=e255]
+                - cell "66-20-95" [ref=e256]
+              - 'row "HEX #42145f" [ref=e257]':
+                - cell [ref=e258]
+                - cell "HEX" [ref=e259]
+                - cell "#42145f" [ref=e260]
+        - paragraph [ref=e263]:
+          - link "> Bekijk de tinten en specificaties van paars" [ref=e264] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8959
+        - generic [ref=e265]:
+          - heading "Violet" [level=2] [ref=e266]
+          - table [ref=e268]:
+            - rowgroup [ref=e269]:
+              - row "PMS 227c" [ref=e270]:
+                - cell [ref=e271]
+                - cell [ref=e272]
+                - cell "PMS" [ref=e273]
+                - cell "227c" [ref=e274]
+              - row "CMYK 07-100-07-21" [ref=e275]:
+                - cell [ref=e276]
+                - cell "CMYK" [ref=e277]
+                - cell "07-100-07-21" [ref=e278]
+              - row "RGB 169-00-97" [ref=e279]:
+                - cell [ref=e280]
+                - cell "RGB" [ref=e281]
+                - cell "169-00-97" [ref=e282]
+              - 'row "HEX #a90061" [ref=e283]':
+                - cell [ref=e284]
+                - cell "HEX" [ref=e285]
+                - cell "#a90061" [ref=e286]
+        - paragraph [ref=e289]:
+          - link "> Bekijk de tinten en specificaties van violet" [ref=e290] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8965
+        - generic [ref=e291]:
+          - heading "Robijnrood" [level=2] [ref=e292]
+          - table [ref=e294]:
+            - rowgroup [ref=e295]:
+              - row "PMS Rubine Red" [ref=e296]:
+                - cell [ref=e297]
+                - cell [ref=e298]
+                - cell "PMS" [ref=e299]
+                - cell "Rubine Red" [ref=e300]
+              - row "CMYK 00-100-18-03" [ref=e301]:
+                - cell [ref=e302]
+                - cell "CMYK" [ref=e303]
+                - cell "00-100-18-03" [ref=e304]
+              - row "RGB 202-00-93" [ref=e305]:
+                - cell [ref=e306]
+                - cell "RGB" [ref=e307]
+                - cell "202-00-93" [ref=e308]
+              - 'row "HEX #ca005d" [ref=e309]':
+                - cell [ref=e310]
+                - cell "HEX" [ref=e311]
+                - cell "#ca005d" [ref=e312]
+        - paragraph [ref=e315]:
+          - link "> Bekijk de tinten en specificaties van robijnrood" [ref=e316] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8969
+        - generic [ref=e317]:
+          - heading "Roze" [level=2] [ref=e318]
+          - table [ref=e320]:
+            - rowgroup [ref=e321]:
+              - row "PMS 223C" [ref=e322]:
+                - cell [ref=e323]
+                - cell [ref=e324]
+                - cell "PMS" [ref=e325]
+                - cell "223C" [ref=e326]
+              - row "CMYK 01-50-00-00" [ref=e327]:
+                - cell [ref=e328]
+                - cell "CMYK" [ref=e329]
+                - cell "01-50-00-00" [ref=e330]
+              - row "RGB 240-146-205" [ref=e331]:
+                - cell [ref=e332]
+                - cell "RGB" [ref=e333]
+                - cell "240-146-205" [ref=e334]
+              - 'row "HEX #f092cd" [ref=e335]':
+                - cell [ref=e336]
+                - cell "HEX" [ref=e337]
+                - cell "#f092cd" [ref=e338]
+        - paragraph [ref=e341]:
+          - link "> Bekijk de tinten en specificaties van roze" [ref=e342] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8967
+        - generic [ref=e343]:
+          - heading "Rood" [level=2] [ref=e344]
+          - table [ref=e346]:
+            - rowgroup [ref=e347]:
+              - row "PMS 485C" [ref=e348]:
+                - cell [ref=e349]
+                - cell [ref=e350]
+                - cell "PMS" [ref=e351]
+                - cell "485C" [ref=e352]
+              - row "CMYK 00-96-100-00" [ref=e353]:
+                - cell [ref=e354]
+                - cell "CMYK" [ref=e355]
+                - cell "00-96-100-00" [ref=e356]
+              - row "RGB 213-43-30" [ref=e357]:
+                - cell [ref=e358]
+                - cell "RGB" [ref=e359]
+                - cell "213-43-30" [ref=e360]
+              - 'row "HEX #d52b1e" [ref=e361]':
+                - cell [ref=e362]
+                - cell "HEX" [ref=e363]
+                - cell "#d52b1e" [ref=e364]
+        - paragraph [ref=e367]:
+          - link "> Bekijk de tinten en specificaties van rood" [ref=e368] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8973
+        - generic [ref=e369]:
+          - heading "Oranje" [level=2] [ref=e370]
+          - table [ref=e372]:
+            - rowgroup [ref=e373]:
+              - row "PMS 152C" [ref=e374]:
+                - cell [ref=e375]
+                - cell [ref=e376]
+                - cell "PMS" [ref=e377]
+                - cell "152C" [ref=e378]
+              - row "CMYK 00-68-100-00" [ref=e379]:
+                - cell [ref=e380]
+                - cell "CMYK" [ref=e381]
+                - cell "00-68-100-00" [ref=e382]
+              - row "RGB 225-112-00" [ref=e383]:
+                - cell [ref=e384]
+                - cell "RGB" [ref=e385]
+                - cell "225-112-00" [ref=e386]
+              - 'row "HEX #e17000" [ref=e387]':
+                - cell [ref=e388]
+                - cell "HEX" [ref=e389]
+                - cell "#e17000" [ref=e390]
+        - paragraph [ref=e393]:
+          - link "> Bekijk de tinten en specificaties van oranje" [ref=e394] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8977
+        - generic [ref=e395]:
+          - heading "Donkergeel" [level=2] [ref=e396]
+          - table [ref=e398]:
+            - rowgroup [ref=e399]:
+              - row "PMS 1235C" [ref=e400]:
+                - cell [ref=e401]
+                - cell [ref=e402]
+                - cell "PMS" [ref=e403]
+                - cell "1235C" [ref=e404]
+              - row "CMYK 00-36-98-00" [ref=e405]:
+                - cell [ref=e406]
+                - cell "CMYK" [ref=e407]
+                - cell "00-36-98-00" [ref=e408]
+              - row "RGB 255-182-18" [ref=e409]:
+                - cell [ref=e410]
+                - cell "RGB" [ref=e411]
+                - cell "255-182-18" [ref=e412]
+              - 'row "HEX #ffb612" [ref=e413]':
+                - cell [ref=e414]
+                - cell "HEX" [ref=e415]
+                - cell "#ffb612" [ref=e416]
+        - paragraph [ref=e419]:
+          - link "> Bekijk de tinten en specificaties van donkergeel" [ref=e420] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8979
+        - generic [ref=e421]:
+          - heading "Geel" [level=2] [ref=e422]
+          - table [ref=e424]:
+            - rowgroup [ref=e425]:
+              - row "PMS 107C" [ref=e426]:
+                - cell [ref=e427]
+                - cell [ref=e428]
+                - cell "PMS" [ref=e429]
+                - cell "107C" [ref=e430]
+              - row "CMYK 00-00-90-00" [ref=e431]:
+                - cell [ref=e432]
+                - cell "CMYK" [ref=e433]
+                - cell "00-00-90-00" [ref=e434]
+              - row "RGB 249-225-30" [ref=e435]:
+                - cell [ref=e436]
+                - cell "RGB" [ref=e437]
+                - cell "249-225-30" [ref=e438]
+              - 'row "HEX #f9e11e" [ref=e439]':
+                - cell [ref=e440]
+                - cell "HEX" [ref=e441]
+                - cell "#f9e11e" [ref=e442]
+        - paragraph [ref=e445]:
+          - link "> Bekijk de tinten en specificaties van geel" [ref=e446] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8981
+        - generic [ref=e447]:
+          - heading "Donkerbruin" [level=2] [ref=e448]
+          - table [ref=e450]:
+            - rowgroup [ref=e451]:
+              - row "PMS 483C" [ref=e452]:
+                - cell [ref=e453]
+                - cell [ref=e454]
+                - cell "PMS" [ref=e455]
+                - cell "483C" [ref=e456]
+              - row "CMYK 21-80-81-72" [ref=e457]:
+                - cell [ref=e458]
+                - cell "CMYK" [ref=e459]
+                - cell "21-80-81-72" [ref=e460]
+              - row "RGB 103-51-39" [ref=e461]:
+                - cell [ref=e462]
+                - cell "RGB" [ref=e463]
+                - cell "103-51-39" [ref=e464]
+              - 'row "HEX #673327" [ref=e465]':
+                - cell [ref=e466]
+                - cell "HEX" [ref=e467]
+                - cell "#673327" [ref=e468]
+        - paragraph [ref=e471]:
+          - link "> Bekijk de tinten en specificaties van donkerbruin" [ref=e472] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8983
+        - generic [ref=e473]:
+          - heading "Bruin" [level=2] [ref=e474]
+          - table [ref=e476]:
+            - rowgroup [ref=e477]:
+              - row "PMS 125C" [ref=e478]:
+                - cell [ref=e479]
+                - cell [ref=e480]
+                - cell "PMS" [ref=e481]
+                - cell "125C" [ref=e482]
+              - row "CMYK 06-34-100-25" [ref=e483]:
+                - cell [ref=e484]
+                - cell "CMYK" [ref=e485]
+                - cell "06-34-100-25" [ref=e486]
+              - row "RGB 148-113-00" [ref=e487]:
+                - cell [ref=e488]
+                - cell "RGB" [ref=e489]
+                - cell "148-113-00" [ref=e490]
+              - 'row "HEX #94710a" [ref=e491]':
+                - cell [ref=e492]
+                - cell "HEX" [ref=e493]
+                - cell "#94710a" [ref=e494]
+        - paragraph [ref=e497]:
+          - link "> Bekijk de tinten en specificaties van bruin" [ref=e498] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8985
+        - generic [ref=e499]:
+          - heading "Donkergroen" [level=2] [ref=e500]
+          - table [ref=e502]:
+            - rowgroup [ref=e503]:
+              - row "PMS 357C" [ref=e504]:
+                - cell [ref=e505]
+                - cell [ref=e506]
+                - cell "PMS" [ref=e507]
+                - cell "357C" [ref=e508]
+              - row "CMYK 93-19-94-69" [ref=e509]:
+                - cell [ref=e510]
+                - cell "CMYK" [ref=e511]
+                - cell "93-19-94-69" [ref=e512]
+              - row "RGB 39-89-55" [ref=e513]:
+                - cell [ref=e514]
+                - cell "RGB" [ref=e515]
+                - cell "39-89-55" [ref=e516]
+              - 'row "HEX #275937" [ref=e517]':
+                - cell [ref=e518]
+                - cell "HEX" [ref=e519]
+                - cell "#275937" [ref=e520]
+        - paragraph [ref=e523]:
+          - link "> Bekijk de tinten en specificaties van donkergroen" [ref=e524] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8987
+        - generic [ref=e525]:
+          - heading "Groen" [level=2] [ref=e526]
+          - table [ref=e528]:
+            - rowgroup [ref=e529]:
+              - row "PMS 369C" [ref=e530]:
+                - cell [ref=e531]
+                - cell [ref=e532]
+                - cell "PMS" [ref=e533]
+                - cell "369C" [ref=e534]
+              - row "CMYK 73-00-100-00" [ref=e535]:
+                - cell [ref=e536]
+                - cell "CMYK" [ref=e537]
+                - cell "73-00-100-00" [ref=e538]
+              - row "RGB 57-135-12" [ref=e539]:
+                - cell [ref=e540]
+                - cell "RGB" [ref=e541]
+                - cell "57-135-12" [ref=e542]
+              - 'row "HEX #39870c" [ref=e543]':
+                - cell [ref=e544]
+                - cell "HEX" [ref=e545]
+                - cell "#39870c" [ref=e546]
+        - paragraph [ref=e549]:
+          - link "> Bekijk de tinten en specificaties van groen" [ref=e550] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8989
+        - generic [ref=e551]:
+          - heading "Mosgroen" [level=2] [ref=e552]
+          - table [ref=e554]:
+            - rowgroup [ref=e555]:
+              - row "PMS 384C" [ref=e556]:
+                - cell [ref=e557]
+                - cell [ref=e558]
+                - cell "PMS" [ref=e559]
+                - cell "384C" [ref=e560]
+              - row "CMYK 28-04-99-39" [ref=e561]:
+                - cell [ref=e562]
+                - cell "CMYK" [ref=e563]
+                - cell "28-04-99-39" [ref=e564]
+              - row "RGB 119-123-00" [ref=e565]:
+                - cell [ref=e566]
+                - cell "RGB" [ref=e567]
+                - cell "119-123-00" [ref=e568]
+              - 'row "HEX #777b00" [ref=e569]':
+                - cell [ref=e570]
+                - cell "HEX" [ref=e571]
+                - cell "#777b00" [ref=e572]
+        - paragraph [ref=e575]:
+          - link "> Bekijk de tinten en specificaties van mosgroen" [ref=e576] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8991
+        - generic [ref=e577]:
+          - heading "Mintgroen" [level=2] [ref=e578]
+          - table [ref=e580]:
+            - rowgroup [ref=e581]:
+              - row "PMS 338C" [ref=e582]:
+                - cell [ref=e583]
+                - cell [ref=e584]
+                - cell "PMS" [ref=e585]
+                - cell "338C" [ref=e586]
+              - row "CMYK 51-00-30-00" [ref=e587]:
+                - cell [ref=e588]
+                - cell "CMYK" [ref=e589]
+                - cell "51-00-30-00" [ref=e590]
+              - row "RGB 118-210-182" [ref=e591]:
+                - cell [ref=e592]
+                - cell "RGB" [ref=e593]
+                - cell "118-210-182" [ref=e594]
+              - 'row "HEX #76d2b6" [ref=e595]':
+                - cell [ref=e596]
+                - cell "HEX" [ref=e597]
+                - cell "#76d2b6" [ref=e598]
+        - paragraph [ref=e601]:
+          - link "> Bekijk de tinten en specificaties van mintgroen" [ref=e602] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8993
+        - generic [ref=e603]:
+          - heading "Donkerblauw" [level=2] [ref=e604]
+          - table [ref=e606]:
+            - rowgroup [ref=e607]:
+              - row "PMS 300C" [ref=e608]:
+                - cell [ref=e609]
+                - cell [ref=e610]
+                - cell "PMS" [ref=e611]
+                - cell "300C" [ref=e612]
+              - row "CMYK 99-51-00-00" [ref=e613]:
+                - cell [ref=e614]
+                - cell "CMYK" [ref=e615]
+                - cell "99-51-00-00" [ref=e616]
+              - row "RGB 01-104-155" [ref=e617]:
+                - cell [ref=e618]
+                - cell "RGB" [ref=e619]
+                - cell "01-104-155" [ref=e620]
+              - 'row "HEX #01689b" [ref=e621]':
+                - cell [ref=e622]
+                - cell "HEX" [ref=e623]
+                - cell "#01689b" [ref=e624]
+        - paragraph [ref=e627]:
+          - link "> Bekijk de tinten en specificaties van donkerblauw" [ref=e628] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8971
+        - generic [ref=e629]:
+          - heading "Hemelblauw" [level=2] [ref=e630]
+          - table [ref=e632]:
+            - rowgroup [ref=e633]:
+              - row "PMS Cyaan" [ref=e634]:
+                - cell [ref=e635]
+                - cell [ref=e636]
+                - cell "PMS" [ref=e637]
+                - cell "Cyaan" [ref=e638]
+              - row "CMYK 100-00-00-00" [ref=e639]:
+                - cell [ref=e640]
+                - cell "CMYK" [ref=e641]
+                - cell "100-00-00-00" [ref=e642]
+              - row "RGB 00-123-199" [ref=e643]:
+                - cell [ref=e644]
+                - cell "RGB" [ref=e645]
+                - cell "00-123-199" [ref=e646]
+              - 'row "HEX #007bc7" [ref=e647]':
+                - cell [ref=e648]
+                - cell "HEX" [ref=e649]
+                - cell "#007bc7" [ref=e650]
+        - paragraph [ref=e653]:
+          - link "> Bekijk de tinten en specificaties van hemelblauw" [ref=e654] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8995
+        - generic [ref=e655]:
+          - heading "Lichtblauw" [level=2] [ref=e656]
+          - table [ref=e658]:
+            - rowgroup [ref=e659]:
+              - row "PMS 2905C" [ref=e660]:
+                - cell [ref=e661]
+                - cell [ref=e662]
+                - cell "PMS" [ref=e663]
+                - cell "2905C" [ref=e664]
+              - row "CMYK 45-01-00-01" [ref=e665]:
+                - cell [ref=e666]
+                - cell "CMYK" [ref=e667]
+                - cell "45-01-00-01" [ref=e668]
+              - row "RGB 143-202-231" [ref=e669]:
+                - cell [ref=e670]
+                - cell "RGB" [ref=e671]
+                - cell "143-202-231" [ref=e672]
+              - 'row "HEX #8fcae7" [ref=e673]':
+                - cell [ref=e674]
+                - cell "HEX" [ref=e675]
+                - cell "#8fcae7" [ref=e676]
+        - paragraph [ref=e679]:
+          - link "> Bekijk de tinten en specificaties van lichtblauw" [ref=e680] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8975
+        - generic [ref=e681]:
+          - heading "Cool Gray" [level=2] [ref=e682]
+          - generic [ref=e683]:
+            - paragraph [ref=e684]:
+              - text: De Cool Gray grijstint
+              - strong [ref=e686]: (geen communicatiekleur)
+              - text: sluit goed aan op lintblauw vanwege een lichte tint blauw die deze Cool Gray bevat.
+            - table [ref=e687]:
+              - rowgroup [ref=e688]:
+                - row "Coolgray" [ref=e689]:
+                  - cell [ref=e690]
+                  - cell [ref=e691]
+                  - cell [ref=e692]
+                  - cell "Coolgray" [ref=e693]
+                - row "CMYK 100-45-06-28" [ref=e694]:
+                  - cell [ref=e695]
+                  - cell "CMYK" [ref=e696]
+                  - cell "100-45-06-28" [ref=e697]
+                - row "RGB 15-23-42" [ref=e698]:
+                  - cell [ref=e699]
+                  - cell "RGB" [ref=e700]
+                  - cell "15-23-42" [ref=e701]
+                - 'row "HEX #0F172A" [ref=e702]':
+                  - cell [ref=e703]
+                  - cell "HEX" [ref=e704]
+                  - cell "#0F172A" [ref=e705]
+        - paragraph [ref=e708]:
+          - link "> Bekijk de 10 tinten van de Cool Gray" [ref=e709] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/modules/product/DigitalStyleGuide/default/grouplist.aspx?ItemId=11021
+  - text: 
+  - generic [ref=e710]:
+    - generic [ref=e714]:
+      - generic [ref=e716]:
+        - heading "Over deze site" [level=3] [ref=e717]
+        - list:
+          - listitem:
+            - link "Copyright" [ref=e718] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6736&OriginalItemId=6736
+          - listitem:
+            - link "Privacy" [ref=e719] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6737&OriginalItemId=6737
+          - listitem:
+            - link "Cookies" [ref=e720] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9144&OriginalItemId=9144
+          - listitem:
+            - link "Toegankelijkheid" [ref=e721] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9279&OriginalItemId=9279
+      - generic [ref=e722]:
+        - heading "Service" [level=3] [ref=e723]
+        - list:
+          - listitem:
+            - link "Over de rijkshuisstijl" [ref=e724] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6738&OriginalItemId=6738
+    - generic [ref=e727]: Powered by Spotler Brand ID

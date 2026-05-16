@@ -1,0 +1,228 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - link "Overslaan en naar de inhoud gaan" [ref=e6] [cursor=pointer]:
+      - /url: "#ContentArea"
+    - generic: 
+    - link "Logo Rijksoverheid – Naar de homepage" [ref=e8] [cursor=pointer]:
+      - /url: /publiek
+  - generic [ref=e10]:
+    - text:  
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10233
+        - listitem [ref=e20]:
+          - link "Rijkshuisstijl" [ref=e22] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10237
+      - text: 
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - button "Menu in- of uitklappen" [expanded] [ref=e26] [cursor=pointer]:
+        - generic [ref=e28]: 
+      - list [ref=e31]:
+        - listitem [ref=e32]:
+          - list [ref=e33]:
+            - listitem [ref=e34]:
+              - generic [ref=e35]:
+                - link "Over de rijkshuisstijl" [ref=e36] [cursor=pointer]:
+                  - generic [ref=e37]: Over de rijkshuisstijl
+                - button "Open item" [ref=e38] [cursor=pointer]:
+                  - generic [ref=e39]: 
+            - listitem [ref=e40]:
+              - generic [ref=e41]:
+                - link "Type rijksorganisatie en stijl van de communicatie" [ref=e42] [cursor=pointer]:
+                  - generic [ref=e43]: Type rijksorganisatie en stijl van de communicatie
+                - button "Open item" [ref=e44] [cursor=pointer]:
+                  - generic [ref=e45]: 
+            - listitem [ref=e46]:
+              - generic [ref=e47]:
+                - link "Basiselementen ''nieuw''" [ref=e48] [cursor=pointer]:
+                  - generic [ref=e49]: Basiselementen ''nieuw''
+                - button "Open item" [expanded] [ref=e50] [cursor=pointer]:
+                  - generic [ref=e51]: 
+              - list [ref=e52]:
+                - listitem [ref=e53]:
+                  - generic [ref=e54]:
+                    - link "Logo" [ref=e55] [cursor=pointer]:
+                      - generic [ref=e56]: Logo
+                    - button "Open item" [ref=e57] [cursor=pointer]:
+                      - generic [ref=e58]: 
+                - listitem [ref=e59]:
+                  - generic [ref=e60]:
+                    - link "Kleuren" [ref=e61] [cursor=pointer]:
+                      - generic [ref=e62]: Kleuren
+                    - button "Open item" [ref=e63] [cursor=pointer]:
+                      - generic [ref=e64]: 
+                - listitem [ref=e65]:
+                  - generic [ref=e66]:
+                    - link "Typografie" [ref=e67] [cursor=pointer]:
+                      - generic [ref=e68]: Typografie
+                    - button "Open item" [expanded] [ref=e69] [cursor=pointer]:
+                      - generic [ref=e70]: 
+                  - list [ref=e71]:
+                    - listitem [ref=e72]:
+                      - link "Typografie specificaties" [ref=e74] [cursor=pointer]:
+                        - generic [ref=e75]: Typografie specificaties
+                    - listitem [ref=e76]:
+                      - link "Gebruiksvoorwaarden typografie" [ref=e78] [cursor=pointer]:
+                        - generic [ref=e79]: Gebruiksvoorwaarden typografie
+                - listitem [ref=e80]:
+                  - generic [ref=e81]:
+                    - link "Vormtaal" [ref=e82] [cursor=pointer]:
+                      - generic [ref=e83]: Vormtaal
+                    - button "Open item" [ref=e84] [cursor=pointer]:
+                      - generic [ref=e85]: 
+                - listitem [ref=e86]:
+                  - generic [ref=e87]:
+                    - link "Beeldtaal" [ref=e88] [cursor=pointer]:
+                      - generic [ref=e89]: Beeldtaal
+                    - button "Open item" [ref=e90] [cursor=pointer]:
+                      - generic [ref=e91]: 
+                - listitem [ref=e92]:
+                  - link "Basis layout" [ref=e94] [cursor=pointer]:
+                    - generic [ref=e95]: Basis layout
+                - listitem [ref=e96]:
+                  - link "Digitoegankelijkheid" [ref=e98] [cursor=pointer]:
+                    - generic [ref=e99]: Digitoegankelijkheid
+            - listitem [ref=e100]:
+              - generic [ref=e101]:
+                - link "Richtlijnen middelen ''nieuw''" [ref=e102] [cursor=pointer]:
+                  - generic [ref=e103]: Richtlijnen middelen ''nieuw''
+                - button "Open item" [ref=e104] [cursor=pointer]:
+                  - generic [ref=e105]: 
+            - listitem [ref=e106]:
+              - generic [ref=e107]:
+                - link "Basiselementen ''oud''" [ref=e108] [cursor=pointer]:
+                  - generic [ref=e109]: Basiselementen ''oud''
+                - button "Open item" [ref=e110] [cursor=pointer]:
+                  - generic [ref=e111]: 
+            - listitem [ref=e112]:
+              - generic [ref=e113]:
+                - link "Richtlijnen middelen ''oud''" [ref=e114] [cursor=pointer]:
+                  - generic [ref=e115]: Richtlijnen middelen ''oud''
+                - button "Open item" [ref=e116] [cursor=pointer]:
+                  - generic [ref=e117]: 
+            - listitem [ref=e118]:
+              - generic [ref=e119]:
+                - link "Thema's" [ref=e120] [cursor=pointer]:
+                  - generic [ref=e121]: Thema's
+                - button "Open item" [ref=e122] [cursor=pointer]:
+                  - generic [ref=e123]: 
+    - generic [ref=e124]:
+      - generic [ref=e126]:
+        - heading "Typografie" [level=1] [ref=e127]
+        - link "Basiselementen ''nieuw''" [ref=e128] [cursor=pointer]:
+          - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10479
+      - generic [ref=e129]:
+        - generic [ref=e130]:
+          - paragraph [ref=e131]: De rijksoverheidfonts zijn speciaal ontworpen voor de Rijksoverheid en derhalve uitsluitend voorbehouden aan de Rijksoverheid. De twee varianten zijn de Rijksoverheid Serif (schreefletter) en de Rijksoverheid Sans (schreefloze letter). Er zijn aparte sets voor drukwerk, online toepassingen en weginformatieborden.
+          - paragraph [ref=e132]: "Let op: voor alle ontwerpen wordt in de gemoderniseerde Rijkshuisstijl het variabele font gebruikt. De oude fontversies worden alleen nog aangeboden voor oude ontwerpen in de oude Rijkshuisstijl."
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - heading "Gebruiksrichtlijnen" [level=2] [ref=e139]
+            - list [ref=e141]:
+              - listitem [ref=e142]: De rijksoverheidfonts mogen uitsluitend voor rijksoverheidspublicaties ingezet worden.
+              - listitem [ref=e143]: De Rijksoverheid Sans heeft een primaire rol en wordt gebruikt als broodtekst. Dit betekent ook dat de Rijksoverheid Sans op beeldbepalende plekken wordt gebruikt. Denk hierbij bijvoorbeeld aan titels, ondertitels, grotere headings en andere prominente teksten.
+              - listitem [ref=e144]: De Rijksoverheid Sans is een variabel font. Wees gematigd met de vele toepassingen die een variabel font met zicht meebrengt.
+              - listitem [ref=e145]: "De Rijksoverheid Serif heeft een ondergeschikte rol en hoeft daarom ook niet verplicht gebruikt te worden. De Serif kun je gebruiken voor broodteksten, quotes, kleinere headings & binnenwerk en bijschriften. (Let op: de Rijksoverheid Serif is geen variabel font)."
+              - listitem [ref=e146]: Teksten worden bij voorkeur links uitgelijnd. Indien het ontwerp er om vraagt kan tekst eventueel rechts uitgelijnd of gecentreerde geplaatst worden.
+              - listitem [ref=e147]: Wees terughoudend in het gebruik van grote schreeuwende teksten.
+              - listitem [ref=e148]: Vanuit de toegankelijkheidseisen wordt er geadviseerd om voorzichtig te zijn met de uitersten van het font. Wees scherp op de leesbaarheid bij 'thin' en 'extra bold'.
+              - listitem [ref=e149]: Het font is niet bedoeld als extra huisstijlelement, bijvoorbeeld als grafische achtergrond.
+              - listitem [ref=e150]:
+                - text: Voor broodteksten gebruiken we bij voorkeur lintblauw, maar zwart en / of wit (diapositief) mag ook als dit de toegankelijkheid verbeterd.
+                - list [ref=e151]:
+                  - listitem [ref=e152]: "Let op: gebruik bij CMYK-drukwerk zwart (K=100%) voor broodtekst om onscherpe contouren bij kleine letters te voorkomen."
+              - listitem [ref=e153]: Overweeg de lintkleur te combineren met één andere primaire kleur of accentkleur uit het kleurenpalet? Let er daarbij op dat de combinatie professioneel oogt en niet resulteert in een overdaad aan kleuren. Kies kleuren die elkaar aanvullen en beperk je tot maximaal een kleur naast het lintblauw, zodat het geheel rustig en samenhangend blijft.
+              - listitem [ref=e154]:
+                - text: Het toevoegen van andere fonts is niet toegestaan. Er geldt een uitzondering bij
+                - link "aangemelde campagnes." [ref=e155] [cursor=pointer]:
+                  - /url: https://www.rijkshuisstijl.nl/modules/folder/brandguide/default/index.aspx?ItemId=10657
+          - figure [ref=e158]:
+            - img "Hier zie je een voorbeeld van de Rijksoverheid Sans." [ref=e159]
+          - generic [ref=e160]:
+            - 'heading "Alternatief: systeemlettertypen" [level=2] [ref=e161]'
+            - generic [ref=e162]:
+              - heading "Arial en Verdana" [level=3] [ref=e163]
+              - paragraph [ref=e164]: Voor kantoorautomatisering en digitale presentaties gebruik je Verdana.
+              - paragraph [ref=e165]: Voor alle andere digitale toepassingen gebruik je Arial en Verdana als de rijkshuisstijl webfonts niet toegepast kunnen worden.
+              - 'heading "Open source: Déja vu" [level=3] [ref=e166]'
+              - paragraph [ref=e167]: Maak je gebruik van open source toepassingen voor kantoorautomatisering? Gebruik dan het lettertype Déja vu.
+    - generic [ref=e174]:
+      - generic [ref=e175]:
+        - heading "Download" [level=3] [ref=e176]
+        - generic [ref=e177]:
+          - paragraph [ref=e178]:
+            - strong [ref=e179]: Rijksoverheid Sans
+          - paragraph [ref=e180]: Variabel font voor print en online
+          - paragraph [ref=e181]:
+            - text: ">"
+            - link "RijksoverheidSans variabel" [ref=e182] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=141392
+          - paragraph [ref=e183]: Print
+          - paragraph [ref=e184]:
+            - text: ">"
+            - link "RijksoverheidSans TT" [ref=e185] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=141394
+            - text: ">"
+            - link "RijksoverheidSans OT" [ref=e186] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=141396
+          - paragraph [ref=e187]:
+            - text: Online
+            - text: ">"
+            - link "RijksoverheidSans woff variabel" [ref=e188] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=142041
+            - text: ">"
+            - link "RijksoverheidSans woff" [ref=e189] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=142068
+          - paragraph [ref=e190]:
+            - text: Informatieborden
+            - text: ">"
+            - link "RijksoverheidSans Sign Halo" [ref=e191] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=89069
+          - paragraph [ref=e192]:
+            - strong [ref=e193]: Rijksoverheid Serif
+          - paragraph [ref=e194]: Print
+          - paragraph [ref=e195]:
+            - text: ">"
+            - link "RijksoverheidSerif TT" [ref=e196] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=141402
+            - text: ">"
+            - link "RijksoverheidSerif OT" [ref=e197] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=141401
+          - paragraph [ref=e198]: Online
+          - paragraph [ref=e199]:
+            - text: ">"
+            - link "RijksoverheidSerif woff" [ref=e200] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=142069
+          - paragraph [ref=e201]
+      - paragraph [ref=e204]:
+        - text: ">"
+        - link "Gebruiksvoorwaarden typografie" [ref=e205] [cursor=pointer]:
+          - /url: /publiek/InternalLink.aspx?itemid=10370
+  - text: 
+  - generic [ref=e206]:
+    - generic [ref=e210]:
+      - generic [ref=e212]:
+        - heading "Over deze site" [level=3] [ref=e213]
+        - list:
+          - listitem:
+            - link "Copyright" [ref=e214] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6736&OriginalItemId=6736
+          - listitem:
+            - link "Privacy" [ref=e215] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6737&OriginalItemId=6737
+          - listitem:
+            - link "Cookies" [ref=e216] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9144&OriginalItemId=9144
+          - listitem:
+            - link "Toegankelijkheid" [ref=e217] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9279&OriginalItemId=9279
+      - generic [ref=e218]:
+        - heading "Service" [level=3] [ref=e219]
+        - list:
+          - listitem:
+            - link "Over de rijkshuisstijl" [ref=e220] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6738&OriginalItemId=6738
+    - generic [ref=e223]: Powered by Spotler Brand ID

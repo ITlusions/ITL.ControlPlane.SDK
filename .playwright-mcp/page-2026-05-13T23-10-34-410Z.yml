@@ -1,0 +1,187 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - link "Overslaan en naar de inhoud gaan" [ref=e6] [cursor=pointer]:
+      - /url: "#ContentArea"
+    - generic: 
+    - link "Logo Rijksoverheid – Naar de homepage" [ref=e8] [cursor=pointer]:
+      - /url: /publiek
+  - generic [ref=e10]:
+    - text:  
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10233
+        - listitem [ref=e20]:
+          - link "Rijkshuisstijl" [ref=e22] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10237
+      - text: 
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - button "Menu in- of uitklappen" [expanded] [ref=e26] [cursor=pointer]:
+        - generic [ref=e28]: 
+      - list [ref=e31]:
+        - listitem [ref=e32]:
+          - list [ref=e33]:
+            - listitem [ref=e34]:
+              - generic [ref=e35]:
+                - link "Over de rijkshuisstijl" [ref=e36] [cursor=pointer]:
+                  - generic [ref=e37]: Over de rijkshuisstijl
+                - button "Open item" [ref=e38] [cursor=pointer]:
+                  - generic [ref=e39]: 
+            - listitem [ref=e40]:
+              - generic [ref=e41]:
+                - link "Type rijksorganisatie en stijl van de communicatie" [ref=e42] [cursor=pointer]:
+                  - generic [ref=e43]: Type rijksorganisatie en stijl van de communicatie
+                - button "Open item" [ref=e44] [cursor=pointer]:
+                  - generic [ref=e45]: 
+            - listitem [ref=e46]:
+              - generic [ref=e47]:
+                - link "Basiselementen ''nieuw''" [ref=e48] [cursor=pointer]:
+                  - generic [ref=e49]: Basiselementen ''nieuw''
+                - button "Open item" [expanded] [ref=e50] [cursor=pointer]:
+                  - generic [ref=e51]: 
+              - list [ref=e52]:
+                - listitem [ref=e53]:
+                  - generic [ref=e54]:
+                    - link "Logo" [ref=e55] [cursor=pointer]:
+                      - generic [ref=e56]: Logo
+                    - button "Open item" [ref=e57] [cursor=pointer]:
+                      - generic [ref=e58]: 
+                - listitem [ref=e59]:
+                  - generic [ref=e60]:
+                    - link "Kleuren" [ref=e61] [cursor=pointer]:
+                      - generic [ref=e62]: Kleuren
+                    - button "Open item" [expanded] [ref=e63] [cursor=pointer]:
+                      - generic [ref=e64]: 
+                  - list [ref=e65]:
+                    - listitem [ref=e66]:
+                      - generic [ref=e67]:
+                        - link "Kleuren specificaties" [ref=e68] [cursor=pointer]:
+                          - generic [ref=e69]: Kleuren specificaties
+                        - button "Open item" [ref=e70] [cursor=pointer]:
+                          - generic [ref=e71]: 
+                - listitem [ref=e72]:
+                  - generic [ref=e73]:
+                    - link "Typografie" [ref=e74] [cursor=pointer]:
+                      - generic [ref=e75]: Typografie
+                    - button "Open item" [ref=e76] [cursor=pointer]:
+                      - generic [ref=e77]: 
+                - listitem [ref=e78]:
+                  - generic [ref=e79]:
+                    - link "Vormtaal" [ref=e80] [cursor=pointer]:
+                      - generic [ref=e81]: Vormtaal
+                    - button "Open item" [ref=e82] [cursor=pointer]:
+                      - generic [ref=e83]: 
+                - listitem [ref=e84]:
+                  - generic [ref=e85]:
+                    - link "Beeldtaal" [ref=e86] [cursor=pointer]:
+                      - generic [ref=e87]: Beeldtaal
+                    - button "Open item" [ref=e88] [cursor=pointer]:
+                      - generic [ref=e89]: 
+                - listitem [ref=e90]:
+                  - link "Basis layout" [ref=e92] [cursor=pointer]:
+                    - generic [ref=e93]: Basis layout
+                - listitem [ref=e94]:
+                  - link "Digitoegankelijkheid" [ref=e96] [cursor=pointer]:
+                    - generic [ref=e97]: Digitoegankelijkheid
+            - listitem [ref=e98]:
+              - generic [ref=e99]:
+                - link "Richtlijnen middelen ''nieuw''" [ref=e100] [cursor=pointer]:
+                  - generic [ref=e101]: Richtlijnen middelen ''nieuw''
+                - button "Open item" [ref=e102] [cursor=pointer]:
+                  - generic [ref=e103]: 
+            - listitem [ref=e104]:
+              - generic [ref=e105]:
+                - link "Basiselementen ''oud''" [ref=e106] [cursor=pointer]:
+                  - generic [ref=e107]: Basiselementen ''oud''
+                - button "Open item" [ref=e108] [cursor=pointer]:
+                  - generic [ref=e109]: 
+            - listitem [ref=e110]:
+              - generic [ref=e111]:
+                - link "Richtlijnen middelen ''oud''" [ref=e112] [cursor=pointer]:
+                  - generic [ref=e113]: Richtlijnen middelen ''oud''
+                - button "Open item" [ref=e114] [cursor=pointer]:
+                  - generic [ref=e115]: 
+            - listitem [ref=e116]:
+              - generic [ref=e117]:
+                - link "Thema's" [ref=e118] [cursor=pointer]:
+                  - generic [ref=e119]: Thema's
+                - button "Open item" [ref=e120] [cursor=pointer]:
+                  - generic [ref=e121]: 
+    - generic [ref=e122]:
+      - generic [ref=e124]:
+        - heading "Kleuren" [level=1] [ref=e125]
+        - link "Basiselementen ''nieuw''" [ref=e126] [cursor=pointer]:
+          - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10479
+      - generic [ref=e127]:
+        - paragraph [ref=e129]: De rijkshuisstijl kent één hoofdkleur dat is de blauwe kleur van het lint; lintblauw. Naast lintblauw zijn er 17 communicatiekleuren en één ondersteunende grijstint (cool grey).
+        - generic [ref=e135]:
+          - heading "Gebruiksrichtlijnen" [level=2] [ref=e136]
+          - list [ref=e138]:
+            - listitem [ref=e139]: Je gebruik altijd de 100% versie van een communicatiekleur.
+            - listitem [ref=e140]:
+              - text: Percentages van de communicatiekleuren gebruik je ter ondersteuning, bijvoorbeeld bij achtergronden, grafieken of tabellen. Het gebruik kan ook decoratief zijn (bijvoorbeeld bij de
+              - link "rijksillustratiestijl" [ref=e141] [cursor=pointer]:
+                - /url: https://www.rijkshuisstijl.nl/modules/product/DigitalStyleGuide/default/index.aspx?ItemId=10530
+              - text: ).
+            - listitem [ref=e142]: "De kleurpercentages zijn: 75%, 60%, 45%, 30% en 15%."
+            - listitem [ref=e143]: Pas je kleurpercentages toe, dan mag dat alleen in combinatie met de 100% versie van dezelfde kleur.
+            - listitem [ref=e144]: Let erop dat in een communicatie uiting gebruikte kleurpercentages niet de overhand krijgen ten opzichte van de 100% kleuren.
+            - listitem [ref=e145]:
+              - text: De grijstint (
+              - link "cool grey" [ref=e146] [cursor=pointer]:
+                - /url: https://www.rijkshuisstijl.nl/modules/product/DigitalStyleGuide/default/index.aspx?ItemId=10815
+              - text: ) is geen communicatiekleur en mag ook zo niet gebruikt worden. Deze tint is enkel bedoelt voor achtergrondkaders, grafieken en tabellen, indien de communicatiekleuren niet gebruikt kunnen worden.
+            - listitem [ref=e147]: "Je kunt als organisatie geen kleuren claimen: de Rijksoverheid bestaat uit meer dan 100 organisaties die ieder alle kleuren mogen gebruiken."
+            - listitem [ref=e148]: De kleuren van de rijkshuisstijl zijn ook als kleurstalen bibliotheek beschikbaar in RGB, CMYK en PMS. De kleurwaarden zijn opgenomen in een .ase-bestand dat je in Photoshop, Illustrator of Indesign kunt importeren.
+    - generic [ref=e156]:
+      - heading "Downloads" [level=3] [ref=e157]
+      - generic [ref=e158]:
+        - paragraph [ref=e159]: RGB (online)
+        - paragraph [ref=e160]:
+          - link "> Rijkshuisstijl kleuren RGB Adobe Creative Cloud bibliotheek (.cclibs)" [ref=e161] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=97658
+        - paragraph [ref=e162]:
+          - link "> Rijkshuisstijl kleuren RGB Adobe stalenpalet (.ase)" [ref=e163] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=97660
+        - paragraph [ref=e164]
+        - paragraph [ref=e165]: CMYK
+        - paragraph [ref=e166]:
+          - link "> Rijkshuisstijl kleuren CMYK Adobe Creative Cloud bibliotheek (.cclibs)" [ref=e167] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=97701
+        - paragraph [ref=e168]:
+          - link "> Rijkshuisstijl kleuren CMYK Adobe stalenpalet (.ase)" [ref=e169] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=104413
+        - paragraph [ref=e170]: PMS
+        - paragraph [ref=e171]:
+          - link "> Rijkshuisstijl kleuren PMS Adobe Creative Cloud bibliotheek (.cclibs)" [ref=e172] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=97695
+        - paragraph [ref=e173]:
+          - link "> Rijkshuisstijl kleuren PMS Adobe stalenpalet (.ase)" [ref=e174] [cursor=pointer]:
+            - /url: /publiek/InternalLink.aspx?itemid=8766&contentid=97691
+  - text: 
+  - generic [ref=e175]:
+    - generic [ref=e179]:
+      - generic [ref=e181]:
+        - heading "Over deze site" [level=3] [ref=e182]
+        - list:
+          - listitem:
+            - link "Copyright" [ref=e183] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6736&OriginalItemId=6736
+          - listitem:
+            - link "Privacy" [ref=e184] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6737&OriginalItemId=6737
+          - listitem:
+            - link "Cookies" [ref=e185] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9144&OriginalItemId=9144
+          - listitem:
+            - link "Toegankelijkheid" [ref=e186] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9279&OriginalItemId=9279
+      - generic [ref=e187]:
+        - heading "Service" [level=3] [ref=e188]
+        - list:
+          - listitem:
+            - link "Over de rijkshuisstijl" [ref=e189] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6738&OriginalItemId=6738
+    - generic [ref=e192]: Powered by Spotler Brand ID

@@ -1,4 +1,4 @@
-"""
+﻿"""
 Metadata Service for ITL ControlPlane SDK Graph Module.
 
 High-level service that manages resource metadata using a graph database
@@ -9,7 +9,7 @@ instead of duplicating model definitions.
 """
 import logging
 from typing import Dict, List, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 
 from ..interfaces import GraphDatabaseInterface
 from ..factory import create_graph_database
@@ -241,7 +241,7 @@ class MetadataService:
                 "properties": response.properties,
                 "tags": response.tags,
                 "provisioning_state": response.provisioning_state.value,
-                "modified_time": datetime.utcnow().isoformat(),
+                "modified_time": datetime.now(timezone.utc).isoformat(),
             })
             updated = await self.graph_db.update_node(existing)
             return ResourceNode(**{

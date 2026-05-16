@@ -1,4 +1,4 @@
-"""migrate data from generic nodes to resource specific tables
+﻿"""migrate data from generic nodes to resource specific tables
 
 Revision ID: 002_migrate_data
 Revises: 001_initial
@@ -13,7 +13,7 @@ with _legacy suffix) and can be dropped later.
 """
 from typing import Sequence, Union
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 
 from alembic import op
 import sqlalchemy as sa
@@ -86,8 +86,8 @@ def upgrade() -> None:
                                          if k not in ("display_name", "parent_id",
                                                        "description", "provisioning_state",
                                                        "tags", "children")}),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 
@@ -117,8 +117,8 @@ def upgrade() -> None:
                                          if k not in ("display_name", "subscription_id",
                                                        "state", "management_group_id",
                                                        "provisioning_state", "tags")}),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 
@@ -147,8 +147,8 @@ def upgrade() -> None:
                                          if k not in ("_subscription_id", "_resource_id",
                                                        "location", "provisioning_state",
                                                        "tags", "_resource_group")}),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 
@@ -172,8 +172,8 @@ def upgrade() -> None:
                                          if k not in ("display_name", "shortname",
                                                        "region", "location_type", "type",
                                                        "name")}),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 
@@ -195,8 +195,8 @@ def upgrade() -> None:
                     "loc_type": props.get("location_type", "EdgeZone"),
                     "home": props.get("home_location"),
                     "props": json.dumps({}),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 
@@ -222,8 +222,8 @@ def upgrade() -> None:
                     "state": props.get("provisioning_state", "Succeeded"),
                     "tags": json.dumps(props.get("tags", {})),
                     "props": json.dumps({}),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 
@@ -241,8 +241,8 @@ def upgrade() -> None:
                     "count": props.get("count", 0),
                     "vals": json.dumps(props.get("values", [])),
                     "state": props.get("provisioning_state", "Succeeded"),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 
@@ -267,8 +267,8 @@ def upgrade() -> None:
                     "state": props.get("provisioning_state", "Succeeded"),
                     "tags": json.dumps(props.get("tags", {})),
                     "props": json.dumps({}),
-                    "created": created_at or datetime.utcnow().isoformat(),
-                    "updated": modified_at or datetime.utcnow().isoformat(),
+                    "created": created_at or datetime.now(timezone.utc).isoformat(),
+                    "updated": modified_at or datetime.now(timezone.utc).isoformat(),
                 },
             )
 

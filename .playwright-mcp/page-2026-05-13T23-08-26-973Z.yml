@@ -1,0 +1,135 @@
+- generic [ref=e2]:
+  - generic [ref=e5]:
+    - link "Overslaan en naar de inhoud gaan" [ref=e6] [cursor=pointer]:
+      - /url: "#ContentArea"
+    - generic: 
+    - link "Logo Rijksoverheid – Naar de homepage" [ref=e8] [cursor=pointer]:
+      - /url: /publiek
+  - generic [ref=e10]:
+    - text:  
+    - generic [ref=e14]:
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - link "Home" [ref=e19] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10233
+        - listitem [ref=e20]:
+          - link "Rijkshuisstijl" [ref=e22] [cursor=pointer]:
+            - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=10237
+      - text: 
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - button "Menu in- of uitklappen" [expanded] [ref=e26] [cursor=pointer]:
+        - generic [ref=e28]: 
+      - list [ref=e31]:
+        - listitem [ref=e32]:
+          - list [ref=e33]:
+            - listitem [ref=e34]:
+              - generic [ref=e35]:
+                - link "Over de rijkshuisstijl" [ref=e36] [cursor=pointer]:
+                  - generic [ref=e37]: Over de rijkshuisstijl
+                - button "Open item" [ref=e38] [cursor=pointer]:
+                  - generic [ref=e39]: 
+            - listitem [ref=e40]:
+              - generic [ref=e41]:
+                - link "Type rijksorganisatie en stijl van de communicatie" [ref=e42] [cursor=pointer]:
+                  - generic [ref=e43]: Type rijksorganisatie en stijl van de communicatie
+                - button "Open item" [ref=e44] [cursor=pointer]:
+                  - generic [ref=e45]: 
+            - listitem [ref=e46]:
+              - generic [ref=e47]:
+                - link "Basiselementen ''nieuw''" [ref=e48] [cursor=pointer]:
+                  - generic [ref=e49]: Basiselementen ''nieuw''
+                - button "Open item" [ref=e50] [cursor=pointer]:
+                  - generic [ref=e51]: 
+            - listitem [ref=e52]:
+              - generic [ref=e53]:
+                - link "Richtlijnen middelen ''nieuw''" [ref=e54] [cursor=pointer]:
+                  - generic [ref=e55]: Richtlijnen middelen ''nieuw''
+                - button "Open item" [expanded] [ref=e56] [cursor=pointer]:
+                  - generic [ref=e57]: 
+              - list [ref=e58]:
+                - listitem [ref=e59]:
+                  - generic [ref=e60]:
+                    - link "Online middelen" [ref=e61] [cursor=pointer]:
+                      - generic [ref=e62]: Online middelen
+                    - button "Open item" [ref=e63] [cursor=pointer]:
+                      - generic [ref=e64]: 
+                - listitem [ref=e65]:
+                  - generic [ref=e66]:
+                    - link "Offline middelen" [ref=e67] [cursor=pointer]:
+                      - generic [ref=e68]: Offline middelen
+                    - button "Open item" [ref=e69] [cursor=pointer]:
+                      - generic [ref=e70]: 
+                - listitem [ref=e71]:
+                  - generic [ref=e72]:
+                    - link "Fysieke middelen" [ref=e73] [cursor=pointer]:
+                      - generic [ref=e74]: Fysieke middelen
+                    - button "Open item" [ref=e75] [cursor=pointer]:
+                      - generic [ref=e76]: 
+                - listitem [ref=e77]:
+                  - generic [ref=e78]:
+                    - link "Corporate middelen" [ref=e79] [cursor=pointer]:
+                      - generic [ref=e80]: Corporate middelen
+                    - button "Open item" [ref=e81] [cursor=pointer]:
+                      - generic [ref=e82]: 
+            - listitem [ref=e83]:
+              - generic [ref=e84]:
+                - link "Basiselementen ''oud''" [ref=e85] [cursor=pointer]:
+                  - generic [ref=e86]: Basiselementen ''oud''
+                - button "Open item" [ref=e87] [cursor=pointer]:
+                  - generic [ref=e88]: 
+            - listitem [ref=e89]:
+              - generic [ref=e90]:
+                - link "Richtlijnen middelen ''oud''" [ref=e91] [cursor=pointer]:
+                  - generic [ref=e92]: Richtlijnen middelen ''oud''
+                - button "Open item" [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]: 
+            - listitem [ref=e95]:
+              - generic [ref=e96]:
+                - link "Thema's" [ref=e97] [cursor=pointer]:
+                  - generic [ref=e98]: Thema's
+                - button "Open item" [ref=e99] [cursor=pointer]:
+                  - generic [ref=e100]: 
+    - generic [ref=e101]:
+      - heading "Richtlijnen middelen ''nieuw''" [level=1] [ref=e104]
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - paragraph [ref=e107]:
+            - text: Hier vind je de huisstijlregels per communicatiemiddel. De algemene regels van de rijkshuisstijl staan onder
+            - link "Basiselementen." [ref=e108] [cursor=pointer]:
+              - /url: /publiek/InternalLink.aspx?itemid=6739
+          - paragraph [ref=e109]
+        - list [ref=e114]:
+          - listitem [ref=e115]:
+            - heading "Online middelen" [level=3] [ref=e120] [cursor=pointer]
+          - listitem [ref=e121]:
+            - heading "Offline middelen" [level=3] [ref=e126] [cursor=pointer]
+          - listitem [ref=e127]:
+            - heading "Fysieke middelen" [level=3] [ref=e132] [cursor=pointer]
+          - listitem [ref=e133]:
+            - heading "Corporate middelen" [level=3] [ref=e138] [cursor=pointer]
+  - text: 
+  - generic [ref=e139]:
+    - generic [ref=e143]:
+      - generic [ref=e145]:
+        - heading "Over deze site" [level=3] [ref=e146]
+        - list:
+          - listitem:
+            - link "Copyright" [ref=e147] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6736&OriginalItemId=6736
+          - listitem:
+            - link "Privacy" [ref=e148] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6737&OriginalItemId=6737
+          - listitem:
+            - link "Cookies" [ref=e149] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9144&OriginalItemId=9144
+          - listitem:
+            - link "Toegankelijkheid" [ref=e150] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=9279&OriginalItemId=9279
+      - generic [ref=e151]:
+        - heading "Service" [level=3] [ref=e152]
+        - list:
+          - listitem:
+            - link "Over de rijkshuisstijl" [ref=e153] [cursor=pointer]:
+              - /url: https://www.rijkshuisstijl.nl/publiek/InternalLink.aspx?ItemId=6738&OriginalItemId=6738
+    - generic [ref=e156]: Powered by Spotler Brand ID
