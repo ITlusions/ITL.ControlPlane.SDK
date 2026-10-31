@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "itl-controlplane-sdk"
-version = "1.0.7"
+version = "1.0.8"
 description = "ITL ControlPlane SDK - Core framework for resource management"
 authors = [
     {name = "ITL Team"}
