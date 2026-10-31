@@ -98,9 +98,19 @@ jobs:
           # and 1.0.5 (the SAME package, two of its own versions) that made no real sense.
           # Pinning also makes this test strictly correct: it verifies THIS release
           # installs, not "whatever latest happens to resolve to".
+          #
+          # --extra-index-url for public PyPI IS needed here, despite the dependency-
+          # confusion concern raised earlier - confirmed live that removing it entirely
+          # broke resolution of the package's OWN third-party dependencies (pydantic etc.),
+          # since Forgejo's registry only hosts itl-controlplane-sdk itself, not a mirror of
+          # all of PyPI. The version pin above is what actually neutralizes the confusion
+          # risk for THIS package specifically: pip can only satisfy an exact, internal-only
+          # version string (1.0.6) from Forgejo, since that version will never exist on
+          # public PyPI - so which index pip checks first no longer matters for this name.
           RELEASE_VERSION="${GITHUB_REF_NAME#v}"
           verify-env/bin/pip install \
             --index-url "https://${FORGEJO_PACKAGE_USERNAME}:${FORGEJO_PACKAGE_TOKEN}@git.itlusions.com/api/packages/ITlusions/pypi/simple/" \
+            --extra-index-url https://pypi.org/simple/ \
             "${{ env.PACKAGE_NAME }}==${RELEASE_VERSION}"
           verify-env/bin/python -c "import itl_controlplane_sdk; print('installed from Forgejo OK')"
 
