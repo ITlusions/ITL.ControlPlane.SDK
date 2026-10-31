@@ -92,9 +92,16 @@ jobs:
           # back to public PyPI here either (pip checks whichever index it's given first, and
           # mixing in the public index risks a dependency-confusion attack on an internal-only
           # package name).
+          # Pinned to this exact release (not a bare package name) - confirmed live that an
+          # unpinned install makes pip consider every version on the index at once, and it
+          # hit a resolver bug/quirk reporting a conflict between itl-controlplane-sdk 1.0.4
+          # and 1.0.5 (the SAME package, two of its own versions) that made no real sense.
+          # Pinning also makes this test strictly correct: it verifies THIS release
+          # installs, not "whatever latest happens to resolve to".
+          RELEASE_VERSION="${GITHUB_REF_NAME#v}"
           verify-env/bin/pip install \
             --index-url "https://${FORGEJO_PACKAGE_USERNAME}:${FORGEJO_PACKAGE_TOKEN}@git.itlusions.com/api/packages/ITlusions/pypi/simple/" \
-            ${{ env.PACKAGE_NAME }}
+            "${{ env.PACKAGE_NAME }}==${RELEASE_VERSION}"
           verify-env/bin/python -c "import itl_controlplane_sdk; print('installed from Forgejo OK')"
 
   create-release:
