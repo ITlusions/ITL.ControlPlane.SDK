@@ -80,11 +80,20 @@ jobs:
         run: twine upload dist/* --verbose
 
       - name: Verify it installs from Forgejo
+        env:
+          FORGEJO_PACKAGE_USERNAME: ${{ secrets.FORGEJO_PACKAGE_USERNAME }}
+          FORGEJO_PACKAGE_TOKEN: ${{ secrets.FORGEJO_PACKAGE_TOKEN }}
         run: |
           python -m venv verify-env
+          # Forgejo's package index requires auth even just to browse it (private org) -
+          # confirmed live: an unauthenticated request gets a 401 and pip tries to prompt
+          # interactively for credentials, which just hangs/EOFs on a CI runner. Credentials
+          # go in the URL itself, not a separate --extra-index-url - deliberately NOT falling
+          # back to public PyPI here either (pip checks whichever index it's given first, and
+          # mixing in the public index risks a dependency-confusion attack on an internal-only
+          # package name).
           verify-env/bin/pip install \
-            --index-url ${{ env.FORGEJO_PYPI_URL }}/simple/ \
-            --extra-index-url https://pypi.org/simple/ \
+            --index-url "https://${FORGEJO_PACKAGE_USERNAME}:${FORGEJO_PACKAGE_TOKEN}@git.itlusions.com/api/packages/ITlusions/pypi/simple/" \
             ${{ env.PACKAGE_NAME }}
           verify-env/bin/python -c "import itl_controlplane_sdk; print('installed from Forgejo OK')"
 
