@@ -1,550 +1,118 @@
 name: Build, Test and Publish ITL ControlPlane SDK
 
+# Replaces a previous version of this workflow that targeted public PyPI via OIDC trusted
+# publishing - confirmed live that every run of that version failed (10/10 since it was
+# created, none since), and OIDC trusted publishing doesn't apply to a self-hosted Forgejo
+# package registry anyway (that's a PyPI.org-specific mechanism). This publishes to
+# ITlusions' own Forgejo instance instead - an internal platform SDK has no reason to be on
+# public PyPI at all.
+
 on:
-  workflow_dispatch:
-    inputs:
-      publish_pypi:
-        description: 'Publish to PyPI'
-        required: false
-        default: true
-        type: boolean
   push:
     tags:
       - "v*"
-    paths: 
-      - 'src/**'
-      - 'pyproject.toml'
-      - 'README.md'
-      - 'LICENSE'
-      - '.github/workflows/**'
+  workflow_dispatch:
 
 env:
   PACKAGE_NAME: itl-controlplane-sdk
-  PYTHON_VERSION: '3.11'
+  PYTHON_VERSION: "3.12"
+  # git.itlusions.com's own PyPI-compatible package registry, owned by the ITlusions org -
+  # NOT registry.itlusions.com, which is a plain Docker Registry v2 instance with no PyPI
+  # API at all (confirmed live - pip/twine cannot talk to it).
+  FORGEJO_PYPI_URL: https://git.itlusions.com/api/packages/ITlusions/pypi
 
 jobs:
-  # Build and package
   build:
     runs-on: ubuntu-latest
-    if: ${{ always() }}
-    
-    outputs:
-      package-version: ${{ steps.version.outputs.version }}
-      wheel-name: ${{ steps.build.outputs.wheel-name }}
-      sdist-name: ${{ steps.build.outputs.sdist-name }}
-      is-release: ${{ steps.version.outputs.is-release }}
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0  # Full history for version detection
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Install build tools
-      run: |
-        python -m pip install --upgrade pip
-        pip install build twine wheel tomli tomli-w
+      - name: Install build tools
+        run: python -m pip install --upgrade pip build twine
 
-    - name: Detect version context
-      id: version
-      run: |
-        # Determine if this is a release
-        IS_RELEASE=false
-        if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-          IS_RELEASE=true
-          echo "RELEASE BUILD DETECTED"
-        else
-          echo "Development build"
-        fi
-        
-        # Get version information
-        if [[ "$IS_RELEASE" == "true" ]]; then
-          # Extract version from tag (v1.2.3 -> 1.2.3)
-          VERSION="${{ github.ref_name }}"
-          VERSION="${VERSION#v}"
-          echo "Release version from tag: $VERSION"
-        else
-          # Get base version from pyproject.toml
-          if python3 -c "import sys; sys.version_info >= (3,11)" 2>/dev/null; then
-            BASE_VERSION=$(python -c "import tomllib; f=open('pyproject.toml','rb'); d=tomllib.load(f); print(d['project']['version'])")
-          else
-            BASE_VERSION=$(python -c "import tomli; f=open('pyproject.toml','rb'); d=tomli.load(f); print(d['project']['version'])")
-          fi
-          
-          # Build development version with branch context
-          BRANCH="${{ github.ref_name }}"
-          SHA="${{ github.sha }}"
-          SHA_SHORT="${SHA:0:7}"
-          RUN_NUM="${{ github.run_number }}"
-          
-          # Add branch-specific suffix
-          if [[ "$BRANCH" == "main" ]]; then
-            VERSION="${BASE_VERSION}.dev${RUN_NUM}+main.${SHA_SHORT}"
-          elif [[ "$BRANCH" == "develop" ]]; then
-            VERSION="${BASE_VERSION}.dev${RUN_NUM}+develop.${SHA_SHORT}"
-          elif [[ "$BRANCH" == feature/* ]]; then
-            # Feature branch: v1.2.3.dev123+feature.branch-name.abc1234
-            FEATURE_NAME="${BRANCH#feature/}"
-            FEATURE_NAME="${FEATURE_NAME//\//-}"
-            VERSION="${BASE_VERSION}.dev${RUN_NUM}+feature.${FEATURE_NAME}.${SHA_SHORT}"
-          else
-            # Other branches
-            CLEAN_BRANCH="${BRANCH//\//-}"
-            VERSION="${BASE_VERSION}.dev${RUN_NUM}+${CLEAN_BRANCH}.${SHA_SHORT}"
-          fi
-          
-          echo "Development version: $VERSION"
-        fi
-        
-        # Output version information
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-        echo "is-release=$IS_RELEASE" >> $GITHUB_OUTPUT
-        echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+      - name: Build package
+        run: python -m build --sdist --wheel --outdir dist/
 
-    - name: Update pyproject.toml with version
-      run: |
-        export VERSION="${{ steps.version.outputs.version }}"
-        export IS_RELEASE="${{ steps.version.outputs.is-release }}"
-        echo "Setting version to: $VERSION (Release: $IS_RELEASE)"
-        python -c "import tomli_w, sys, os; data = __import__('tomllib' if sys.version_info >= (3, 11) else 'tomli').load(open('pyproject.toml', 'rb')); data['project']['version'] = os.environ['VERSION']; __import__('tomli_w').dump(data, open('pyproject.toml', 'wb')); print(f'Updated pyproject.toml to version: {os.environ[\"VERSION\"]}')"
+      - name: Check package metadata
+        run: python -m twine check dist/*
 
-    - name: Display version information
-      run: |
-        echo "========================================"
-        echo "VERSION INFORMATION"
-        echo "========================================"
-        echo "Version: ${{ steps.version.outputs.version }}"
-        echo "Is Release: ${{ steps.version.outputs.is-release }}"
-        echo "Branch: ${{ steps.version.outputs.branch }}"
-        echo "GitHub Ref: ${{ github.ref }}"
-        echo "GitHub Event: ${{ github.event_name }}"
-        
-        # Verify in pyproject.toml
-        echo ""
-        echo "Current pyproject.toml version:"
-        python << 'PYEOF'
-        try:
-          import tomllib
-          with open('pyproject.toml', 'rb') as f:
-            data = tomllib.load(f)
-        except ImportError:
-          import tomli
-          with open('pyproject.toml', 'rb') as f:
-            data = tomli.load(f)
-        print(f"  {data['project']['version']}")
-        PYEOF
-        echo "========================================"
+      - name: Test install in a clean venv
+        run: |
+          python -m venv test-env
+          test-env/bin/pip install dist/*.whl
+          test-env/bin/python -c "import itl_controlplane_sdk; print('import OK:', itl_controlplane_sdk.__file__)"
 
-    - name: Build package
-      id: build
-      run: |
-        echo "Building Python package..."
-        python -m build --sdist --wheel --outdir dist/
-        
-        # Get the built file names
-        WHEEL_NAME=$(ls dist/*.whl | head -1 | xargs basename)
-        SDIST_NAME=$(ls dist/*.tar.gz | head -1 | xargs basename)
-        
-        echo "wheel-name=$WHEEL_NAME" >> $GITHUB_OUTPUT
-        echo "sdist-name=$SDIST_NAME" >> $GITHUB_OUTPUT
-        
-        echo "Built packages:"
-        ls -la dist/
-        
-        # Verify the package
-        echo "Verifying package contents..."
-        python -m zipfile -l "dist/$WHEEL_NAME"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
 
-    - name: Test package installation
-      run: |
-        echo "Testing package installation..."
-        # Create a clean environment to test installation
-        python -m venv test-env
-        source test-env/bin/activate
-        
-        # Install from wheel
-        pip install dist/*.whl
-        
-        # Test import
-        python << 'PYEOF'
-        from itl_controlplane_sdk.core.models.base import ProvisioningState
-        from itl_controlplane_sdk.providers.base import ResourceProvider
-        print('Package installation and import test successful')
-        PYEOF
-        
-        deactivate
-        rm -rf test-env
-
-    - name: Check package metadata
-      run: |
-        echo "Checking package metadata..."
-        python -m twine check dist/*
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: python-package-${{ steps.version.outputs.version }}
-        path: dist/
-        retention-days: 30
-
-  # Publish to PyPI (Test) verwijderd
-  # Publish to PyPI (Production)
-  publish-production:
-    needs: [build]
+  publish:
+    needs: build
     runs-on: ubuntu-latest
-    if: |
-      startsWith(github.ref, 'refs/tags/v') && 
-      (
-        (github.event_name == 'workflow_dispatch' && inputs.publish_pypi) ||
-        github.event_name != 'workflow_dispatch'
-      )
+    if: startsWith(github.ref, 'refs/tags/v')
     environment: production
-    permissions:
-      contents: write
-      id-token: write  # For trusted publishing
-    
     steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: python-package-${{ needs.build.outputs.package-version }}
-        path: dist/
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
 
-    - name: Install publish tools
-      run: |
-        python -m pip install --upgrade pip
-        pip install twine
+      - run: python -m pip install --upgrade twine
 
-    - name: Publish to PyPI
-      run: |
-        echo "Publishing to PyPI using OIDC..."
-        python -m twine upload dist/* --verbose
+      - name: Publish to Forgejo package registry
+        env:
+          TWINE_REPOSITORY_URL: ${{ env.FORGEJO_PYPI_URL }}
+          # Forgejo's package API uses plain basic auth (username + a personal access token
+          # with package:write scope), not PyPI.org-style OIDC trusted publishing - these two
+          # secrets must be added to this repo (Settings -> Secrets and variables -> Actions)
+          # before this job can succeed.
+          TWINE_USERNAME: ${{ secrets.FORGEJO_PACKAGE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.FORGEJO_PACKAGE_TOKEN }}
+        run: twine upload dist/* --verbose
 
-    - name: Verify PyPI publication
-      run: |
-        echo "Verifying PyPI publication..."
-        # Wait for package to be available
-        sleep 60
-        
-        # Try to install from PyPI
-        python -m venv verify-env
-        source verify-env/bin/activate
-        pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.package-version }}
-        
-        # Test import
-        python << 'PYEOF'
-        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-        print('PyPI package verification successful')
-        PYEOF
-        
-        deactivate
-        rm -rf verify-env
+      - name: Verify it installs from Forgejo
+        run: |
+          python -m venv verify-env
+          verify-env/bin/pip install \
+            --index-url ${{ env.FORGEJO_PYPI_URL }}/simple/ \
+            --extra-index-url https://pypi.org/simple/ \
+            ${{ env.PACKAGE_NAME }}
+          verify-env/bin/python -c "import itl_controlplane_sdk; print('installed from Forgejo OK')"
 
-  # Create GitHub Release
   create-release:
-    needs: [build, publish-production]
+    needs: publish
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     permissions:
       contents: write
-    
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: python-package-${{ needs.build.outputs.package-version }}
-        path: dist/
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
 
-    - name: Generate release notes
-      run: |
-        cat > release-notes.md << EOF
-        # ITL ControlPlane SDK ${{ github.ref_name }}
-        
-        ## Package Information
-        - **Version**: ${{ needs.build.outputs.package-version }}
-        - **Python Support**: 3.8+
-        - **PyPI**: https://pypi.org/project/${{ env.PACKAGE_NAME }}/${{ needs.build.outputs.package-version }}/
-        
-        ## Installation
-        
-        \`\`\`bash
-        pip install ${{ env.PACKAGE_NAME }}==${{ needs.build.outputs.package-version }}
-        \`\`\`
-        
-        ## Quick Start
-        
-        \`\`\`python
-        from itl_controlplane_sdk import ResourceProviderRegistry, ResourceProvider
-        from itl_controlplane_sdk.models import ResourceRequest
-        
-        # Create registry and register providers
-        registry = ResourceProviderRegistry()
-        # ... see examples/ for more details
-        \`\`\`
-        
-        ## What's Included
-        - Core SDK package with resource provider framework
-        - Provider base classes and interfaces
-        - Data models for resource management
-        - Example implementations
-        
-        ## Links
-        - [Documentation](https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/README.md)
-        - [Examples](https://github.com/${{ github.repository }}/tree/${{ github.ref_name }}/examples)
-        - [PyPI Package](https://pypi.org/project/${{ env.PACKAGE_NAME }}/)
-        
-        ## Release Assets
-        - **Source Distribution** (.tar.gz): For pip installation from source
-        - **Python Wheel** (.whl): For fast binary installation
-        EOF
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+          body: |
+            ## Install
 
-    - name: Create GitHub Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref_name }}
-        release_name: ITL ControlPlane SDK ${{ github.ref_name }}
-        body_path: release-notes.md
-        draft: false
-        prerelease: ${{ contains(github.ref_name, '-') }}
+            ```bash
+            pip install --index-url ${{ env.FORGEJO_PYPI_URL }}/simple/ ${{ env.PACKAGE_NAME }}==${{ github.ref_name }}
+            ```
 
-    - name: Upload release assets
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: dist/${{ needs.build.outputs.wheel-name }}
-        asset_name: ${{ needs.build.outputs.wheel-name }}
-        asset_content_type: application/zip
-
-    - name: Upload source distribution
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: dist/${{ needs.build.outputs.sdist-name }}
-        asset_name: ${{ needs.build.outputs.sdist-name }}
-        asset_content_type: application/gzip
-
-  # Auto-create release tags on push to main/develop
-  auto-tag:
-    needs: [build]
-    runs-on: ubuntu-latest
-    if: |
-      github.event_name == 'push' &&
-      !startsWith(github.ref, 'refs/tags/') &&
-      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-    permissions:
-      contents: write
-    
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
-
-    - name: Get current version and determine next version
-      id: next-version
-      run: |
-        pip install tomli
-        
-        python << 'PYTHON_SCRIPT'
-        import tomli
-        import os
-        
-        # Get base version from pyproject.toml
-        with open('pyproject.toml', 'rb') as f:
-          data = tomli.load(f)
-        
-        current_version = data['project']['version']
-        
-        # Parse MAJOR.MINOR.PATCH
-        parts = current_version.split('.')
-        major = int(parts[0].split('-')[0].split('+')[0])
-        minor = int(parts[1].split('-')[0].split('+')[0]) if len(parts) > 1 else 0
-        patch = int(parts[2].split('-')[0].split('+')[0]) if len(parts) > 2 else 0
-        
-        # Determine bump strategy based on branch
-        branch = os.getenv('GITHUB_REF')
-        if 'refs/heads/main' in branch:
-          # Main: bump minor version (1.0.0 -> 1.1.0)
-          next_version = f"{major}.{minor + 1}.0"
-          print("Main branch: bumping minor version")
-        else:
-          # Develop: bump patch version (1.0.0 -> 1.0.1)
-          next_version = f"{major}.{minor}.{patch + 1}"
-          print("Develop branch: bumping patch version")
-        
-        # Write outputs
-        with open(os.getenv('GITHUB_OUTPUT'), 'a') as f:
-          f.write(f"current={current_version}\n")
-          f.write(f"next={next_version}\n")
-          f.write(f"branch={os.getenv('GITHUB_REF_NAME')}\n")
-        
-        print("════════════════════════════════════════")
-        print("Version Bump Information")
-        print("════════════════════════════════════════")
-        print(f"Current version: {current_version}")
-        print(f"Next version: {next_version}")
-        print(f"Branch: {os.getenv('GITHUB_REF_NAME')}")
-        print("════════════════════════════════════════")
-        PYTHON_SCRIPT
-
-    - name: Check if tag already exists
-      id: check-tag
-      run: |
-        TAG_NAME="v${{ steps.next-version.outputs.next }}"
-        
-        if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
-          echo "Tag $TAG_NAME already exists, skipping auto-tag"
-          echo "tag-exists=true" >> $GITHUB_OUTPUT
-        else
-          echo "Tag $TAG_NAME does not exist, will create it"
-          echo "tag-exists=false" >> $GITHUB_OUTPUT
-        fi
-
-    - name: Update pyproject.toml with next version
-      if: steps.check-tag.outputs.tag-exists == 'false'
-      run: |
-        pip install tomli tomli-w
-        
-        python -c "
-        import tomli_w
-        import tomli
-        
-        with open('pyproject.toml', 'rb') as f:
-          data = tomli.load(f)
-        
-        data['project']['version'] = '${{ steps.next-version.outputs.next }}'
-        
-        with open('pyproject.toml', 'wb') as f:
-          tomli_w.dump(data, f)
-        
-        print('Updated pyproject.toml to version: ${{ steps.next-version.outputs.next }}')
-        "
-
-    - name: Create and push tag
-      if: steps.check-tag.outputs.tag-exists == 'false'
-      run: |
-        TAG_NAME="v${{ steps.next-version.outputs.next }}"
-        
-        # Configure git
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        
-        # Commit version update
-        git add pyproject.toml
-        git commit -m "chore: bump version to ${{ steps.next-version.outputs.next }}"
-        
-        # Create and push tag
-        git tag -a "$TAG_NAME" -m "Release ${{ steps.next-version.outputs.next }}"
-        git push origin "$TAG_NAME"
-        
-        # Also push the version update commit
-        git push origin ${{ steps.next-version.outputs.branch }}
-        
-        echo "Created and pushed tag: $TAG_NAME"
-        echo ""
-        echo "This will automatically trigger the release workflow"
-        echo "   Release will be published to PyPI and GitHub Releases"
-
-    - name: Summary
-      if: always()
-      run: |
-        echo "════════════════════════════════════════"
-        echo "Auto-Tag Summary"
-        echo "════════════════════════════════════════"
-        echo "Branch: ${{ steps.next-version.outputs.branch }}"
-        echo "Current version: ${{ steps.next-version.outputs.current }}"
-        echo "Next version: ${{ steps.next-version.outputs.next }}"
-        echo "Tag exists: ${{ steps.check-tag.outputs.tag-exists }}"
-        if [[ "${{ steps.check-tag.outputs.tag-exists }}" == "false" ]]; then
-          echo "Status: Tag created and pushed"
-          echo "Next: Release workflow will be triggered automatically"
-        else
-          echo "Status: Tag already exists, no action taken"
-        fi
-        echo "════════════════════════════════════════"
-
-  # Notify on completion
-  notify:
-    needs: [build]
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-    - name: Determine notification status
-      run: |
-        if [[ "${{ needs.build.result }}" == "success" ]]; then
-          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
-            echo "STATUS=PRODUCTION RELEASE SUCCESSFUL" >> $GITHUB_ENV
-            echo "MESSAGE=ITL ControlPlane SDK ${{ github.ref_name }} successfully published to PyPI and GitHub Releases" >> $GITHUB_ENV
-          else
-            if [[ "${{ needs.publish-test.result }}" == "success" ]]; then
-              echo "STATUS=TEST BUILD SUCCESSFUL" >> $GITHUB_ENV
-              echo "MESSAGE=ITL ControlPlane SDK test build completed successfully" >> $GITHUB_ENV
-            else
-              echo "STATUS=TEST BUILD COMPLETED" >> $GITHUB_ENV
-              echo "MESSAGE=ITL ControlPlane SDK build completed with warnings" >> $GITHUB_ENV
-            fi
-          fi
-        else
-          echo "STATUS=BUILD FAILED" >> $GITHUB_ENV
-          echo "MESSAGE=ITL ControlPlane SDK build or tests failed" >> $GITHUB_ENV
-        fi
-
-    - name: Notify Teams (if webhook available)
-      if: env.TEAMS_WEBHOOK
-      run: |
-        curl -H "Content-Type: application/json" -d '{
-          "text": "${{ env.STATUS }}: ${{ env.MESSAGE }}",
-          "sections": [
-            {
-              "activityTitle": "ITL ControlPlane SDK Pipeline",
-              "activitySubtitle": "Build and Publish",
-              "facts": [
-                {"name": "Repository", "value": "${{ github.repository }}"},
-                {"name": "Branch/Tag", "value": "${{ github.ref_name }}"},
-                {"name": "Commit", "value": "${{ github.sha }}"},
-                {"name": "Trigger", "value": "${{ github.event_name }}"}
-              ]
-            }
-          ]
-        }' ${{ env.TEAMS_WEBHOOK }}
-      env:
-        TEAMS_WEBHOOK: ${{ secrets.TEAMS_WEBHOOK }}
-
-    - name: Summary
-      run: |
-        echo "Pipeline Summary"
-        echo "=================="
-        echo "Repository: ${{ github.repository }}"
-        echo "Reference: ${{ github.ref }}"
-        echo "Event: ${{ github.event_name }}"
-        echo "Status: ${{ env.STATUS }}"
-        echo "Message: ${{ env.MESSAGE }}"
-        echo ""
-        echo "Job Results:"
-        echo "- Build: ${{ needs.build.result }}"
-        echo "- Publish Test: ${{ needs.publish-test.result }}"
+            Published to ITlusions' own Forgejo package registry (`git.itlusions.com`), not
+            public PyPI - this is an internal platform SDK.
