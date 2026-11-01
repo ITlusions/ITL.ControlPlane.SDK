@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "itl-controlplane-sdk"
-version = "1.0.8"
+version = "1.0.9"
 description = "ITL ControlPlane SDK - Core framework for resource management"
 authors = [
     {name = "ITL Team"}
@@ -28,7 +28,8 @@ identity = [
 fastapi = [
     "fastapi>=0.104.0",
     "uvicorn[standard]>=0.24.0",
-    "starlette>=0.27.0"
+    "starlette>=0.27.0",
+    "httpx>=0.25.0"
 ]
 pulumi = [
     "pulumi>=3.0.0",

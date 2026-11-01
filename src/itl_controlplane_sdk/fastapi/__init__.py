@@ -1,35 +1,32 @@
 """
 FastAPI utilities for ITL ControlPlane SDK
 
-Provides factory, middleware, and common patterns for building FastAPI applications
-in the ITL ControlPlane ecosystem (API gateway and resource providers).
-
-Module structure:
-    base/          - App factory, configuration, models
-    providers/     - Provider server base class and setup utilities
-    routes/        - HTTP route handlers (health, CRUD, observability, schema)
-    middleware/    - Logging and error handling middleware
-    utilities/     - Schema discovery and other utility functions
+Thin alias of itl_controlplane_sdk.api — exists for callers that import from
+itl_controlplane_sdk.fastapi directly (this package's own name matches the
+"fastapi" extra). Re-exports the real implementation rather than duplicating
+it; this module's own provider_server.py/provider_setup.py/routes/ are a
+byte-identical, unused fork of api/providers/ kept only for backward
+compatibility with any code importing those submodules by path directly.
 """
 
-from .base import (
+from itl_controlplane_sdk.api import (
     AppFactory,
     FastAPIConfig,
-)
-from .base.models import GenericResourceBase
-from .providers import (
+    GenericResourceBase,
+    GenericResourceRequest,
+    GenericResourceResponse,
     BaseProviderServer,
     add_audit_middleware,
     setup_standard_openapi_tags,
     register_resource_types,
-)
-from .routes.crud import create_crud_routes
-from .routes.generic import setup_generic_routes
-from .routes.observability import setup_observability_routes
-from .utilities import (
+    create_crud_routes,
+    setup_generic_routes,
+    setup_observability_routes,
     discover_resource_schema,
     get_operation_schema,
     create_schema_routes,
+    ResourceTypeSchema,
+    SchemaRegistry,
 )
 
 __all__ = [
@@ -41,8 +38,12 @@ __all__ = [
     "discover_resource_schema",
     "FastAPIConfig",
     "GenericResourceBase",
+    "GenericResourceRequest",
+    "GenericResourceResponse",
     "get_operation_schema",
     "register_resource_types",
+    "ResourceTypeSchema",
+    "SchemaRegistry",
     "setup_generic_routes",
     "setup_observability_routes",
     "setup_standard_openapi_tags",
